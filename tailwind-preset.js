@@ -77,5 +77,5 @@ module.exports = {
       sans: ['Inter', ...fontFamily.sans],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
