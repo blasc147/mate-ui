@@ -1,1 +1,2 @@
-export * from './lib/mate-ui';
+export * from './lib/components';
+export * from './lib/utils';
