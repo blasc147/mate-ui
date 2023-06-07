@@ -76,6 +76,22 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', ...fontFamily.sans],
     },
+    fontWeight: {
+      regular: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+    },
+    fontSize: {
+      '3xl': ['30px', '42px'],
+      '2xl': ['24px', '33.6px'],
+      xl: ['20px', '28px'],
+      lg: ['18px', '25.2px'],
+      m: ['16px', '22.4px'],
+      sm: ['14px', '19.6px'],
+      xs: ['12px', '16.8px'],
+      xxs: ['10px', '14px'],
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 };

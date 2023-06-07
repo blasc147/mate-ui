@@ -189,7 +189,7 @@ const styles = {
     variants: {
       size: {
         sm: ['py-1.5', 'px-4', 'text-sm'],
-        md: ['py-2', 'px-6', 'text-base'],
+        md: ['py-2', 'px-6', 'text-m'],
       },
     },
     defaultVariants: {

@@ -27,12 +27,12 @@ const styles = {
     {
       variants: {
         size: {
-          md: 'text-base',
+          md: 'text-m',
           sm: 'text-sm',
         },
         weight: {
           default: 'font-semibold',
-          light: 'font-normal',
+          light: 'font-regular',
         },
         colorScheme: {
           primary: [
