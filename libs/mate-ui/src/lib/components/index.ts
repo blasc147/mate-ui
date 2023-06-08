@@ -3,3 +3,4 @@ export * from './button';
 export * from './close-button';
 export * from './icon-button';
 export * from './link';
+export * from './dialog';
