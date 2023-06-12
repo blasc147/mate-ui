@@ -32,9 +32,10 @@ const styles = {
             'active:border-primary-500',
             'focus:border-primary-500',
             'data-[state=checked]:bg-primary-500',
+            'data-[state=checked]:active:bg-primary-700',
           ],
           error: [
-            'active:!border-error-700',
+            'border-error-700',
             'focus:!border-error-700',
             'data-[state=checked]:bg-error-700',
           ],
