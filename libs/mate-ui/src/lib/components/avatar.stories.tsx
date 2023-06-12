@@ -59,6 +59,20 @@ export const StatusOffline = {
   },
 };
 
+export const ImgWithStatus = {
+    args: {
+      children: (
+        <img
+          alt="user"
+          className="w-full h-full object-cover"
+          src="avatar-img-1.jpg"
+        />
+      ),
+      status: 'online',
+      label: 'Mate',
+    },
+  }; 
+
 export const WithLabel = {
   args: {
     children: <UserIcon className="h-6 w-6" />,
