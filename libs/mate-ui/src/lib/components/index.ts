@@ -4,3 +4,4 @@ export * from './close-button';
 export * from './icon-button';
 export * from './link';
 export * from './dialog';
+export * from './accordion';
