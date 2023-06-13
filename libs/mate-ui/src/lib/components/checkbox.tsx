@@ -8,7 +8,17 @@ import * as Label from '@radix-ui/react-label';
 import { CheckIcon } from '@heroicons/react/20/solid';
 
 const styles = {
-  base: cva(['flex']),
+  base: cva(['flex'], {
+    variants: {
+      trailingControl: {
+        true: 'flex-row-reverse justify-end',
+        false: 'flex-row',
+      },
+    },
+    defaultVariants: {
+      trailingControl: false,
+    },
+  }),
   root: cva(
     [
       'h-5',
@@ -40,13 +50,31 @@ const styles = {
             'data-[state=checked]:bg-error-700',
           ],
         },
+        trailingControl: {
+          true: 'ml-2',
+          false: 'ml-0',
+        },
+      },
+      defaultVariants: {
+        variant: 'primary',
+        trailingControl: false,
       },
     }
   ),
   indicator: cn('text-white', 'flex', 'justify-center', 'items-center'),
   label: cn('text-sm', 'font-semibold', 'flex', 'flex-col'),
   subtext: cn('text-sm', 'font-normal', 'mt-1'),
-  textContainer: cn('flex', 'flex-col', 'ml-2', 'text-neutral-900'),
+  textContainer: cva(['flex', 'flex-col', 'text-neutral-900', 'max-w-[244px]'], {
+    variants: {
+      trailingControl: {
+        true: 'ml-0',
+        false: 'ml-2',
+      },
+    },
+    defaultVariants: {
+      trailingControl: false,
+    },
+  }),
 };
 
 interface CheckboxProps
@@ -63,6 +91,7 @@ interface CheckboxProps
   onCheckedChange?: (checked: boolean | 'indeterminate') => void;
   required?: boolean;
   name?: string;
+  trailingControl?: boolean;
 }
 
 const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
@@ -80,16 +109,17 @@ const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
       onCheckedChange,
       required,
       name,
+      trailingControl,
     },
     ref
   ) => {
     const variant = error ? 'error' : 'primary';
     const id = useId();
     return (
-      <div className={cn(styles.base(), className)}>
+      <div className={cn(styles.base({ trailingControl }), className)}>
         <RadixCheckbox.Root
           ref={ref}
-          className={cn(styles.root({ variant }))}
+          className={styles.root({ variant, trailingControl })}
           disabled={disabled}
           id={id}
           value={value}
@@ -104,7 +134,7 @@ const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
           </RadixCheckbox.Indicator>
         </RadixCheckbox.Root>
         <div
-          className={cn(styles.textContainer, {
+          className={cn(styles.textContainer({trailingControl}), {
             'text-neutral-600': disabled,
           })}
         >

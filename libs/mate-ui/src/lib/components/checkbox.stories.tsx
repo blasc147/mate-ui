@@ -46,3 +46,11 @@ export const WithError = {
     },
   };
   
+  export const TrailingControl = {
+    args: {
+      label: 'Label',
+      subtext: 'Additional text to accompany the label',
+      trailingControl: true,
+    },
+  };
+  
