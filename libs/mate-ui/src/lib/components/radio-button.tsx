@@ -51,7 +51,12 @@ const styles = {
   trailingControl: cn('flex', 'flex-col'),
   indicator: cn('flex', 'justify-center', 'items-center'),
   icon: cva(
-    ['h-3', 'w-3', 'group-disabled:text-neutral-400 group-disabled:fill-neutral-400'],
+    [
+      'h-3',
+      'w-3',
+      'group-disabled:text-neutral-400',
+      'group-disabled:fill-neutral-400',
+    ],
     {
       variants: {
         error: { true: 'fill-error-700', false: 'fill-primary-500' },
@@ -59,14 +64,28 @@ const styles = {
       defaultVariants: { error: false },
     }
   ),
-  label: cn('text-neutral-900', 'text-sm', 'font-semibold', 'flex', 'flex-col'),
-  subText: cn('text-neutral-900', 'text-sm', 'font-normal', 'mt-1'),
+  label: cva(
+    ['text-neutral-900', 'text-sm', 'font-semibold', 'flex', 'flex-col'],
+    {
+      variants: {
+        disabled: { true: 'text-neutral-600' },
+      },
+      defaultVariants: { disabled: false },
+    }
+  ),
+  subText: cva(['text-neutral-900', 'text-sm', 'font-normal', 'mt-1'], {
+    variants: {
+      disabled: { true: 'text-neutral-600' },
+    },
+    defaultVariants: { disabled: false },
+  }),
 };
 
 interface TextComponent {
   id: string;
   label?: string;
   subText?: string;
+  disabled?: boolean;
 }
 
 interface RadioGroupProps
@@ -118,14 +137,14 @@ const RadioGroup = React.forwardRef<
 );
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-const TextComponent =({id, label, subText}: TextComponent)=>{
+const TextComponent =({id, label, subText, disabled}: TextComponent)=>{
   return (
     <div className={cn(styles.trailingControl)}>
       <Label.Root htmlFor={id}>
-        <span className={cn(styles.label)}>{label}</span>
+        <span className={cn(styles.label({ disabled }))}>{label}</span>
       </Label.Root>
       <Label.Root htmlFor={id}>
-        <span className={cn(styles.subText)}>{subText}</span>
+        <span className={cn(styles.subText({ disabled }))}>{subText}</span>
       </Label.Root>
     </div>
   );
@@ -135,13 +154,13 @@ const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioGroupItemProps
 >(({ id:externalId, value, label, subText, className, children, ...props }, ref) => {
-  const { error, trailingControl } = React.useContext(RadioGroupContext);
+  const { error, trailingControl, disabled } = React.useContext(RadioGroupContext);
   const defaultId = useId();
   const id = externalId || defaultId;
   return (
     <div className={cn(styles.base, className)}>
       {trailingControl && (
-        <TextComponent id={id} label={label} subText={subText} />
+        <TextComponent id={id} label={label} subText={subText} disabled={disabled}/>
       )}
       <RadioGroupPrimitive.Item
         value={value}
@@ -157,7 +176,7 @@ const RadioGroupItem = React.forwardRef<
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
       {!trailingControl && (
-        <TextComponent id={id} label={label} subText={subText} />
+        <TextComponent id={id} label={label} subText={subText} disabled={disabled}/>
       )}
     </div>
   );

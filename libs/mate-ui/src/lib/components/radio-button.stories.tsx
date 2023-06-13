@@ -135,6 +135,13 @@ export const DisabledWithLabel = {
   },
 };
 
+export const DisabledWithLabelAndSubtext = {
+  args: {
+    items: itemsWithLabelAndSubText,
+    disabled: true,
+  },
+};
+
 export const TrailingControlWithLabel = {
   args: {
     items: itemsWithLabel,
