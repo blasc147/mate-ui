@@ -32,7 +32,7 @@ const TabsList = React.forwardRef<
     <div className={cn(
       'h-1',
       'border-b-2',
-      'border-neutral-300',
+      'border-neutral-400',
       'w-full'
     )} />
   </>
@@ -52,8 +52,7 @@ const TabsTrigger = React.forwardRef<
       'justify-center',
       'inline-flex',
       'whitespace-nowrap',
-      'px-3',
-      'py-2.5',
+      'p-4',
       'text-sm',
       'font-regular',
       'text-neutral-500',

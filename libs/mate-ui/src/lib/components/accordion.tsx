@@ -78,6 +78,7 @@ const AccordionTrigger = React.forwardRef<
           'focus:border',
           'border-primary-600',
           'hover:bg-neutral-100',
+          'disabled:text-neutral-600',
           'data-[disabled]:hover:bg-transparent',
           '[&[data-state=open]>svg]:rotate-180',
           className

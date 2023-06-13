@@ -5,4 +5,5 @@ export * from './icon-button';
 export * from './link';
 export * from './tabs';
 export * from './dialog';
+export * from './radio-button';
 export * from './accordion';

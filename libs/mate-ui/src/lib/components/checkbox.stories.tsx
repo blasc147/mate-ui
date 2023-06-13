@@ -1,6 +1,5 @@
 import type { Meta } from '@storybook/react';
 import { Checkbox } from './checkbox';
-import { StarIcon } from '@heroicons/react/24/outline';
 
 const Story: Meta<typeof Checkbox> = {
   component: Checkbox,
@@ -18,7 +17,7 @@ export const Indeterminate = {
   },
 };
 
-export const WhithLabel = {
+export const WithLabel = {
   args: {
     label: 'Label',
   },
@@ -32,14 +31,14 @@ export const Disabled = {
     },
   };
 
-export const WhithLabelAndSubtext = {
+export const WithLabelAndSubtext = {
   args: {
     label: 'Label',
     subtext: 'Additional text to accompany the label',
   },
 };
 
-export const WhithError = {
+export const WithError = {
     args: {
       error: true,
       label: 'Label',
