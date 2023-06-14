@@ -21,7 +21,7 @@ const styles = {
       'font-semibold',
       'transition-all',
       'focus:border',
-      'border-primary-600',
+      'focus:border-primary-600',
       'hover:bg-neutral-100',
       'disabled:text-neutral-600',
       'data-[disabled]:hover:bg-transparent',

@@ -12,11 +12,13 @@ const styles = {
   base: cn(['flex', 'space-x-2']),
   root: cva(
     [
+      'mt-[1px]',
       'aspect-square',
       'h-4',
       'w-4',
       'rounded-full',
       'border',
+      'active:border-primary-500',
       'focus:outline-none',
       'focus-visible:ring-2',
       'focus-visible:ring-offset-2',
@@ -34,13 +36,15 @@ const styles = {
             'active:border-primary-500',
             'focus:border-primary-500',
             'data-[state=checked]:border-primary-500',
+            'data-[state=checked]:active:border-primary-700',
             'text-primary-500',
             'border-neutral-400',
           ],
           true: [
-            'active:border-error-700',
+            'active:border-error-800',
             'focus:border-error-700',
             'data-[state=checked]:border-error-700',
+            'data-[state=checked]:active:border-error-800',
             'text-error-700',
           ],
         },
@@ -59,7 +63,11 @@ const styles = {
     ],
     {
       variants: {
-        error: { true: 'fill-error-700', false: 'fill-primary-500' },
+        error: {
+          true: 'fill-error-700 active:fill-error-800 active:text-error-800',
+          false:
+            'fill-primary-500 active:fill-primary-700 active:text-primary-700',
+        },
       },
       defaultVariants: { error: false },
     }
@@ -73,7 +81,7 @@ const styles = {
       defaultVariants: { disabled: false },
     }
   ),
-  subText: cva(['text-neutral-900', 'text-sm', 'font-normal', 'mt-1'], {
+  subText: cva(['text-neutral-900', 'text-sm', 'font-normal'], {
     variants: {
       disabled: { true: 'text-neutral-600' },
     },

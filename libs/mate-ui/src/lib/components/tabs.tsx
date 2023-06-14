@@ -62,7 +62,7 @@ const TabsTrigger = React.forwardRef<
       'data-[state=active]:border-b-2',
       'data-[state=active]:border-primary-600',
       'data-[state=inactive]:border-b-2',
-      'data-[state=inactive]:border-neutral-300',
+      'data-[state=inactive]:border-neutral-400',
       className
     )}
     {...props}
@@ -81,7 +81,8 @@ const TabsTrigger = React.forwardRef<
         'w-[1.375rem]',
         'h-[1.563rem]',
         'rounded-full',
-        'p-1',
+        'px-2',
+        'py-1',
         'ml-[0.625rem]',
         'text-xs',
         'text-neutral-700',
