@@ -48,6 +48,7 @@ const styles = {
             'border-error-700',
             'focus:!border-error-700',
             'data-[state=checked]:bg-error-700',
+            'data-[state=checked]:active:bg-error-800',
           ],
         },
         trailingControl: {
