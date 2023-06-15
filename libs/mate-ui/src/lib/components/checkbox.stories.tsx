@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from './checkbox';
 
 const Story: Meta<typeof Checkbox> = {
@@ -7,50 +7,51 @@ const Story: Meta<typeof Checkbox> = {
 };
 export default Story;
 
-export const SimpleCheckbox = {
+type Story = StoryObj<typeof Checkbox>;
+
+export const SimpleCheckbox: Story = {
   args: {},
 };
 
-export const Indeterminate = {
+export const Indeterminate: Story = {
   args: {
     indeterminate: true,
   },
 };
 
-export const WithLabel = {
+export const WithLabel: Story = {
   args: {
     label: 'Label',
   },
 };
 
-export const Disabled = {
-    args: {
-      disabled: true,
-      label: 'Label',
-      subtext: 'Additional text to accompany the label',
-    },
-  };
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    label: 'Label',
+    subtext: 'Additional text to accompany the label',
+  },
+};
 
-export const WithLabelAndSubtext = {
+export const WithLabelAndSubtext: Story = {
   args: {
     label: 'Label',
     subtext: 'Additional text to accompany the label',
   },
 };
 
-export const WithError = {
-    args: {
-      error: true,
-      label: 'Label',
-      subtext: 'Additional text to accompany the label',
-    },
-  };
-  
-  export const TrailingControl = {
-    args: {
-      label: 'Label',
-      subtext: 'Additional text to accompany the label',
-      trailingControl: true,
-    },
-  };
-  
+export const WithError: Story = {
+  args: {
+    error: true,
+    label: 'Label',
+    subtext: 'Additional text to accompany the label',
+  },
+};
+
+export const TrailingControl: Story = {
+  args: {
+    label: 'Label',
+    subtext: 'Additional text to accompany the label',
+    trailingControl: true,
+  },
+};
