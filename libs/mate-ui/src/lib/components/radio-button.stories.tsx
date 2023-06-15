@@ -1,12 +1,11 @@
-import type { Meta } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { RadioGroup, RadioGroupItem } from './radio-button';
 
 interface RadioButtonProps {
   error?: boolean;
   trailingControl?: boolean;
   disabled?: boolean;
-  items: Items[]
+  items: Items[];
 }
 
 interface Items {
@@ -61,7 +60,7 @@ function RadioButtonComponent({
       trailingControl={trailingControl}
       disabled={disabled}
     >
-      {items.map(item =>{
+      {items.map((item) => {
         return (
           <RadioGroupItem
             value={item.key}
@@ -83,76 +82,77 @@ const Story: Meta<typeof RadioButtonComponent> = {
 };
 export default Story;
 
-export const Default = {
+type Story = StoryObj<typeof RadioButtonComponent>;
+
+export const Default: StoryObj = {
   args: {
-    items
+    items,
   },
 };
 
-export const DefaultWithLabel = {
+export const DefaultWithLabel: StoryObj = {
   args: {
     items: itemsWithLabel,
   },
 };
 
-export const DefaultWithLabelAndSubText = {
+export const DefaultWithLabelAndSubText: StoryObj = {
   args: {
     items: itemsWithLabelAndSubText,
   },
 };
 
-export const Error = {
+export const Error: StoryObj = {
   args: {
     items,
     error: true,
   },
 };
-export const ErrorWithLabel = {
+export const ErrorWithLabel: StoryObj = {
   args: {
     items: itemsWithLabel,
     error: true,
   },
 };
 
-export const ErrorWithLabelAndSubText = {
+export const ErrorWithLabelAndSubText: StoryObj = {
   args: {
     items: itemsWithLabelAndSubText,
     error: true,
   },
 };
 
-export const Disabled = {
+export const Disabled: StoryObj = {
   args: {
     items,
     disabled: true,
   },
 };
 
-export const DisabledWithLabel = {
+export const DisabledWithLabel: StoryObj = {
   args: {
     items: itemsWithLabel,
     disabled: true,
   },
 };
 
-export const DisabledWithLabelAndSubtext = {
+export const DisabledWithLabelAndSubtext: StoryObj = {
   args: {
     items: itemsWithLabelAndSubText,
     disabled: true,
   },
 };
 
-export const TrailingControlWithLabel = {
+export const TrailingControlWithLabel: StoryObj = {
   args: {
     items: itemsWithLabel,
     trailingControl: true,
   },
 };
 
-export const TrailingControlWithLabelAndSubText = {
+export const TrailingControlWithLabelAndSubText: StoryObj = {
   args: {
     items: itemsWithLabelAndSubText,
     trailingControl: true,
   },
 };
-
