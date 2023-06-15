@@ -45,7 +45,13 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
       >
         <div
           ref={ref}
-          className={cn('relative', 'flex', 'hover:shadow', className)}
+          className={cn(
+            'relative',
+            'flex',
+            'rounded',
+            'hover:shadow',
+            className
+          )}
           {...props}
         >
           {children}

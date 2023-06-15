@@ -12,7 +12,7 @@ const styles = cn(
   'border-neutral-400',
   'bg-white',
   'border-r-0',
-  'rounded-l-sm'
+  'rounded-l'
 );
 
 const InputLeftAddon = React.forwardRef<
