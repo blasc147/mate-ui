@@ -5,7 +5,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import type { Meta } from '@storybook/react';
-import { Avatar } from '../avatar';
+import { Avatar, AvatarImage } from '../avatar';
 import { Button } from '../button';
 import { IconButton } from '../icon-button';
 import {
@@ -249,12 +249,8 @@ export const WithLeadingAvatarElement = {
         <FormLabel>Label</FormLabel>
         <InputGroup>
           <InputLeftElement>
-            <Avatar className="[&>span]:h-6 [&>span]:w-6 flex items-center justify-center">
-              <img
-                alt="user"
-                className="w-full h-full object-cover"
-                src="avatar-img-1.jpg"
-              />
+            <Avatar className="h-6 w-6">
+              <AvatarImage src="avatar-img-1.jpg" />/
             </Avatar>
           </InputLeftElement>
           <Input type="text" />
@@ -272,12 +268,8 @@ export const WithTrailingAvatarElement = {
         <InputGroup>
           <Input type="text" />
           <InputRightElement>
-            <Avatar className="[&>span]:h-6 [&>span]:w-6 flex items-center justify-center">
-              <img
-                alt="user"
-                className="w-full h-full object-cover"
-                src="avatar-img-1.jpg"
-              />
+            <Avatar className="h-6 w-6">
+              <AvatarImage src="avatar-img-1.jpg" />/
             </Avatar>
           </InputRightElement>
         </InputGroup>
@@ -308,8 +300,8 @@ export const WithTrailingTextElement = {
       <FormControl>
         <FormLabel>Label</FormLabel>
         <InputGroup>
-          <Input type="text" className='pr-[60px]' />
-          <InputRightElement className='w-[60px]'>
+          <Input type="text" className="pr-[60px]" />
+          <InputRightElement className="w-[60px]">
             <span className="font-semibold text-sm text-neutral-900">USD</span>
           </InputRightElement>
         </InputGroup>
