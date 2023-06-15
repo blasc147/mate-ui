@@ -1,6 +1,6 @@
-import type { Meta } from '@storybook/react';
-import { Link } from './link';
 import { BellIcon } from '@heroicons/react/24/solid';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Link } from './link';
 
 const Story: Meta<typeof Link> = {
   component: Link,
@@ -8,62 +8,64 @@ const Story: Meta<typeof Link> = {
 };
 export default Story;
 
-export const Primary = {
+type Story = StoryObj<typeof Link>;
+
+export const Primary: Story = {
   args: {
     children: 'Link',
   },
 };
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     children: 'Link',
     colorScheme: 'secondary',
   },
 };
 
-export const Neutral = {
+export const Neutral: Story = {
   args: {
     children: 'Link',
     colorScheme: 'neutral',
   },
 };
 
-export const Destructive = {
+export const Destructive: Story = {
   args: {
     children: 'Link',
     colorScheme: 'destructive',
   },
 };
 
-export const PrimaryWithLeftIcon = {
+export const PrimaryWithLeftIcon: Story = {
   args: {
     children: 'Link',
     leftIcon: <BellIcon />,
   },
 };
 
-export const PrimaryWithRightIcon = {
+export const PrimaryWithRightIcon: Story = {
   args: {
     children: 'Link',
     rightIcon: <BellIcon />,
   },
 };
 
-export const AsButton = {
+export const AsButton: Story = {
   args: {
     asChild: true,
     children: <button>LinkButton</button>,
   },
 };
 
-export const AsButtonDisabled = {
+export const AsButtonDisabled: Story = {
   args: {
     asChild: true,
     children: <button disabled>LinkButton</button>,
   },
 };
 
-export const AsButtonLoading = {
+export const AsButtonLoading: Story = {
   args: {
     asChild: true,
     children: <button>LinkButton</button>,
