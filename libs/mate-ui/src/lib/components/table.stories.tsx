@@ -1,4 +1,7 @@
-import { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Avatar, AvatarFallback } from './avatar';
+import { Button } from './button';
+import { Link } from './link';
 import {
   SortColumn,
   Table,
@@ -8,10 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from './table';
-import { Button } from './button';
-import { Link } from './link';
 import { Tag } from './tag';
-import { Avatar } from './avatar';
+
 const invoices = [
   {
     invoice: 'INV001',
@@ -127,7 +128,9 @@ function TableComponent() {
               <Button colorScheme="neutral">Button</Button>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
-              <Avatar />
+              <Avatar>
+                <AvatarFallback />
+              </Avatar>
             </TableCell>
           </TableRow>
         ))}
@@ -141,7 +144,10 @@ const Story: Meta<typeof TableComponent> = {
   title: 'Table',
 };
 
-export const Default = {
+type Story = StoryObj<typeof TableComponent>;
+
+export const Default: Story = {
   args: {},
 };
+
 export default Story;
