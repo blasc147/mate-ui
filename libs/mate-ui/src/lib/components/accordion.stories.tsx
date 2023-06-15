@@ -1,11 +1,11 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import type { Meta } from '@storybook/react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
   AccordionProps as AccordionRootProps,
+  AccordionTrigger,
 } from './accordion';
 
 interface AccordionItem {
@@ -88,34 +88,36 @@ const Story: Meta<typeof AccordionComponent> = {
 };
 export default Story;
 
-export const Default = {
+type Story = StoryObj<typeof AccordionComponent>;
+
+export const Default: Story = {
   args: {
     items: accordionItem,
   },
 };
 
-export const AllowMultiple = {
+export const AllowMultiple: Story = {
   args: {
     items: accordionMultipleItems,
     type: 'multiple',
   },
 };
 
-export const NotAllowMultiple = {
+export const NotAllowMultiple: Story = {
   args: {
     items: accordionMultipleItems,
     type: 'single',
   },
 };
 
-export const LeadingChevron = {
+export const LeadingChevron: Story = {
   args: {
     items: accordionItem,
     leadingChevron: true,
   },
 };
 
-export const Disabled = {
+export const Disabled: Story = {
   args: {
     items: accordionItem,
     disabled: true,
