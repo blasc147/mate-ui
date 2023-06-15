@@ -1,6 +1,6 @@
-import type { Meta } from '@storybook/react';
-import { Tag } from './tag';
 import { StarIcon } from '@heroicons/react/24/outline';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Tag } from './tag';
 
 const Story: Meta<typeof Tag> = {
   component: Tag,
@@ -8,7 +8,9 @@ const Story: Meta<typeof Tag> = {
 };
 export default Story;
 
-export const PrimaryPill = {
+type Story = StoryObj<typeof Tag>;
+
+export const PrimaryPill: Story = {
   args: {
     children: 'Label',
     colorScheme: 'primary',
@@ -16,7 +18,7 @@ export const PrimaryPill = {
   },
 };
 
-export const PrimaryBadge = {
+export const PrimaryBadge: Story = {
   args: {
     children: 'Label',
     colorScheme: 'primary',
@@ -24,7 +26,7 @@ export const PrimaryBadge = {
   },
 };
 
-export const PrimaryStatus = {
+export const PrimaryStatus: Story = {
   args: {
     children: 'Label',
     colorScheme: 'primary',
@@ -32,7 +34,7 @@ export const PrimaryStatus = {
   },
 };
 
-export const PrimaryQuiet = {
+export const PrimaryQuiet: Story = {
   args: {
     children: 'Label',
     colorScheme: 'primary',
@@ -40,56 +42,56 @@ export const PrimaryQuiet = {
   },
 };
 
-export const Neutral = {
+export const Neutral: Story = {
   args: {
     children: 'Label',
     colorScheme: 'neutral',
   },
 };
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     children: 'Label',
     colorScheme: 'secondary',
   },
 };
 
-export const Info = {
+export const Info: Story = {
   args: {
     children: 'Label',
     colorScheme: 'info',
   },
 };
 
-export const Success = {
+export const Success: Story = {
   args: {
     children: 'Label',
     colorScheme: 'success',
   },
 };
 
-export const Warning = {
+export const Warning: Story = {
   args: {
     children: 'Label',
     colorScheme: 'warning',
   },
 };
 
-export const Error = {
+export const Error: Story = {
   args: {
     children: 'Label',
     colorScheme: 'error',
   },
 };
 
-export const WithRightIcon = {
+export const WithRightIcon: Story = {
   args: {
     children: 'Label',
     rightIcon: <StarIcon />,
   },
 };
 
-export const WithLeftIcon = {
+export const WithLeftIcon: Story = {
   args: {
     children: 'Label',
     colorScheme: 'primary',
