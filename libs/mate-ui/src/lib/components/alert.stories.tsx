@@ -1,7 +1,7 @@
-import type { Meta } from '@storybook/react';
-import { Alert } from './alert';
 import { BellIcon } from '@heroicons/react/20/solid';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Alert } from './alert';
 import { CloseButton } from './close-button';
 import { Link } from './link';
 
@@ -12,7 +12,9 @@ const Story: Meta<typeof Alert> = {
 
 export default Story;
 
-export const Primary = {
+type Story = StoryObj<typeof Alert>;
+
+export const Primary: Story = {
   args: {
     title: 'Title text',
     description:
@@ -21,7 +23,7 @@ export const Primary = {
   },
 };
 
-export const Neutral = {
+export const Neutral: Story = {
   args: {
     title: 'Title text',
     description:
@@ -30,7 +32,7 @@ export const Neutral = {
   },
 };
 
-export const Info = {
+export const Info: Story = {
   args: {
     title: 'Title text',
     description:
@@ -39,7 +41,7 @@ export const Info = {
   },
 };
 
-export const Success = {
+export const Success: Story = {
   args: {
     title: 'Title text',
     description:
@@ -48,7 +50,7 @@ export const Success = {
   },
 };
 
-export const Warning = {
+export const Warning: Story = {
   args: {
     title: 'Title text',
     description:
@@ -57,7 +59,7 @@ export const Warning = {
   },
 };
 
-export const Error = {
+export const Error: Story = {
   args: {
     title: 'Title text',
     description:
@@ -66,7 +68,7 @@ export const Error = {
   },
 };
 
-export const LeadingIcon = {
+export const LeadingIcon: Story = {
   args: {
     title: 'Title text',
     description:
@@ -76,7 +78,7 @@ export const LeadingIcon = {
   },
 };
 
-export const LeadingIconError = {
+export const LeadingIconError: Story = {
   args: {
     title: 'Title text',
     description:
@@ -86,7 +88,7 @@ export const LeadingIconError = {
   },
 };
 
-export const WithCloseButton = {
+export const WithCloseButton: Story = {
   args: {
     title: 'Title text',
     description:
@@ -96,7 +98,7 @@ export const WithCloseButton = {
   },
 };
 
-export const WithTrailingLink = {
+export const WithTrailingLink: Story = {
   args: {
     title: 'Title text',
     description:
@@ -106,7 +108,7 @@ export const WithTrailingLink = {
   },
 };
 
-export const WithBottomLink = {
+export const WithBottomLink: Story = {
   args: {
     title: 'Title text',
     description:
