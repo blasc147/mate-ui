@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   CheckIcon,
   ExclamationTriangleIcon,
@@ -62,7 +62,9 @@ const Story: Meta<typeof DialogComponent> = {
 };
 export default Story;
 
-export const Success = {
+type Story = StoryObj<typeof DialogComponent>;
+
+export const Success: Story = {
   args: {
     icon: <CheckIcon />,
     title: 'Success message',
@@ -76,7 +78,7 @@ export const Success = {
   },
 };
 
-export const Critical = {
+export const Critical: Story = {
   args: {
     icon: <ExclamationTriangleIcon />,
     title: 'Critical message',
@@ -96,7 +98,7 @@ export const Critical = {
   },
 };
 
-export const SuccessSecondaryButton = {
+export const SuccessSecondaryButton: Story = {
   args: {
     icon: <CheckIcon />,
     title: 'Success message',
@@ -115,7 +117,7 @@ export const SuccessSecondaryButton = {
   },
 };
 
-export const CriticalSecondaryButton = {
+export const CriticalSecondaryButton: Story = {
   args: {
     icon: <ExclamationTriangleIcon />,
     title: 'Critical message',
@@ -145,7 +147,7 @@ export const CriticalSecondaryButton = {
   },
 };
 
-export const SuccessBottomLink = {
+export const SuccessBottomLink: Story = {
   args: {
     icon: <CheckIcon />,
     title: 'Success message',
@@ -168,7 +170,7 @@ export const SuccessBottomLink = {
   },
 };
 
-export const CriticalBottomLink = {
+export const CriticalBottomLink: Story = {
   args: {
     icon: <ExclamationTriangleIcon />,
     title: 'Critical message',
@@ -193,7 +195,7 @@ export const CriticalBottomLink = {
   },
 };
 
-export const SuccessWithoutIcon = {
+export const SuccessWithoutIcon: Story = {
   args: {
     title: 'Success message',
     description:
@@ -206,7 +208,7 @@ export const SuccessWithoutIcon = {
   },
 };
 
-export const CriticalWithoutIcon = {
+export const CriticalWithoutIcon: Story = {
   args: {
     title: 'Critical message',
     description:
@@ -225,7 +227,7 @@ export const CriticalWithoutIcon = {
   },
 };
 
-export const CenteredDialog = {
+export const CenteredDialog: Story = {
   args: {
     icon: <CheckIcon />,
     title: 'Success message',
