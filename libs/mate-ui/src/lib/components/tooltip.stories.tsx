@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Meta } from '@storybook/react';
-import { Tooltip, TooltipProps } from './tooltip';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
+import { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { Button } from './button';
+import { Tooltip, TooltipProps } from './tooltip';
 
 function TooltipComponent({
   content,
@@ -18,19 +18,17 @@ function TooltipComponent({
   };
   return (
     <TooltipProvider>
-      <div className="flex justify-center items-center h-screen">
-        <Tooltip
-          content={content}
-          open={tooltipOpen}
-          defaultOpen={defaultOpen}
-          onOpenChange={handleTooltipOpenChange}
-          theme={theme}
-          placement={placement}
-          align={align}
-        >
-          <Button>Hover me</Button>
-        </Tooltip>
-      </div>
+      <Tooltip
+        content={content}
+        open={tooltipOpen}
+        defaultOpen={defaultOpen}
+        onOpenChange={handleTooltipOpenChange}
+        theme={theme}
+        placement={placement}
+        align={align}
+      >
+        <Button>Hover me</Button>
+      </Tooltip>
     </TooltipProvider>
   );
 }
@@ -38,18 +36,27 @@ function TooltipComponent({
 const Story: Meta<typeof TooltipComponent> = {
   component: TooltipComponent,
   title: 'Tooltip',
+  decorators: [
+    (Story) => (
+      <div className="flex justify-center items-center h-screen">
+        <Story />
+      </div>
+    ),
+  ],
 };
+
+type Story = StoryObj<typeof TooltipComponent>;
 
 export default Story;
 
-export const Default = {
+export const Default: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
   },
 };
 
-export const TopEnd = {
+export const TopEnd: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
@@ -58,7 +65,7 @@ export const TopEnd = {
   },
 };
 
-export const TopStart = {
+export const TopStart: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
@@ -67,7 +74,7 @@ export const TopStart = {
   },
 };
 
-export const Right = {
+export const Right: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
@@ -75,7 +82,7 @@ export const Right = {
   },
 };
 
-export const Left = {
+export const Left: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
@@ -83,7 +90,7 @@ export const Left = {
   },
 };
 
-export const Bottom = {
+export const Bottom: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
@@ -91,7 +98,7 @@ export const Bottom = {
   },
 };
 
-export const Light = {
+export const Light: Story = {
   args: {
     content: 'Tooltip body text. Lorem ipsum dolor sit amet.',
     defaultOpen: false,
