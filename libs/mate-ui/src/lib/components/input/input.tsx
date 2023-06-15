@@ -27,7 +27,7 @@ const styles = {
       'text-sm',
       'font-regular',
       'text-neutral-900',
-      'focus:ring-2',
+      'focus:ring-1',
       'focus:ring-primary-400',
       'focus:border-primary-400',
       'placeholder:text-neutral-600',
