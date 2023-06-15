@@ -1,5 +1,5 @@
 import { BellIcon } from '@heroicons/react/24/solid';
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { IconButton } from './icon-button';
 
 const Story: Meta<typeof IconButton> = {
@@ -8,14 +8,16 @@ const Story: Meta<typeof IconButton> = {
 };
 export default Story;
 
-export const Primary = {
+type Story = StoryObj<typeof IconButton>;
+
+export const Primary: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
   },
 };
 
-export const Outlined = {
+export const Outlined: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
@@ -24,7 +26,7 @@ export const Outlined = {
   },
 };
 
-export const Ghost = {
+export const Ghost: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
@@ -33,7 +35,7 @@ export const Ghost = {
   },
 };
 
-export const Loading = {
+export const Loading: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
@@ -41,7 +43,7 @@ export const Loading = {
   },
 };
 
-export const Disabled = {
+export const Disabled: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
@@ -49,7 +51,7 @@ export const Disabled = {
   },
 };
 
-export const AsLink = {
+export const AsLink: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
