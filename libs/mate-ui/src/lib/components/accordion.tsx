@@ -19,13 +19,20 @@ const styles = {
       'text-sm',
       'text-neutral-900',
       'font-semibold',
-      'transition-all',
-      'focus:border',
-      'focus:border-primary-600',
+      'border-2',
+      'border-transparent',
+      'border-t',
+      'border-t-neutral-400',
+      'focus-visible:rounded-sm',
+      'focus-visible:border-t-2',
+      'focus-visible:border-primary-400',
+      'active:enabled:border-t-primary-600',
       'hover:bg-neutral-100',
       'disabled:text-neutral-600',
       'data-[disabled]:hover:bg-transparent',
       '[&[data-state=open]>svg]:rotate-180',
+      'transition-all',
+      'outline-none',
     ],
     {
       variants: {
@@ -56,7 +63,7 @@ const styles = {
     }
   ),
   item: cn('flex', 'justify-center', 'items-center'),
-  icon: cn('border-t', 'border-neutral-400', 'text-sm', 'text-neutral-900'),
+  icon: cn('text-sm', 'text-neutral-900'),
   content: cn(
     'overflow-hidden',
     'text-sm',
