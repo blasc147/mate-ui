@@ -139,7 +139,7 @@ const Input = React.forwardRef<
     default: defaultId,
   });
   return (
-    <div className="relative">
+    <div className={cn('relative', 'w-full')}>
       <input
         className={cn(
           styles.input({
@@ -197,7 +197,7 @@ const Select = React.forwardRef<
     default: defaultId,
   });
   return (
-    <div className="relative">
+    <div className={cn('relative', 'w-full')}>
       <select
         className={cn(
           styles.input({
