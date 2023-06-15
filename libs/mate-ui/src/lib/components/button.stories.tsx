@@ -1,6 +1,6 @@
-import type { Meta } from '@storybook/react';
-import { Button } from './button';
 import { BellIcon, PlusIcon } from '@heroicons/react/24/solid';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './button';
 
 const Story: Meta<typeof Button> = {
   component: Button,
@@ -8,13 +8,15 @@ const Story: Meta<typeof Button> = {
 };
 export default Story;
 
-export const Primary = {
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
   args: {
     children: 'Button',
   },
 };
 
-export const Outlined = {
+export const Outlined: Story = {
   args: {
     children: 'Button',
     variant: 'outlined',
@@ -22,7 +24,7 @@ export const Outlined = {
   },
 };
 
-export const Ghost = {
+export const Ghost: Story = {
   args: {
     children: 'Button',
     variant: 'ghost',
@@ -30,7 +32,7 @@ export const Ghost = {
   },
 };
 
-export const WithRightIcon = {
+export const WithRightIcon: Story = {
   args: {
     children: 'Button',
     rightIcon: <PlusIcon />,
@@ -38,14 +40,14 @@ export const WithRightIcon = {
   },
 };
 
-export const WithLeftIcon = {
+export const WithLeftIcon: Story = {
   args: {
     children: 'Button',
     leftIcon: <BellIcon />,
   },
 };
 
-export const Disabled = {
+export const Disabled: Story = {
   args: {
     children: 'Button',
     disabled: true,
@@ -53,14 +55,14 @@ export const Disabled = {
   },
 };
 
-export const Loading = {
+export const Loading: Story = {
   args: {
     children: 'Button',
     loading: true,
   },
 };
 
-export const LoadingWithIcon = {
+export const LoadingWithIcon: Story = {
   args: {
     children: 'Button',
     loading: true,
@@ -68,7 +70,7 @@ export const LoadingWithIcon = {
   },
 };
 
-export const AsLink = {
+export const AsLink: Story = {
   args: {
     children: (
       <a href="https://www.google.com" rel="noreferrer" target="_blank">
