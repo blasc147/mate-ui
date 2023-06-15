@@ -13,6 +13,12 @@ export const SimpleToggle = {
   },
 };
 
+export const DestructiveColorScheme = {
+  args: {
+    children: <Toggle colorScheme="destructive" />,
+  },
+};
+
 export const ToggleWithLabel = {
   args: {
     children: <Toggle label="Label" />,
