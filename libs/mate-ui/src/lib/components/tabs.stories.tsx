@@ -1,6 +1,13 @@
-import type { Meta } from '@storybook/react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
-import { Cog8ToothIcon, ViewColumnsIcon, AdjustmentsVerticalIcon, BriefcaseIcon, DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
+import {
+  AdjustmentsVerticalIcon,
+  BriefcaseIcon,
+  Cog8ToothIcon,
+  DocumentTextIcon,
+  UserIcon,
+  ViewColumnsIcon,
+} from '@heroicons/react/24/outline';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 
 interface TabProps {
   key: string;
@@ -20,7 +27,7 @@ const tabsDefault: TabProps[] = [
   { key: 'payout', name: 'Payout' },
   { key: 'consumers', name: 'Consumers' },
   { key: 'settings', name: 'Settings' },
-]
+];
 
 const tablistWithNotifications: TabProps[] = [
   { key: 'dashboard', name: 'Dashboard', notifications: 1 },
@@ -29,39 +36,54 @@ const tablistWithNotifications: TabProps[] = [
   { key: 'payout', name: 'Payout', notifications: 1 },
   { key: 'consumers', name: 'Consumers' },
   { key: 'settings', name: 'Settings' },
-]
+];
 
 const tabsWithIconsAndNotifications: TabProps[] = [
-  { key: 'dashboard', name: 'Dashboard', notifications: 1, icon: <ViewColumnsIcon /> },
+  {
+    key: 'dashboard',
+    name: 'Dashboard',
+    notifications: 1,
+    icon: <ViewColumnsIcon />,
+  },
   { key: 'admin', name: 'Admin', icon: <AdjustmentsVerticalIcon /> },
   { key: 'providers', name: 'Providers', icon: <BriefcaseIcon /> },
-  { key: 'payout', name: 'Payout', notifications: 1, icon: <DocumentTextIcon /> },
+  {
+    key: 'payout',
+    name: 'Payout',
+    notifications: 1,
+    icon: <DocumentTextIcon />,
+  },
   { key: 'consumers', name: 'Consumers', icon: <UserIcon /> },
   { key: 'settings', name: 'Settings', icon: <Cog8ToothIcon /> },
-]
+];
 
 const TabsComponent = ({ tabs }: TabsProps) => {
   return (
     <Tabs defaultValue={tabs[0].name}>
       <TabsList>
-        {tabs.map(tab => {
+        {tabs.map((tab) => {
           return (
-            <TabsTrigger key={tab.key} value={tab.name} icon={tab?.icon} notifications={tab?.notifications}>
+            <TabsTrigger
+              key={tab.key}
+              value={tab.name}
+              icon={tab?.icon}
+              notifications={tab?.notifications}
+            >
               {tab.name}
             </TabsTrigger>
-          )
+          );
         })}
       </TabsList>
-      {tabs.map(tab => {
+      {tabs.map((tab) => {
         return (
           <TabsContent key={tab.key} value={tab.name}>
             Make changes to your {tab.name} here.
           </TabsContent>
-        )
+        );
       })}
     </Tabs>
-  )
-}
+  );
+};
 
 const Story: Meta<TabsProps> = {
   component: TabsComponent,
@@ -69,21 +91,22 @@ const Story: Meta<TabsProps> = {
 };
 export default Story;
 
-export const DefaultTablist = {
+type Story = StoryObj<typeof TabsComponent>;
+
+export const DefaultTablist: Story = {
   args: {
     tabs: tabsDefault,
   },
 };
 
-export const DefaultTablistWithNotifications = {
+export const DefaultTablistWithNotifications: Story = {
   args: {
     tabs: tablistWithNotifications,
   },
 };
 
-export const LeadingIconTablistWithNotifications = {
+export const LeadingIconTablistWithNotifications: Story = {
   args: {
     tabs: tabsWithIconsAndNotifications,
   },
 };
-
