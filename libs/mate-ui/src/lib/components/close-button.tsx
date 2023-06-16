@@ -1,36 +1,36 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/20/solid';
-import { cn } from '../utils';
 import React from 'react';
+import { cn } from '../utils';
 
-type CloseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-const CloseButton = React.forwardRef<HTMLButtonElement, CloseButtonProps>(
-  ({ children, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
+const CloseButton = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ children, 'aria-label': ariaLabel, ...props }, ref) => {
+  return (
+    <button
+      ref={ref}
+      className={cn(
+        'focus:outline-none',
+        'focus-visible:ring',
+        'ring-focus',
+        'rounded'
+      )}
+      {...props}
+      aria-label={ariaLabel ?? 'Close'}
+    >
+      <XMarkIcon
         className={cn(
-          'focus:outline-none',
-          'focus-visible:ring',
-          'ring-focus',
-          'rounded'
+          'h-4',
+          'w-4',
+          'text-neutral-700',
+          'active:text-neutral-800'
         )}
-        {...props}
-      >
-        <XMarkIcon
-          className={cn(
-            'h-4',
-            'w-4',
-            'text-neutral-700',
-            'active:text-neutral-800'
-          )}
-        />
-      </button>
-    );
-  }
-);
+      />
+    </button>
+  );
+});
 CloseButton.displayName = 'CloseButton';
 
-export { CloseButton, type CloseButtonProps };
+export { CloseButton };
