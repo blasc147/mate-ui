@@ -7,7 +7,7 @@ import { cn } from '../utils';
 const CloseButton = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
->(({ children, 'aria-label': ariaLabel, ...props }, ref) => {
+>(({ children, className, 'aria-label': ariaLabel, ...props }, ref) => {
   return (
     <button
       ref={ref}
@@ -15,7 +15,8 @@ const CloseButton = React.forwardRef<
         'focus:outline-none',
         'focus-visible:ring',
         'ring-focus',
-        'rounded'
+        'rounded',
+        className
       )}
       {...props}
       aria-label={ariaLabel ?? 'Close'}
