@@ -19,10 +19,10 @@ const styles = {
   ),
   root: cn('ml-4'),
   leftElement: cn('ml-4'),
-  title: cn('font-bold', 'font-sm'),
+  title: cn('font-bold', 'font-sm', 'text-black'),
   close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'pr-4'),
   actions: cn('ml-auto', 'flex'),
-  description: cn('font-normal', 'font-sm'),
+  description: cn('font-normal', 'font-sm', 'text-neutral-700'),
   buttons: cn('flex', 'mt-2'),
   viewport: cn('fixed', 'right-0', 'bottom-0', 'flex', 'flex-col', 'z-9'),
   border: cva(['w-1', 'rounded-r-[4px]'], {
