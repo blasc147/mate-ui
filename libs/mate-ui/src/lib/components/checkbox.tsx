@@ -1,11 +1,12 @@
 'use client';
-import React, { useId } from 'react';
-import { VariantProps, cva } from 'class-variance-authority';
-import { cn } from '../utils';
-import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { Indeterminate } from '../icons';
-import * as Label from '@radix-ui/react-label';
+
 import { CheckIcon } from '@heroicons/react/20/solid';
+import * as RadixCheckbox from '@radix-ui/react-checkbox';
+import * as Label from '@radix-ui/react-label';
+import { VariantProps, cva } from 'class-variance-authority';
+import React, { useId } from 'react';
+import { Indeterminate } from '../icons';
+import { cn } from '../utils';
 
 const styles = {
   base: cva(['flex'], {
@@ -65,88 +66,78 @@ const styles = {
   indicator: cn('text-white', 'flex', 'justify-center', 'items-center'),
   label: cn('text-sm', 'font-semibold', 'flex', 'flex-col'),
   subtext: cn('text-sm', 'font-normal', 'mt-1'),
-  textContainer: cva(['flex', 'flex-col', 'text-neutral-900', 'max-w-[244px]'], {
-    variants: {
-      trailingControl: {
-        true: 'ml-0',
-        false: 'ml-2',
+  textContainer: cva(
+    ['flex', 'flex-col', 'text-neutral-900', 'max-w-[244px]'],
+    {
+      variants: {
+        trailingControl: {
+          true: 'ml-0',
+          false: 'ml-2',
+        },
       },
-    },
-    defaultVariants: {
-      trailingControl: false,
-    },
-  }),
+      defaultVariants: {
+        trailingControl: false,
+      },
+    }
+  ),
 };
 
 interface CheckboxProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends React.ComponentPropsWithoutRef<typeof RadixCheckbox.Root>,
     VariantProps<typeof styles.root> {
   label?: string;
   subtext?: string;
   indeterminate?: boolean;
-  disabled?: boolean;
   error?: boolean;
-  defaultChecked?: boolean;
-  value?: string | number | readonly string[];
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean | 'indeterminate') => void;
-  required?: boolean;
-  name?: string;
   trailingControl?: boolean;
 }
 
-const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
+const Checkbox = React.forwardRef<
+  React.ElementRef<typeof RadixCheckbox.Root>,
+  CheckboxProps
+>(
   (
     {
       className,
+      id: externalId,
       label,
       subtext,
       indeterminate,
-      disabled,
       error,
-      value,
-      checked,
-      defaultChecked,
-      onCheckedChange,
-      required,
-      name,
       trailingControl,
+      ...props
     },
     ref
   ) => {
     const variant = error ? 'error' : 'primary';
-    const id = useId();
+    const defaultId = useId();
+    const id = externalId ?? defaultId;
     return (
       <div className={cn(styles.base({ trailingControl }), className)}>
         <RadixCheckbox.Root
           ref={ref}
           className={styles.root({ variant, trailingControl })}
-          disabled={disabled}
           id={id}
-          value={value}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          onCheckedChange={onCheckedChange}
-          required={required}
-          name={name}
+          {...props}
         >
-          <RadixCheckbox.Indicator className={cn(styles.indicator)}>
+          <RadixCheckbox.Indicator className={styles.indicator}>
             {indeterminate ? <Indeterminate /> : <CheckIcon />}
           </RadixCheckbox.Indicator>
         </RadixCheckbox.Root>
         <div
-          className={cn(styles.textContainer({trailingControl}), {
-            'text-neutral-600': disabled,
+          className={cn(styles.textContainer({ trailingControl }), {
+            'text-neutral-600': props.disabled,
           })}
         >
           <Label.Root htmlFor={id}>
-            <span className={cn(styles.label)}> {label}</span>
-            <span className={cn(styles.subtext)}>{subtext}</span>
+            <span className={styles.label}>{label}</span>
+            <span className={styles.subtext}>{subtext}</span>
           </Label.Root>
         </div>
       </div>
     );
   }
 );
+Checkbox.displayName = 'Checkbox';
 
 export { Checkbox, type CheckboxProps };
