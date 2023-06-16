@@ -16,8 +16,6 @@ const styles = {
     'py-4',
     'shadow-md',
     'm-4'
-    // 'data-[state=open]:animate-[slideIn_150ms_cubic-bezier(0.16, 1, 0.3, 1)]',
-    // 'data-[state=closed]:animate-[hide_100ms_ease-in]'
   ),
   root: cn('ml-4'),
   leftElement: cn('ml-4'),
@@ -25,7 +23,7 @@ const styles = {
   close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'pr-4'),
   actions: cn('ml-auto', 'flex'),
   description: cn('font-normal', 'font-sm'),
-  buttons: cn('flex','mt-2'),
+  buttons: cn('flex', 'mt-2'),
   viewport: cn('fixed', 'right-0', 'bottom-0', 'flex', 'flex-col', 'z-9'),
   border: cva(['w-1', 'rounded-r-[4px]'], {
     variants: {
@@ -76,10 +74,10 @@ const Notification = ({
           {buttons && <div className={styles.buttons}>{buttons}</div>}
         </div>
         <div className={styles.actions}>
-        {actionButton && <div>{actionButton}</div>}
-        <Toast.Close className={styles.close}>
-          <CloseButton aria-label="notification-button"></CloseButton>{' '}
-        </Toast.Close>
+          {actionButton && <div>{actionButton}</div>}
+          <Toast.Close className={styles.close}>
+            <CloseButton aria-label="notification-button"></CloseButton>{' '}
+          </Toast.Close>
         </div>
       </Toast.Root>
       <Toast.Viewport className={styles.viewport} />
