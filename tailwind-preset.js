@@ -95,6 +95,18 @@ module.exports = {
       xs: ['12px', '16.8px'],
       xxs: ['10px', '14px'],
     },
+    extend: {
+      // keyframes: {
+      //   slideIn: {
+      //     'from': 'translateX(calc(100% + 25px))',
+      //     'to':'translateX(0)'
+      //   },
+      //   hide: {
+      //     'from': 'opacity: 1',
+      //     'to':'opacity: 0'
+      //   }
+      // }
+    }
   },
   plugins: [require('@tailwindcss/forms')],
 };

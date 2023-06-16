@@ -19,7 +19,11 @@ export const Indeterminate: Story = {
   },
 };
 
+<<<<<<< HEAD
 export const WithLabel: Story = {
+=======
+export const WithLabel = {
+>>>>>>> 3081a68 (add notification component)
   args: {
     label: 'Label',
   },
@@ -55,3 +59,5 @@ export const TrailingControl: Story = {
     trailingControl: true,
   },
 };
+
+  
