@@ -1,9 +1,9 @@
 'use client';
 
+import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '../utils';
-import { Slot } from '@radix-ui/react-slot';
 
 const styles = {
   root: cva(['flex', 'gap-4', 'p-4', 'border', 'rounded-md'], {
@@ -38,7 +38,9 @@ const styles = {
   }),
 };
 
-interface AlertProps extends VariantProps<typeof styles.root> {
+interface AlertProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof styles.root> {
   title: string;
   description?: string;
   icon?: React.ReactNode;
@@ -48,36 +50,46 @@ interface AlertProps extends VariantProps<typeof styles.root> {
   className?: string;
 }
 
-function Alert({
-  title,
-  description,
-  icon: _icon,
-  bottomLink,
-  trailingLink,
-  closeButton,
-  colorScheme,
-  className,
-}: AlertProps) {
-  const icon = _icon && (
-    <Slot className={styles.icon({ colorScheme })}>{_icon}</Slot>
-  );
-
-  return (
-    <div className={cn(styles.root({ colorScheme }), className)}>
-      {icon && <div className={cn('h-5', 'w-5')}>{icon}</div>}
-      <div>
-        <p className={cn('text-neutral-900', 'font-semibold', 'text-sm')}>
-          {title}
-        </p>
-        <p className={cn('text-neutral-700', 'text-sm')}>{description}</p>
-        {bottomLink && <div className={cn('pt-4')}>{bottomLink}</div>}
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (
+    {
+      title,
+      description,
+      icon,
+      bottomLink,
+      trailingLink,
+      closeButton,
+      colorScheme,
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(styles.root({ colorScheme }), className)}
+        {...props}
+      >
+        {icon && (
+          <div className={cn('h-5', 'w-5')}>
+            <Slot className={styles.icon({ colorScheme })}>{icon}</Slot>
+          </div>
+        )}
+        <div>
+          <p className={cn('text-neutral-900', 'font-semibold', 'text-sm')}>
+            {title}
+          </p>
+          <p className={cn('text-neutral-700', 'text-sm')}>{description}</p>
+          {bottomLink && <div className={cn('pt-4')}>{bottomLink}</div>}
+        </div>
+        <div className={cn('ml-auto')}>
+          {trailingLink}
+          {closeButton}
+        </div>
       </div>
-      <div className={cn('ml-auto')}>
-        {trailingLink}
-        {closeButton}
-      </div>
-    </div>
-  );
-}
+    );
+  }
+);
 
 export { Alert, type AlertProps };

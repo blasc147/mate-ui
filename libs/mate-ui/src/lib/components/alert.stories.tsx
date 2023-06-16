@@ -114,6 +114,6 @@ export const WithBottomLink: Story = {
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam quo totam eius aperiam dolorum.',
     colorScheme: 'error',
-    bottomLink: <Link>Details</Link>,
+    bottomLink: <Link colorScheme="destructive">Details</Link>,
   },
 };
