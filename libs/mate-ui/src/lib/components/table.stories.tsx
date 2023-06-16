@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar, AvatarFallback } from './avatar';
 import { Button } from './button';
 import { Link } from './link';
 import {
@@ -12,8 +11,23 @@ import {
   TableRow,
 } from './table';
 import { Tag } from './tag';
+import { Avatar, AvatarFallback, AvatarImage } from './avatar';
+import { Checkbox } from './checkbox';
+import { ReactNode } from 'react';
+import { UserIcon } from '@heroicons/react/24/solid';
+import { PencilIcon } from '@heroicons/react/24/solid';
 
-const invoices = [
+interface Invoice {
+  invoice: string;
+  paymentStatus: string;
+  totalAmount: number;
+  paymentMethod: string;
+  date: string;
+  loanId: string;
+  avatars: ReactNode[];
+  balance?: number;
+}
+const invoices: Invoice[] = [
   {
     invoice: 'INV001',
     paymentStatus: 'Paid',
@@ -22,6 +36,7 @@ const invoices = [
     balance: 100002,
     date: '20/05/2023',
     loanId: '101',
+    avatars: [<AvatarImage src="avatar-img-1.jpg" />],
   },
   {
     invoice: 'INV002',
@@ -30,6 +45,12 @@ const invoices = [
     paymentMethod: 'PayPal',
     date: '20/05/2023',
     loanId: '102',
+    avatars: [
+      <AvatarImage src="avatar-img-1.jpg" />,
+      <AvatarFallback>
+        <UserIcon className="h-6 w-6" />
+      </AvatarFallback>,
+    ],
   },
   {
     invoice: 'INV003',
@@ -38,6 +59,7 @@ const invoices = [
     paymentMethod: 'Bank Transfer',
     date: '20/05/2023',
     loanId: '101',
+    avatars: [<AvatarImage src="avatar-img-1.jpg" />],
   },
   {
     invoice: 'INV004',
@@ -46,6 +68,12 @@ const invoices = [
     paymentMethod: 'Credit Card',
     date: '20/05/2023',
     loanId: '101',
+    avatars: [
+      <AvatarImage src="avatar-img-1.jpg" />,
+      <AvatarFallback>
+        <UserIcon className="h-6 w-6" />
+      </AvatarFallback>,
+    ],
   },
   {
     invoice: 'INV005',
@@ -54,6 +82,7 @@ const invoices = [
     paymentMethod: 'PayPal',
     date: '20/05/2023',
     loanId: '101',
+    avatars: [<AvatarImage src="avatar-img-1.jpg" />],
   },
   {
     invoice: 'INV006',
@@ -62,6 +91,12 @@ const invoices = [
     paymentMethod: 'Bank Transfer',
     date: '20/05/2023',
     loanId: '101',
+    avatars: [
+      <AvatarImage src="avatar-img-1.jpg" />,
+      <AvatarFallback>
+        <UserIcon className="h-6 w-6" />
+      </AvatarFallback>,
+    ],
   },
   {
     invoice: 'INV007',
@@ -70,6 +105,12 @@ const invoices = [
     paymentMethod: 'Credit Card',
     date: '20/05/2023',
     loanId: '101',
+    avatars: [
+      <AvatarImage src="avatar-img-1.jpg" />,
+      <AvatarFallback>
+        <UserIcon className="h-6 w-6" />
+      </AvatarFallback>,
+    ],
   },
 ];
 
@@ -78,6 +119,9 @@ function TableComponent() {
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead>
+            <Checkbox />
+          </TableHead>
           <TableHead>
             Date
             <SortColumn sort="desc" />
@@ -93,6 +137,8 @@ function TableComponent() {
             <SortColumn />
           </TableHead>
 
+          <TableHead desktopOnly>Space</TableHead>
+
           <TableHead className="text-right" desktopOnly>
             Balance
             <SortColumn />
@@ -103,7 +149,9 @@ function TableComponent() {
             <SortColumn />
           </TableHead>
 
-          <TableHead className="w-[0px]"> Buttons</TableHead>
+          <TableHead className="w-[0px]">
+            <Button>Header</Button>
+          </TableHead>
           <TableHead desktopOnly> Avatar</TableHead>
         </TableRow>
       </TableHeader>
@@ -111,15 +159,22 @@ function TableComponent() {
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.date}>
+            <TableCell>
+              <Checkbox />
+            </TableCell>
             <TableCell>{invoice.date}</TableCell>
             <TableCell desktopOnly supportiveText="supportiveText">
               {invoice.invoice}
             </TableCell>
             <TableCell desktopOnly>
               <Link weight="light" asChild>
-                <button>{invoice.loanId}</button>
+                <div className="flex">
+                  <button>{invoice.loanId}</button>
+                  <PencilIcon className="h-4 w-4" />
+                </div>
               </Link>
             </TableCell>
+            <TableCell></TableCell>
             <TableCell className="text-right">{`$${invoice.totalAmount}`}</TableCell>
             <TableCell desktopOnly>
               <Tag className="capitalize">{invoice.paymentStatus}</Tag>
@@ -128,9 +183,11 @@ function TableComponent() {
               <Button colorScheme="neutral">Button</Button>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
-              <Avatar>
-                <AvatarFallback />
-              </Avatar>
+              <div className="flex mb-2">
+                {invoice.avatars.map((avatar) => (
+                  <Avatar className="-mr-2 -mb-4">{avatar}</Avatar>
+                ))}
+              </div>
             </TableCell>
           </TableRow>
         ))}
