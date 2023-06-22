@@ -35,6 +35,7 @@ const styles = {
       'focus:outline-none',
       'focus-visible:ring',
       'ring-focus',
+      'ring-offset-1',
     ],
     {
       variants: {

@@ -17,6 +17,7 @@ const styles = {
       'gap-2',
       'outline-none',
       'focus-visible:ring',
+      'ring-offset-1',
       'ring-focus',
       'rounded',
       'group',

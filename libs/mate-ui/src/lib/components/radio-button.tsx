@@ -20,8 +20,9 @@ const styles = {
       'border',
       'active:border-primary-500',
       'focus:outline-none',
-      'focus-visible:ring-2',
-      'focus-visible:ring-offset-2',
+      'focus-visible:ring',
+      'ring-offset-1',
+      'ring-focus',
       'disabled:cursor-not-allowed',
       'hover:shadow-lg',
       'disabled:data-[state=checked]:border-neutral-400',
@@ -131,9 +132,7 @@ const RadioGroup = React.forwardRef<
     ref
   ) => {
     return (
-      <RadioGroupContext.Provider
-        value={{ disabled, error, trailingControl }}
-      >
+      <RadioGroupContext.Provider value={{ disabled, error, trailingControl }}>
         <RadioGroupPrimitive.Root
           className={cn('grid gap-2', className)}
           {...props}
@@ -145,7 +144,7 @@ const RadioGroup = React.forwardRef<
 );
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-const TextComponent =({id, label, subText, disabled}: TextComponent)=>{
+const TextComponent = ({ id, label, subText, disabled }: TextComponent) => {
   return (
     <div className={cn(styles.trailingControl)}>
       <Label.Root htmlFor={id}>
@@ -156,39 +155,53 @@ const TextComponent =({id, label, subText, disabled}: TextComponent)=>{
       </Label.Root>
     </div>
   );
-}
+};
 
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioGroupItemProps
->(({ id:externalId, value, label, subText, className, children, ...props }, ref) => {
-  const { error, trailingControl, disabled } = React.useContext(RadioGroupContext);
-  const defaultId = useId();
-  const id = externalId || defaultId;
-  return (
-    <div className={cn(styles.base, className)}>
-      {trailingControl && (
-        <TextComponent id={id} label={label} subText={subText} disabled={disabled}/>
-      )}
-      <RadioGroupPrimitive.Item
-        value={value}
-        ref={ref}
-        className={styles.root({ error })}
-        id={id}
-        {...props}
-      >
-        <RadioGroupPrimitive.Indicator className={styles.indicator}>
-          <Circle
-            className={styles.icon({ error })}
+>(
+  (
+    { id: externalId, value, label, subText, className, children, ...props },
+    ref
+  ) => {
+    const { error, trailingControl, disabled } =
+      React.useContext(RadioGroupContext);
+    const defaultId = useId();
+    const id = externalId || defaultId;
+    return (
+      <div className={cn(styles.base, className)}>
+        {trailingControl && (
+          <TextComponent
+            id={id}
+            label={label}
+            subText={subText}
+            disabled={disabled}
           />
-        </RadioGroupPrimitive.Indicator>
-      </RadioGroupPrimitive.Item>
-      {!trailingControl && (
-        <TextComponent id={id} label={label} subText={subText} disabled={disabled}/>
-      )}
-    </div>
-  );
-});
+        )}
+        <RadioGroupPrimitive.Item
+          value={value}
+          ref={ref}
+          className={styles.root({ error })}
+          id={id}
+          {...props}
+        >
+          <RadioGroupPrimitive.Indicator className={styles.indicator}>
+            <Circle className={styles.icon({ error })} />
+          </RadioGroupPrimitive.Indicator>
+        </RadioGroupPrimitive.Item>
+        {!trailingControl && (
+          <TextComponent
+            id={id}
+            label={label}
+            subText={subText}
+            disabled={disabled}
+          />
+        )}
+      </div>
+    );
+  }
+);
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
 export { RadioGroup, RadioGroupItem };

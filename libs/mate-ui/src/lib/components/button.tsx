@@ -15,6 +15,7 @@ const styles = {
       'outline-none',
       'font-semibold',
       'focus-visible:ring',
+      'ring-offset-1',
       'ring-focus',
       'group',
     ],

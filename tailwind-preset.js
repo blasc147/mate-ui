@@ -74,7 +74,7 @@ module.exports = {
         700: '#CA3B3B',
         800: '#A82828',
       },
-      focus: '#BAE6FD',
+      focus: '#4D51B8',
     },
     fontFamily: {
       sans: ['Inter', ...fontFamily.sans],
