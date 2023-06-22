@@ -31,7 +31,11 @@ export const SimpleDatePicker = () => {
             <InputRightElement>
               <CalendarIcon className="mr-2 h-4 w-4" />
             </InputRightElement>
-            <Input type="text" value={date ? format(date, 'MM/dd/yyyy') : ''} />
+            <Input
+              type="text"
+              value={date ? format(date, 'MM/dd/yyyy') : ''}
+              placeholder="mm/dd/yyyy"
+            />
           </InputGroup>
         </FormControl>
       </PopoverTrigger>
@@ -82,6 +86,51 @@ export function DatePickerWithRange({
               </InputGroup>
             </FormControl>
           </div>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <DatePicker
+            initialFocus
+            mode="range"
+            defaultMonth={date?.from}
+            selected={date}
+            onSelect={setDate}
+            numberOfMonths={2}
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+
+export function DatePickerWithRangeSingle({
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) {
+  const [date, setDate] = useState<DateRange | undefined>();
+
+  return (
+    <div className={cn('grid gap-2', className)}>
+      <Popover>
+        <PopoverTrigger asChild>
+          <FormControl className={cn('w-[270px]')}>
+            <FormLabel>Label</FormLabel>
+            <InputGroup>
+              <InputRightElement>
+                <CalendarIcon className="mr-2 h-4 w-4" />
+              </InputRightElement>
+              <Input
+                type="text"
+                placeholder="mm/dd/yyyy - mm/dd/yyyy"
+                value={
+                  date?.from && date?.to
+                    ? `${format(date.from, 'MM/dd/yyyy')} - ${format(
+                        date.to,
+                        'MM/dd/yyyy'
+                      )}`
+                    : ''
+                }
+              />
+            </InputGroup>
+          </FormControl>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <DatePicker
