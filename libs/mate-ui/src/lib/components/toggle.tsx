@@ -38,9 +38,6 @@ const styles = {
       'focus-visible:ring-offset-2',
       'disabled:cursor-not-allowed',
       'disabled:data-[disabled]:bg-neutral-300',
-      'data-[state=unchecked]:bg-neutral-400',
-      'active:data-[state=unchecked]:bg-neutral-600',
-      'hover:data-[state=unchecked]:bg-neutral-500',
       'group',
       'peer',
     ],
@@ -48,11 +45,16 @@ const styles = {
       variants: {
         colorScheme: {
           primary: [
+            'data-[state=unchecked]:bg-neutral-400',
+            'hover:data-[state=unchecked]:bg-neutral-500',
+            'active:data-[state=unchecked]:bg-neutral-600',
             'data-[state=checked]:bg-primary-500',
             'active:data-[state=checked]:bg-primary-700',
           ],
           destructive: [
-            'data-[state=checked]:bg-error-700',
+            'data-[state=unchecked]:bg-error-100',
+            'active:data-[state=unchecked]:bg-error-200',
+            'data-[state=checked]:bg-error-500',
             'active:data-[state=checked]:bg-error-800',
           ],
         },
