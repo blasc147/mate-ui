@@ -282,8 +282,8 @@ export const WithLeadingSelectElement: Story = {
             className={cn(
               'border-0',
               'focus:ring-focus',
-              'focus:ring',
-              'focus:ring-offset-1',
+              'focus:ring-2',
+              'focus:ring-offset-2',
               'rounded-l-sm',
               'text-xs',
               'font-semibold',
@@ -311,8 +311,8 @@ export const WithTrailingSelectElement: Story = {
             className={cn(
               'border-0',
               'focus:ring-focus',
-              'focus:ring',
-              'focus:ring-offset-1',
+              'focus:ring-2',
+              'focus:ring-offset-2',
               'rounded-r-sm',
               'text-xs',
               'font-semibold',

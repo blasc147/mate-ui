@@ -14,7 +14,7 @@ const styles = {
       'disabled:cursor-not-allowed',
       'outline-none',
       'font-semibold',
-      'focus-visible:ring',
+      'focus-visible:ring-2',
       'ring-offset-1',
       'ring-focus',
       'group',

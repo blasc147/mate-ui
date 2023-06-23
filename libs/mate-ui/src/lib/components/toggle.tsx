@@ -33,7 +33,7 @@ const styles = {
       'transition-colors',
       'enabled:hover:shadow-md',
       'focus-visible:outline-none',
-      'focus-visible:ring',
+      'focus-visible:ring-2',
       'ring-focus',
       'ring-offset-1',
       'disabled:cursor-not-allowed',

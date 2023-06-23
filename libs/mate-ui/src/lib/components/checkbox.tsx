@@ -33,7 +33,7 @@ const styles = {
       'border',
       'border-neutral-400',
       'focus:outline-none',
-      'focus-visible:ring',
+      'focus-visible:ring-2',
       'ring-focus',
       'ring-offset-1',
     ],

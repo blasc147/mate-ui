@@ -16,7 +16,7 @@ const styles = {
       'justify-center',
       'gap-2',
       'outline-none',
-      'focus-visible:ring',
+      'focus-visible:ring-2',
       'ring-offset-1',
       'ring-focus',
       'rounded',

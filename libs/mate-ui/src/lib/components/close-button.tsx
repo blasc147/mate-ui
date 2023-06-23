@@ -13,7 +13,7 @@ const CloseButton = React.forwardRef<
       ref={ref}
       className={cn(
         'focus:outline-none',
-        'focus-visible:ring',
+        'focus-visible:ring-2',
         'ring-focus',
         'rounded',
         className

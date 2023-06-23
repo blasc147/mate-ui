@@ -73,7 +73,7 @@ const styles = {
     'justify-center',
     'items-center',
     'focus:outline-none',
-    'focus-visible:ring',
+    'focus-visible:ring-2',
     'ring-focus'
   ),
   actionButtonIcon: cn('fill-neutral-700', 'h-4', 'w-4'),

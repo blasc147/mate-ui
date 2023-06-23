@@ -20,7 +20,7 @@ const styles = {
       'border',
       'active:border-primary-500',
       'focus:outline-none',
-      'focus-visible:ring',
+      'focus-visible:ring-2',
       'ring-offset-1',
       'ring-focus',
       'disabled:cursor-not-allowed',
