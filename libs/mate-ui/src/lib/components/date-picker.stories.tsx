@@ -57,10 +57,7 @@ export const SimpleDatePicker = () => {
 export function DatePickerWithRange({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 0),
-  });
+  const [date, setDate] = useState<DateRange | undefined>();
 
   return (
     <div className={cn('grid gap-2', className)}>
@@ -71,6 +68,7 @@ export function DatePickerWithRange({
               <FormLabel>Label</FormLabel>
               <InputGroup>
                 <Input
+                  placeholder="mm/dd/yyyy"
                   type="text"
                   value={date?.from ? format(date.from, 'MM/dd/yyyy') : ''}
                 />
@@ -80,6 +78,7 @@ export function DatePickerWithRange({
               <FormLabel>Label</FormLabel>
               <InputGroup>
                 <Input
+                  placeholder="mm/dd/yyyy"
                   type="text"
                   value={date?.to ? format(date.to, 'MM/dd/yyyy') : ''}
                 />
