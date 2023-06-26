@@ -5,6 +5,12 @@ import { Button } from './button';
 const Story: Meta<typeof Button> = {
   component: Button,
   title: 'Button',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/6zMgZETAVqw9TgqFxRY3IY/Mate-UI-2.0?type=design&node-id=12-229',
+    },
+  },
 };
 export default Story;
 
