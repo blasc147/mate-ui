@@ -27,6 +27,7 @@ const Story: Meta<typeof Input> = {
   component: Input,
   title: 'Input',
   decorators: [(Story) => <div className="w-[250px]">{<Story />}</div>],
+  tags: ['autodocs'],
 };
 
 export default Story;
