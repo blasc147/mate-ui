@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { DatePicker, DateRange } from './date-picker';
 import { cn } from '../utils';
 import { CalendarIcon } from '@heroicons/react/20/solid';
-import { format, addDays } from 'date-fns';
+import { format } from 'date-fns';
 
 import {
   FormControl,

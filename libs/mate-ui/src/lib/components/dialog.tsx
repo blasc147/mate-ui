@@ -2,6 +2,7 @@
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Slot } from '@radix-ui/react-slot';
+import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../utils';
 import { CloseButton } from './close-button';
@@ -12,19 +13,33 @@ interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode;
 }
 
+enum DialogSizes {
+  Xs = 'xs',
+  Sm = 'sm',
+  Md = 'md',
+  Lg = 'lg',
+}
+
 interface DialogProps extends DialogPrimitive.DialogPortalProps {
   colorScheme: ColorScheme;
   isCentered?: boolean;
+  size?: DialogSizes;
 }
 
-const DialogContext = React.createContext({
+const DialogContext = React.createContext<DialogProps>({
   colorScheme: 'success',
   isCentered: false,
+  size: DialogSizes.Md,
 });
 
-const Dialog = ({ colorScheme, isCentered = false, ...props }: DialogProps) => {
+const Dialog = ({
+  colorScheme,
+  isCentered = false,
+  size,
+  ...props
+}: DialogProps) => {
   return (
-    <DialogContext.Provider value={{ colorScheme, isCentered }}>
+    <DialogContext.Provider value={{ colorScheme, isCentered, size }}>
       <DialogPrimitive.Root {...props} />
     </DialogContext.Provider>
   );
@@ -76,39 +91,59 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
+const styles = {
+  base: cva(
+    [
+      'fixed',
+      'z-50',
+      'grid',
+      'w-full',
+      'bg-white',
+      'gap-4',
+      'rounded-lg',
+      'p-6',
+      'shadow-lg',
+    ],
+    {
+      variants: {
+        size: {
+          xs: 'max-w-[346px] max-h-[404px]',
+          sm: 'max-w-[518px] max-h-[604px]',
+          md: 'max-w-[692px] max-h-[706px]',
+          lg: 'max-w-[1036px] max-h-[806px]',
+        },
+      },
+      defaultVariants: {
+        size: DialogSizes.Md,
+      },
+    }
+  ),
+};
+
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        'max-w-sm',
-        'fixed',
-        'z-50',
-        'grid',
-        'w-full',
-        'bg-white',
-        'gap-4',
-        'rounded-lg',
-        'p-6',
-        'shadow-lg',
-        className
-      )}
-      {...props}
-    >
-      {children}
-      <DialogPrimitive.Close
-        asChild
-        className={cn('absolute', 'top-4', 'right-4')}
+>(({ className, children, ...props }, ref) => {
+  const { size } = React.useContext(DialogContext);
+  return (
+    <DialogPortal>
+      <DialogOverlay />
+      <DialogPrimitive.Content
+        ref={ref}
+        className={cn(styles.base({ size }), className)}
+        {...props}
       >
-        <CloseButton />
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
-  </DialogPortal>
-));
+        {children}
+        <DialogPrimitive.Close
+          asChild
+          className={cn('absolute', 'top-4', 'right-4')}
+        >
+          <CloseButton />
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  );
+});
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({
@@ -183,19 +218,24 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName;
 const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    ref={ref}
-    className={cn(
-      'text-neutral-700',
-      'font-regular',
-      'text-sm',
-      'mt-2',
-      className
-    )}
-    {...props}
-  />
-));
+>(({ className, ...props }, ref) => {
+  const { size } = React.useContext(DialogContext);
+  return (
+    <DialogPrimitive.Description
+      ref={ref}
+      className={cn(
+        'text-neutral-700',
+        'font-regular',
+        'text-sm',
+        'mt-2',
+        size === DialogSizes.Lg && 'overflow-x-auto',
+        'max-h-[300px]',
+        className
+      )}
+      {...props}
+    />
+  );
+});
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
@@ -206,4 +246,5 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  DialogSizes,
 };
