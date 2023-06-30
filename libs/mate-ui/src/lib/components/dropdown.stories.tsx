@@ -2,6 +2,7 @@ import { FaceSmileIcon } from '@heroicons/react/20/solid';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Button } from './button';
+import { Checkbox } from './checkbox';
 import {
   Dropdown,
   DropdownCheckboxItem,
@@ -9,10 +10,13 @@ import {
   DropdownGroup,
   DropdownHeader,
   DropdownItem,
+  DropdownRadioGroup,
+  DropdownRadioItem,
   DropdownSeparator,
   DropdownSub,
   DropdownSubContent,
   DropdownSubTrigger,
+  DropdownText,
   DropdownTrigger,
 } from './dropdown';
 
@@ -109,7 +113,10 @@ export const WithLeadingIcon: Story = {
       <DropdownContent>
         <DropdownHeader>Header</DropdownHeader>
 
-        <DropdownItem>Item</DropdownItem>
+        <DropdownItem className="gap-2">
+          <FaceSmileIcon className="h-5 w-5" />
+          Item
+        </DropdownItem>
 
         <DropdownItem className="gap-2">
           <FaceSmileIcon className="h-5 w-5" />
@@ -134,7 +141,9 @@ export const WithTrailingIcon: Story = {
       <DropdownContent>
         <DropdownHeader>Header</DropdownHeader>
 
-        <DropdownItem>Item</DropdownItem>
+        <DropdownItem className="justify-between">
+          Item <FaceSmileIcon className="h-5 w-5" />
+        </DropdownItem>
 
         <DropdownItem className="justify-between">
           Item
@@ -159,26 +168,30 @@ export const WithTrailingText: Story = {
       <DropdownContent>
         <DropdownHeader>Header</DropdownHeader>
 
-        <DropdownItem>Item</DropdownItem>
-
         <DropdownItem className="justify-between">
-          <span>Item</span>
-          <span className="font-regular text-xs text-neutral-600">Text</span>
+          Item
+          <DropdownText>Text</DropdownText>
         </DropdownItem>
 
         <DropdownItem className="justify-between">
-          <span>Item</span>
-          <span className="font-regular text-xs text-neutral-600">Text</span>
+          Item
+          <DropdownText>Text</DropdownText>
+        </DropdownItem>
+
+        <DropdownItem className="justify-between">
+          Item
+          <DropdownText>Text</DropdownText>
         </DropdownItem>
       </DropdownContent>
     </Dropdown>
   ),
 };
 
-export const WithCheckbox: Story = (() => {
+export const WithCheckboxItems: Story = (() => {
   const Component = () => {
     const [checkedA, setCheckedA] = useState(false);
-    const [checkedB, setCheckedB] = useState(false);
+    const [checkedB, setCheckedB] = useState(true);
+    const [checkedC, setCheckedC] = useState(false);
 
     return (
       <Dropdown>
@@ -186,18 +199,23 @@ export const WithCheckbox: Story = (() => {
           <Button variant="outlined">Button</Button>
         </DropdownTrigger>
         <DropdownContent>
-          <DropdownHeader>Header</DropdownHeader>
-
-          <DropdownItem>Item</DropdownItem>
           <DropdownCheckboxItem
             checked={checkedA}
             onCheckedChange={setCheckedA}
           >
             Item
           </DropdownCheckboxItem>
+
           <DropdownCheckboxItem
             checked={checkedB}
             onCheckedChange={setCheckedB}
+          >
+            Item
+          </DropdownCheckboxItem>
+
+          <DropdownCheckboxItem
+            checked={checkedC}
+            onCheckedChange={setCheckedC}
           >
             Item
           </DropdownCheckboxItem>
@@ -211,10 +229,54 @@ export const WithCheckbox: Story = (() => {
   };
 })();
 
+export const WithRadioItems: Story = (() => {
+  type Options = 'a' | 'b' | 'c';
+
+  const Component = () => {
+    const [selectedOption, setSelectedOption] = useState<Options>('b');
+
+    return (
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <Button variant="outlined">Button</Button>
+        </DropdownTrigger>
+        <DropdownContent>
+          <DropdownRadioGroup
+            value={selectedOption}
+            onValueChange={(value) => setSelectedOption(value as Options)}
+          >
+            <DropdownRadioItem value={'a' satisfies Options}>
+              Item
+            </DropdownRadioItem>
+
+            <DropdownRadioItem value={'b' satisfies Options}>
+              Item
+            </DropdownRadioItem>
+
+            <DropdownRadioItem value={'c' satisfies Options}>
+              Item
+            </DropdownRadioItem>
+          </DropdownRadioGroup>
+        </DropdownContent>
+      </Dropdown>
+    );
+  };
+
+  return {
+    render: Component,
+  };
+})();
+
 export const WithSubElements: Story = (() => {
+  type Options = 'a' | 'b' | 'c';
+
   const Component = () => {
     const [checkedA, setCheckedA] = useState(false);
-    const [checkedB, setCheckedB] = useState(false);
+    const [checkedB, setCheckedB] = useState(true);
+    const [checkedC, setCheckedC] = useState(false);
+
+    const [selectedOption, setSelectedOption] = useState<Options>('b');
+
     return (
       <Dropdown>
         <DropdownTrigger asChild>
@@ -228,46 +290,12 @@ export const WithSubElements: Story = (() => {
           <DropdownSub>
             <DropdownSubTrigger>Item</DropdownSubTrigger>
             <DropdownSubContent>
-              <DropdownItem>Item</DropdownItem>
-              <DropdownItem>Item</DropdownItem>
-              <DropdownItem>Item</DropdownItem>
-            </DropdownSubContent>
-          </DropdownSub>
-
-          <DropdownSub>
-            <DropdownSubTrigger>Item</DropdownSubTrigger>
-            <DropdownSubContent>
-              <DropdownItem>Item</DropdownItem>
-
-              <DropdownItem className="justify-between">
-                Item
-                <FaceSmileIcon className="h-5 w-5" />
-              </DropdownItem>
-
-              <DropdownItem className="justify-between">
-                <span>Item</span>
-                <span className="font-regular text-xs text-neutral-600">
-                  Text
-                </span>
-              </DropdownItem>
-
-              <DropdownItem className="gap-2" disabled>
-                <FaceSmileIcon className="h-5 w-5" />
-                Item
-              </DropdownItem>
-            </DropdownSubContent>
-          </DropdownSub>
-
-          <DropdownSub>
-            <DropdownSubTrigger>Item</DropdownSubTrigger>
-            <DropdownSubContent>
-              <DropdownItem>Item</DropdownItem>
               <DropdownCheckboxItem
                 checked={checkedA}
                 onCheckedChange={setCheckedA}
-                disabled
               >
                 Item
+                <DropdownText>Text</DropdownText>
               </DropdownCheckboxItem>
               <DropdownCheckboxItem
                 checked={checkedB}
@@ -275,6 +303,59 @@ export const WithSubElements: Story = (() => {
               >
                 Item
               </DropdownCheckboxItem>
+              <DropdownCheckboxItem
+                checked={checkedC}
+                onCheckedChange={setCheckedC}
+              >
+                Item
+              </DropdownCheckboxItem>
+            </DropdownSubContent>
+          </DropdownSub>
+
+          <DropdownSub>
+            <DropdownSubTrigger>Item</DropdownSubTrigger>
+            <DropdownSubContent>
+              <DropdownRadioGroup
+                value={selectedOption}
+                onValueChange={(value) => setSelectedOption(value as Options)}
+              >
+                <DropdownRadioItem value={'a' satisfies Options}>
+                  Item
+                  <DropdownText>Text</DropdownText>
+                </DropdownRadioItem>
+
+                <DropdownRadioItem value={'b' satisfies Options}>
+                  Item
+                </DropdownRadioItem>
+
+                <DropdownRadioItem value={'c' satisfies Options}>
+                  Item
+                </DropdownRadioItem>
+              </DropdownRadioGroup>
+            </DropdownSubContent>
+          </DropdownSub>
+
+          <DropdownSub>
+            <DropdownSubTrigger>Item</DropdownSubTrigger>
+            <DropdownSubContent>
+              <DropdownItem className="justify-between">
+                Item
+                <FaceSmileIcon className="h-5 w-5" />
+              </DropdownItem>
+
+              <DropdownItem className="justify-between">
+                Item
+                <DropdownText>Text</DropdownText>
+              </DropdownItem>
+
+              <DropdownSub>
+                <DropdownSubTrigger>Item</DropdownSubTrigger>
+                <DropdownSubContent>
+                  <DropdownItem>Item</DropdownItem>
+                  <DropdownItem>Item</DropdownItem>
+                  <DropdownItem>Item</DropdownItem>
+                </DropdownSubContent>
+              </DropdownSub>
             </DropdownSubContent>
           </DropdownSub>
         </DropdownContent>
@@ -289,11 +370,6 @@ export const WithSubElements: Story = (() => {
 
 export const WithMultipleAddons: Story = (() => {
   const Component = () => {
-    const [checkedA, setCheckedA] = useState(false);
-    const [checkedB, setCheckedB] = useState(false);
-    const [checkedC, setCheckedC] = useState(false);
-    const [checkedD, setCheckedD] = useState(false);
-
     return (
       <Dropdown>
         <DropdownTrigger asChild>
@@ -304,73 +380,106 @@ export const WithMultipleAddons: Story = (() => {
 
           <DropdownItem>Item</DropdownItem>
 
-          <DropdownSub>
-            <DropdownSubTrigger className="gap-2">
-              <FaceSmileIcon className="h-5 w-5" />
-              Item
-            </DropdownSubTrigger>
-            <DropdownSubContent>
-              <DropdownItem>Item</DropdownItem>
-
-              <DropdownSub>
-                <DropdownSubTrigger className="p-0">
-                  <DropdownCheckboxItem
-                    checked={checkedA}
-                    onCheckedChange={setCheckedA}
-                  >
-                    Item
-                  </DropdownCheckboxItem>
-                </DropdownSubTrigger>
-
-                <DropdownSubContent>
-                  <DropdownItem>Item</DropdownItem>
-
-                  <DropdownSub>
-                    <DropdownSubTrigger className="p-0">
-                      <DropdownCheckboxItem
-                        className="gap-2"
-                        checked={checkedB}
-                        onCheckedChange={setCheckedB}
-                      >
-                        <FaceSmileIcon className="h-5 w-5" />
-                        Item
-                      </DropdownCheckboxItem>
-                    </DropdownSubTrigger>
-
-                    <DropdownSubContent>
-                      <DropdownItem>Item</DropdownItem>
-                      <DropdownItem>Item</DropdownItem>
-                      <DropdownItem>Item</DropdownItem>
-                    </DropdownSubContent>
-                  </DropdownSub>
-
-                  <DropdownCheckboxItem
-                    className="gap-2"
-                    checked={checkedC}
-                    onCheckedChange={setCheckedC}
-                  >
-                    <FaceSmileIcon className="h-5 w-5" />
-                    Item
-                    <span className="font-regular text-xs text-neutral-600 ml-auto">
-                      Text
-                    </span>
-                  </DropdownCheckboxItem>
-                </DropdownSubContent>
-              </DropdownSub>
-
-              <DropdownCheckboxItem
-                checked={checkedD}
-                onCheckedChange={setCheckedD}
-              >
-                Item
-              </DropdownCheckboxItem>
-            </DropdownSubContent>
-          </DropdownSub>
-
           <DropdownItem className="gap-2">
             <FaceSmileIcon className="h-5 w-5" />
             Item
           </DropdownItem>
+
+          <DropdownItem className="gap-2">
+            Item
+            <FaceSmileIcon className="h-5 w-5 ml-auto" />
+          </DropdownItem>
+
+          <DropdownItem className="gap-2">
+            Item
+            <DropdownText>Text</DropdownText>
+          </DropdownItem>
+
+          <DropdownItem className="gap-2 items-end">
+            Item
+            <DropdownText>Text</DropdownText>
+            <FaceSmileIcon className="h-5 w-5" />
+          </DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+  };
+
+  return {
+    render: Component,
+  };
+})();
+
+export const WithCheckboxComponent: Story = (() => {
+  const Component = () => {
+    const [checkedA, setCheckedA] = useState<boolean>(false);
+    const [checkedB, setCheckedB] = useState<boolean>(true);
+    const [checkedC, setCheckedC] = useState<boolean>(false);
+
+    const isParentChecked = checkedA || checkedB || checkedC;
+    const isParentIndeterminated = !checkedA || !checkedB || !checkedC;
+
+    return (
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <Button variant="outlined">Button</Button>
+        </DropdownTrigger>
+        <DropdownContent>
+          <DropdownSub>
+            <DropdownSubTrigger>
+              <Checkbox
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+                indeterminate={isParentIndeterminated}
+                checked={isParentChecked}
+                onCheckedChange={() => {
+                  setCheckedA(!isParentChecked);
+                  setCheckedB(!isParentChecked);
+                  setCheckedC(!isParentChecked);
+                }}
+              />
+              Options
+            </DropdownSubTrigger>
+
+            <DropdownSubContent>
+              <DropdownItem
+                onClick={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                <Checkbox
+                  checked={checkedA}
+                  onCheckedChange={(value) => setCheckedA(value as boolean)}
+                />
+                A
+              </DropdownItem>
+
+              <DropdownItem
+                onClick={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                <Checkbox
+                  checked={checkedB}
+                  onCheckedChange={(value) => setCheckedB(value as boolean)}
+                />
+                B
+              </DropdownItem>
+
+              <DropdownItem
+                onClick={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                <Checkbox
+                  checked={checkedC}
+                  onCheckedChange={(value) => setCheckedC(value as boolean)}
+                />
+                C
+              </DropdownItem>
+            </DropdownSubContent>
+          </DropdownSub>
         </DropdownContent>
       </Dropdown>
     );

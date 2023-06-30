@@ -1,8 +1,7 @@
 'use client';
 
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { CheckIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { CheckSquare, Square } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '../utils';
 
@@ -55,6 +54,8 @@ const Dropdown = DropdownMenuPrimitive.Root;
 const DropdownTrigger = DropdownMenuPrimitive.Trigger;
 
 const DropdownGroup = DropdownMenuPrimitive.Group;
+
+const DropdownRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
 const DropdownPortal = DropdownMenuPrimitive.Portal;
 
@@ -127,20 +128,15 @@ const DropdownCheckboxItem = React.forwardRef<
       className={cn(
         'absolute',
         'left-3',
-        'h-5',
-        'w-5',
+        'h-4',
+        'w-4',
         'flex',
         'items-center',
         'justify-center'
       )}
     >
-      <DropdownMenuPrimitive.ItemIndicator forceMount>
-        <CheckSquare
-          className={cn('h-5', 'w-5', '[[data-state=checked]>&]:hidden')}
-        />
-        <Square
-          className={cn('h-5', 'w-5', '[[data-state=unchecked]>&]:hidden')}
-        />
+      <DropdownMenuPrimitive.ItemIndicator asChild>
+        <CheckIcon className={cn('h-4', 'w-4')} />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -148,6 +144,43 @@ const DropdownCheckboxItem = React.forwardRef<
 ));
 DropdownCheckboxItem.displayName =
   DropdownMenuPrimitive.CheckboxItem.displayName;
+
+const DropdownRadioItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
+>(({ className, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.RadioItem
+    ref={ref}
+    className={cn(styles.item, 'pl-10', className)}
+    {...props}
+  >
+    <span
+      className={cn(
+        'absolute',
+        'left-3',
+        'h-4',
+        'w-4',
+        'flex',
+        'items-center',
+        'justify-center'
+      )}
+    >
+      <DropdownMenuPrimitive.ItemIndicator asChild>
+        <span
+          className={cn(
+            'w-[7px]',
+            'h-[7px]',
+            'bg-neutral-700',
+            'rounded-full',
+            'block'
+          )}
+        />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    {children}
+  </DropdownMenuPrimitive.RadioItem>
+));
+DropdownRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
 
 const DropdownHeader = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Label>,
@@ -180,6 +213,25 @@ const DropdownSeparator = React.forwardRef<
 ));
 DropdownSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
+const DropdownText = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement>) => {
+  return (
+    <span
+      className={cn(
+        'ml-auto',
+        'text-xs',
+        'font-regular',
+        'text-neutral-600',
+        className
+      )}
+      {...props}
+    />
+  );
+};
+DropdownText.displayName = 'DropdownText';
+
 export {
   Dropdown,
   DropdownCheckboxItem,
@@ -188,9 +240,12 @@ export {
   DropdownHeader,
   DropdownItem,
   DropdownPortal,
+  DropdownRadioGroup,
+  DropdownRadioItem,
   DropdownSeparator,
   DropdownSub,
   DropdownSubContent,
   DropdownSubTrigger,
+  DropdownText,
   DropdownTrigger,
 };
