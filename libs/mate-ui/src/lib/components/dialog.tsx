@@ -20,26 +20,107 @@ enum DialogSizes {
   Lg = 'lg',
 }
 
+enum ContentAlignment {
+  Center = 'center',
+  Left = 'left',
+}
+
 interface DialogProps extends DialogPrimitive.DialogPortalProps {
   colorScheme: ColorScheme;
   isCentered?: boolean;
   size?: DialogSizes;
+  contentAlignment?: ContentAlignment;
 }
 
 const DialogContext = React.createContext<DialogProps>({
   colorScheme: 'success',
   isCentered: false,
   size: DialogSizes.Md,
+  contentAlignment: ContentAlignment.Left,
 });
+
+const styles = {
+  base: cva(
+    [
+      'fixed',
+      'z-50',
+      'grid',
+      'w-full',
+      'bg-white',
+      'gap-4',
+      'rounded-lg',
+      'p-6',
+      'shadow-lg',
+    ],
+    {
+      variants: {
+        size: {
+          xs: 'max-w-[346px] max-h-[404px]',
+          sm: 'max-w-[518px] max-h-[604px]',
+          md: 'max-w-[692px] max-h-[706px]',
+          lg: 'max-w-[1036px] max-h-[806px]',
+        },
+      },
+      defaultVariants: {
+        size: DialogSizes.Md,
+      },
+    }
+  ),
+  header: cva(['flex', 'flex-col', 'text-center'], {
+    variants: {
+      contentAlignment: {
+        center: 'items-center',
+        left: 'items-left',
+      },
+    },
+    defaultVariants: {
+      contentAlignment: ContentAlignment.Left,
+    },
+  }),
+  description: cva(
+    ['text-neutral-700', 'font-regular', 'text-sm', 'mt-2', 'max-h-[300px]'],
+    {
+      variants: {
+        contentAlignment: {
+          center: 'text-center',
+          left: 'text-left',
+        },
+        size: {
+          xs: '',
+          sm: '',
+          md: '',
+          lg: 'overflow-x-auto',
+        },
+      },
+      defaultVariants: {
+        contentAlignment: ContentAlignment.Left,
+      },
+    }
+  ),
+  title: cva(['text-m', 'font-semibold', 'mt-3', 'text-neutral-900'], {
+    variants: {
+      contentAlignment: {
+        center: 'text-center',
+        left: 'text-left',
+      },
+    },
+    defaultVariants: {
+      contentAlignment: ContentAlignment.Left,
+    },
+  }),
+};
 
 const Dialog = ({
   colorScheme,
   isCentered = false,
   size,
+  contentAlignment,
   ...props
 }: DialogProps) => {
   return (
-    <DialogContext.Provider value={{ colorScheme, isCentered, size }}>
+    <DialogContext.Provider
+      value={{ colorScheme, isCentered, size, contentAlignment }}
+    >
       <DialogPrimitive.Root {...props} />
     </DialogContext.Provider>
   );
@@ -91,35 +172,6 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
-const styles = {
-  base: cva(
-    [
-      'fixed',
-      'z-50',
-      'grid',
-      'w-full',
-      'bg-white',
-      'gap-4',
-      'rounded-lg',
-      'p-6',
-      'shadow-lg',
-    ],
-    {
-      variants: {
-        size: {
-          xs: 'max-w-[346px] max-h-[404px]',
-          sm: 'max-w-[518px] max-h-[604px]',
-          md: 'max-w-[692px] max-h-[706px]',
-          lg: 'max-w-[1036px] max-h-[806px]',
-        },
-      },
-      defaultVariants: {
-        size: DialogSizes.Md,
-      },
-    }
-  ),
-};
-
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
@@ -152,16 +204,11 @@ const DialogHeader = ({
   icon,
   ...props
 }: DialogHeaderProps) => {
-  const { colorScheme } = React.useContext(DialogContext);
+  const { contentAlignment, colorScheme } = React.useContext(DialogContext);
+  console.log(contentAlignment);
   return (
     <div
-      className={cn(
-        'flex',
-        'flex-col',
-        'text-center',
-        'items-center',
-        className
-      )}
+      className={cn(styles.header({ contentAlignment }), className)}
       {...props}
     >
       {icon && (
@@ -206,32 +253,28 @@ DialogFooter.displayName = 'DialogFooter';
 const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={cn('text-m', 'font-semibold', 'mt-3', className)}
-    {...props}
-  />
-));
+>(({ className, ...props }, ref) => {
+  const { contentAlignment } = React.useContext(DialogContext);
+  return (
+    <DialogPrimitive.Title
+      ref={ref}
+      className={cn(styles.title({ contentAlignment }), className)}
+      {...props}
+    />
+  );
+});
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
 const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => {
-  const { size } = React.useContext(DialogContext);
+  const { size, contentAlignment } = React.useContext(DialogContext);
+  console.log(contentAlignment);
   return (
     <DialogPrimitive.Description
       ref={ref}
-      className={cn(
-        'text-neutral-700',
-        'font-regular',
-        'text-sm',
-        'mt-2',
-        size === DialogSizes.Lg && 'overflow-x-auto',
-        'max-h-[300px]',
-        className
-      )}
+      className={cn(styles.description({ contentAlignment, size }), className)}
       {...props}
     />
   );
@@ -247,4 +290,5 @@ export {
   DialogTitle,
   DialogDescription,
   DialogSizes,
+  ContentAlignment as DialogContentAlignment,
 };

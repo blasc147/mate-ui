@@ -17,6 +17,7 @@ import {
   DialogTrigger,
   ColorScheme,
   DialogSizes,
+  DialogContentAlignment,
 } from './dialog';
 
 interface DialogProps {
@@ -41,7 +42,11 @@ function DialogComponent({
   isCentered,
 }: DialogProps) {
   return (
-    <Dialog colorScheme={colorScheme} isCentered={isCentered}>
+    <Dialog
+      colorScheme={colorScheme}
+      isCentered={isCentered}
+      contentAlignment={DialogContentAlignment.Center}
+    >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
       </DialogTrigger>
@@ -288,6 +293,41 @@ export function DialogSm({
       colorScheme={colorScheme}
       isCentered={isCentered}
       size={DialogSizes.Sm}
+    >
+      <DialogTrigger asChild>
+        <Button variant="outlined">Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent className={className}>
+        <DialogHeader icon={<CheckIcon />}>
+          <DialogTitle>Success message</DialogTitle>
+          <DialogDescription>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+            amet labore.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button type="submit" size="sm" className={cn('w-full')}>
+            Button
+          </Button>
+        </DialogFooter>
+        <Link colorScheme="neutral" size="sm" weight="light">
+          Link
+        </Link>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function DialogSmLeft({
+  className,
+  colorScheme = 'success',
+}: DialogProps) {
+  return (
+    <Dialog
+      colorScheme={colorScheme}
+      size={DialogSizes.Sm}
+      isCentered
+      contentAlignment={DialogContentAlignment.Left}
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
