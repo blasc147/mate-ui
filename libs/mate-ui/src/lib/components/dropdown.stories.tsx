@@ -5,7 +5,7 @@ import { Button } from './button';
 import { Checkbox } from './checkbox';
 import {
   Dropdown,
-  DropdownCheckboxItem,
+  DropdownCheckItem,
   DropdownContent,
   DropdownGroup,
   DropdownHeader,
@@ -187,7 +187,7 @@ export const WithTrailingText: Story = {
   ),
 };
 
-export const WithCheckboxItems: Story = (() => {
+export const WithCheckItems: Story = (() => {
   const Component = () => {
     const [checkedA, setCheckedA] = useState(false);
     const [checkedB, setCheckedB] = useState(true);
@@ -199,26 +199,17 @@ export const WithCheckboxItems: Story = (() => {
           <Button variant="outlined">Button</Button>
         </DropdownTrigger>
         <DropdownContent>
-          <DropdownCheckboxItem
-            checked={checkedA}
-            onCheckedChange={setCheckedA}
-          >
+          <DropdownCheckItem checked={checkedA} onCheckedChange={setCheckedA}>
             Item
-          </DropdownCheckboxItem>
+          </DropdownCheckItem>
 
-          <DropdownCheckboxItem
-            checked={checkedB}
-            onCheckedChange={setCheckedB}
-          >
+          <DropdownCheckItem checked={checkedB} onCheckedChange={setCheckedB}>
             Item
-          </DropdownCheckboxItem>
+          </DropdownCheckItem>
 
-          <DropdownCheckboxItem
-            checked={checkedC}
-            onCheckedChange={setCheckedC}
-          >
+          <DropdownCheckItem checked={checkedC} onCheckedChange={setCheckedC}>
             Item
-          </DropdownCheckboxItem>
+          </DropdownCheckItem>
         </DropdownContent>
       </Dropdown>
     );
@@ -290,25 +281,25 @@ export const WithSubElements: Story = (() => {
           <DropdownSub>
             <DropdownSubTrigger>Item</DropdownSubTrigger>
             <DropdownSubContent>
-              <DropdownCheckboxItem
+              <DropdownCheckItem
                 checked={checkedA}
                 onCheckedChange={setCheckedA}
               >
                 Item
                 <DropdownText>Text</DropdownText>
-              </DropdownCheckboxItem>
-              <DropdownCheckboxItem
+              </DropdownCheckItem>
+              <DropdownCheckItem
                 checked={checkedB}
                 onCheckedChange={setCheckedB}
               >
                 Item
-              </DropdownCheckboxItem>
-              <DropdownCheckboxItem
+              </DropdownCheckItem>
+              <DropdownCheckItem
                 checked={checkedC}
                 onCheckedChange={setCheckedC}
               >
                 Item
-              </DropdownCheckboxItem>
+              </DropdownCheckItem>
             </DropdownSubContent>
           </DropdownSub>
 

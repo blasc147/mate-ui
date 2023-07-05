@@ -115,7 +115,7 @@ const DropdownItem = React.forwardRef<
 ));
 DropdownItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
-const DropdownCheckboxItem = React.forwardRef<
+const DropdownCheckItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, ...props }, ref) => (
@@ -142,8 +142,7 @@ const DropdownCheckboxItem = React.forwardRef<
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ));
-DropdownCheckboxItem.displayName =
-  DropdownMenuPrimitive.CheckboxItem.displayName;
+DropdownCheckItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName;
 
 const DropdownRadioItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
@@ -234,7 +233,7 @@ DropdownText.displayName = 'DropdownText';
 
 export {
   Dropdown,
-  DropdownCheckboxItem,
+  DropdownCheckItem,
   DropdownContent,
   DropdownGroup,
   DropdownHeader,

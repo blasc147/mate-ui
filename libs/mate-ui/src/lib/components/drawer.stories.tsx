@@ -442,7 +442,7 @@ export function BottomDrawer() {
           Open Drawer
         </Button>
       </DrawerTrigger>
-      <DrawerContent side={DrawerSides.Bottom}>
+      <DrawerContent side={DrawerSides.Bottom} className={cn('max-h-[50%]')}>
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
@@ -502,7 +502,7 @@ export function TopDrawer() {
           Open Drawer
         </Button>
       </DrawerTrigger>
-      <DrawerContent side={DrawerSides.Top}>
+      <DrawerContent side={DrawerSides.Top} className={cn('max-h-[50%]')}>
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>

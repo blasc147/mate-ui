@@ -81,7 +81,6 @@ const sheetVariants = cva(
           'bottom-0',
           'data-[state=closed]:slide-out-to-bottom',
           'data-[state=open]:slide-in-from-bottom',
-          'max-h-[50%]',
         ],
         left: [
           'inset-y-0',
@@ -127,9 +126,9 @@ const DrawerContent = React.forwardRef<
     <DrawerPortal>
       <DrawerOverlay />
       <SheetPrimitive.Content
-        ref={ref}
-        className={cn(sheetVariants({ side }), className)}
+        {...handlers}
         {...props}
+        className={cn(sheetVariants({ side }), className)}
       >
         {children}
         <SheetPrimitive.Close
@@ -156,12 +155,11 @@ const DrawerContent = React.forwardRef<
         </SheetPrimitive.Close>
         {side === DrawerSides.Bottom && (
           <div
-            {...handlers}
             className={cn(
               'block',
               'md:hidden',
               'absolute',
-              'right-[49%]',
+              'right-[calc(50%-16px)]',
               'top-2',
               'h-1',
               'w-10',
