@@ -4,7 +4,6 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerSides,
@@ -13,10 +12,13 @@ import {
 } from './drawer';
 import { Button } from './button';
 import { cn } from '../utils';
+import { FormControl, FormLabel, Input } from './input';
 
 const Story: Meta<typeof Drawer> = {
   component: Drawer,
   title: 'Drawer',
+  decorators: [(Story) => <div className="w-[250px]">{<Story />}</div>],
+  tags: ['autodocs'],
 };
 export default Story;
 
@@ -444,7 +446,11 @@ export function BottomDrawer() {
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className="p-4">
+        <DrawerBody className={cn('flex', 'flex-col')}>
+          <FormControl className={cn('my-4')}>
+            <FormLabel>Label</FormLabel>
+            <Input type="text" />
+          </FormControl>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis
@@ -460,6 +466,23 @@ export function BottomDrawer() {
           condimentum mollis. Nunc fermentum nulla sed risus malesuada, id
           mattis sapien cursus. Donec auctor tempus ultricies. Mauris in aliquam
           justo. Ut convallis ullamcorper dui vitae mattis. Phasellus maximus
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
+          eleifend felis, vel fringilla neque. In tristique dui magna, id
+          iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis
+          facilisis purus egestas semper. Pellentesque ut odio ut neque
+          pellentesque gravida. Aenean maximus mauris vel lorem faucibus, nec
+          tincidunt eros eleifend. Etiam vel eros fringilla, porttitor nulla eu,
+          ultricies enim. Aliquam et mauris in eros scelerisque porttitor. Etiam
+          ut commodo turpis. Donec interdum erat non ipsum maximus, id tincidunt
+          mauris suscipit. Curabitur eu laoreet enim. Cras ante ipsum, accumsan
+          imperdiet ante in, pellentesque aliquam ante. Fusce eu sem est.
+          Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce
+          vitae augue id sem lacinia placerat in in magna. Fusce iaculis leo ac
+          condimentum mollis. Nunc fermentum nulla sed risus malesuada, id
+          mattis sapien cursus. Donec auctor tempus ultricies. Mauris in aliquam
+          justo. Ut convallis ullamcorper dui vitae mattis. Phasellus maximus
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
+          eleif
         </DrawerBody>
         <DrawerFooter>
           <Button type="submit" size="sm" className={cn('w-full')}>

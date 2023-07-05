@@ -3,6 +3,8 @@ import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { CloseButton } from './close-button';
 import { cn } from '../utils';
+import { useSwipeable } from 'react-swipeable';
+import { useRef } from 'react';
 
 const Drawer = SheetPrimitive.Root;
 
@@ -31,7 +33,15 @@ const DrawerOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      'fixed inset-0 bg-neutral-900  bg-opacity-25 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed',
+      'inset-0',
+      'bg-neutral-900',
+      'bg-opacity-25',
+      'z-50',
+      'data-[state=open]:animate-in',
+      'data-[state=closed]:animate-out',
+      'data-[state=closed]:fade-out-0',
+      'data-[state=open]:fade-in-0',
       className
     )}
     {...props}
@@ -41,16 +51,58 @@ const DrawerOverlay = React.forwardRef<
 Drawer.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  'fixed z-50 bg-background bg-white rounded p-4 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500 flex flex-col',
+  [
+    'fixed',
+    'z-50',
+    'bg-background',
+    'bg-white rounded',
+    'p-4',
+    'shadow-lg',
+    'transition',
+    'ease-in-out',
+    'data-[state=open]:animate-in',
+    'data-[state=closed]:animate-out',
+    'data-[state=closed]:duration-300',
+    'data-[state=open]:duration-500',
+    'flex',
+    'flex-col',
+  ],
   {
     variants: {
       side: {
-        top: 'inset-x-0 top-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
-        bottom:
-          'inset-x-0 bottom-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
-        left: 'inset-y-0 left-0 h-full w-[440px]  data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm',
-        right:
-          'inset-y-0 right-0 h-full w-[440px] data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',
+        top: [
+          'inset-x-0',
+          'top-0',
+          'data-[state=closed]:slide-out-to-top',
+          'data-[state=open]:slide-in-from-top',
+        ],
+        bottom: [
+          'inset-x-0',
+          'bottom-0',
+          'data-[state=closed]:slide-out-to-bottom',
+          'data-[state=open]:slide-in-from-bottom',
+          'max-h-[50%]',
+        ],
+        left: [
+          'inset-y-0',
+          'left-0',
+          'h-full',
+          'md:w-[440px]',
+          'sm:w-full',
+          'data-[state=closed]:slide-out-to-left',
+          'data-[state=open]:slide-in-from-left',
+          'sm:max-w-full',
+        ],
+        right: [
+          'inset-y-0',
+          'right-0',
+          'h-full',
+          'md:w-[440px]',
+          'sm:w-full',
+          'data-[state=closed]:slide-out-to-right',
+          'data-[state=open]:slide-in-from-right',
+          'sm:max-w-full',
+        ],
       },
     },
     defaultVariants: {
@@ -66,22 +118,62 @@ interface DrawerContentProps
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   DrawerContentProps
->(({ side = 'right', className, children, ...props }, ref) => (
-  <DrawerPortal>
-    <DrawerOverlay />
-    <SheetPrimitive.Content
-      ref={ref}
-      className={cn(sheetVariants({ side }), className)}
-      {...props}
-    >
-      {children}
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <CloseButton aria-label="notification-button"></CloseButton>
-        <span className="sr-only">Close</span>
-      </SheetPrimitive.Close>
-    </SheetPrimitive.Content>
-  </DrawerPortal>
-));
+>(({ side = 'right', className, children, ...props }, ref) => {
+  const closeRef = useRef(null);
+  const handlers = useSwipeable({
+    onSwipedDown: () => (closeRef?.current as any)?.click(),
+  });
+  return (
+    <DrawerPortal>
+      <DrawerOverlay />
+      <SheetPrimitive.Content
+        ref={ref}
+        className={cn(sheetVariants({ side }), className)}
+        {...props}
+      >
+        {children}
+        <SheetPrimitive.Close
+          ref={closeRef}
+          className={cn([
+            'absolute',
+            'right-4',
+            'top-4',
+            'rounded-sm',
+            'opacity-70',
+            'ring-offset-background',
+            'transition-opacity',
+            'hover:opacity-100',
+            'focus:outline-none',
+            'focus:ring-2',
+            'focus:ring-ring',
+            'focus:ring-offset-2',
+            'disabled:pointer-events-none',
+            'data-[state=open]:bg-secondary',
+          ])}
+        >
+          <CloseButton aria-label="notification-button"></CloseButton>
+          <span className="sr-only">Close</span>
+        </SheetPrimitive.Close>
+        {side === DrawerSides.Bottom && (
+          <div
+            {...handlers}
+            className={cn(
+              'block',
+              'md:hidden',
+              'absolute',
+              'right-[49%]',
+              'top-2',
+              'h-1',
+              'w-10',
+              'bg-neutral-400',
+              'rounded-2xl'
+            )}
+          ></div>
+        )}
+      </SheetPrimitive.Content>
+    </DrawerPortal>
+  );
+});
 DrawerContent.displayName = SheetPrimitive.Content.displayName;
 
 const DrawerHeader = ({
@@ -90,7 +182,14 @@ const DrawerHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col text-left text-neutral-900 font-bold text-base sm:text-sm',
+      'flex',
+      'flex-col',
+      'text-left',
+      'text-neutral-900',
+      'font-bold',
+      'text-base',
+      'sm:text-sm',
+      'relative',
       className
     )}
     {...props}
@@ -102,7 +201,10 @@ const DrawerBody = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('overflow-x-auto flex flex-1', className)} {...props} />
+  <div
+    className={cn('overflow-x-auto', 'flex', 'flex-1', className)}
+    {...props}
+  />
 );
 DrawerBody.displayName = 'DrawerBody';
 
@@ -120,23 +222,11 @@ const DrawerTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
-    className={cn('text-lg font-semibold', className)}
+    className={cn('text-lg', 'font-semibold', className)}
     {...props}
   />
 ));
 DrawerTitle.displayName = SheetPrimitive.Title.displayName;
-
-const DrawerDescription = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Description
-    ref={ref}
-    className={cn('text-sm', className)}
-    {...props}
-  />
-));
-DrawerDescription.displayName = SheetPrimitive.Description.displayName;
 
 export {
   Drawer,
@@ -146,7 +236,6 @@ export {
   DrawerHeader,
   DrawerFooter,
   DrawerTitle,
-  DrawerDescription,
   DrawerBody,
   DrawerSides,
 };
