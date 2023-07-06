@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { cva } from 'class-variance-authority';
+import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { InputContext } from './input-context';
@@ -18,18 +18,12 @@ const styles = {
       'flex',
       'h-10',
       'w-full',
-      'rounded',
-      'border',
       'border-neutral-400',
       'bg-white',
-      'px-4',
       'py-2.5',
       'text-sm',
       'font-regular',
       'text-neutral-900',
-      'focus:ring-1',
-      'focus:ring-focus',
-      'focus:border-focus',
       'placeholder:text-neutral-600',
       'disabled:bg-neutral-100',
       'disabled:text-neutral-700',
@@ -39,6 +33,24 @@ const styles = {
     ],
     {
       variants: {
+        inputStyle: {
+          outlined: [
+            'rounded',
+            'border',
+            'px-4',
+            'focus:ring-1',
+            'focus:ring-focus',
+            'focus:border-focus',
+          ],
+          underlined: [
+            'border-t-0',
+            'border-r-0',
+            'border-l-0',
+            'border-b-1',
+            'focus:ring-0',
+            'px-0',
+          ],
+        },
         hasInputLeftElement: {
           true: 'pl-10',
         },
@@ -55,7 +67,7 @@ const styles = {
           true: 'border-error-500',
         },
         hasInputGroup: {
-          false: 'enabled:hover:shadow',
+          false: [],
         },
       },
       compoundVariants: [
@@ -72,7 +84,12 @@ const styles = {
         {
           hasInputRightElement: true,
           isError: true,
-          className: 'pr-[70px]', // pr-10 (right element) + pr-5 (error icon) + 2.5
+          className: 'pr-[70px]',
+        },
+        {
+          hasInputGroup: false,
+          inputStyle: 'outlined',
+          className: 'enabled:hover:shadow',
         },
       ],
       defaultVariants: {
@@ -82,6 +99,7 @@ const styles = {
         hasInputRightAddon: false,
         hasInputGroup: false,
         isError: false,
+        inputStyle: 'outlined',
       },
     }
   ),
@@ -126,18 +144,24 @@ const Input = React.forwardRef<
     hasInputRightAddon,
     hasInputGroup,
   } = React.useContext(InputContext);
+
   const {
     isError,
     externalId: contextId,
     defaultId,
     hasErrorMessage,
+    setInputFocused,
     hasHelperText,
+    setInputEmpty,
+    inputStyle,
   } = React.useContext(FormControlContext);
+
   const id = getValueByPriority({
     context: contextId,
     current: currentId,
     default: defaultId,
   });
+
   return (
     <div className={cn('relative', 'w-full')}>
       <input
@@ -149,11 +173,21 @@ const Input = React.forwardRef<
             hasInputRightAddon,
             hasInputGroup,
             isError,
+            inputStyle,
           }),
           className
         )}
         ref={ref}
         id={id}
+        onFocus={(e) => {
+          props.onFocus?.(e);
+          setInputFocused?.(true);
+        }}
+        onBlur={(e) => {
+          props.onBlur?.(e);
+          setInputEmpty?.(e?.target?.value === '');
+          setInputFocused?.(false);
+        }}
         aria-describedby={
           props['aria-describedby'] ??
           (hasErrorMessage && isError
@@ -184,6 +218,7 @@ const Select = React.forwardRef<
     hasInputRightAddon,
     hasInputGroup,
   } = React.useContext(InputContext);
+
   const {
     isError,
     externalId: contextId,
@@ -191,11 +226,13 @@ const Select = React.forwardRef<
     hasErrorMessage,
     hasHelperText,
   } = React.useContext(FormControlContext);
+
   const id = getValueByPriority({
     context: contextId,
     current: currentId,
     default: defaultId,
   });
+
   return (
     <div className={cn('relative', 'w-full')}>
       <select

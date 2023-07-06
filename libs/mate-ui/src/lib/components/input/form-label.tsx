@@ -5,14 +5,55 @@ import * as React from 'react';
 import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { getValueByPriority } from './utils';
+import { cva } from 'class-variance-authority';
 
-const styles = cn(
-  'text-xs',
-  'font-medium',
-  'text-neutral-700',
-  'block',
-  'mb-1'
-);
+const styles = {
+  label: cva(['text-xs', 'font-medium', 'text-neutral-700', 'block', 'mb-1'], {
+    variants: {
+      inputStyle: {
+        underlined: [
+          'absolute',
+          'z-50',
+          'transition-all duration-150 ease-out',
+        ],
+        outlined: [],
+      },
+      isInputFocused: {
+        true: [],
+      },
+      isInputEmpty: {
+        true: [],
+      },
+    },
+    compoundVariants: [
+      {
+        inputStyle: 'underlined',
+        isInputFocused: false,
+        isInputEmpty: true,
+        className: [
+          'text-base',
+          'font-normal',
+          'text-neutral-600 top-1 block whitespace-nowrap overflow-hidden translate-y-[20px] transition-max-w duration-400',
+        ],
+      },
+      {
+        inputStyle: 'underlined',
+        isInputFocused: false,
+        isInputEmpty: false,
+        className: ['text-primary-500', 'transform', '-translate-y-1/2'],
+      },
+      {
+        inputStyle: 'underlined',
+        isInputFocused: true,
+        className: ['text-primary-500', 'transform', '-translate-y-1/2'],
+      },
+    ],
+    defaultVariants: {
+      inputStyle: 'outlined',
+      isInputFocused: false,
+    },
+  }),
+};
 
 interface FormLabelProps
   extends React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> {
@@ -35,12 +76,26 @@ const FormLabel = React.forwardRef<
     },
     ref
   ) => {
-    const { externalId: contextId, defaultId } =
-      React.useContext(FormControlContext);
+    const {
+      externalId: contextId,
+      defaultId,
+      inputStyle,
+      isInputEmpty,
+    } = React.useContext(FormControlContext);
+
+    const { isInputFocused } = React.useContext(FormControlContext);
+
     return (
       <LabelPrimitive.Root
         ref={ref}
-        className={cn(styles, className)}
+        className={cn(
+          styles.label({
+            inputStyle,
+            isInputFocused,
+            isInputEmpty,
+          }),
+          className
+        )}
         htmlFor={getValueByPriority({
           context: contextId,
           current: id,

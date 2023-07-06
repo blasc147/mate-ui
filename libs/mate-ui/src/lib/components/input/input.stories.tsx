@@ -170,6 +170,28 @@ export const WithHelperTextAndInError: Story = {
   ),
 };
 
+export const UnderLined: Story = {
+  render: () => {
+    return (
+      <FormControl inputStyle="underlined">
+        <FormLabel>Label</FormLabel>
+        <Input type="text" />
+      </FormControl>
+    );
+  },
+};
+
+export const UnderLinedWithHelperTextAndInError: Story = {
+  render: () => (
+    <FormControl inputStyle="underlined" isError>
+      <FormLabel>Label</FormLabel>
+      <Input type="text" />
+      <FormHelperText>Some help text</FormHelperText>
+      <FormErrorMessage>Some error text</FormErrorMessage>
+    </FormControl>
+  ),
+};
+
 export const WithLeadingIconElement: Story = {
   render: () => (
     <FormControl>
