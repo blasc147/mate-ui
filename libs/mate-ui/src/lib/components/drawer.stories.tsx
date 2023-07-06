@@ -36,7 +36,7 @@ export function RightDrawer() {
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody>
+        <DrawerBody className="h-[90vh]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis
@@ -442,11 +442,11 @@ export function BottomDrawer() {
           Open Drawer
         </Button>
       </DrawerTrigger>
-      <DrawerContent side={DrawerSides.Bottom} className={cn('max-h-[50%]')}>
+      <DrawerContent side={DrawerSides.Bottom}>
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className={cn('flex', 'flex-col')}>
+        <DrawerBody className={cn('flex', 'flex-col', 'max-h-[500px]')}>
           <FormControl className={cn('my-4')}>
             <FormLabel>Label</FormLabel>
             <Input type="text" />
@@ -502,11 +502,11 @@ export function TopDrawer() {
           Open Drawer
         </Button>
       </DrawerTrigger>
-      <DrawerContent side={DrawerSides.Top} className={cn('max-h-[50%]')}>
+      <DrawerContent side={DrawerSides.Top}>
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className="p-4">
+        <DrawerBody className="p-4 max-h-[500px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis
@@ -545,7 +545,7 @@ export function LeftDrawer() {
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className="p-4">
+        <DrawerBody className="h-[90vh]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis

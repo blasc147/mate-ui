@@ -56,7 +56,6 @@ const sheetVariants = cva(
     'z-50',
     'bg-background',
     'bg-white rounded',
-    'p-4',
     'shadow-lg',
     'transition',
     'ease-in-out',
@@ -85,7 +84,6 @@ const sheetVariants = cva(
         left: [
           'inset-y-0',
           'left-0',
-          'h-full',
           'md:w-[440px]',
           'sm:w-full',
           'data-[state=closed]:slide-out-to-left',
@@ -95,7 +93,6 @@ const sheetVariants = cva(
         right: [
           'inset-y-0',
           'right-0',
-          'h-full',
           'md:w-[440px]',
           'sm:w-full',
           'data-[state=closed]:slide-out-to-right',
@@ -126,48 +123,63 @@ const DrawerContent = React.forwardRef<
     <DrawerPortal>
       <DrawerOverlay />
       <SheetPrimitive.Content
-        {...handlers}
         {...props}
         className={cn(sheetVariants({ side }), className)}
       >
-        {children}
-        <SheetPrimitive.Close
-          ref={closeRef}
-          className={cn([
-            'absolute',
-            'right-4',
-            'top-4',
-            'rounded-sm',
-            'opacity-70',
-            'ring-offset-background',
-            'transition-opacity',
-            'hover:opacity-100',
-            'focus:outline-none',
-            'focus:ring-2',
-            'focus:ring-ring',
-            'focus:ring-offset-2',
-            'disabled:pointer-events-none',
-            'data-[state=open]:bg-secondary',
-          ])}
-        >
-          <CloseButton aria-label="notification-button"></CloseButton>
-          <span className="sr-only">Close</span>
-        </SheetPrimitive.Close>
-        {side === DrawerSides.Bottom && (
-          <div
-            className={cn(
-              'block',
-              'md:hidden',
+        <div className="relative p-4">
+          {children}
+          <SheetPrimitive.Close
+            ref={closeRef}
+            className={cn([
               'absolute',
-              'right-[calc(50%-16px)]',
-              'top-2',
-              'h-1',
-              'w-10',
-              'bg-neutral-400',
-              'rounded-2xl'
-            )}
-          ></div>
-        )}
+              'right-4',
+              'top-4',
+              'rounded-sm',
+              'opacity-70',
+              'ring-offset-background',
+              'transition-opacity',
+              'hover:opacity-100',
+              'focus:outline-none',
+              'focus:ring-2',
+              'focus:ring-ring',
+              'focus:ring-offset-2',
+              'disabled:pointer-events-none',
+              'data-[state=open]:bg-secondary',
+              'z-10',
+            ])}
+          >
+            <CloseButton aria-label="notification-button"></CloseButton>
+            <span className="sr-only">Close</span>
+          </SheetPrimitive.Close>
+          {side === DrawerSides.Bottom && (
+            <div
+              {...handlers}
+              className={cn(
+                'absolute',
+                'w-full',
+                'h-10',
+                'block',
+                'md:hidden',
+                'top-0',
+                'left-0',
+                'flex',
+                'justify-center',
+                'items-center'
+              )}
+            >
+              <div
+                className={cn(
+                  'right-[calc(50%-16px)]',
+                  'top-2',
+                  'h-1',
+                  'w-10',
+                  'bg-neutral-400',
+                  'rounded-2xl'
+                )}
+              ></div>
+            </div>
+          )}
+        </div>
       </SheetPrimitive.Content>
     </DrawerPortal>
   );
