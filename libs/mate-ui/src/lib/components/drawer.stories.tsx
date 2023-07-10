@@ -36,7 +36,7 @@ export function RightDrawer() {
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className="h-[90vh]">
+        <DrawerBody className="h-[85vh]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis
@@ -545,7 +545,7 @@ export function LeftDrawer() {
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className="h-[90vh]">
+        <DrawerBody className="h-[85vh]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis
