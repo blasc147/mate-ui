@@ -206,6 +206,20 @@ export const WithLeadingIconElement: Story = {
   ),
 };
 
+export const UnderlineWithLeadingIconElement: Story = {
+  render: () => (
+    <FormControl inputStyle="underlined">
+      <FormLabel>Label</FormLabel>
+      <InputGroup>
+        <InputLeftElement>
+          <MagnifyingGlassCircleIcon className="text-neutral-700 h-5 w-5" />
+        </InputLeftElement>
+        <Input type="text" />
+      </InputGroup>
+    </FormControl>
+  ),
+};
+
 export const WithTrailingIconElement: Story = {
   render: () => (
     <FormControl>
@@ -245,6 +259,37 @@ export const WithLeadingAvatarElement: Story = {
             <AvatarImage src="avatar-img-1.jpg" />/
           </Avatar>
         </InputLeftElement>
+        <Input type="text" />
+      </InputGroup>
+    </FormControl>
+  ),
+};
+export const UnderlineWithLeadingAvatarElement: Story = {
+  render: () => (
+    <FormControl inputStyle="underlined">
+      <FormLabel>Label</FormLabel>
+      <InputGroup>
+        <InputLeftElement>
+          <Avatar className="h-6 w-6">
+            <AvatarImage src="avatar-img-1.jpg" />/
+          </Avatar>
+        </InputLeftElement>
+        <Input type="text" />
+      </InputGroup>
+    </FormControl>
+  ),
+};
+
+export const UnderlineWithTrailingAvatarElement: Story = {
+  render: () => (
+    <FormControl inputStyle="underlined">
+      <FormLabel>Label</FormLabel>
+      <InputGroup>
+        <InputRightElement>
+          <Avatar className="h-6 w-6">
+            <AvatarImage src="avatar-img-1.jpg" />/
+          </Avatar>
+        </InputRightElement>
         <Input type="text" />
       </InputGroup>
     </FormControl>
@@ -322,7 +367,6 @@ export const WithLeadingSelectElement: Story = {
     </FormControl>
   ),
 };
-
 export const WithTrailingSelectElement: Story = {
   render: () => (
     <FormControl>
@@ -335,6 +379,33 @@ export const WithTrailingSelectElement: Story = {
               'border-0',
               'focus:ring-focus',
               'focus:ring-2',
+              'focus:ring-offset-2',
+              'rounded-r-sm',
+              'text-xs',
+              'font-semibold',
+              'text-neutral-900'
+            )}
+          >
+            <option>USD</option>
+            <option>ARS</option>
+          </select>
+        </InputRightElement>
+      </InputGroup>
+    </FormControl>
+  ),
+};
+export const UndelineWithTrailingSelectElement: Story = {
+  render: () => (
+    <FormControl inputStyle="underlined">
+      <FormLabel>Label</FormLabel>
+      <InputGroup>
+        <Input type="text" className="pr-[100px]" />
+        <InputRightElement className="w-[100px] flex justify-end pr-1">
+          <select
+            className={cn(
+              'border-0',
+              'focus:ring-focus',
+              'focus:ring-b-2',
               'focus:ring-offset-2',
               'rounded-r-sm',
               'text-xs',
@@ -413,6 +484,28 @@ export const InputWithExternalAddonsAndInError: Story = {
 export const ElementCommonUseCase: Story = {
   render: () => (
     <FormControl>
+      <FormLabel>Label</FormLabel>
+      <InputGroup>
+        <InputLeftElement>
+          <MagnifyingGlassCircleIcon className="text-neutral-700 h-5 w-5" />
+        </InputLeftElement>
+        <Input type="text" />
+        <InputRightElement>
+          <IconButton
+            aria-label="delete"
+            variant="ghost"
+            colorScheme="neutral"
+            icon={<XMarkIcon />}
+            size="sm"
+          />
+        </InputRightElement>
+      </InputGroup>
+    </FormControl>
+  ),
+};
+export const UnderlineElementCommonUseCase: Story = {
+  render: () => (
+    <FormControl inputStyle="underlined">
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>

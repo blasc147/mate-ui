@@ -8,6 +8,7 @@ import { InputRightAddon } from './input-right-addon';
 import { InputRightElement } from './input-right-element';
 import { InputLeftAddon } from './input-left-addon';
 import { childrenHasComponent } from './utils';
+import { FormControlContext } from './form-control-context';
 
 interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -33,6 +34,8 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
       component: InputRightAddon,
     });
 
+    const { inputStyle } = React.useContext(FormControlContext);
+
     return (
       <InputContext.Provider
         value={{
@@ -49,7 +52,7 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
             'relative',
             'flex',
             'rounded',
-            'hover:shadow',
+            inputStyle === 'outlined' ? 'hover:shadow' : '',
             className
           )}
           {...props}

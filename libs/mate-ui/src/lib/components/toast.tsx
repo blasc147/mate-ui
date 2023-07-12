@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '../..';
 import { cva } from 'class-variance-authority';
 import { CloseButton } from './close-button';
-import * as Toast from '@radix-ui/react-toast';
+import * as RadixToast from '@radix-ui/react-toast';
 
 const styles = {
   base: cn(
@@ -34,11 +34,11 @@ const styles = {
   }),
 };
 
-type NotificationSeverity = 'primary';
+type ToastSeverity = 'primary';
 
-interface NotificationProps extends Toast.ToastProps {
+interface ToastProps extends RadixToast.ToastProps {
   className?: string;
-  severity?: NotificationSeverity;
+  severity?: ToastSeverity;
   leftElement?: React.ReactElement;
   buttons?: React.ReactElement;
   title?: string;
@@ -46,7 +46,7 @@ interface NotificationProps extends Toast.ToastProps {
   actionButton?: React.ReactElement;
 }
 
-const Notification = ({
+const Toast = ({
   leftElement,
   className,
   title,
@@ -56,10 +56,10 @@ const Notification = ({
   open,
   onOpenChange,
   severity = 'primary',
-}: NotificationProps) => {
+}: ToastProps) => {
   return (
     <>
-      <Toast.Root
+      <RadixToast.Root
         className={cn(styles.base, className)}
         open={open}
         onOpenChange={onOpenChange}
@@ -67,33 +67,28 @@ const Notification = ({
         <div className={cn(styles.border({ severity }))}></div>
         {leftElement && <div className={styles.leftElement}>{leftElement}</div>}
         <div className={styles.root}>
-          <Toast.Title className={styles.title}>{title}</Toast.Title>
-          <Toast.Description className={styles.description}>
+          <RadixToast.Title className={styles.title}>{title}</RadixToast.Title>
+          <RadixToast.Description className={styles.description}>
             {description}
-          </Toast.Description>
+          </RadixToast.Description>
           {buttons && <div className={styles.buttons}>{buttons}</div>}
         </div>
         <div className={styles.actions}>
           {actionButton && <div>{actionButton}</div>}
-          <Toast.Close className={styles.close}>
-            <CloseButton aria-label="notification-button"></CloseButton>{' '}
-          </Toast.Close>
+          <RadixToast.Close className={styles.close}>
+            <CloseButton aria-label="Toast-button"></CloseButton>{' '}
+          </RadixToast.Close>
         </div>
-      </Toast.Root>
-      <Toast.Viewport className={styles.viewport} />
+      </RadixToast.Root>
+      <RadixToast.Viewport className={styles.viewport} />
     </>
   );
 };
 
-const NotificationProvider: React.FC<Toast.ToastProviderProps> = ({
+const ToastProvider: React.FC<RadixToast.ToastProviderProps> = ({
   children,
 }) => {
-  return <Toast.Provider>{children}</Toast.Provider>;
+  return <RadixToast.Provider>{children}</RadixToast.Provider>;
 };
 
-export {
-  Notification,
-  NotificationProvider,
-  type NotificationProps,
-  NotificationSeverity,
-};
+export { Toast, ToastProvider, type ToastProps, ToastSeverity };

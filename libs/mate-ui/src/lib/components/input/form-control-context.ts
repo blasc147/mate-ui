@@ -11,6 +11,7 @@ interface FormControlContextProps {
   hasHelperText?: boolean;
   hasErrorMessage?: boolean;
   inputStyle?: InputStyleType;
+  hasLeftElement?: boolean;
   isInputFocused?: boolean;
   setInputFocused?: (focused: boolean) => void;
   isInputEmpty?: boolean;

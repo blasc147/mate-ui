@@ -5,18 +5,18 @@ import { cn } from '../utils';
 import { Avatar } from './avatar';
 import { Button } from './button';
 import { Link } from './link';
-import { Notification, NotificationProvider } from './notification';
+import { Toast, ToastProvider } from './toast';
 
-const Story: Meta<typeof Notification> = {
-  component: Notification,
-  title: 'Notification',
+const Story: Meta<typeof Toast> = {
+  component: Toast,
+  title: 'Toast',
 };
 export default Story;
 
 export const SimpleMessage = () => {
   const [open, setOpen] = useState(false);
   return (
-    <NotificationProvider swipeDirection="right">
+    <ToastProvider swipeDirection="right">
       <Button
         onClick={() => setOpen(true)}
         variant="outlined"
@@ -25,15 +25,15 @@ export const SimpleMessage = () => {
       >
         Open
       </Button>
-      <Notification open={open} onOpenChange={setOpen} title={'Message sent'} />
-    </NotificationProvider>
+      <Toast open={open} onOpenChange={setOpen} title={'Message sent'} />
+    </ToastProvider>
   );
 };
 
 export const SimpleMessageWithIcon = () => {
   const [open, setOpen] = useState(false);
   return (
-    <NotificationProvider swipeDirection="right">
+    <ToastProvider swipeDirection="right">
       <Button
         onClick={() => setOpen(true)}
         variant="outlined"
@@ -42,22 +42,20 @@ export const SimpleMessageWithIcon = () => {
       >
         Open
       </Button>
-      <Notification
+      <Toast
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={
-         <SparklesIcon className="h-6 w-6 text-primary-500"  />
-         }
+        leftElement={<SparklesIcon className="h-6 w-6 text-primary-500" />}
       />
-    </NotificationProvider>
+    </ToastProvider>
   );
 };
 
 export const SimpleMessageWithDescription = () => {
   const [open, setOpen] = useState(false);
   return (
-    <NotificationProvider swipeDirection="right">
+    <ToastProvider swipeDirection="right">
       <Button
         onClick={() => setOpen(true)}
         variant="outlined"
@@ -66,20 +64,20 @@ export const SimpleMessageWithDescription = () => {
       >
         Open
       </Button>
-      <Notification
+      <Toast
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
         description={'Anyone with a link can now view this file.'}
       />
-    </NotificationProvider>
+    </ToastProvider>
   );
 };
 
 export const SimpleMessageWithDescriptionAndButton = () => {
   const [open, setOpen] = useState(false);
   return (
-    <NotificationProvider swipeDirection="right">
+    <ToastProvider swipeDirection="right">
       <Button
         onClick={() => setOpen(true)}
         variant="outlined"
@@ -88,21 +86,21 @@ export const SimpleMessageWithDescriptionAndButton = () => {
       >
         Open
       </Button>
-      <Notification
+      <Toast
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
         description={'Anyone with a link can now view this file.'}
         buttons={<Button size="sm">Button</Button>}
       />
-    </NotificationProvider>
+    </ToastProvider>
   );
 };
 
 export const Complete = () => {
   const [open, setOpen] = useState(false);
   return (
-    <NotificationProvider>
+    <ToastProvider>
       <Button
         onClick={() => setOpen(true)}
         variant="outlined"
@@ -111,7 +109,7 @@ export const Complete = () => {
       >
         Open
       </Button>
-      <Notification
+      <Toast
         open={open}
         onOpenChange={setOpen}
         className=""
@@ -138,6 +136,6 @@ export const Complete = () => {
           </>
         }
       />
-    </NotificationProvider>
+    </ToastProvider>
   );
 };

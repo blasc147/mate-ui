@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { InputContext } from './input-context';
@@ -18,7 +18,6 @@ const styles = {
       'flex',
       'h-10',
       'w-full',
-      'border-neutral-400',
       'bg-white',
       'py-2.5',
       'text-sm',
@@ -37,6 +36,7 @@ const styles = {
           outlined: [
             'rounded',
             'border',
+            'border-neutral-400',
             'px-4',
             'focus:ring-1',
             'focus:ring-focus',
@@ -45,9 +45,14 @@ const styles = {
           underlined: [
             'border-t-0',
             'border-r-0',
+            'border-neutral-600',
             'border-l-0',
             'border-b-1',
             'focus:ring-0',
+            'hover:border-b-2',
+            'focus:outline-none',
+            'focus:border-primary-500',
+            'focus:border-b-2',
             'px-0',
           ],
         },

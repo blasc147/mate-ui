@@ -24,6 +24,9 @@ const styles = {
       isInputEmpty: {
         true: [],
       },
+      hasLeftElement: {
+        true: [],
+      },
     },
     compoundVariants: [
       {
@@ -35,6 +38,13 @@ const styles = {
           'font-normal',
           'text-neutral-600 top-1 block whitespace-nowrap overflow-hidden translate-y-[20px] transition-max-w duration-400',
         ],
+      },
+      {
+        inputStyle: 'underlined',
+        isInputFocused: false,
+        isInputEmpty: true,
+        hasLeftElement: true,
+        className: ['pl-10'],
       },
       {
         inputStyle: 'underlined',
@@ -81,6 +91,7 @@ const FormLabel = React.forwardRef<
       defaultId,
       inputStyle,
       isInputEmpty,
+      hasLeftElement,
     } = React.useContext(FormControlContext);
 
     const { isInputFocused } = React.useContext(FormControlContext);
@@ -93,6 +104,7 @@ const FormLabel = React.forwardRef<
             inputStyle,
             isInputFocused,
             isInputEmpty,
+            hasLeftElement,
           }),
           className
         )}

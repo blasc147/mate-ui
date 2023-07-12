@@ -6,6 +6,8 @@ import { FormErrorMessage } from './form-error-message';
 import { FormHelperText } from './form-helper-text';
 import { InputContext } from './input-context';
 import { childrenHasComponent } from './utils';
+import { InputLeftElement } from './input-left-element';
+import { InputLeftAddon } from './input-left-addon';
 
 interface FormControlProps extends React.HTMLAttributes<HTMLDivElement> {
   id?: string;
@@ -21,14 +23,28 @@ const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 
     const [isInputEmpty, setInputEmpty] = React.useState(true);
 
+    const child = props?.children;
+
     const hasErrorMessage = childrenHasComponent({
-      children: props.children,
+      children: child,
       component: FormErrorMessage,
     });
     const hasHelperText = childrenHasComponent({
-      children: props.children,
+      children: child,
       component: FormHelperText,
     });
+
+    const formGroup = React.Children.toArray(child)[1] as React.ReactElement;
+
+    const hasLeftElement =
+      childrenHasComponent({
+        children: formGroup?.props?.children,
+        component: InputLeftElement,
+      }) ||
+      childrenHasComponent({
+        children: formGroup?.props?.children,
+        component: InputLeftAddon,
+      });
 
     return (
       <FormControlContext.Provider
@@ -43,6 +59,7 @@ const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
           setInputFocused,
           isInputEmpty,
           setInputEmpty,
+          hasLeftElement,
         }}
       >
         <div ref={ref} {...props} />
