@@ -91,6 +91,7 @@ interface CheckboxProps
   indeterminate?: boolean;
   error?: boolean;
   trailingControl?: boolean;
+  value?: string;
 }
 
 const Checkbox = React.forwardRef<
@@ -130,7 +131,7 @@ const Checkbox = React.forwardRef<
             'text-neutral-600': props.disabled,
           })}
         >
-          <Label.Root htmlFor={id}>
+          <Label.Root htmlFor={id} className="cursor-pointer">
             <span className={styles.label}>{label}</span>
             <span className={styles.subtext}>{subtext}</span>
           </Label.Root>
