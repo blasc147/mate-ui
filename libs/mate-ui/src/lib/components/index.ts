@@ -10,3 +10,4 @@ export * from './link';
 export * from './radio-button';
 export * from './tabs';
 export * from './dropdown';
+export * from './drawer';

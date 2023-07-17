@@ -1,18 +1,20 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
 import './styles.css';
 
-function CustomApp({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Head>
-        <title>Welcome to mate-ui-docs!</title>
-      </Head>
-      <main>
-        <Component {...pageProps} />
-      </main>
-    </>
-  );
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+ 
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
+  return getLayout(<Component {...pageProps} />)
 }
 
 export default CustomApp;
+

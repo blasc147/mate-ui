@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "nx serve mate-ui-docs",
     "prepare": "husky install"
   },
   "private": true,

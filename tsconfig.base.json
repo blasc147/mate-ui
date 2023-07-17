@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@truenorth/mate-ui": ["libs/mate-ui/src/index.ts"]
+      "@truenorth/mate-ui": ["libs/mate-ui/src/index.ts"],
+      "@truenorth/mate-ui-docs": ["apps/mate-ui-docs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
