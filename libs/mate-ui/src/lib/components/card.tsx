@@ -12,7 +12,14 @@ enum CardStyles {
 
 const styles = {
   rootBase: cva(
-    ['bg-background', 'bg-white', 'rounded-lg', 'flex', 'flex-col'],
+    [
+      'bg-background',
+      'bg-white',
+      'rounded-lg',
+      'flex',
+      'flex-col',
+      'max-w-[572px]',
+    ],
     {
       variants: {
         cardStyle: {
