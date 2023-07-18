@@ -1,14 +1,28 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import React from 'react';
 import { MateLogo } from '../../icons';
-import { Button, Input, InputGroup, InputRightAddon, Link } from '@truenorth/mate-ui'
-import { ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputRightAddon,
+  Link,
+} from '@truenorth/mate-ui';
+import {
+  ChevronRightIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/20/solid';
+import { useRouter } from 'next/router';
+import { Routes } from '../../routes';
 
 const Sidenav = () => {
+  const router = useRouter();
   return (
     <nav>
       <div className="pb-12">
-        <Link href='/'><MateLogo /></Link>
+        <Link href="/">
+          <MateLogo />
+        </Link>
       </div>
       <div className="pb-12">
         <InputGroup>
@@ -17,7 +31,7 @@ const Sidenav = () => {
             <Button colorScheme="neutral" variant="ghost" size="sm">
               <MagnifyingGlassIcon className="text-neutral-400 h-5 w-5" />
             </Button>
-          </InputRightAddon>  
+          </InputRightAddon>
         </InputGroup>
       </div>
 
@@ -33,6 +47,7 @@ const Sidenav = () => {
           variant="ghost"
           colorScheme="neutral"
           className="justify-start px-2"
+          onClick={() => router.push(Routes.Examples)}
         >
           Examples
         </Button>

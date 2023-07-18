@@ -1,10 +1,18 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import { BaseLayout } from '../../src/layouts/BaseLayout';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@truenorth/mate-ui';
+import { Dashboard } from '../../src/components/Dashboard';
+import { List } from '../../src/components/List';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
+
+const tabs = [
+  { key: 'dashboard', name: 'Dashboard', component: <Dashboard /> },
+  { key: 'list', name: 'List', component: <List /> },
+];
 
 const Page: NextPageWithLayout = () => {
   return (
@@ -19,6 +27,24 @@ const Page: NextPageWithLayout = () => {
           </h5>
         </div>
       </header>
+      <Tabs defaultValue={tabs[0].name}>
+        <TabsList>
+          {tabs.map((tab) => {
+            return (
+              <TabsTrigger key={tab.key} value={tab.name}>
+                {tab.name}
+              </TabsTrigger>
+            );
+          })}
+        </TabsList>
+        {tabs.map((tab) => {
+          return (
+            <TabsContent key={tab.key} value={tab.name}>
+              {tab.component}
+            </TabsContent>
+          );
+        })}
+      </Tabs>
     </div>
   );
 };
