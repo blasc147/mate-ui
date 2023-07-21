@@ -30,6 +30,7 @@ interface IconButtonProps
   loading?: boolean;
   'aria-label': string;
   icon: React.ReactNode;
+  colorScheme: 'primary' | 'secondary' | 'neutral' | 'destructive';
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
