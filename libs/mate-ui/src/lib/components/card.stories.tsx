@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Card>;
 
 export function OutlineCard() {
   return (
-    <Card cardStyle="outline" padding="md">
+    <Card cardStyle="outline" padding="md" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -47,7 +47,7 @@ export function OutlineCard() {
 
 export function SmallHeaderCard() {
   return (
-    <Card cardStyle="outline" padding="md">
+    <Card cardStyle="outline" padding="md" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="sm">
           Cart Title
@@ -71,7 +71,7 @@ export function SmallHeaderCard() {
 
 export function ShadowCard() {
   return (
-    <Card cardStyle="shadow" padding="md">
+    <Card cardStyle="shadow" padding="md" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -95,7 +95,7 @@ export function ShadowCard() {
 
 export function LeadingImageCard() {
   return (
-    <Card cardStyle="shadow" padding="md">
+    <Card cardStyle="shadow" padding="md" className="max-w-[572px]">
       <CardImage position="leading">
         <img alt="card" src="cardImage.png" />
       </CardImage>
@@ -122,7 +122,7 @@ export function LeadingImageCard() {
 
 export function TrailingImageCard() {
   return (
-    <Card cardStyle="shadow" padding="md">
+    <Card cardStyle="shadow" padding="md" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -149,7 +149,7 @@ export function TrailingImageCard() {
 
 export function HeaderButtonCard() {
   return (
-    <Card cardStyle="outline" padding="md">
+    <Card cardStyle="outline" padding="md" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -169,7 +169,7 @@ export function HeaderButtonCard() {
 
 export function HeaderIconCard() {
   return (
-    <Card cardStyle="outline" padding="md">
+    <Card cardStyle="outline" padding="md" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -194,7 +194,7 @@ export function HeaderIconCard() {
 
 export function SmallPaddingCard() {
   return (
-    <Card cardStyle="outline" padding="sm">
+    <Card cardStyle="outline" padding="sm" className="max-w-[572px]">
       <CardHeader>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -219,7 +219,7 @@ export function SmallPaddingCard() {
 
 export function HeaderDividerCard() {
   return (
-    <Card cardStyle="outline" padding="sm">
+    <Card cardStyle="outline" padding="sm" className="max-w-[572px]">
       <CardHeader divider>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title
@@ -244,7 +244,7 @@ export function HeaderDividerCard() {
 
 export function SecondaryButtonCard() {
   return (
-    <Card cardStyle="outline" padding="sm">
+    <Card cardStyle="outline" padding="sm" className="max-w-[572px]">
       <CardHeader divider>
         <CardTitle supportiveText="supportive text" size="md">
           Cart Title

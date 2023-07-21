@@ -71,7 +71,7 @@ interface MultiSelectorProps {
   className?: string;
   selectedItems?: MultiSelectorItemProps[];
   onDeleteAll?: React.RefCallback<void>;
-  onDelete?: React.RefCallback<void>;
+  onDelete?: React.RefCallback<string>;
   placeholder?: string;
 }
 
@@ -170,7 +170,9 @@ const MultiSelectorFormField = React.forwardRef(
                     rightIcon={
                       <XMarkIcon
                         className="h-2 w-2"
-                        onClick={() => onDelete && onDelete(value)}
+                        onClick={() =>
+                          onDelete && value && onDelete(value as string)
+                        }
                       />
                     }
                   >
@@ -211,5 +213,5 @@ export {
   MultiSelectorTrigger,
   MultiSelectorContent,
   MultiSelectorItem,
-  MultiSelectorItemProps as Item,
+  type MultiSelectorItemProps as Item,
 };
