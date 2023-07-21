@@ -17,7 +17,7 @@ import { ReactNode } from 'react';
 import { UserIcon } from '@heroicons/react/24/solid';
 import { PencilIcon } from '@heroicons/react/24/solid';
 
-interface Invoice {
+export interface Invoice {
   invoice: string;
   paymentStatus: string;
   totalAmount: number;
@@ -127,24 +127,24 @@ function TableComponent() {
             <SortColumn sort="desc" />
           </TableHead>
 
-          <TableHead desktopOnly>
+          <TableHead>
             Transaction ID
             <SortColumn />
           </TableHead>
 
-          <TableHead desktopOnly>
+          <TableHead>
             Loan ID
             <SortColumn />
           </TableHead>
 
-          <TableHead desktopOnly>Space</TableHead>
+          <TableHead>Space</TableHead>
 
-          <TableHead className="text-right" desktopOnly>
+          <TableHead className="text-right">
             Balance
             <SortColumn />
           </TableHead>
 
-          <TableHead desktopOnly>
+          <TableHead>
             Status
             <SortColumn />
           </TableHead>
@@ -152,7 +152,7 @@ function TableComponent() {
           <TableHead className="w-[0px]">
             <Button>Header</Button>
           </TableHead>
-          <TableHead desktopOnly> Avatar</TableHead>
+          <TableHead> Avatar</TableHead>
         </TableRow>
       </TableHeader>
 
@@ -163,10 +163,10 @@ function TableComponent() {
               <Checkbox />
             </TableCell>
             <TableCell>{invoice.date}</TableCell>
-            <TableCell desktopOnly supportiveText="supportiveText">
+            <TableCell supportiveText="supportiveText">
               {invoice.invoice}
             </TableCell>
-            <TableCell desktopOnly>
+            <TableCell>
               <Link weight="light" asChild>
                 <div className="flex">
                   <button>{invoice.loanId}</button>
@@ -176,13 +176,13 @@ function TableComponent() {
             </TableCell>
             <TableCell></TableCell>
             <TableCell className="text-right">{`$${invoice.totalAmount}`}</TableCell>
-            <TableCell desktopOnly>
+            <TableCell>
               <Tag className="capitalize">{invoice.paymentStatus}</Tag>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
               <Button themeColor="neutral">Button</Button>
             </TableCell>
-            <TableCell className="text-right" desktopOnly>
+            <TableCell className="text-right">
               <div className="flex mb-2">
                 {invoice.avatars.map((avatar) => (
                   <Avatar className="-mr-2 -mb-4">{avatar}</Avatar>

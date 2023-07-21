@@ -5,6 +5,15 @@ import React from 'react';
 import { cn } from '../utils';
 import { Slot } from '@radix-ui/react-slot';
 
+export type TagColorScheme =
+  | 'success'
+  | 'neutral'
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'info'
+  | 'warning';
+
 const styles = {
   root: cva(
     ['inline-flex', 'items-center', 'justify-center', 'gap-2', 'font-semibold'],

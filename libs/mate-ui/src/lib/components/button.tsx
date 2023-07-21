@@ -216,8 +216,8 @@ const styles = {
         variant: 'outlined',
         className: [
           'text-primary-500',
-          'group-hover:enabled:text-white',
-          'group-active:enabled:text-white',
+          'group-hover:text-white',
+          'group-active:text-white',
         ],
       },
       {

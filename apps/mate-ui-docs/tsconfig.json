@@ -11,7 +11,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "paths": {
+      "@truenorth/mate-ui": ["libs/mate-ui/src/index.ts"],
+      "@components": ["apps/mate-ui-docs/src/components/index.tsx"],
+      "@icons": ["apps/mate-ui-docs/src/icons/index.ts"],
+      "@/layouts/*": ["apps/mate-ui-docs/src/layouts/*"],
+      "@/constants/*": ["apps/mate-ui-docs/src/constants/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
   "exclude": [

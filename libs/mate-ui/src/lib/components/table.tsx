@@ -13,7 +13,16 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className={cn('w-full', 'overflow-auto', 'bg-white', 'p-3', 'rounded')}>
+  <div
+    className={cn(
+      'w-full',
+      'overflow-auto',
+      'bg-white',
+      'rounded-lg',
+      'border',
+      'border-neutral-300	'
+    )}
+  >
     <table
       ref={ref}
       className={cn('w-full', 'caption-bottom', className)}
@@ -27,7 +36,11 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={className} {...props} />
+  <thead
+    ref={ref}
+    className={cn('bg-neutral-200', 'text-neutral-400', className)}
+    {...props}
+  />
 ));
 TableHeader.displayName = 'TableHeader';
 
@@ -65,9 +78,9 @@ const TableHead = React.forwardRef<
       'h-12',
       'px-3',
       'text-left',
-      'text-neutral-900',
+      'text-neutral-600',
       'font-medium',
-      'text-sm',
+      'text-xs',
       'align-middle',
       { 'hidden desktop:table-cell': desktopOnly },
       className
@@ -110,9 +123,10 @@ const TableCell = React.forwardRef<
 });
 
 TableCell.displayName = 'TableCell';
+export type SortTableType = 'asc' | 'desc';
 
 interface SortColumnProps extends React.HTMLAttributes<HTMLButtonElement> {
-  sort?: 'asc' | 'desc';
+  sort?: SortTableType;
 }
 
 const SortColumn = ({ sort, className, ...props }: SortColumnProps) => {

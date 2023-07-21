@@ -1,6 +1,6 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import React from 'react';
-import { MateLogo } from '../../icons';
+import { MateLogo } from '@icons';
 import {
   Button,
   Input,
@@ -13,7 +13,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/router';
-import { Routes } from '../../routes';
+import { Routes } from '@/constants/routes';
 
 const Sidenav = () => {
   const router = useRouter();

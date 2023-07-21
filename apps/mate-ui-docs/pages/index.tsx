@@ -1,11 +1,11 @@
-import type { ReactElement, ReactNode } from 'react'
-import type { NextPage } from 'next'
-import { BaseLayout } from '../src/layouts/BaseLayout';
+import type { ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
+import { BaseLayout } from '@/layouts/BaseLayout';
 import { Button } from '@truenorth/mate-ui';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 
 const Page: NextPageWithLayout = () => {
   return (

@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils';
 import { Slot } from '@radix-ui/react-slot';
 
-type CardSizes = 'sm' | 'md';
+type CardSizes = 'sm' | 'md' | 'lg';
 
 enum CardStyles {
   Shadow = 'shadow',
@@ -27,6 +27,7 @@ const styles = {
       padding: {
         sm: ['p-4'],
         md: ['p-6'],
+        lg: ['p-8'],
       },
     },
     defaultVariants: {
@@ -48,6 +49,8 @@ const styles = {
       size: {
         sm: ['text-base'],
         md: ['text-xl'],
+        lg: ['text-xl'],
+        xl: ['text-xl'],
       },
     },
     defaultVariants: {
