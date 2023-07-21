@@ -28,7 +28,7 @@ const Sidenav = () => {
         <InputGroup>
           <Input type="text" className="border-r-0" />
           <InputRightAddon className="flex justify-center items-center px-1 border-l-0">
-            <Button colorScheme="neutral" variant="ghost" size="sm">
+            <Button themeColor="neutral" variant="ghost" size="sm">
               <MagnifyingGlassIcon className="text-neutral-400 h-5 w-5" />
             </Button>
           </InputRightAddon>
@@ -38,14 +38,14 @@ const Sidenav = () => {
       <div className="flex flex-col text-neutral-700 border-b border-neutral-300 pb-6">
         <Button
           variant="ghost"
-          colorScheme="neutral"
+          themeColor="neutral"
           className="justify-start px-2 mb-2"
         >
           Introduction
         </Button>
         <Button
           variant="ghost"
-          colorScheme="neutral"
+          themeColor="neutral"
           className="justify-start px-2"
           onClick={() => router.push(Routes.Examples)}
         >
@@ -55,7 +55,7 @@ const Sidenav = () => {
       <div className="flex flex-col text-neutral-700 pt-6">
         <Button
           variant="ghost"
-          colorScheme="neutral"
+          themeColor="neutral"
           className="justify-between px-2 mb-2"
           rightIcon={<ChevronRightIcon />}
         >
@@ -63,7 +63,7 @@ const Sidenav = () => {
         </Button>
         <Button
           variant="ghost"
-          colorScheme="neutral"
+          themeColor="neutral"
           className="justify-between px-2 mb-2"
           rightIcon={<ChevronRightIcon />}
         >
@@ -71,14 +71,14 @@ const Sidenav = () => {
         </Button>
         <Button
           variant="ghost"
-          colorScheme="neutral"
+          themeColor="neutral"
           className="justify-start px-2 mb-2"
         >
           Components
         </Button>
         <Button
           variant="ghost"
-          colorScheme="neutral"
+          themeColor="neutral"
           className="justify-start px-2"
         >
           Patters

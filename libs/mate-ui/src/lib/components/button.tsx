@@ -9,7 +9,7 @@ import { cn } from '../utils';
 const styles = {
   rootBase: cva(
     [
-      'rounded-lg',
+      'rounded',
       'disabled:opacity-50',
       'disabled:cursor-not-allowed',
       'outline-none',
@@ -18,6 +18,7 @@ const styles = {
       'ring-offset-1',
       'ring-focus',
       'group',
+      'border-transparent',
     ],
     {
       variants: {
@@ -26,7 +27,7 @@ const styles = {
           outlined: ['border'],
           ghost: [],
         },
-        colorScheme: {
+        themeColor: {
           primary: [],
           secondary: [],
           neutral: [],
@@ -36,7 +37,7 @@ const styles = {
       compoundVariants: [
         // primary
         {
-          colorScheme: 'primary',
+          themeColor: 'primary',
           variant: 'filled',
           className: [
             'text-white',
@@ -46,21 +47,18 @@ const styles = {
           ],
         },
         {
-          colorScheme: 'primary',
+          themeColor: 'primary',
           variant: ['outlined'],
           className: [
             'border-primary-500',
             'text-primary-500',
-            'hover:enabled:bg-primary-500',
-            'hover:enabled:text-white',
-            'active:enabled:bg-primary-700',
-            'active:enabled:border-primary-700',
-            'active:enabled:text-white',
+            'hover:enabled:bg-primary-100',
+            'active:enabled:bg-primary-200',
             'focus-visible:bg-white',
           ],
         },
         {
-          colorScheme: 'primary',
+          themeColor: 'primary',
           variant: 'ghost',
           className: [
             'text-primary-500',
@@ -71,7 +69,7 @@ const styles = {
         },
         // secondary
         {
-          colorScheme: 'secondary',
+          themeColor: 'secondary',
           variant: 'filled',
           className: [
             'text-white',
@@ -81,21 +79,18 @@ const styles = {
           ],
         },
         {
-          colorScheme: 'secondary',
+          themeColor: 'secondary',
           variant: 'outlined',
           className: [
             'border-secondary-500',
             'text-secondary-600',
-            'hover:enabled:bg-secondary-500',
-            'hover:enabled:text-white',
-            'active:enabled:bg-secondary-700',
-            'active:enabled:border-secondary-700',
-            'active:enabled:text-white',
+            'hover:enabled:bg-secondary-100',
+            'active:enabled:bg-secondary-200',
             'focus-visible:bg-white',
           ],
         },
         {
-          colorScheme: 'secondary',
+          themeColor: 'secondary',
           variant: 'ghost',
           className: [
             'text-secondary-600',
@@ -106,45 +101,40 @@ const styles = {
         },
         // neutral
         {
-          colorScheme: 'neutral',
+          themeColor: 'neutral',
           variant: 'filled',
           className: [
             'text-neutral-900',
-            'bg-neutral-300',
-            'hover:enabled:bg-neutral-400',
-            'active:enabled:bg-neutral-500',
+            'bg-neutral-200',
+            'hover:enabled:bg-neutral-300',
+            'active:enabled:bg-neutral-400',
           ],
         },
         {
-          colorScheme: 'neutral',
+          themeColor: 'neutral',
           variant: 'outlined',
           className: [
             'text-neutral-700',
-            'border-neutral-500',
-            'hover:enabled:bg-neutral-600',
-            'hover:enabled:border-neutral-600',
-            'hover:enabled:text-white',
-            'active:enabled:bg-neutral-700',
-            'active:enabled:border-neutral-700',
-            'active:enabled:text-white',
+            'border-neutral-400',
+            'hover:enabled:bg-neutral-100',
+            'active:enabled:bg-neutral-200',
             'focus-visible:bg-white',
-            'focus-visible:border-neutral-500',
           ],
         },
         {
-          colorScheme: 'neutral',
+          themeColor: 'neutral',
           variant: 'ghost',
           className: [
             'text-neutral-700',
-            'hover:enabled:bg-neutral-100',
-            'active:enabled:bg-neutral-200',
+            'hover:enabled:bg-neutral-200',
+            'active:enabled:bg-neutral-100',
             'focus-visible:bg-white',
           ],
         },
         // destructive
         {
           variant: 'filled',
-          colorScheme: 'destructive',
+          themeColor: 'destructive',
           className: [
             'text-white',
             'bg-error-500',
@@ -155,23 +145,18 @@ const styles = {
         },
         {
           variant: 'outlined',
-          colorScheme: 'destructive',
+          themeColor: 'destructive',
           className: [
             'border-error-500',
             'text-error-700',
-            'hover:enabled:bg-error-500',
-            'hover:enabled:text-white',
-            'active:enabled:bg-error-700',
-            'active:enabled:border-error-700',
-            'active:enabled:text-white',
+            'hover:enabled:bg-error-100',
+            'active:enabled:bg-error-200',
             'focus-visible:bg-white',
-            'focus-visible:text-error-500',
-            'focus-visible:border-error-500',
           ],
         },
         {
           variant: 'ghost',
-          colorScheme: 'destructive',
+          themeColor: 'destructive',
           className: [
             'text-error-700',
             'hover:enabled:bg-error-100',
@@ -181,7 +166,7 @@ const styles = {
         },
       ],
       defaultVariants: {
-        colorScheme: 'primary',
+        themeColor: 'primary',
         variant: 'filled',
       },
     }
@@ -190,7 +175,9 @@ const styles = {
     variants: {
       size: {
         sm: ['py-1.5', 'px-4', 'text-sm'],
-        md: ['py-2', 'px-6', 'text-m'],
+        md: ['py-2', 'px-5', 'text-m', 'h-[40px]'],
+        lg: ['py-2', 'px-6', 'text-m', 'h-[48px]'],
+        xl: ['py-2', 'px-7', 'text-m', 'h-[60px]'],
       },
     },
     defaultVariants: {
@@ -204,26 +191,28 @@ const styles = {
         outlined: [],
         ghost: [],
       },
-      colorScheme: {
+      themeColor: {
         primary: [],
         secondary: [],
         neutral: [],
         destructive: [],
       },
       size: {
-        sm: ['w-3', 'h-3'],
-        md: ['w-4', 'h-4'],
+        sm: ['w-4', 'h-4'],
+        md: ['w-5', 'h-5'],
+        lg: ['w-6', 'h-6'],
+        xl: ['w-7', 'h-7'],
       },
     },
     compoundVariants: [
       // primary
       {
-        colorScheme: 'primary',
+        themeColor: 'primary',
         variant: 'filled',
         className: ['text-white'],
       },
       {
-        colorScheme: 'primary',
+        themeColor: 'primary',
         variant: 'outlined',
         className: [
           'text-primary-500',
@@ -232,18 +221,18 @@ const styles = {
         ],
       },
       {
-        colorScheme: 'primary',
+        themeColor: 'primary',
         variant: 'ghost',
         className: ['text-primary-500'],
       },
       // secondary
       {
-        colorScheme: 'secondary',
+        themeColor: 'secondary',
         variant: 'filled',
         className: ['text-white'],
       },
       {
-        colorScheme: 'secondary',
+        themeColor: 'secondary',
         variant: 'outlined',
         className: [
           'text-secondary-600',
@@ -252,18 +241,18 @@ const styles = {
         ],
       },
       {
-        colorScheme: 'secondary',
+        themeColor: 'secondary',
         variant: 'ghost',
         className: ['text-secondary-600'],
       },
       // neutral
       {
-        colorScheme: 'neutral',
+        themeColor: 'neutral',
         variant: 'filled',
         className: ['text-neutral-700'],
       },
       {
-        colorScheme: 'neutral',
+        themeColor: 'neutral',
         variant: 'outlined',
         className: [
           'text-neutral-700',
@@ -272,18 +261,18 @@ const styles = {
         ],
       },
       {
-        colorScheme: 'neutral',
+        themeColor: 'neutral',
         variant: 'ghost',
         className: ['text-neutral-700'],
       },
       // destructive
       {
-        colorScheme: 'destructive',
+        themeColor: 'destructive',
         variant: 'filled',
         className: ['text-white'],
       },
       {
-        colorScheme: 'destructive',
+        themeColor: 'destructive',
         variant: 'outlined',
         className: [
           'text-error-700',
@@ -292,13 +281,13 @@ const styles = {
         ],
       },
       {
-        colorScheme: 'destructive',
+        themeColor: 'destructive',
         variant: 'ghost',
         className: ['text-error-700'],
       },
     ],
     defaultVariants: {
-      colorScheme: 'primary',
+      themeColor: 'primary',
       variant: 'filled',
       size: 'md',
     },
@@ -320,7 +309,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       className,
       variant,
-      colorScheme,
+      themeColor,
       size,
       disabled,
       loading,
@@ -335,7 +324,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : 'button';
 
     const baseIconVariantsClasses = styles.icon({
-      colorScheme,
+      themeColor,
       variant,
       size,
     });
@@ -346,11 +335,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     const leftIcon = _leftIcon && (
-      <Slot className={iconVariantsClasses}>{_leftIcon}</Slot>
+      <Slot className={cn(iconVariantsClasses, 'mr-2')}>{_leftIcon}</Slot>
     );
 
     const rightIcon = _rightIcon && (
-      <Slot className={iconVariantsClasses}>{_rightIcon}</Slot>
+      <Slot className={cn(iconVariantsClasses, 'ml-2')}>{_rightIcon}</Slot>
     );
 
     const loadingSpinner = loading && (
@@ -386,13 +375,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         data-loading={loading}
         className={cn(
-          styles.rootBase({ colorScheme, variant }),
+          styles.rootBase({ themeColor, variant }),
           styles.rootSize({ size }),
           'inline-flex',
           'items-center',
           'justify-center',
-          'gap-3',
           'data-[loading=true]:text-[transparent]',
+          'data-[loading=true]:p-2',
           className
         )}
         disabled={loading || disabled}

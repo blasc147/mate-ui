@@ -180,7 +180,7 @@ function TableComponent() {
               <Tag className="capitalize">{invoice.paymentStatus}</Tag>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
-              <Button colorScheme="neutral">Button</Button>
+              <Button themeColor="neutral">Button</Button>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
               <div className="flex mb-2">

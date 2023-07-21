@@ -93,7 +93,7 @@ export const Critical: Story = {
     buttons: (
       <Button
         type="submit"
-        colorScheme="destructive"
+        themeColor="destructive"
         size="sm"
         className={cn('w-full')}
       >
@@ -133,7 +133,7 @@ export const CriticalSecondaryButton: Story = {
       <>
         <Button
           variant="outlined"
-          colorScheme="destructive"
+          themeColor="destructive"
           size="sm"
           className={cn('w-full', 'mr-4')}
         >
@@ -141,7 +141,7 @@ export const CriticalSecondaryButton: Story = {
         </Button>
         <Button
           type="submit"
-          colorScheme="destructive"
+          themeColor="destructive"
           size="sm"
           className={cn('w-full')}
         >
@@ -186,7 +186,7 @@ export const CriticalBottomLink: Story = {
       <Button
         type="submit"
         size="sm"
-        colorScheme="destructive"
+        themeColor="destructive"
         className={'w-full'}
       >
         Button
@@ -222,7 +222,7 @@ export const CriticalWithoutIcon: Story = {
     buttons: (
       <Button
         type="submit"
-        colorScheme="destructive"
+        themeColor="destructive"
         size="sm"
         className={cn('w-full')}
       >

@@ -37,7 +37,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     {
       className,
       variant,
-      colorScheme,
+      themeColor,
       size,
       disabled,
       loading,
@@ -51,7 +51,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const Comp = asChild ? Slot : 'button';
 
     const iconClassNames = buttonStyles.icon({
-      colorScheme,
+      themeColor,
       variant,
       size,
     });
@@ -72,7 +72,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     return (
       <Comp
         className={cn(
-          buttonStyles.rootBase({ colorScheme, variant }),
+          buttonStyles.rootBase({ themeColor, variant }),
           iconButtonVariantsSize({ size }),
           className
         )}

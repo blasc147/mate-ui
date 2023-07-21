@@ -432,7 +432,7 @@ export const WithTrailingIconButton: Story = {
           <IconButton
             aria-label="delete"
             variant="ghost"
-            colorScheme="neutral"
+            themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
           />
@@ -494,7 +494,7 @@ export const ElementCommonUseCase: Story = {
           <IconButton
             aria-label="delete"
             variant="ghost"
-            colorScheme="neutral"
+            themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
           />
@@ -516,7 +516,7 @@ export const UnderlineElementCommonUseCase: Story = {
           <IconButton
             aria-label="delete"
             variant="ghost"
-            colorScheme="neutral"
+            themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
           />
@@ -536,7 +536,7 @@ export const ElementAndAddonCommonUseCase: Story = {
         </InputLeftElement>
         <Input type="text" />
         <InputRightAddon className="flex justify-center items-center px-1">
-          <Button colorScheme="neutral" variant="filled" size="sm">
+          <Button themeColor="neutral" variant="filled" size="sm">
             Search
           </Button>
         </InputRightAddon>

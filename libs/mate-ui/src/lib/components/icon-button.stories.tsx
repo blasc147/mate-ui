@@ -21,7 +21,7 @@ export const Outlined: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
-    colorScheme: 'secondary',
+    themeColor: 'secondary',
     variant: 'outlined',
   },
 };
@@ -30,7 +30,7 @@ export const Ghost: Story = {
   args: {
     'aria-label': 'bell button',
     icon: <BellIcon />,
-    colorScheme: 'destructive',
+    themeColor: 'destructive',
     variant: 'ghost',
   },
 };
