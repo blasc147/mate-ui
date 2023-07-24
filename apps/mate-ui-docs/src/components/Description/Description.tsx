@@ -5,15 +5,32 @@ import React from 'react';
 interface Props {
   paragraphText: string;
   listItems: string[];
+  onPreview?: () => void;
+  onViewCode?: () => void;
 }
-const DescriptionColumn: React.FC<Props> = ({ paragraphText, listItems }) => {
+const Description: React.FC<Props> = ({
+  paragraphText,
+  listItems,
+  onPreview,
+  onViewCode,
+}) => {
   return (
     <div>
       <div className="flex gap-3">
-        <Button variant="outlined" size="sm" rightIcon={<EyeIcon />}>
+        <Button
+          variant="outlined"
+          size="sm"
+          rightIcon={<EyeIcon />}
+          onClick={onPreview}
+        >
           Preview
         </Button>
-        <Button variant="outlined" size="sm" rightIcon={<CodeBracketIcon />}>
+        <Button
+          variant="outlined"
+          size="sm"
+          rightIcon={<CodeBracketIcon />}
+          onClick={onViewCode}
+        >
           View code
         </Button>
       </div>
@@ -29,4 +46,4 @@ const DescriptionColumn: React.FC<Props> = ({ paragraphText, listItems }) => {
   );
 };
 
-export default DescriptionColumn;
+export default Description;

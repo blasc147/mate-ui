@@ -23,10 +23,10 @@ import {
   SortColumn,
   TableBody,
   TableCell,
+  Tag,
 } from '@truenorth/mate-ui';
 import {
   ClipboardDocumentCheckIcon,
-  ClockIcon,
   Cog6ToothIcon,
   EyeIcon,
   CurrencyDollarIcon,
@@ -35,13 +35,18 @@ import {
   ArrowRightIcon,
   PlusIcon,
   EllipsisVerticalIcon,
+  ClockIcon,
 } from '@heroicons/react/24/outline';
 import {
+  ClockIcon as ClockIconSolid,
   ArrowsRightLeftIcon,
   ArrowTrendingDownIcon,
   ArrowTrendingUpIcon,
+  CheckIcon,
 } from '@heroicons/react/20/solid';
-import { Checkbox } from '@radix-ui/react-checkbox';
+import { Col } from '../Grid';
+import Description from '../Description/Description';
+import { Routes } from '../../constants/routes';
 
 interface Transactions {
   date: string;
@@ -50,7 +55,7 @@ interface Transactions {
   balance: string;
 }
 
-const Dashboard = () => {
+const BaseDashboard = () => {
   const transactions: Transactions[] = [
     {
       date: 'Today, 12:46pm',
@@ -73,10 +78,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <Card cardStyle="shadow" className="w-full bg-neutral-50 mt-12">
-      <CardHeader className="md:px-14 md:pt-8 p-8 pb-0">
+    <Card cardStyle="shadow" className="w-full bg-neutral-50">
+      <CardHeader className="md:px-14 md:pt-8 p-8 pb-0 flex-wrap md:flex-wrap-0">
         <CardTitle className="text-3xl">Hello Jane</CardTitle>
-        <div className="space-x-2">
+        <div className="space-x-2 my-4 md:my-0">
           <IconButton
             aria-label="Questions?"
             colorScheme="primary"
@@ -105,13 +110,13 @@ const Dashboard = () => {
         <div className="flex flex-1 md:space-x-4 md:space-y-0 space-y-6 mb-4 flex-col md:flex-row">
           <Card
             cardStyle="outline"
-            className="md:basis-1/2 h-[180px] basis-full"
+            className="md:basis-1/2 min-h-[180px] basis-full"
           >
             <CardHeader className="p-4">
               <CardTitle>Available Balance</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col md:flex-row justify-between p-4 md:items-end mt-4 md:mt-0">
-              <h1 className="text-3xl font-medium">$ 11,495.30</h1>
+            <CardContent className="flex flex-col md:flex-row justify-between p-4 md:items-end mt-4 md:mt-0 flex-wrap">
+              <h1 className="text-3xl font-medium mb-2">$ 11,495.30</h1>
               <div className="space-y-3 flex flex-col items-start">
                 <h3 className="font-bold mt-6 md:mt-0">
                   TrueNorth Checking Account
@@ -126,7 +131,7 @@ const Dashboard = () => {
           </Card>
           <Card
             cardStyle="outline"
-            className="md:basis-1/2 h-[180px] basis-full"
+            className="md:basis-1/2 min-h-[180px] basis-full"
           >
             <CardHeader className="p-4">
               <CardTitle>Cash Flow</CardTitle>
@@ -167,25 +172,28 @@ const Dashboard = () => {
         <div className="flex flex-col md:flex-row flex-1 md:space-x-4">
           <Card
             cardStyle="outline"
-            className="md:basis-1/2 h-[180px] basis-full"
+            className="md:basis-1/2 min-h-[180px] basis-full"
           >
             <CardHeader className="p-4">
               <CardTitle>Fund Your Account</CardTitle>
             </CardHeader>
             <CardContent className="md:items-end flex flex-col md:flex-row space-y-4 md:space-y-0">
-              <FormControl inputStyle="underlined" className="flex-1">
-                <FormLabel>Amount to fund</FormLabel>
+              <FormControl inputStyle="underlined" className="flex-1 relative">
+                {/* TODO: CHECK UNDERLINED INPUT LABEL POSITION */}
+                <FormLabel className="!translate-y-[-3px]">
+                  Amount to fund
+                </FormLabel>
                 <InputGroup>
                   <InputLeftElement>
                     <span className="font-bold text-sm">$</span>
                   </InputLeftElement>
-                  <Input type="number" placeholder="Amount to fund" />
+                  <Input type="number" />
                 </InputGroup>
               </FormControl>
               <Button className="md:ml-8">Next</Button>
             </CardContent>
           </Card>
-          <div className="flex flex-wrap md:flex-nowrap md:basis-1/2 basis-full flex-row">
+          <div className="flex flex-wrap md:flex-nowrap md:basis-1/2 basis-full flex-row last-child:m-0">
             <Card
               cardStyle="outline"
               className="flex-1 md:mr-4 mr-2 mt-2 md:mt-0"
@@ -208,7 +216,10 @@ const Dashboard = () => {
                 </h3>
               </CardContent>
             </Card>
-            <Card cardStyle="outline" className="flex-1 mr-2  mt-2 md:mt-0">
+            <Card
+              cardStyle="outline"
+              className="flex-1 mr-2  mt-2 md:mt-0 md:mr-0"
+            >
               <CardContent className="text-primary-500 flex flex-col justify-between">
                 <ArrowsRightLeftIcon className="w-8 h-8" />
                 <h3 className="font-bold">
@@ -255,9 +266,22 @@ const Dashboard = () => {
                 </TableHeader>
 
                 <TableBody>
-                  {transactions.map((transaction) => (
+                  {transactions.map((transaction, index) => (
                     <TableRow key={transaction.date}>
-                      <TableCell>{transaction.date}</TableCell>
+                      <TableCell>
+                        <Tag
+                          colorScheme={index === 0 ? 'warning' : 'neutral'}
+                          rightIcon={
+                            index === 0 ? (
+                              <ClockIconSolid className="w-4 h-4" />
+                            ) : (
+                              <CheckIcon className="w-4 h-4" />
+                            )
+                          }
+                        >
+                          {transaction.date}
+                        </Tag>
+                      </TableCell>
                       <TableCell supportiveText="supportiveText">
                         {transaction.description}
                       </TableCell>
@@ -339,4 +363,35 @@ const Dashboard = () => {
   );
 };
 
-export { Dashboard };
+const Dashboard = () => {
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
+  };
+
+  return (
+    <div className="flex gap-5 pt-12 mx-auto flex-wrap justify-between w-full md:w-auto">
+      <Col size="main">
+        <BaseDashboard />
+      </Col>
+      <Col size="aside" direction="col">
+        <Description
+          paragraphText="Responsive, consumer-facing dashboard for servicing a financial account, such as a bank account."
+          listItems={listItems}
+          onPreview={() => openInNewTab(Routes.DashboardPreview)}
+        />
+      </Col>
+    </div>
+  );
+};
+
+const listItems = [
+  'Button',
+  'Card',
+  'Icon Button',
+  'Input',
+  'Selector',
+  'Table',
+];
+
+export { Dashboard, BaseDashboard };

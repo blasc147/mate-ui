@@ -35,7 +35,7 @@ import {
 } from '@heroicons/react/20/solid';
 import { Col } from '@components';
 import { invoices } from './mockData';
-import DescriptionColumn from './DescriptionColumn';
+import Description from '../Description/Description';
 
 enum PaymentStatus {
   Open = 'success',
@@ -110,7 +110,7 @@ const List = () => {
       </Col>
 
       <Col size="aside" direction="col">
-        <DescriptionColumn
+        <Description
           paragraphText="Responsive design for a complex list, featuring different types of content."
           listItems={listItems}
         />

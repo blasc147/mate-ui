@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve mate-ui-docs",
+    "start:storybook": "npx nx run mate-ui:storybook",
     "prepare": "husky install"
   },
   "private": true,
