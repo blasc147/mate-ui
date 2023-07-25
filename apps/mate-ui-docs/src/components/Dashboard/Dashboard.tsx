@@ -118,7 +118,7 @@ const BaseDashboard = () => {
             <CardContent className="flex flex-col md:flex-row justify-between p-4 md:items-end mt-4 md:mt-0 flex-wrap">
               <h1 className="text-3xl font-medium mb-2">$ 11,495.30</h1>
               <div className="space-y-3 flex flex-col items-start">
-                <h3 className="font-bold mt-6 md:mt-0">
+                <h3 className="font-semibold mt-6 md:mt-0">
                   TrueNorth Checking Account
                 </h3>
                 <div className="flex justify-center items-center">
@@ -273,7 +273,7 @@ const BaseDashboard = () => {
                           colorScheme={index === 0 ? 'warning' : 'neutral'}
                           rightIcon={
                             index === 0 ? (
-                              <ClockIconSolid className="w-4 h-4" />
+                              <ClockIconSolid className="w-4 h-4 text-warning-700" />
                             ) : (
                               <CheckIcon className="w-4 h-4" />
                             )

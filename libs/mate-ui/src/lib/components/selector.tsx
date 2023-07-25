@@ -38,6 +38,7 @@ const SelectorTrigger = React.forwardRef<
       'focus:ring-1',
       'focus:ring-focus',
       'focus:border-focus',
+      'font-semibold',
       className
     )}
     {...props}
