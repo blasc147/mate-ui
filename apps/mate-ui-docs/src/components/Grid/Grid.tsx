@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import { cn } from '@truenorth/mate-ui';
 
 interface GridProps {
   justify?: 'center' | 'between';
@@ -18,7 +18,7 @@ export const Row: React.FC<GridProps> = (props) => {
 export const Col: React.FC<ColProps> = (props) => {
   return (
     <div
-      className={classNames('flex', {
+      className={cn('flex', {
         'flex-col': props.direction === 'col',
         'lg:w-[70%] w-full': props.size === 'main',
         'lg:w-1/4 w-full': props.size === 'aside',

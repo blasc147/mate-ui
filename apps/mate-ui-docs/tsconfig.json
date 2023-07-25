@@ -17,7 +17,9 @@
       "@components": ["apps/mate-ui-docs/src/components/index.tsx"],
       "@icons": ["apps/mate-ui-docs/src/icons/index.ts"],
       "@/layouts/*": ["apps/mate-ui-docs/src/layouts/*"],
-      "@/constants/*": ["apps/mate-ui-docs/src/constants/*"]
+      "@/constants/*": ["apps/mate-ui-docs/src/constants/*"],
+      "@/hooks/*": ["apps/mate-ui-docs/src/hooks/*"],
+      "@/utils/*": ["apps/mate-ui-docs/src/utils/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],

@@ -82,7 +82,7 @@ const TableHead = React.forwardRef<
       'font-medium',
       'text-xs',
       'align-middle',
-      { 'hidden desktop:table-cell': desktopOnly },
+      { 'hidden md:table-cell': desktopOnly },
       className
     )}
     {...props}
@@ -109,7 +109,7 @@ const TableCell = React.forwardRef<
         'text-neutral-800',
         'p-3',
         'align-middle',
-        { 'hidden desktop:table-cell': desktopOnly },
+        { 'hidden md:table-cell': desktopOnly },
         className
       )}
       {...props}

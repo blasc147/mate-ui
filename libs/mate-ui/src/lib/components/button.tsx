@@ -214,11 +214,7 @@ const styles = {
       {
         themeColor: 'primary',
         variant: 'outlined',
-        className: [
-          'text-primary-500',
-          'group-hover:text-white',
-          'group-active:text-white',
-        ],
+        className: ['text-primary-500'],
       },
       {
         themeColor: 'primary',
