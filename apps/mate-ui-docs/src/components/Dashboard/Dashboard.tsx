@@ -86,19 +86,19 @@ const BaseDashboard = () => {
             aria-label="Questions?"
             colorScheme="primary"
             variant="outlined"
-            icon={<QuestionMarkCircleIcon className="hover:text-white" />}
+            icon={<QuestionMarkCircleIcon />}
           />
           <IconButton
             aria-label="Questions?"
             colorScheme="primary"
             variant="outlined"
-            icon={<ClockIcon className="hover:text-white" />}
+            icon={<ClockIcon />}
           />
           <IconButton
             aria-label="Questions?"
             colorScheme="primary"
             variant="outlined"
-            icon={<Cog6ToothIcon className="hover:text-white" />}
+            icon={<Cog6ToothIcon />}
           />
         </div>
       </CardHeader>
@@ -271,6 +271,7 @@ const BaseDashboard = () => {
                       <TableCell>
                         <Tag
                           colorScheme={index === 0 ? 'warning' : 'neutral'}
+                          variant="status"
                           rightIcon={
                             index === 0 ? (
                               <ClockIconSolid className="w-4 h-4 text-warning-700" />

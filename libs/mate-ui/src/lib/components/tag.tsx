@@ -24,9 +24,9 @@ const styles = {
           sm: ['text-xs'],
         },
         variant: {
-          pill: ['px-2', 'py-0.5', 'rounded-full'],
-          badge: ['px-2', 'py-0.5', 'rounded'],
-          status: ['px-2', 'py-0.5', 'rounded-full'],
+          pill: ['px-2', 'py-1', 'rounded-full'],
+          badge: ['px-2', 'py-1', 'rounded'],
+          status: ['px-2', 'py-1', 'rounded-full'],
           quiet: [],
         },
         colorScheme: {
