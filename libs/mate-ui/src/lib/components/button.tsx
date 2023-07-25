@@ -174,7 +174,7 @@ const styles = {
   rootSize: cva([], {
     variants: {
       size: {
-        sm: ['py-1.5', 'px-4', 'text-sm'],
+        sm: ['py-1.5', 'px-4', 'text-sm', 'h-[32px]'],
         md: ['py-2', 'px-5', 'text-m', 'h-[40px]'],
         lg: ['py-2', 'px-6', 'text-m', 'h-[48px]'],
         xl: ['py-2', 'px-7', 'text-m', 'h-[60px]'],
@@ -198,10 +198,10 @@ const styles = {
         destructive: [],
       },
       size: {
-        sm: ['w-4', 'h-4'],
+        sm: ['w-5', 'h-5'],
         md: ['w-5', 'h-5'],
         lg: ['w-6', 'h-6'],
-        xl: ['w-7', 'h-7'],
+        xl: ['w-6', 'h-6'],
       },
     },
     compoundVariants: [
