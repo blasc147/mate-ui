@@ -1,7 +1,11 @@
-import { BaseDashboard } from '../../src/components/Dashboard';
+import { BaseDashboard, PageContainer } from '@components';
 
 const Page = () => {
-  return <BaseDashboard />;
+  return (
+    <PageContainer>
+      <BaseDashboard />
+    </PageContainer>
+  );
 };
 
 export default Page;

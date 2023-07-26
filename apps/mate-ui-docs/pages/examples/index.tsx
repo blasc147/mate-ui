@@ -1,9 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import { BaseLayout } from '@/layouts/BaseLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@truenorth/mate-ui';
-import { Dashboard } from '@components';
+import { Dashboard, PageContainer } from '@components';
 import { List } from '@components';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -17,10 +16,7 @@ const tabs = [
 
 const Page: NextPageWithLayout = () => {
   return (
-    <>
-      <Head>
-        <link rel="icon" href="/assets/favicon.png" />
-      </Head>
+    <PageContainer>
       <div className="flex flex-col">
         <header className="flex w-full">
           <div className="flex flex-col w-full pb-12">
@@ -51,7 +47,7 @@ const Page: NextPageWithLayout = () => {
           })}
         </Tabs>
       </div>
-    </>
+    </PageContainer>
   );
 };
 
