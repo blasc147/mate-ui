@@ -249,7 +249,7 @@ const BaseDashboard = () => {
                       <SortColumn sort="desc" />
                     </TableHead>
 
-                    <TableHead>
+                    <TableHead desktopOnly>
                       Description
                       <SortColumn />
                     </TableHead>
@@ -258,7 +258,7 @@ const BaseDashboard = () => {
                       Amount
                       <SortColumn />
                     </TableHead>
-                    <TableHead>
+                    <TableHead desktopOnly>
                       Balance
                       <SortColumn />
                     </TableHead>
@@ -283,11 +283,11 @@ const BaseDashboard = () => {
                           {transaction.date}
                         </Tag>
                       </TableCell>
-                      <TableCell supportiveText="supportiveText">
+                      <TableCell desktopOnly supportiveText="supportiveText">
                         {transaction.description}
                       </TableCell>
                       <TableCell>{transaction.amount}</TableCell>
-                      <TableCell>{transaction.balance}</TableCell>
+                      <TableCell desktopOnly>{transaction.balance}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
