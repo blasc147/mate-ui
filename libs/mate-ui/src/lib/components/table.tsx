@@ -82,6 +82,7 @@ const TableHead = React.forwardRef<
       'font-medium',
       'text-xs',
       'align-middle',
+      'pt-1',
       { 'hidden md:table-cell': desktopOnly },
       className
     )}
@@ -106,8 +107,10 @@ const TableCell = React.forwardRef<
     <td
       ref={ref}
       className={cn(
+        'text-sm',
         'text-neutral-800',
-        'p-3',
+        'py-2',
+        'px-3',
         'align-middle',
         { 'hidden md:table-cell': desktopOnly },
         className
@@ -116,7 +119,7 @@ const TableCell = React.forwardRef<
     >
       {children}
       {isSupportedChildren && supportiveText && (
-        <p className="text-xs text-neutral-600 mt-1">{supportiveText}</p>
+        <p className="text-xs text-neutral-600">{supportiveText}</p>
       )}
     </td>
   );
@@ -154,7 +157,7 @@ const SortColumn = ({ sort, className, ...props }: SortColumnProps) => {
       ) : sort === 'desc' ? (
         <ChevronDownIcon className={cn('h-[12px]', 'w-[12px]')} />
       ) : (
-        <ChevronUpDownIcon className={cn('h-[20px]', 'w-[20px]')} />
+        <ChevronUpDownIcon className={cn('h-[20px]', 'w-[20px]', 'mb-2')} />
       )}
     </button>
   );

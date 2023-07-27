@@ -139,10 +139,7 @@ function TableComponent() {
 
           <TableHead>Space</TableHead>
 
-          <TableHead className="text-right">
-            Balance
-            <SortColumn />
-          </TableHead>
+          <TableHead className="text-right">Balance</TableHead>
 
           <TableHead>
             Status
@@ -185,7 +182,7 @@ function TableComponent() {
             <TableCell className="text-right">
               <div className="flex mb-2">
                 {invoice.avatars.map((avatar) => (
-                  <Avatar className="-mr-2 -mb-4">{avatar}</Avatar>
+                  <Avatar className="-mr-1 -mb-4 h-5 w-5">{avatar}</Avatar>
                 ))}
               </div>
             </TableCell>
