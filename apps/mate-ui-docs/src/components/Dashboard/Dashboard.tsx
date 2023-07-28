@@ -178,11 +178,8 @@ const BaseDashboard = () => {
               <CardTitle>Fund Your Account</CardTitle>
             </CardHeader>
             <CardContent className="md:items-end flex flex-col md:flex-row space-y-4 md:space-y-0">
-              <FormControl inputStyle="underlined" className="flex-1 relative">
-                {/* TODO: CHECK UNDERLINED INPUT LABEL POSITION */}
-                <FormLabel className="!translate-y-[-3px]">
-                  Amount to fund
-                </FormLabel>
+              <FormControl inputStyle="underlined">
+                <FormLabel>Amount to fund</FormLabel>
                 <InputGroup>
                   <InputLeftElement>
                     <span className="font-bold text-sm">$</span>

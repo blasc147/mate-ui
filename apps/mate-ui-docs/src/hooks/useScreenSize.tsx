@@ -4,8 +4,10 @@ import { getCurrentScreenSize } from '@/utils/getCurrentScreenSize';
 export type TailwindSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 const useScreenSize = () => {
+  const isClient = typeof window === 'object';
+
   const [screenSize, setScreenSize] = useState<TailwindSize>(() =>
-    getCurrentScreenSize(window.innerWidth)
+    isClient ? getCurrentScreenSize(window.innerWidth) : 'md'
   );
 
   useEffect(() => {
@@ -13,12 +15,13 @@ const useScreenSize = () => {
       setScreenSize(getCurrentScreenSize(window.innerWidth));
     };
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    if (isClient) {
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, [isClient]);
 
   return screenSize;
 };

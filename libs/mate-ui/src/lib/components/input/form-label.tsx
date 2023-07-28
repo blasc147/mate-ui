@@ -14,7 +14,18 @@ const styles = {
         underlined: [
           'absolute',
           'z-50',
-          'transition-all duration-150 ease-out',
+          'transition-all',
+          'duration-150',
+          'ease-out',
+          'text-sm',
+          'text-neutral-600',
+          'top-1',
+          'block',
+          'whitespace-nowrap',
+          'overflow-hidden',
+          'translate-y-[8px]',
+          'transition-max-w',
+          'duration-400',
         ],
         outlined: [],
       },
@@ -27,17 +38,29 @@ const styles = {
       hasLeftElement: {
         true: [],
       },
+      inputSize: { sm: [], md: [], lg: [] },
     },
     compoundVariants: [
       {
         inputStyle: 'underlined',
         isInputFocused: false,
         isInputEmpty: true,
-        className: [
-          'text-base',
-          'font-normal',
-          'text-neutral-600 top-1 block whitespace-nowrap overflow-hidden translate-y-[20px] transition-max-w duration-400',
-        ],
+        inputSize: 'sm',
+        className: ['translate-y-[4px]'],
+      },
+      {
+        inputStyle: 'underlined',
+        isInputFocused: false,
+        isInputEmpty: true,
+        inputSize: 'md',
+        className: ['translate-y-[6px]'],
+      },
+      {
+        inputStyle: 'underlined',
+        isInputFocused: false,
+        isInputEmpty: true,
+        inputSize: 'lg',
+        className: ['translate-y-[10px]'],
       },
       {
         inputStyle: 'underlined',
@@ -50,17 +73,29 @@ const styles = {
         inputStyle: 'underlined',
         isInputFocused: false,
         isInputEmpty: false,
-        className: ['text-primary-500', 'transform', '-translate-y-1/2'],
+        className: [
+          'text-xs',
+          'text-primary-500',
+          'transform',
+          '-translate-y-[14px]',
+        ],
       },
       {
         inputStyle: 'underlined',
         isInputFocused: true,
-        className: ['text-primary-500', 'transform', '-translate-y-1/2'],
+        className: [
+          'text-xs',
+          'font-medium',
+          'text-primary-500',
+          'transform',
+          '-translate-y-[14px]',
+        ],
       },
     ],
     defaultVariants: {
       inputStyle: 'outlined',
       isInputFocused: false,
+      isInputEmpty: true,
     },
   }),
 };
@@ -92,6 +127,7 @@ const FormLabel = React.forwardRef<
       inputStyle,
       isInputEmpty,
       hasLeftElement,
+      inputSize,
     } = React.useContext(FormControlContext);
 
     const { isInputFocused } = React.useContext(FormControlContext);
@@ -105,6 +141,7 @@ const FormLabel = React.forwardRef<
             isInputFocused,
             isInputEmpty,
             hasLeftElement,
+            inputSize,
           }),
           className
         )}
@@ -142,7 +179,6 @@ const MandatoryIndicator = () => (
 
 const OptionalIndicator = () => (
   <span className={cn('font-regular', 'text-xs', 'text-neutral-600')}>
-    {' '}
     (optional)
   </span>
 );

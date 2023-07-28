@@ -4,6 +4,8 @@ import React from 'react';
 
 export type InputStyleType = 'outlined' | 'underlined' | null | undefined;
 
+export type InputSizeType = 'sm' | 'md' | 'lg' | null | undefined;
+
 interface FormControlContextProps {
   isError?: boolean;
   defaultId: string;
@@ -16,6 +18,7 @@ interface FormControlContextProps {
   setInputFocused?: (focused: boolean) => void;
   isInputEmpty?: boolean;
   setInputEmpty?: (hasValue: boolean) => void;
+  inputSize?: InputSizeType;
 }
 
 const FormControlContext = React.createContext<FormControlContextProps>({

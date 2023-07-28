@@ -56,6 +56,11 @@ const styles = {
             'px-0',
           ],
         },
+        inputSize: {
+          sm: ['h-8'],
+          md: ['h-10'],
+          lg: ['h-12'],
+        },
         hasInputLeftElement: {
           true: 'pl-10',
         },
@@ -105,6 +110,7 @@ const styles = {
         hasInputGroup: false,
         isError: false,
         inputStyle: 'outlined',
+        inputSize: 'md',
       },
     }
   ),
@@ -159,6 +165,7 @@ const Input = React.forwardRef<
     hasHelperText,
     setInputEmpty,
     inputStyle,
+    inputSize,
   } = React.useContext(FormControlContext);
 
   const id = getValueByPriority({
@@ -179,6 +186,7 @@ const Input = React.forwardRef<
             hasInputGroup,
             isError,
             inputStyle,
+            inputSize,
           }),
           className
         )}

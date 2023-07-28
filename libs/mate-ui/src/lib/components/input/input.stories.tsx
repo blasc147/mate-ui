@@ -34,9 +34,25 @@ export default Story;
 
 type Story = StoryObj<typeof Input>;
 
-export const EmptyInput: Story = {
+export const EmptyMediumInput: Story = {
   render: () => (
     <FormControl>
+      <FormLabel>Label</FormLabel>
+      <Input type="text" />
+    </FormControl>
+  ),
+};
+export const SmallInput: Story = {
+  render: () => (
+    <FormControl inputSize="sm">
+      <FormLabel>Label</FormLabel>
+      <Input type="text" />
+    </FormControl>
+  ),
+};
+export const LargeInput: Story = {
+  render: () => (
+    <FormControl inputSize="lg">
       <FormLabel>Label</FormLabel>
       <Input type="text" />
     </FormControl>
@@ -174,6 +190,26 @@ export const UnderLined: Story = {
   render: () => {
     return (
       <FormControl inputStyle="underlined">
+        <FormLabel>Label</FormLabel>
+        <Input type="text" />
+      </FormControl>
+    );
+  },
+};
+export const UnderLinedSmall: Story = {
+  render: () => {
+    return (
+      <FormControl inputStyle="underlined" inputSize={'sm'}>
+        <FormLabel>Label</FormLabel>
+        <Input type="text" />
+      </FormControl>
+    );
+  },
+};
+export const UnderLinedLarge: Story = {
+  render: () => {
+    return (
+      <FormControl inputStyle="underlined" inputSize={'lg'}>
         <FormLabel>Label</FormLabel>
         <Input type="text" />
       </FormControl>
@@ -435,6 +471,8 @@ export const WithTrailingIconButton: Story = {
             themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
+            //TODO: remove this prop
+            colorScheme={'primary'}
           />
         </InputRightElement>
       </InputGroup>
@@ -497,6 +535,8 @@ export const ElementCommonUseCase: Story = {
             themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
+            //TODO: remove this prop
+            colorScheme={'primary'}
           />
         </InputRightElement>
       </InputGroup>
@@ -519,6 +559,8 @@ export const UnderlineElementCommonUseCase: Story = {
             themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
+            //TODO: remove this prop
+            colorScheme={'primary'}
           />
         </InputRightElement>
       </InputGroup>

@@ -1,7 +1,11 @@
 'use client';
 
 import React, { useId } from 'react';
-import { FormControlContext, InputStyleType } from './form-control-context';
+import {
+  FormControlContext,
+  InputSizeType,
+  InputStyleType,
+} from './form-control-context';
 import { FormErrorMessage } from './form-error-message';
 import { FormHelperText } from './form-helper-text';
 import { InputContext } from './input-context';
@@ -13,10 +17,14 @@ interface FormControlProps extends React.HTMLAttributes<HTMLDivElement> {
   id?: string;
   isError?: boolean;
   inputStyle?: InputStyleType;
+  inputSize?: InputSizeType;
 }
 
 const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
-  ({ isError, inputStyle = 'outlined', id, ...props }, ref) => {
+  (
+    { isError, inputStyle = 'outlined', inputSize = 'md', id, ...props },
+    ref
+  ) => {
     const defaultId = useId();
 
     const [isInputFocused, setInputFocused] = React.useState(false);
@@ -60,9 +68,14 @@ const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
           isInputEmpty,
           setInputEmpty,
           hasLeftElement,
+          inputSize,
         }}
       >
-        <div ref={ref} {...props} />
+        <div
+          ref={ref}
+          className={inputStyle === 'underlined' ? 'relative h-10' : ''}
+          {...props}
+        />
       </FormControlContext.Provider>
     );
   }
