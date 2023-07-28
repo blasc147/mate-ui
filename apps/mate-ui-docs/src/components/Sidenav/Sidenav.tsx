@@ -73,6 +73,7 @@ const Sidenav = () => {
           variant="ghost"
           themeColor="neutral"
           className="justify-start px-2 mb-2"
+          onClick={() => router.push(Routes.Components)}
         >
           Components
         </Button>

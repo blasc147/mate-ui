@@ -5,7 +5,6 @@ export type TailwindSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 const useScreenSize = () => {
   const isClient = typeof window === 'object';
-
   const [screenSize, setScreenSize] = useState<TailwindSize>(() =>
     isClient ? getCurrentScreenSize(window.innerWidth) : 'md'
   );
@@ -22,7 +21,6 @@ const useScreenSize = () => {
       };
     }
   }, [isClient]);
-
   return screenSize;
 };
 

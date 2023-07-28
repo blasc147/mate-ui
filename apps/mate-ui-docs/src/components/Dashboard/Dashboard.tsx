@@ -84,19 +84,19 @@ const BaseDashboard = () => {
         <div className="space-x-2 my-4 md:my-0">
           <IconButton
             aria-label="Questions?"
-            colorScheme="primary"
+            themeColor="primary"
             variant="outlined"
             icon={<QuestionMarkCircleIcon />}
           />
           <IconButton
             aria-label="Questions?"
-            colorScheme="primary"
+            themeColor="primary"
             variant="outlined"
             icon={<ClockIcon />}
           />
           <IconButton
             aria-label="Questions?"
-            colorScheme="primary"
+            themeColor="primary"
             variant="outlined"
             icon={<Cog6ToothIcon />}
           />
@@ -232,7 +232,7 @@ const BaseDashboard = () => {
               <CardTitle>Latest Transactions</CardTitle>
               <IconButton
                 aria-label="Questions?"
-                colorScheme="primary"
+                themeColor="primary"
                 variant="ghost"
                 icon={<ArrowRightIcon />}
               />
@@ -297,7 +297,7 @@ const BaseDashboard = () => {
                 <CardTitle>Linked Accounts</CardTitle>
                 <IconButton
                   aria-label="Questions?"
-                  colorScheme="primary"
+                  themeColor="primary"
                   variant="ghost"
                   icon={<PlusIcon />}
                 />
@@ -317,13 +317,13 @@ const BaseDashboard = () => {
                     <div>
                       <IconButton
                         aria-label="Questions?"
-                        colorScheme="primary"
+                        themeColor="primary"
                         variant="ghost"
                         icon={<ArrowsRightLeftIcon />}
                       />
                       <IconButton
                         aria-label="Questions?"
-                        colorScheme="primary"
+                        themeColor="primary"
                         variant="ghost"
                         icon={<EllipsisVerticalIcon />}
                       />
@@ -339,13 +339,13 @@ const BaseDashboard = () => {
                     <div>
                       <IconButton
                         aria-label="Questions?"
-                        colorScheme="primary"
+                        themeColor="primary"
                         variant="ghost"
                         icon={<ArrowsRightLeftIcon />}
                       />
                       <IconButton
                         aria-label="Questions?"
-                        colorScheme="primary"
+                        themeColor="primary"
                         variant="ghost"
                         icon={<EllipsisVerticalIcon />}
                       />

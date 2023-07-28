@@ -9,6 +9,7 @@ interface GridProps {
 interface ColProps extends GridProps {
   direction?: 'row' | 'col';
   size?: 'main' | 'aside';
+  className?: string;
 }
 
 export const Row: React.FC<GridProps> = (props) => {
@@ -18,7 +19,7 @@ export const Row: React.FC<GridProps> = (props) => {
 export const Col: React.FC<ColProps> = (props) => {
   return (
     <div
-      className={cn('flex', {
+      className={cn(props.className, 'flex', {
         'flex-col': props.direction === 'col',
         'lg:w-[70%] w-full': props.size === 'main',
         'lg:w-1/4 w-full': props.size === 'aside',
