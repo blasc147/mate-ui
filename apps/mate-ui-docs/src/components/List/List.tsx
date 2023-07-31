@@ -17,26 +17,26 @@ import {
   HeaderSupportiveText,
   FormControl,
   InputGroup,
-  InputRightElement,
   Input,
   IconButton,
   TagColorScheme,
   SortTableType,
   cn,
+  InputRightElement,
   Selector,
   SelectorTrigger,
+  SelectorValue,
   SelectorContent,
   SelectorItem,
-  SelectorValue,
 } from '@truenorth/mate-ui';
 import {
-  UserCircleIcon,
   MagnifyingGlassIcon,
   PlusIcon,
   CurrencyDollarIcon,
   ArrowUpTrayIcon,
   EllipsisVerticalIcon,
   CheckCircleIcon,
+  UserIcon,
 } from '@heroicons/react/20/solid';
 import { Col } from '@components';
 import { invoices } from './mockData';
@@ -66,22 +66,22 @@ const List = () => {
             <CardTitle size="md">
               <h1 className="text-2xl md:text-3xl">Loan Manager</h1>
             </CardTitle>
-            <div className="flex gap-3">
-              <div className="flex flex-col hidden lg:block">
+            <div className="flex gap-3 ">
+              <div className="flex flex-col hidden lg:block text-right">
                 <Header variant="h3">John Smith</Header>
                 <HeaderSupportiveText variant="h5">
                   Account ID #10734181
                 </HeaderSupportiveText>
               </div>
-              <div className="flex w-12 h-12 bg-neutral-300">
-                <UserCircleIcon className="w-4 h-4 text-neutral-700 mx-auto self-center" />
+              <div className="flex w-12 h-12 bg-primary-200 rounded">
+                <UserIcon className="w-8 h-8 text-primary-500 mx-auto self-center" />
               </div>
             </div>
           </CardHeader>
           <CardContent className="flex-col">
-            <div className="flex pb-4 gap-2 md:justify-between flex-wrap">
+            <div className="flex pb-3 gap-2 md:justify-between flex-wrap">
               <div className="flex flex-wrap gap-2">
-                <FormControl className="w-full md:w-64">
+                <FormControl className="w-full md:w-[272px]" inputSize="sm">
                   <InputGroup>
                     <Input type="text" />
                     <InputRightElement>
@@ -89,13 +89,28 @@ const List = () => {
                     </InputRightElement>
                   </InputGroup>
                 </FormControl>
+                <p className="text-neutral-700 text-sm pt-2 pl-0 md:pl-3">
+                  Filter by:
+                </p>
                 <FormControl className="w-full md:w-[135px]">
-                  <Selector value="open">
+                  <Selector selectorSize="sm">
                     <SelectorTrigger>
-                      <SelectorValue placeholder="Open Loans" />
+                      <SelectorValue placeholder="Status" />
                     </SelectorTrigger>
                     <SelectorContent>
                       <SelectorItem value="open">Open Loans</SelectorItem>
+                      <SelectorItem value="paid">Paid Loans</SelectorItem>
+                    </SelectorContent>
+                  </Selector>
+                </FormControl>
+                <FormControl className="w-full md:w-[135px]">
+                  <Selector selectorSize="sm">
+                    <SelectorTrigger>
+                      <SelectorValue placeholder="Autopay" />
+                    </SelectorTrigger>
+                    <SelectorContent>
+                      <SelectorItem value="on">On</SelectorItem>
+                      <SelectorItem value="off">Off</SelectorItem>
                     </SelectorContent>
                   </Selector>
                 </FormControl>
@@ -149,7 +164,7 @@ const listItems = [
 const ComplexListTable = () => (
   <Table>
     <TableHeader>
-      <TableRow>
+      <TableRow className="h-11">
         <TableHead desktopOnly>
           <Checkbox />
         </TableHead>
@@ -159,7 +174,7 @@ const ComplexListTable = () => (
 
     <TableBody>
       {invoices.map((invoice) => (
-        <TableRow key={invoice.date}>
+        <TableRow key={invoice.date} className="h-14">
           <TableCell className="min-w-[50px]" desktopOnly>
             <Checkbox />
           </TableCell>
@@ -172,6 +187,7 @@ const ComplexListTable = () => (
           <TableCell>{invoice.date}</TableCell>
           <TableCell desktopOnly>
             <Tag
+              size="sm"
               className="capitalize"
               colorScheme={
                 PaymentStatus[invoice.paymentStatus] as TagColorScheme
@@ -182,10 +198,10 @@ const ComplexListTable = () => (
           </TableCell>
 
           <TableCell desktopOnly>
-            <div className="flex gap-3 ">
+            <div className="flex gap-4 ">
               {invoice.autopay}
               {invoice.autopay === 'On' && (
-                <CheckCircleIcon className="w-3 h-3 self-center text-success-500" />
+                <CheckCircleIcon className="w-4 h-4 self-center text-success-500" />
               )}
             </div>
           </TableCell>

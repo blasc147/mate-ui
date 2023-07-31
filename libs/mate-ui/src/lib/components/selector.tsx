@@ -4,25 +4,18 @@ import * as React from 'react';
 import * as SelectorPrimitive from '@radix-ui/react-select';
 import { cn } from '../utils';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-
-const Selector = SelectorPrimitive.Root;
+import { VariantProps, cva } from 'class-variance-authority';
 
 const SelectorGroup = SelectorPrimitive.Group;
 
-const SelectorTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectorPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectorPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectorPrimitive.Trigger
-    ref={ref}
-    className={cn(
+const styles = {
+  trigger: cva(
+    [
       'flex',
-      'h-10',
       'w-full',
       'border',
       'border-neutral-400',
       'bg-white',
-      'py-2.5',
       'text-sm',
       'font-regular',
       'text-neutral-900',
@@ -39,16 +32,74 @@ const SelectorTrigger = React.forwardRef<
       'focus:ring-focus',
       'focus:border-focus',
       'font-semibold',
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <SelectorPrimitive.Icon asChild>
-      <ChevronDownIcon className="h-4 w-4 absolute right-2 top-3 z-10" />
-    </SelectorPrimitive.Icon>
-  </SelectorPrimitive.Trigger>
+    ],
+    {
+      variants: {
+        padding: {
+          sm: ['py-2', 'h-9'],
+          md: ['py-2.5', 'h-10'],
+          lg: ['py-3', 'h-11'],
+        },
+      },
+      defaultVariants: {
+        padding: 'md',
+      },
+    }
+  ),
+  icon: cva(['h-4', 'w-4', 'absolute', 'right-2', 'z-10'], {
+    variants: {
+      position: {
+        sm: ['top-2'],
+        md: ['top-3'],
+        lg: ['top-3.5'],
+      },
+    },
+    defaultVariants: {
+      position: 'md',
+    },
+  }),
+};
+
+interface SelectorProps
+  extends React.ComponentPropsWithoutRef<typeof SelectorPrimitive.Root> {
+  selectorSize?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+const SelectorContext = React.createContext<SelectorProps>({});
+
+const Selector = React.forwardRef<
+  React.ElementRef<typeof SelectorPrimitive.Root>,
+  SelectorProps
+>(({ className, selectorSize, children, ...props }, ref) => (
+  <SelectorContext.Provider value={{ selectorSize }}>
+    <SelectorPrimitive.Root {...props}>{children}</SelectorPrimitive.Root>
+  </SelectorContext.Provider>
 ));
+
+Selector.displayName = SelectorPrimitive.Root.displayName;
+
+const SelectorTrigger = React.forwardRef<
+  React.ElementRef<typeof SelectorPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof SelectorPrimitive.Trigger> &
+    VariantProps<typeof styles.trigger>
+>(({ className, children, padding, ...props }, ref) => {
+  const { selectorSize } = React.useContext(SelectorContext);
+  return (
+    <SelectorPrimitive.Trigger
+      ref={ref}
+      className={cn(styles.trigger({ padding: selectorSize }), className)}
+      {...props}
+    >
+      {children}
+      <SelectorPrimitive.Icon asChild>
+        <ChevronDownIcon
+          className={cn(styles.icon({ position: selectorSize }), className)}
+        />
+      </SelectorPrimitive.Icon>
+    </SelectorPrimitive.Trigger>
+  );
+});
 SelectorTrigger.displayName = SelectorPrimitive.Trigger.displayName;
 
 const SelectorContent = React.forwardRef<
@@ -105,7 +156,7 @@ const SelectorLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectorPrimitive.Label
     ref={ref}
-    className={cn('px-2 py-1.5 text-sm font-semibold', className)}
+    className={cn('', className)}
     {...props}
     asChild
   />

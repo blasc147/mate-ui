@@ -23,6 +23,11 @@ const styles = {
           underlined: ['justify-start'],
           outlined: ['justify-center'],
         },
+        inputSize: {
+          sm: ['h-8'],
+          md: ['h-10'],
+          lg: ['h-12'],
+        },
       },
     }
   ),
@@ -32,11 +37,11 @@ const InputLeftElement = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { inputStyle } = React.useContext(FormControlContext);
+  const { inputStyle, inputSize } = React.useContext(FormControlContext);
   return (
     <div
       ref={ref}
-      className={cn(styles.root({ inputStyle }), className)}
+      className={cn(styles.root({ inputStyle, inputSize }), className)}
       {...props}
     />
   );

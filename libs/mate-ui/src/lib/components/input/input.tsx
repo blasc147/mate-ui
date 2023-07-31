@@ -238,6 +238,7 @@ const Select = React.forwardRef<
     defaultId,
     hasErrorMessage,
     hasHelperText,
+    inputSize,
   } = React.useContext(FormControlContext);
 
   const id = getValueByPriority({
@@ -257,6 +258,7 @@ const Select = React.forwardRef<
             hasInputRightAddon,
             hasInputGroup,
             isError,
+            inputSize,
           }),
           className
         )}
@@ -300,4 +302,4 @@ const ErrorIndicator = ({
   );
 };
 
-export { Input, Select };
+export { Input, Select, styles as InputStyles };

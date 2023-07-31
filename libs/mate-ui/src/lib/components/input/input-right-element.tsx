@@ -4,6 +4,7 @@ import React from 'react';
 import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { cva } from 'class-variance-authority';
+import { InputStyles } from './input';
 
 const styles = {
   root: cva(
@@ -12,7 +13,6 @@ const styles = {
       'flex',
       'justify-center',
       'items-center',
-      'h-10',
       'w-10',
       'top-0',
       'right-0',
@@ -24,6 +24,11 @@ const styles = {
           underlined: ['justify-end'],
           outlined: ['justify-center'],
         },
+        inputSize: {
+          sm: ['h-8'],
+          md: ['h-10'],
+          lg: ['h-12'],
+        },
       },
     }
   ),
@@ -33,11 +38,12 @@ const InputRightElement = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { inputStyle } = React.useContext(FormControlContext);
+  const { inputStyle, inputSize } = React.useContext(FormControlContext);
+
   return (
     <div
       ref={ref}
-      className={cn(styles.root({ inputStyle }), className)}
+      className={cn(styles.root({ inputStyle, inputSize }), className)}
       {...props}
     />
   );
