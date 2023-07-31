@@ -8,7 +8,7 @@ const Story: Meta<typeof Button> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/6zMgZETAVqw9TgqFxRY3IY/Mate-UI-2.0?type=design&node-id=12-229',
+      url: 'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?type=design&node-id=2022-4752&mode=design&t=wPRhmXh9qSdthywd-0',
     },
   },
 };

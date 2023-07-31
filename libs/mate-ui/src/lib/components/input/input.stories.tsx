@@ -471,8 +471,6 @@ export const WithTrailingIconButton: Story = {
             themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
-            //TODO: remove this prop
-            colorScheme={'primary'}
           />
         </InputRightElement>
       </InputGroup>
@@ -535,8 +533,6 @@ export const ElementCommonUseCase: Story = {
             themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
-            //TODO: remove this prop
-            colorScheme={'primary'}
           />
         </InputRightElement>
       </InputGroup>
@@ -559,8 +555,6 @@ export const UnderlineElementCommonUseCase: Story = {
             themeColor="neutral"
             icon={<XMarkIcon />}
             size="sm"
-            //TODO: remove this prop
-            colorScheme={'primary'}
           />
         </InputRightElement>
       </InputGroup>
