@@ -118,19 +118,19 @@ const List = () => {
 
               <div className="flex w-full pb-2 md:w-1/4 md:justify-end gap-3">
                 <IconButton
-                  size={screenSize === 'sm' ? 'xl' : 'md'}
+                  size={screenSize === 'sm' ? 'xl' : 'sm'}
                   themeColor="primary"
                   icon={<PlusIcon />}
                   aria-label={'plus-button'}
                 />
                 <IconButton
-                  size={screenSize === 'sm' ? 'xl' : 'md'}
+                  size={screenSize === 'sm' ? 'xl' : 'sm'}
                   themeColor="primary"
                   icon={<CurrencyDollarIcon />}
                   aria-label={'dollarButton'}
                 />
                 <IconButton
-                  size={screenSize === 'sm' ? 'xl' : 'md'}
+                  size={screenSize === 'sm' ? 'xl' : 'sm'}
                   themeColor="primary"
                   icon={<ArrowUpTrayIcon />}
                   aria-label={'ArrowButton'}
