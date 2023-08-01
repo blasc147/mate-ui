@@ -77,6 +77,23 @@ const BaseDashboard = () => {
     },
   ];
 
+  const ActionsCard = ({
+    title,
+    icon,
+  }: {
+    title: string;
+    icon: React.ReactNode;
+  }) => {
+    return (
+      <Card cardStyle="outline" className="flex-1 md:mr-4 mt-2 md:mt-0">
+        <CardContent className="text-primary-500 flex md:flex-col md:justify-between md:items-start items-center">
+          {icon}
+          <h3 className="font-bold  ml-4 md:ml-0">{title}</h3>
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
     <Card cardStyle="shadow" className="w-full bg-neutral-50">
       <CardHeader className="md:px-14 md:pt-8 p-8 pb-0 flex-wrap md:flex-wrap-0">
@@ -184,46 +201,25 @@ const BaseDashboard = () => {
                   <InputLeftElement>
                     <span className="font-bold text-sm">$</span>
                   </InputLeftElement>
-                  <Input type="number" />
+                  <Input type="number" pattern="\d*" />
                 </InputGroup>
               </FormControl>
               <Button className="md:ml-8">Next</Button>
             </CardContent>
           </Card>
-          <div className="flex flex-wrap md:flex-nowrap md:basis-1/2 basis-full flex-row last-child:m-0">
-            <Card
-              cardStyle="outline"
-              className="flex-1 md:mr-4 mr-2 mt-2 md:mt-0"
-            >
-              <CardContent className="text-primary-500 flex flex-col justify-between">
-                <CurrencyDollarIcon className="w-8 h-8" />
-                <h3 className="font-bold">
-                  Request <br /> a Loan
-                </h3>
-              </CardContent>
-            </Card>
-            <Card
-              cardStyle="outline"
-              className="flex-1 md:mr-4 mr-2 mt-2 md:mt-0"
-            >
-              <CardContent className="text-primary-500 flex flex-col justify-between">
-                <PaperAirplaneIcon className="w-8 h-8" />
-                <h3 className="font-bold">
-                  Send <br /> Money
-                </h3>
-              </CardContent>
-            </Card>
-            <Card
-              cardStyle="outline"
-              className="flex-1 mr-2  mt-2 md:mt-0 md:mr-0"
-            >
-              <CardContent className="text-primary-500 flex flex-col justify-between">
-                <ArrowsRightLeftIcon className="w-8 h-8" />
-                <h3 className="font-bold">
-                  Transfer <br /> Funds
-                </h3>
-              </CardContent>
-            </Card>
+          <div className="flex flex-col md:flex-row md:flex-nowrap md:basis-1/2 basis-full mt-2">
+            <ActionsCard
+              title="Request a Loan"
+              icon={<CurrencyDollarIcon className="w-8 h-8" />}
+            />
+            <ActionsCard
+              title="Send Money"
+              icon={<PaperAirplaneIcon className="w-8 h-8" />}
+            />
+            <ActionsCard
+              title="Transfer Funds"
+              icon={<ArrowsRightLeftIcon className="w-8 h-8" />}
+            />
           </div>
         </div>
         <div className="flex flex-col md:flex-row flex-1 md:space-x-4 md:space-y-0 space-y-4 mt-4">
