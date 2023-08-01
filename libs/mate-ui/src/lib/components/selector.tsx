@@ -36,7 +36,7 @@ const styles = {
     {
       variants: {
         padding: {
-          sm: ['py-2', 'h-9'],
+          sm: ['py-2', 'h-8'],
           md: ['py-2.5', 'h-10'],
           lg: ['py-3', 'h-11'],
         },

@@ -116,7 +116,7 @@ const List = () => {
                 </FormControl>
               </div>
 
-              <div className="flex w-full pb-2 md:w-1/4 md:justify-end gap-3">
+              <div className="flex w-full pb-2 md:w-28  gap-3">
                 <IconButton
                   size={screenSize === 'sm' ? 'xl' : 'sm'}
                   themeColor="primary"
