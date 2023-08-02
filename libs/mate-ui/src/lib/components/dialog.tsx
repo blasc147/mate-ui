@@ -162,9 +162,10 @@ const DialogOverlay = React.forwardRef<
     className={cn(
       'fixed',
       'inset-0',
+      'bg-neutral-900/25',
       'z-50',
-      'bg-neutral-900',
-      'opacity-25',
+      'data-[state=open]:animate-fade-in',
+      'data-[state=closed]:animate-fade-out',
       className
     )}
     {...props}

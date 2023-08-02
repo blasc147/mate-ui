@@ -35,13 +35,10 @@ const DrawerOverlay = React.forwardRef<
     className={cn(
       'fixed',
       'inset-0',
-      'bg-neutral-900',
-      'bg-opacity-25',
+      'bg-neutral-900/25',
       'z-50',
-      'data-[state=open]:animate-in',
-      'data-[state=closed]:animate-out',
-      'data-[state=closed]:fade-out-0',
-      'data-[state=open]:fade-in-0',
+      'data-[state=closed]:animate-fade-out',
+      'data-[state=open]:animate-fade-in',
       className
     )}
     {...props}

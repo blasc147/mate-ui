@@ -13,6 +13,8 @@ const styles = {
       'ring-focus',
       'group',
       'border-transparent',
+      'hover:enabled:duration-200',
+      'hover:enabled:ease-out',
     ],
     {
       variants: {
