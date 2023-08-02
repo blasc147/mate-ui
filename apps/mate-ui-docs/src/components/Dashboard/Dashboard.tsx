@@ -86,7 +86,7 @@ const BaseDashboard = () => {
   }) => {
     return (
       <Card cardStyle="outline" className="flex-1 md:mr-4 mt-2 md:mt-0">
-        <CardContent className="text-primary-500 flex md:flex-col md:justify-between md:items-start items-center">
+        <CardContent className="text-primary-500 flex md:flex-col md:justify-between md:items-start items-center p-4">
           {icon}
           <h3 className="font-bold  ml-4 md:ml-0">{title}</h3>
         </CardContent>
