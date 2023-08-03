@@ -1,22 +1,22 @@
 import React, { ReactNode } from 'react';
+import { ArrowRightIcon, CheckBadgeIcon } from '@heroicons/react/20/solid';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  TableHeader,
-  TableRow,
-  TableHead,
+  Header,
+  IconButton,
   SortColumn,
   Table,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   Tag,
-  Header,
-  IconButton,
 } from '@truenorth/mate-ui';
-import { CheckBadgeIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Col, ColContainer } from '@components';
-import { FigmaIcon, StorybookIcon, GithubIcon } from '@icons';
+import { FigmaIcon, GithubIcon, StorybookIcon } from '@icons';
 import { ProjectUrls } from '@/constants/routes';
-import { componentsList, Status } from './componentsList';
+import { Status, componentsList } from './componentsList';
 
 interface Header {
   name: string;

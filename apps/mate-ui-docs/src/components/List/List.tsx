@@ -1,47 +1,46 @@
-import React from 'react';
+import {
+  ArrowUpTrayIcon,
+  CheckCircleIcon,
+  CurrencyDollarIcon,
+  EllipsisVerticalIcon,
+  MagnifyingGlassIcon,
+  PlusIcon,
+  UserIcon,
+} from '@heroicons/react/20/solid';
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  TableHeader,
-  TableRow,
-  TableHead,
+  Checkbox,
+  FormControl,
+  Header,
+  HeaderSupportiveText,
+  IconButton,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Selector,
+  SelectorContent,
+  SelectorItem,
+  SelectorTrigger,
+  SelectorValue,
   SortColumn,
+  SortTableType,
   Table,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   Tag,
-  Checkbox,
-  Header,
-  HeaderSupportiveText,
-  FormControl,
-  InputGroup,
-  Input,
-  IconButton,
   TagColorScheme,
-  SortTableType,
   cn,
-  InputRightElement,
-  Selector,
-  SelectorTrigger,
-  SelectorValue,
-  SelectorContent,
-  SelectorItem,
 } from '@truenorth/mate-ui';
-import {
-  MagnifyingGlassIcon,
-  PlusIcon,
-  CurrencyDollarIcon,
-  ArrowUpTrayIcon,
-  EllipsisVerticalIcon,
-  CheckCircleIcon,
-  UserIcon,
-} from '@heroicons/react/20/solid';
 import { Col } from '@components';
-import { invoices } from './mockData';
-import Description from '../Description/Description';
 import useScreenSize from '@/hooks/useScreenSize';
+import Description from '../Description/Description';
+import { invoices } from './mockData';
 
 enum PaymentStatus {
   Open = 'success',

@@ -1,6 +1,9 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import React from 'react';
-import { MateLogo } from '@icons';
+import { useRouter } from 'next/router';
+import {
+  ChevronRightIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/20/solid';
 import {
   Button,
   Input,
@@ -8,14 +11,10 @@ import {
   InputRightAddon,
   Link,
 } from '@truenorth/mate-ui';
-import {
-  ChevronRightIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/20/solid';
-import { useRouter } from 'next/router';
+import { MateLogo } from '@icons';
 import { Routes } from '@/constants/routes';
 
-const Sidenav = () => {
+export const Sidenav = () => {
   const router = useRouter();
   return (
     <nav>

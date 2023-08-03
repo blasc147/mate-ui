@@ -1,5 +1,9 @@
+import { ReactNode } from 'react';
+import { PencilIcon, UserIcon } from '@heroicons/react/24/solid';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import { Button } from './button';
+import { Checkbox } from './checkbox';
 import { Link } from './link';
 import {
   SortColumn,
@@ -11,11 +15,6 @@ import {
   TableRow,
 } from './table';
 import { Tag } from './tag';
-import { Avatar, AvatarFallback, AvatarImage } from './avatar';
-import { Checkbox } from './checkbox';
-import { ReactNode } from 'react';
-import { UserIcon } from '@heroicons/react/24/solid';
-import { PencilIcon } from '@heroicons/react/24/solid';
 
 export interface Invoice {
   invoice: string;

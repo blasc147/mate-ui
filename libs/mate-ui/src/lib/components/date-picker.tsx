@@ -1,8 +1,7 @@
 import * as React from 'react';
+import { DateRange, DayPicker as ReactDatePicker } from 'react-day-picker';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { DayPicker as ReactDatePicker } from 'react-day-picker';
 import { cn } from '../utils';
-import { DateRange } from 'react-day-picker';
 
 export type DatePickerProps = React.ComponentProps<typeof ReactDatePicker>;
 

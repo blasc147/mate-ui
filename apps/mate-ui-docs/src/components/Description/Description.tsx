@@ -1,6 +1,6 @@
+import React from 'react';
 import { CodeBracketIcon, EyeIcon } from '@heroicons/react/20/solid';
 import { Button } from '@truenorth/mate-ui';
-import React from 'react';
 
 interface Props {
   paragraphText: string;
@@ -8,7 +8,7 @@ interface Props {
   onPreview?: () => void;
   onViewCode?: () => void;
 }
-const Description: React.FC<Props> = ({
+export const Description: React.FC<Props> = ({
   paragraphText,
   listItems,
   onPreview,

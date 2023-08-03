@@ -1,11 +1,9 @@
-import type { Meta } from '@storybook/react';
-import { useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from './popover';
-import { DatePicker, DateRange } from './date-picker';
-import { cn } from '../utils';
+import React, { useState } from 'react';
 import { CalendarIcon } from '@heroicons/react/20/solid';
+import type { Meta } from '@storybook/react';
 import { format } from 'date-fns';
-
+import { cn } from '../utils';
+import { DatePicker, DateRange } from './date-picker';
 import {
   FormControl,
   FormLabel,
@@ -13,6 +11,7 @@ import {
   InputGroup,
   InputRightElement,
 } from './input';
+import { Popover, PopoverContent, PopoverTrigger } from './popover';
 
 const Story: Meta<typeof DatePicker> = {
   component: DatePicker,

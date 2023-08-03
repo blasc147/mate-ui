@@ -1,9 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
-import { BaseLayout } from '@/layouts/BaseLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@truenorth/mate-ui';
-import { Dashboard, PageContainer } from '@components';
-import { List } from '@components';
+import { Dashboard, List, PageContainer } from '@components';
+import { BaseLayout } from '@/layouts/BaseLayout';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

@@ -1,11 +1,11 @@
-'use client';
-
+import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
-import * as React from 'react';
-import { buttonStyles } from './button';
 import { LoaderIcon } from '../icons/loader';
 import { cn } from '../utils';
+import { buttonStyles } from './button';
+
+('use client');
 
 const iconButtonVariantsSize = cva(
   ['inline-flex', 'items-center', 'justify-center'],
@@ -65,7 +65,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       <Slot className={iconClassNames}>{_icon}</Slot>
     );
 
-    const children = asChild
+    const child = asChild
       ? React.isValidElement(_children) &&
         React.cloneElement(_children, {
           children: icon,
@@ -81,7 +81,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         ref={ref}
         disabled={loading || disabled}
-        children={children}
+        children={child}
         {...props}
       />
     );

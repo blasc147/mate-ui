@@ -1,20 +1,21 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 import { Bars3Icon } from '@heroicons/react/20/solid';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerSides,
+  DrawerTrigger,
+} from '@truenorth/mate-ui';
 import Sidenav from '../../components/Sidenav/Sidenav';
-import { Drawer, DrawerBody, DrawerContent, DrawerSides, DrawerTrigger } from '@truenorth/mate-ui';
 
 type Props = {
   children: React.ReactElement;
   title?: string;
 };
 
-export const BaseLayout = ({
-  children,
-  title = "Mate UI",
-}: Props) => {
-
+export const BaseLayout = ({ children, title = 'Mate UI' }: Props) => {
   return (
     <>
       <Head>

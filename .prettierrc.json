@@ -1,0 +1,18 @@
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "importOrder": [
+    "^(react)",
+    "^(next)",
+    "<THIRD_PARTY_MODULES>",
+    "^[@](truenorth/mate-ui)",
+    "^[@](components|icons)",
+    "^[@]/(layouts|constants|hooks|utils)",
+    "^([./]|[../])",
+    "^@/styles"
+  ],
+  "importOrderSortSpecifiers": true
+}

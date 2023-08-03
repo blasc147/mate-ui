@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
 const { workspaceRoot } = require('@nrwl/devkit');
 const { join } = require('path');

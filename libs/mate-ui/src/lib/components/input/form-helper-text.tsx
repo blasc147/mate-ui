@@ -1,9 +1,9 @@
-'use client';
-
-import { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { HELPER_MESSAGE_ID, getValueByPriority } from './utils';
+
+('use client');
 
 const styles = cn('text-neutral-600', 'text-xs', 'font-regular', 'mt-1.5');
 
