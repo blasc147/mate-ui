@@ -1,16 +1,15 @@
 import React from 'react';
-
-import { cn } from '../..';
-import { cva } from 'class-variance-authority';
-import { CloseButton } from './close-button';
 import * as RadixToast from '@radix-ui/react-toast';
+import { cva } from 'class-variance-authority';
+import { cn } from '../..';
+import { CloseButton } from './close-button';
 
 const styles = {
   base: cn(
     'relative',
     'z-50',
     'flex',
-    'm-w-[400px]',
+    'm-w-[377px]',
     'rounded-md',
     'bg-white',
     'py-4',
@@ -22,7 +21,7 @@ const styles = {
   title: cn('font-bold', 'font-sm', 'text-black'),
   close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'pr-4'),
   actions: cn('ml-4', 'flex'),
-  description: cn('font-normal', 'font-sm', 'text-neutral-700'),
+  description: cn('font-normal', 'font-sm', 'text-neutral-700', 'mr-4'),
   buttons: cn('flex', 'mt-2'),
   viewport: cn('fixed', 'right-0', 'bottom-0', 'flex', 'flex-col', 'z-9'),
   border: cva(['w-1', 'rounded-r-[4px]'], {
@@ -67,21 +66,36 @@ const Toast = ({
         className={cn(styles.base, className)}
         open={open}
         onOpenChange={onOpenChange}
+        duration={100000}
       >
         <div className={cn(styles.border({ themeColor }))}></div>
         {leftElement && <div className={styles.leftElement}>{leftElement}</div>}
         <div className={styles.root}>
-          <RadixToast.Title className={styles.title}>{title}</RadixToast.Title>
+          <div className="flex justify-between">
+            <RadixToast.Title className={styles.title}>
+              {title}
+            </RadixToast.Title>
+            <div className={cn(styles.actions, 'block md:hidden')}>
+              <div className="flex">
+                {actionButton && <div>{actionButton}</div>}
+                <RadixToast.Close className={styles.close}>
+                  <CloseButton aria-label="Toast-button"></CloseButton>
+                </RadixToast.Close>
+              </div>
+            </div>
+          </div>
           <RadixToast.Description className={styles.description}>
             {description}
           </RadixToast.Description>
           {buttons && <div className={styles.buttons}>{buttons}</div>}
         </div>
-        <div className={styles.actions}>
-          {actionButton && <div>{actionButton}</div>}
-          <RadixToast.Close className={styles.close}>
-            <CloseButton aria-label="Toast-button"></CloseButton>{' '}
-          </RadixToast.Close>
+        <div className={cn(styles.actions, 'hidden md:block')}>
+          <div className="flex">
+            {actionButton && <div>{actionButton}</div>}
+            <RadixToast.Close className={styles.close}>
+              <CloseButton aria-label="Toast-button"></CloseButton>{' '}
+            </RadixToast.Close>
+          </div>
         </div>
       </RadixToast.Root>
       <RadixToast.Viewport className={styles.viewport} />
