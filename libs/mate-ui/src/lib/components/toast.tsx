@@ -9,7 +9,8 @@ const styles = {
     'relative',
     'z-50',
     'flex',
-    'm-w-[377px]',
+    'w-[377px]',
+    'w-full',
     'rounded-md',
     'bg-white',
     'py-4',
@@ -66,7 +67,6 @@ const Toast = ({
         className={cn(styles.base, className)}
         open={open}
         onOpenChange={onOpenChange}
-        duration={100000}
       >
         <div className={cn(styles.border({ themeColor }))}></div>
         {leftElement && <div className={styles.leftElement}>{leftElement}</div>}
