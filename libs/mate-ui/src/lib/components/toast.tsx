@@ -10,7 +10,7 @@ const styles = {
     'relative',
     'z-50',
     'flex',
-    'w-[384px]',
+    'm-w-[400px]',
     'rounded-md',
     'bg-white',
     'py-4',
@@ -21,24 +21,28 @@ const styles = {
   leftElement: cn('ml-4'),
   title: cn('font-bold', 'font-sm', 'text-black'),
   close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'pr-4'),
-  actions: cn('ml-auto', 'flex'),
+  actions: cn('ml-4', 'flex'),
   description: cn('font-normal', 'font-sm', 'text-neutral-700'),
   buttons: cn('flex', 'mt-2'),
   viewport: cn('fixed', 'right-0', 'bottom-0', 'flex', 'flex-col', 'z-9'),
   border: cva(['w-1', 'rounded-r-[4px]'], {
     variants: {
-      severity: {
+      themeColor: {
+        neutral: ['transparent'],
         primary: ['bg-primary-500'],
+        success: ['bg-success-500'],
+        warning: ['bg-warning-500'],
+        error: ['bg-error-500'],
       },
     },
   }),
 };
 
-type ToastSeverity = 'primary';
+type ToastThemeColor = 'neutral' | 'primary' | 'success' | 'warning' | 'error';
 
 interface ToastProps extends RadixToast.ToastProps {
   className?: string;
-  severity?: ToastSeverity;
+  themeColor?: ToastThemeColor;
   leftElement?: React.ReactElement;
   buttons?: React.ReactElement;
   title?: string;
@@ -55,7 +59,7 @@ const Toast = ({
   actionButton,
   open,
   onOpenChange,
-  severity = 'primary',
+  themeColor = 'primary',
 }: ToastProps) => {
   return (
     <>
@@ -64,7 +68,7 @@ const Toast = ({
         open={open}
         onOpenChange={onOpenChange}
       >
-        <div className={cn(styles.border({ severity }))}></div>
+        <div className={cn(styles.border({ themeColor }))}></div>
         {leftElement && <div className={styles.leftElement}>{leftElement}</div>}
         <div className={styles.root}>
           <RadixToast.Title className={styles.title}>{title}</RadixToast.Title>
@@ -91,4 +95,4 @@ const ToastProvider: React.FC<RadixToast.ToastProviderProps> = ({
   return <RadixToast.Provider>{children}</RadixToast.Provider>;
 };
 
-export { Toast, ToastProvider, type ToastProps, ToastSeverity };
+export { Toast, ToastProvider, type ToastProps, ToastThemeColor };
