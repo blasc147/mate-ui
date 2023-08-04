@@ -146,7 +146,9 @@ function TableComponent() {
           </TableHead>
 
           <TableHead className="w-[0px]">
-            <Button>Header</Button>
+            <Button size={'sm'} className="absolute top-6">
+              Header
+            </Button>
           </TableHead>
           <TableHead> Avatar</TableHead>
         </TableRow>
@@ -176,7 +178,9 @@ function TableComponent() {
               <Tag className="capitalize">{invoice.paymentStatus}</Tag>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
-              <Button themeColor="neutral">Button</Button>
+              <Button size={'sm'} themeColor="neutral">
+                Button
+              </Button>
             </TableCell>
             <TableCell className="text-right">
               <div className="flex mb-2">

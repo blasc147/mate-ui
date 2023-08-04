@@ -74,14 +74,14 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      'h-12',
-      'px-3',
+      'h-4',
+      'px-6',
+      'py-3',
       'text-left',
       'text-neutral-600',
       'font-medium',
       'text-xs',
       'align-middle',
-      'pt-1',
       { 'hidden md:table-cell': desktopOnly },
       className
     )}
@@ -108,8 +108,8 @@ const TableCell = React.forwardRef<
       className={cn(
         'text-sm',
         'text-neutral-800',
-        'py-2',
-        'px-3',
+        'px-6',
+        'py-4',
         'align-middle',
         { 'hidden md:table-cell': desktopOnly },
         className
