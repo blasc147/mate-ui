@@ -1,18 +1,21 @@
 import {
   ArrowUpTrayIcon,
+  ArrowUturnRightIcon,
   CheckCircleIcon,
-  CurrencyDollarIcon,
+  DocumentPlusIcon,
   EllipsisVerticalIcon,
   MagnifyingGlassIcon,
-  PlusIcon,
   UserIcon,
 } from '@heroicons/react/20/solid';
+import { v4 as uuidv4 } from 'uuid';
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
   Checkbox,
+  CloseButton,
   FormControl,
   Header,
   HeaderSupportiveText,
@@ -20,13 +23,13 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Link,
   Selector,
   SelectorContent,
   SelectorItem,
   SelectorTrigger,
   SelectorValue,
   SortColumn,
-  SortTableType,
   Table,
   TableBody,
   TableCell,
@@ -51,22 +54,19 @@ const List = () => {
   const screenSize = useScreenSize();
 
   return (
-    <div className="flex gap-5 pt-10 mx-auto flex-wrap justify-between">
+    <div className="flex gap-5 lg:pt-10 mx-auto flex-wrap justify-between">
       <Col size="main">
         <Card
           cardStyle="shadow"
           padding={screenSize === 'sm' ? 'none' : 'lg'}
-          className={cn('w-full', {
-            'shadow-none': screenSize === 'sm',
-            'border border-neutral-300': screenSize !== 'sm',
-          })}
+          className={cn('w-full shadow-none')}
         >
-          <CardHeader className="sm">
-            <CardTitle size="md">
-              <h1 className="text-2xl md:text-3xl">Loan Manager</h1>
+          <CardHeader className="sm md:px-0">
+            <CardTitle size="md" className="text-2xl md:text-3xl">
+              Loan Manager
             </CardTitle>
-            <div className="flex gap-3 ">
-              <div className="flex flex-col hidden lg:block text-right">
+            <div className="flex gap-3">
+              <div className="hidden md:block text-right">
                 <Header variant="h3">John Smith</Header>
                 <HeaderSupportiveText variant="h5">
                   Account ID #10734181
@@ -77,22 +77,84 @@ const List = () => {
               </div>
             </div>
           </CardHeader>
-          <CardContent className="flex-col">
-            <div className="flex pb-3 gap-2 md:justify-between flex-wrap">
-              <div className="flex flex-wrap gap-2">
-                <FormControl className="w-full md:w-[272px]" inputSize="sm">
+          <CardContent className="flex-col p-0 pt-4 md:px-0">
+            <div className="flex pb-6 gap-2 flex-wrap lg:flex-nowrap lg:justify-between">
+              <div className="hidden lg:flex pb-2 gap-3 lg:pb-0">
+                <IconButton
+                  size="md"
+                  themeColor="primary"
+                  icon={<DocumentPlusIcon />}
+                  aria-label={'plus-button'}
+                />
+                <IconButton
+                  size="md"
+                  themeColor="primary"
+                  icon={<ArrowUturnRightIcon />}
+                  aria-label={'dollarButton'}
+                />
+                <IconButton
+                  size="md"
+                  themeColor="primary"
+                  icon={<ArrowUpTrayIcon />}
+                  aria-label={'ArrowButton'}
+                />
+              </div>
+              <div className="w-full pb-2 gap-3 flex flex-col sm:flex-row lg:hidden">
+                <Button
+                  size="md"
+                  themeColor="primary"
+                  leftIcon={<DocumentPlusIcon />}
+                  aria-label={'plus-button'}
+                  className="w-full"
+                >
+                  Create New
+                </Button>
+                <Button
+                  size="md"
+                  themeColor="primary"
+                  leftIcon={<ArrowUturnRightIcon />}
+                  aria-label={'dollarButton'}
+                  className="w-full"
+                >
+                  Make Payment
+                </Button>
+                <Button
+                  size="md"
+                  themeColor="primary"
+                  leftIcon={<ArrowUpTrayIcon />}
+                  aria-label={'ArrowButton'}
+                  className="w-full"
+                >
+                  Upload Document
+                </Button>
+              </div>
+              <div className="w-full flex flex-wrap gap-2 md:pt-4 lg:pt-0 lg:justify-end">
+                <FormControl className="w-full md:w-[272px]" inputSize="md">
                   <InputGroup>
-                    <Input type="text" />
+                    <Input type="text" placeholder="Search..." />
                     <InputRightElement>
                       <MagnifyingGlassIcon className="text-neutral-700 h-5 w-5" />
                     </InputRightElement>
                   </InputGroup>
                 </FormControl>
-                <p className="text-neutral-700 text-sm pt-2 pl-0 md:pl-3">
-                  Filter by:
-                </p>
+                <div className="w-full flex justify-between pt-2 md:w-[105px] md:justify-end lg:w-auto">
+                  <p className="text-neutral-700 text-sm pl-0 md:pl-3">
+                    Filter by:
+                  </p>
+                  <div className="flex items-center md:hidden">
+                    <Link
+                      colorScheme="neutral"
+                      size="sm"
+                      weight="light"
+                      className="block md:hidden"
+                    >
+                      Clear filters
+                    </Link>
+                    <CloseButton />
+                  </div>
+                </div>
                 <FormControl className="w-full md:w-[135px]">
-                  <Selector selectorSize="sm">
+                  <Selector selectorSize="md">
                     <SelectorTrigger>
                       <SelectorValue placeholder="Status" />
                     </SelectorTrigger>
@@ -103,7 +165,7 @@ const List = () => {
                   </Selector>
                 </FormControl>
                 <FormControl className="w-full md:w-[135px]">
-                  <Selector selectorSize="sm">
+                  <Selector selectorSize="md">
                     <SelectorTrigger>
                       <SelectorValue placeholder="Autopay" />
                     </SelectorTrigger>
@@ -113,30 +175,19 @@ const List = () => {
                     </SelectorContent>
                   </Selector>
                 </FormControl>
-              </div>
-
-              <div className="flex w-full pb-2 md:w-28  gap-3">
-                <IconButton
-                  size={screenSize === 'sm' ? 'xl' : 'sm'}
-                  themeColor="primary"
-                  icon={<PlusIcon />}
-                  aria-label={'plus-button'}
-                />
-                <IconButton
-                  size={screenSize === 'sm' ? 'xl' : 'sm'}
-                  themeColor="primary"
-                  icon={<CurrencyDollarIcon />}
-                  aria-label={'dollarButton'}
-                />
-                <IconButton
-                  size={screenSize === 'sm' ? 'xl' : 'sm'}
-                  themeColor="primary"
-                  icon={<ArrowUpTrayIcon />}
-                  aria-label={'ArrowButton'}
-                />
+                <Link
+                  colorScheme="neutral"
+                  size={
+                    screenSize === 'sm' || screenSize === 'md' ? 'sm' : 'md'
+                  }
+                  weight="light"
+                  className="hidden md:flex"
+                >
+                  Clear filters
+                  <CloseButton />
+                </Link>
               </div>
             </div>
-
             <ComplexListTable />
           </CardContent>
         </Card>
@@ -162,50 +213,45 @@ const listItems = [
 
 const ComplexListTable = () => (
   <Table>
-    <TableHeader>
-      <TableRow className="h-11">
-        <TableHead desktopOnly>
+    <TableHeader className="h-11">
+      <TableRow>
+        <TableHead className="hidden lg:flex lg:h-full lg:w-[70px]">
           <Checkbox />
         </TableHead>
         {renderTableHeaders()}
       </TableRow>
     </TableHeader>
-
     <TableBody>
       {invoices.map((invoice) => (
-        <TableRow key={invoice.date} className="h-14">
-          <TableCell className="min-w-[50px]" desktopOnly>
+        <TableRow key={invoice.id} className="h-14">
+          <TableCell className="hidden lg:min-w-[50px] lg:flex">
             <Checkbox />
           </TableCell>
-          <TableCell>{invoice.loanId}</TableCell>
-          <TableCell desktopOnly>{invoice.invoice}</TableCell>
+          <TableCell>{invoice.id}</TableCell>
+          <TableCell className="hidden md:flex">{invoice.loanType}</TableCell>
           <TableCell
             className="text-right"
             desktopOnly
-          >{`$${invoice.totalAmount}`}</TableCell>
+          >{`$${invoice.payOff}`}</TableCell>
           <TableCell>{invoice.date}</TableCell>
           <TableCell desktopOnly>
             <Tag
               size="sm"
               className="capitalize"
-              colorScheme={
-                PaymentStatus[invoice.paymentStatus] as TagColorScheme
-              }
+              colorScheme={PaymentStatus[invoice.status] as TagColorScheme}
             >
-              {invoice.paymentStatus}
+              {invoice.status}
             </Tag>
           </TableCell>
-
           <TableCell desktopOnly>
-            <div className="flex gap-4 ">
+            <div className="flex gap-4">
               {invoice.autopay}
               {invoice.autopay === 'On' && (
                 <CheckCircleIcon className="w-4 h-4 self-center text-success-500" />
               )}
             </div>
           </TableCell>
-
-          <TableCell>
+          <TableCell className="p-2">
             <EllipsisVerticalIcon className="h-4 w-4" />
           </TableCell>
         </TableRow>
@@ -215,82 +261,63 @@ const ComplexListTable = () => (
 );
 
 const renderTableHeaders = () => {
-  return tableColumns.map((column, index) => (
+  return tableColumns.map((column) => (
     <TableHead
-      key={index}
-      className={column.alignment}
-      style={{ minWidth: column.minWidth, maxWidth: column.maxWidth }}
+      key={uuidv4()}
+      className={column.style}
       desktopOnly={column.desktopOnly}
     >
       {column.name}
-      {column.sortable && column.sortDirection && (
-        <SortColumn sort={column.sortDirection as SortTableType} />
-      )}
+      {column.sortable && <SortColumn />}
     </TableHead>
   ));
 };
 
 const tableColumns = [
   {
-    name: 'Loan ID',
-    minWidth: 95,
-    maxWidth: 95,
-    alignment: 'text-left',
+    name: 'ID',
+    style: 'lg:w-[290px]',
     sortable: true,
-    sortDirection: 'asc',
     desktopOnly: false,
   },
   {
     name: 'Loan Type',
-    minWidth: '150px',
-    maxWidth: '150px',
-    alignment: 'text-left',
+    style: 'lg:w-[290px]',
     sortable: true,
-    sortDirection: 'asc',
     desktopOnly: true,
   },
   {
-    name: 'Balance',
-    minWidth: '100px',
-    maxWidth: '100px',
-    alignment: 'text-right',
-    sortable: true,
-    sortDirection: 'asc',
+    name: 'Payoff',
+    style: 'text-right lg:[290px]',
+    sortable: false,
     desktopOnly: true,
   },
   {
     name: 'Date Funded',
-    minWidth: '150px',
-    maxWidth: '200px',
-    alignment: 'text-left',
+    style: 'lg:w-[155px]',
     sortable: true,
-    sortDirection: 'desc',
     desktopOnly: false,
   },
   {
     name: 'Status',
     minWidth: '100px',
     maxWidth: '150px',
-    alignment: 'text-left',
+    style: 'lg:w-[120px]',
     sortable: true,
-    sortDirection: 'asc',
     desktopOnly: true,
   },
   {
     name: 'Autopay',
     minWidth: '100px',
     maxWidth: '150px',
-    alignment: 'text-right',
-    sortable: true,
-    sortDirection: 'asc',
+    style: 'lg:w-[105px]',
+    sortable: false,
     desktopOnly: true,
   },
   {
     // Empty header for additional space, if needed
     name: '',
-    minWidth: '50px',
-    maxWidth: '50px',
-    alignment: 'text-left',
+    style: 'text-left lg:w-[68px]',
     sortable: false,
     desktopOnly: false,
   },

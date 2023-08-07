@@ -19,7 +19,7 @@ export const componentsList: Component[] = [
     figmaLink:
       'https://www.figma.com/file/6zMgZETAVqw9TgqFxRY3IY/Mate-UI-2.0?node-id=2039%3A4464&mode=dev',
     storybookLink:
-      'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?type=design&node-id=2039-4464&mode=design&t=qMcouYM8P8NgTrz9-0',
+      'https://mate-ui-storybook.vercel.app/?path=/story/accordion--default',
   },
   {
     name: 'Alert',
