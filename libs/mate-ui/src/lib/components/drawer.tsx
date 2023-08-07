@@ -1,10 +1,12 @@
+'use client';
 import * as React from 'react';
-import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { CloseButton } from './close-button';
-import { cn } from '../utils';
-import { useSwipeable } from 'react-swipeable';
 import { useRef } from 'react';
+import { useSwipeable } from 'react-swipeable';
+import * as SheetPrimitive from '@radix-ui/react-dialog';
+import { type VariantProps, cva } from 'class-variance-authority';
+import { cn } from '../utils';
+import { CloseButton } from './close-button';
+
 
 const Drawer = SheetPrimitive.Root;
 

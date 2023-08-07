@@ -1,5 +1,6 @@
-import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
+'use client';
 import React, { useContext, useEffect, useState } from 'react';
+import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '../utils';
 import { Checkbox, CheckboxProps } from './checkbox';
 import {
@@ -11,6 +12,7 @@ import {
 } from './input';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { Tag } from './tag';
+
 
 interface MultiSelectorItemProps extends CheckboxProps {
   children?: React.ReactNode;

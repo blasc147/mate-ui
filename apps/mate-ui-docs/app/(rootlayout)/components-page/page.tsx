@@ -1,15 +1,23 @@
-import type { ReactElement, ReactNode } from 'react';
-import type { NextPage } from 'next';
-import { BaseLayout } from '@/layouts/BaseLayout';
-import { Components, PageContainer } from '@components';
+import React from 'react';
+import { Components } from '@components';
 
-export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
+export const metadata = {
+  title: 'Mate UI',
+  description: 'Mate UI Component Library',
+  icons: {
+    icon: '/assets/favicon.png',
+  },
+  viewport: {
+    width: 'device-width',
+    height: 'device-height',
+    initialScale: 1,
+    maximumScale: 1,
+    minimumScale: 1,
+  },
 };
 
-const Page: NextPageWithLayout = () => {
+const Page = () => {
   return (
-    <PageContainer>
       <div className="flex flex-col">
         <header className="flex w-full">
           <div className="flex flex-col w-full max-w-[49rem]">
@@ -25,12 +33,7 @@ const Page: NextPageWithLayout = () => {
         </header>
         <Components />
       </div>
-    </PageContainer>
   );
-};
-
-Page.getLayout = function getLayout(page: ReactElement) {
-  return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default Page;

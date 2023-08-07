@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+'use client';
+import { useEffect, useState } from 'react';
 import { getCurrentScreenSize } from '@/utils/getCurrentScreenSize';
 
 export type TailwindSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';

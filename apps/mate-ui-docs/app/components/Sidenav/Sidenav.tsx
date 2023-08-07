@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import {
   ChevronRightIcon,
   MagnifyingGlassIcon,
@@ -15,7 +15,7 @@ import { MateLogo } from '@icons';
 import { Routes } from '@/constants/routes';
 
 export const Sidenav = () => {
-  const router = useRouter();
+  const navigation = useRouter();
   return (
     <nav>
       <div className="pb-12">
@@ -46,7 +46,7 @@ export const Sidenav = () => {
           variant="ghost"
           themeColor="neutral"
           className="justify-start px-2"
-          onClick={() => router.push(Routes.Examples)}
+          onClick={() => navigation.push(Routes.Examples)}
         >
           Examples
         </Button>
@@ -72,7 +72,7 @@ export const Sidenav = () => {
           variant="ghost"
           themeColor="neutral"
           className="justify-start px-2 mb-2"
-          onClick={() => router.push(Routes.Components)}
+          onClick={() => navigation.push(Routes.Components)}
         >
           Components
         </Button>

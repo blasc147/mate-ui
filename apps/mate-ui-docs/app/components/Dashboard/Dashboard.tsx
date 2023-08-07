@@ -1,52 +1,53 @@
+'use client';
 import React from 'react';
 import {
+  ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowsRightLeftIcon,
+  CheckIcon,
+  ClockIcon as ClockIconSolid,
+} from '@heroicons/react/20/solid';
+import {
+  ArrowRightIcon,
+  ClipboardDocumentCheckIcon,
+  ClockIcon,
+  Cog6ToothIcon,
+  CurrencyDollarIcon,
+  EllipsisVerticalIcon,
+  EyeIcon,
+  PaperAirplaneIcon,
+  PlusIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/24/outline';
+import {
+  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Button,
-  IconButton,
-  FormLabel,
-  Selector,
-  SelectorTrigger,
-  SelectorValue,
-  SelectorContent,
-  SelectorItem,
   FormControl,
+  FormLabel,
+  IconButton,
+  Input,
   InputGroup,
   InputLeftElement,
-  Input,
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
+  Selector,
+  SelectorContent,
+  SelectorItem,
+  SelectorTrigger,
+  SelectorValue,
   SortColumn,
+  Table,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   Tag,
 } from '@truenorth/mate-ui';
-import {
-  ClipboardDocumentCheckIcon,
-  Cog6ToothIcon,
-  EyeIcon,
-  CurrencyDollarIcon,
-  QuestionMarkCircleIcon,
-  PaperAirplaneIcon,
-  ArrowRightIcon,
-  PlusIcon,
-  EllipsisVerticalIcon,
-  ClockIcon,
-} from '@heroicons/react/24/outline';
-import {
-  ClockIcon as ClockIconSolid,
-  ArrowsRightLeftIcon,
-  ArrowTrendingDownIcon,
-  ArrowTrendingUpIcon,
-  CheckIcon,
-} from '@heroicons/react/20/solid';
-import { Col } from '../Grid';
-import Description from '../Description/Description';
 import { Routes } from '../../constants/routes';
+import Description from '../Description/Description';
+import { Col } from '../Grid';
 
 interface Transactions {
   date: string;
@@ -54,6 +55,16 @@ interface Transactions {
   amount: string;
   balance: string;
 }
+
+const listItems = [
+  'Button',
+  'Card',
+  'Icon Button',
+  'Input',
+  'Selector',
+  'Table',
+];
+
 
 const BaseDashboard = () => {
   const transactions: Transactions[] = [
@@ -378,14 +389,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
-const listItems = [
-  'Button',
-  'Card',
-  'Icon Button',
-  'Input',
-  'Selector',
-  'Table',
-];
 
 export { Dashboard, BaseDashboard };

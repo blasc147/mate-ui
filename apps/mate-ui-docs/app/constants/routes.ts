@@ -1,7 +1,7 @@
 export enum Routes {
   Examples = 'examples',
   DashboardPreview = 'dashboard-preview',
-  Components = 'components',
+  Components = 'components-page',
 }
 
 export enum ProjectUrls {
