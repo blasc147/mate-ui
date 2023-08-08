@@ -13,6 +13,7 @@
     "next/core-web-vitals",
     "eslint:recommended",
     "prettier",
+    "plugin:tailwindcss/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript"
