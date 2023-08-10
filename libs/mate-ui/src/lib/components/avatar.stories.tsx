@@ -1,263 +1,225 @@
+import { Avatar, AvatarActionButton, AvatarFallback, AvatarImage, AvatarLabel, AvatarIcon } from './avatar';
 import { ArrowUturnLeftIcon } from '@heroicons/react/20/solid';
 import { UserIcon } from '@heroicons/react/24/solid';
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  Avatar,
-  AvatarActionButton,
-  AvatarFallback,
-  AvatarImage,
-  AvatarLabel,
-  AvatarStatus,
-} from './avatar';
+
 
 const Story: Meta<typeof Avatar> = {
+  component: Avatar,
   title: 'Avatar',
+  argTypes: {
+    size: {
+      options: ['xs', 'sm', 'md', 'lg'],
+      control: { type: 'radio' },
+    },
+    shape: {
+      options: ['circle', 'square'],
+      control: { type: 'radio' },
+    },
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?node-id=5530%3A5024&mode=dev',
+    },
+  },
 };
 export default Story;
 
 type Story = StoryObj<typeof Avatar>;
 
 export const EmptyCircle: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback />
-    </Avatar>
-  ),
+  args: {
+    size:'xs',
+    shape: 'circle',
+    children: <AvatarFallback />
+  },
 };
 
 export const EmptySquare: Story = {
-  render: () => (
-    <Avatar shape="square">
-      <AvatarFallback />
-    </Avatar>
-  ),
+  args: {
+    size:'xs',
+    shape: 'square',
+    children: <AvatarFallback />
+  },
 };
 
 export const TextCircle: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>Aa</AvatarFallback>
-    </Avatar>
-  ),
+  args: {
+    size:'xs',
+    shape: 'circle',
+    children: <AvatarFallback>Aa</AvatarFallback>
+  },
 };
 
 export const TextSquare: Story = {
-  render: () => (
-    <Avatar shape="square">
-      <AvatarFallback>Aa</AvatarFallback>
-    </Avatar>
-  ),
+  args: {
+    size:'xs',
+    shape: 'square',
+    children: <AvatarFallback>Aa</AvatarFallback>
+  },
 };
 
 export const IconCircle: Story = {
-  render: () => (
-    <Avatar>
+  args: {
+    size: 'xs',
+    shape: 'circle',
+    children: (
       <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
+        <AvatarIcon icon={<UserIcon />} />
       </AvatarFallback>
-    </Avatar>
-  ),
+    ),
+  },
 };
 
 export const IconSquare: Story = {
-  render: () => (
-    <Avatar shape="square">
+  args: {
+    size: 'xs',
+    shape: 'square',
+    children: (
       <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
+        <AvatarIcon icon={<UserIcon />} />
       </AvatarFallback>
-    </Avatar>
-  ),
+    ),
+  },
 };
 
 export const ImageCircle: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarImage src="avatar-img-1.jpg" />
-    </Avatar>
-  ),
+  args: {
+    size:'xs',
+    shape: 'circle',
+    children: <AvatarImage src="avatar-img-1.jpg" />
+  },
 };
 
 export const ImageSquare: Story = {
-  render: () => (
-    <Avatar shape="square">
-      <AvatarImage src="avatar-img-1.jpg" />
-    </Avatar>
-  ),
+  args: {
+    size:'xs',
+    shape: 'square',
+    children: <AvatarImage src="avatar-img-1.jpg" />
+  },
 };
 
 export const StatusOnline: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
-      </AvatarFallback>
-      <AvatarStatus variant="online" />
-    </Avatar>
-  ),
+  args: {
+    size: 'xs',
+    children: (
+      <>
+        <AvatarFallback>
+          <AvatarIcon icon={<UserIcon />} status="online"/>
+        </AvatarFallback>
+      </>
+    ),
+  },
 };
 
 export const StatusBusy: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
-      </AvatarFallback>
-      <AvatarStatus variant="busy" />
-    </Avatar>
-  ),
+  args: {
+    size: 'xs',
+    children: (
+      <>
+        <AvatarFallback>
+          <AvatarIcon icon={<UserIcon />} status="busy" />
+        </AvatarFallback>
+      </>
+    ),
+  },
 };
 
 export const StatusOffline: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
-      </AvatarFallback>
-      <AvatarStatus variant="offline" />
-    </Avatar>
-  ),
+  args: {
+    size: 'xs',
+    children: (
+      <>
+        <AvatarFallback>
+          <AvatarIcon icon={<UserIcon />} status="offline" />
+        </AvatarFallback>
+      </>
+    ),
+  },
 };
 
-export const ImageWithStatus: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarImage src="avatar-img-1.jpg" />
-      <AvatarStatus variant="online" />
-    </Avatar>
-  ),
+export const ImageWithStatusOnline: Story = {
+  args: {
+    size: 'xs',
+    children: <AvatarImage src="avatar-img-1.jpg" status="online" /> ,
+  },
+};
+
+export const ImageWithStatusBusy: Story = {
+  args: {
+    size: 'xs',
+    children: <AvatarImage src="avatar-img-1.jpg" status="busy" /> ,
+  },
+};
+
+export const ImageWithStatusOffline: Story = {
+  args: {
+    size: 'xs',
+    children: <AvatarImage src="avatar-img-1.jpg" status="offline" /> ,
+  },
 };
 
 export const WithLabel: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
-      </AvatarFallback>
-      <AvatarLabel>Hugo</AvatarLabel>
-    </Avatar>
-  ),
+  args: {
+    size: 'xs',
+    shape: 'circle',
+    children: (
+      <>
+        <AvatarFallback>
+          <AvatarIcon icon={<UserIcon />} />
+          <AvatarLabel>Hugo</AvatarLabel>
+        </AvatarFallback>
+      </>
+    ),
+  },
 };
 
 export const WithActionButton: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
-      </AvatarFallback>
-      <AvatarActionButton
-        icon={<ArrowUturnLeftIcon />}
-        onClick={() => alert('Hello')}
-      />
-    </Avatar>
-  ),
+  args: {
+    size: 'xs',
+    children: (
+      <>
+        <AvatarImage src="avatar-img-1.jpg"/>
+        <AvatarActionButton
+          icon={<ArrowUturnLeftIcon />}
+          onClick={() => alert('Hello')}
+        />
+      </>
+    ),
+  },
 };
 
 export const WithActionButtonAndLabel: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarFallback>
-        <UserIcon className="h-6 w-6" />
-      </AvatarFallback>
-      <AvatarActionButton
-        icon={<ArrowUturnLeftIcon />}
-        onClick={() => alert('Hello')}
-      />
-      <AvatarLabel>Hugo</AvatarLabel>
-    </Avatar>
-  ),
+  args: {
+    size: 'xs',
+    children: (
+      <>
+        <AvatarFallback>
+          <AvatarIcon icon={<UserIcon />} />
+        </AvatarFallback>
+        <AvatarActionButton
+          icon={<ArrowUturnLeftIcon />}
+          onClick={() => alert('Hello')}
+        />
+        <AvatarLabel>Hugo</AvatarLabel>
+      </>
+    ),
+  },
 };
 
 export const ImageWithActionButtonAndLabel: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarImage src="avatar-img-1.jpg" />
-      <AvatarActionButton
-        icon={<ArrowUturnLeftIcon />}
-        onClick={() => alert('Hello')}
-      />
-      <AvatarLabel>Hugo</AvatarLabel>
-    </Avatar>
-  ),
-};
-
-export const MultipleAvatarsInHorizontalLine: Story = {
-  render: () => (
-    <div className="flex gap-5">
-      <Avatar>
-        <AvatarFallback>Aa</AvatarFallback>
-      </Avatar>
-
-      <Avatar>
-        <AvatarFallback>
-          <UserIcon className="h-6 w-6" />
-        </AvatarFallback>
-        <AvatarStatus variant="online" />
-      </Avatar>
-
-      <Avatar>
+  args: {
+    size: 'xs',
+    children: (
+      <>
         <AvatarImage src="avatar-img-1.jpg" />
         <AvatarActionButton
           icon={<ArrowUturnLeftIcon />}
           onClick={() => alert('Hello')}
         />
         <AvatarLabel>Hugo</AvatarLabel>
-      </Avatar>
-    </div>
-  ),
-};
-
-export const MultipleAvatarsInVerticalLine: Story = {
-  render: () => (
-    <div className="flex flex-col gap-5">
-      <Avatar>
-        <AvatarFallback>Aa</AvatarFallback>
-      </Avatar>
-
-      <Avatar>
-        <AvatarFallback>
-          <UserIcon className="h-6 w-6" />
-        </AvatarFallback>
-        <AvatarStatus variant="online" />
-      </Avatar>
-
-      <Avatar>
-        <AvatarImage src="avatar-img-1.jpg" />
-        <AvatarActionButton
-          icon={<ArrowUturnLeftIcon />}
-          onClick={() => alert('Hello')}
-        />
-        <AvatarLabel>Hugo</AvatarLabel>
-      </Avatar>
-    </div>
-  ),
-};
-
-export const WithCustomSizes: Story = {
-  render: () => (
-    <div className="flex gap-2.5">
-      <Avatar className="h-4 w-4">
-        <AvatarFallback>
-          <UserIcon className="h-2 w-2" />
-        </AvatarFallback>
-      </Avatar>
-
-      <Avatar className="h-6 w-6">
-        <AvatarFallback>
-          <UserIcon className="h-4 w-4" />
-        </AvatarFallback>
-      </Avatar>
-
-      <Avatar>
-        <AvatarFallback>
-          <UserIcon className="h-6 w-6" />
-        </AvatarFallback>
-      </Avatar>
-
-      <Avatar className="h-10 w-10">
-        <AvatarFallback>
-          <UserIcon className="h-8 w-8" />
-        </AvatarFallback>
-      </Avatar>
-    </div>
-  ),
+      </>
+    ),
+  },
 };

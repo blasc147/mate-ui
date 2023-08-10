@@ -1,10 +1,10 @@
 'use client';
-import React from 'react';
+
+import { cn } from '../utils';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
-import { cn } from '../utils';
-
+import React, { ReactNode } from 'react';
 
 const styles = {
   root: cva(
@@ -21,13 +21,24 @@ const styles = {
       },
     }
   ),
+  rootSize: cva([], {
+    variants: {
+      size: {
+        xs: ['h-5 w-5'],
+        sm: ['h-8 w-8'],
+        md: ['h-10 w-10'],
+        lg: ['h-14 w-14'],
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  }),
   statusIcon: cva(
     [
-      'h-2.5',
-      'w-2.5',
+      'bottom-0',
+      'right-0',
       'absolute',
-      'top-[22px]',
-      'left-[22px]',
       'rounded-full',
       'border',
       'border-white',
@@ -39,6 +50,16 @@ const styles = {
           offline: ['bg-neutral-300'],
           busy: ['bg-error-500'],
         },
+        size: {
+          xs: ['h-[6.25px] w-[6.25px]'],
+          sm: ['h-[10px] w-[10px]'],
+          md: ['h-[12.5px] w-[12.5px]'],
+          lg: ['h-[17.5px] w-[17.5px]'],
+        },
+      },
+      defaultVariants: {
+        variant: 'online',
+        size: 'md',
       },
     }
   ),
@@ -63,13 +84,13 @@ const styles = {
       },
     }
   ),
-  actionButton: cn(
+  actionButton2: cn(
     'h-6',
     'w-6',
     'bg-neutral-100',
     'absolute',
-    'top-[15px]',
-    'left-[15px]',
+    'top-2.5',
+    'left-2.5',
     'rounded-full',
     'flex',
     'justify-center',
@@ -78,49 +99,123 @@ const styles = {
     'focus-visible:ring-2',
     'ring-focus'
   ),
-  actionButtonIcon: cn('fill-neutral-700', 'h-4', 'w-4'),
-  label: cn(
-    'pt-2.5',
-    'font-regular',
-    'text-xs',
-    'text-center',
-    'text-neutral-900',
-    'absolute',
-    'top-8'
+  actionButton: cva(
+    [
+      'h-6',
+      'w-6',
+      'bg-neutral-100',
+      'absolute',
+      'rounded-full',
+      'flex',
+      'justify-center',
+      'items-center',
+      'focus:outline-none',
+      'focus-visible:ring-2',
+      'ring-focus',
+    ],
+    {
+      variants: {
+        size: {
+          xs: ['top-2.5', 'left-2.5'],
+          sm: ['top-4', 'left-[18px]'],
+          md: ['top-6', 'left-6'],
+          lg: ['top-[36px]', 'left-[37px]'],
+        },
+      },
+    }
   ),
+  actionButtonIcon: cn('fill-neutral-700', 'h-4', 'w-4'),
+  label: cva(
+    [
+      'mt-3',
+      'font-regular',
+      'text-xs',
+      'text-center',
+      'text-neutral-900',
+      'absolute',
+    ],
+    {
+      variants: {
+        size: {
+          xs: ['top-3.5'],
+          sm: ['top-6'],
+          md: ['top-8'],
+          lg: ['top-12'],
+        },
+      },
+      defaultVariants: {
+        size: 'md',
+      },
+    }
+  ),
+  avatarIcon: cva([], {
+    variants: {
+      size: {
+        xs: ['h-4 w-4'],
+        sm: ['h-5 w-5'],
+        md: ['h-6 w-6'],
+        lg: ['h-8 w-8'],
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  }),
 };
+
+type AvatarShapes = 'square' | 'circle';
+type AvatarSizes = 'xs' | 'sm' | 'md' | 'lg';
+type AvatarStatuses = 'online' | 'offline' | 'busy';
 
 interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
-  shape?: 'square' | 'circle';
+  shape?: AvatarShapes;
+  size?: AvatarSizes;
 }
+
+const AvatarContext = React.createContext<AvatarProps>({
+  size: 'md',
+});
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   AvatarProps
->(({ className, shape, children, ...props }, ref) => (
-  <span className="relative">
-    <AvatarPrimitive.Root
-      ref={ref}
-      className={cn(styles.root({ shape }), className)}
-      {...props}
-    >
-      {children}
-    </AvatarPrimitive.Root>
+>(({ className, shape, size='md' , children, ...props }, ref) => (
+  <span className="absolute">
+    <AvatarContext.Provider value={{ size }}>
+      <AvatarPrimitive.Root
+        ref={ref}
+        className={cn(
+          styles.root({ shape }),
+          styles.rootSize({ size }),
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </AvatarPrimitive.Root>
+    </AvatarContext.Provider>
   </span>
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
+interface AvatarImageProps
+  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> {
+  size?: AvatarSizes;
+  status?: AvatarStatuses;
+}
+
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn(styles.image, className)}
-    {...props}
-  />
-));
+  AvatarImageProps
+>(({ className, status, ...props }, ref) => {
+  const { size } = React.useContext(AvatarContext);
+  return(
+  <>
+    <AvatarPrimitive.Image ref={ref} className={cn(styles.image, className)} {...props}/>
+    {status && <AvatarStatus variant={status} />}
+  </>
+)});
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
 const AvatarFallback = React.forwardRef<
@@ -138,14 +233,16 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 interface AvatarActionButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
+  size?: AvatarSizes;
 }
 
 const AvatarActionButton = React.forwardRef<
   HTMLButtonElement,
   AvatarActionButtonProps
 >(({ icon, className, ...props }, ref) => {
+  const { size } = React.useContext(AvatarContext);
   return (
-    <button ref={ref} className={cn(styles.actionButton, className)} {...props}>
+    <button ref={ref} className={cn(styles.actionButton({size}), className)} {...props}>
       <Slot className={styles.actionButtonIcon}>{icon}</Slot>
     </button>
   );
@@ -153,28 +250,57 @@ const AvatarActionButton = React.forwardRef<
 AvatarActionButton.displayName = 'AvatarActionButton';
 
 interface AvatarStatusProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant: 'online' | 'offline' | 'busy';
+  variant?: AvatarStatuses;
 }
 
 const AvatarStatus = React.forwardRef<HTMLSpanElement, AvatarStatusProps>(
-  ({ variant, className, ...props }, ref) => (
-    <span
-      ref={ref}
-      className={cn(styles.statusIcon({ variant }), className)}
-      {...props}
-    />
-  )
+  ({ variant, className, ...props }, ref) => {
+    const { size } = React.useContext(AvatarContext);
+    return (
+      <span
+        ref={ref}
+        className={cn(styles.statusIcon({ variant, size }), className)}
+        {...props}
+      />
+    );
+  }
 );
 AvatarStatus.displayName = 'AvatarStatus';
 
-const AvatarLabel = React.forwardRef<
-  HTMLSpanElement,
-  React.HTMLAttributes<HTMLSpanElement>
->(({ className, ...props }, ref) => (
-  <span ref={ref} className={cn(styles.label, className)} {...props} />
-));
+interface AvatarLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+  size?: AvatarSizes;
+}
+
+const AvatarLabel = React.forwardRef<HTMLSpanElement, AvatarLabelProps>(
+  ({ className, ...props }, ref) => {
+    const { size } = React.useContext(AvatarContext);
+    return (
+      <span ref={ref} className={cn(styles.label({size}), className)} {...props} />
+    );
+  }
+);
 
 AvatarLabel.displayName = 'AvatarLabel';
+
+interface AvatarIconProps extends React.HTMLAttributes<HTMLSpanElement> {
+  icon: ReactNode;
+  size?: AvatarSizes;
+  status?: AvatarStatuses;
+}
+
+const AvatarIcon = React.forwardRef<HTMLSpanElement, AvatarIconProps>(
+  ({ className, icon, status }, ref) => {
+    const { size } = React.useContext(AvatarContext);
+    return (
+      <>
+        <span ref={ref} className={cn(styles.avatarIcon({size}), className)}>{icon}</span>
+        {status && <AvatarStatus variant={status}/>}
+      </>
+    );
+  }
+);
+
+AvatarIcon.displayName = 'AvatarLabel';
 
 export {
   Avatar,
@@ -186,4 +312,5 @@ export {
   AvatarStatus,
   type AvatarStatusProps,
   AvatarLabel,
+  AvatarIcon,
 };
