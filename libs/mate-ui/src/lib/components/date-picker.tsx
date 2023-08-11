@@ -16,10 +16,10 @@ function DatePicker({
       showOutsideDays={showOutsideDays}
       className={cn('p-4', className)}
       classNames={{
-        months: 'flex space-x-4',
-        month: 'space-y-4',
-        caption_end: 'border-l pl-4 border-neutral-300',
-        caption: 'flex justify-center pt-1 relative items-center',
+        months: 'flex space-x-4 flex-col md:flex-row',
+        month: 'md:space-y-4',
+        caption_end: 'md:border-l md:pl-4 md:border-neutral-300',
+        caption: 'flex justify-center pt-1 relative items-center p-4',
         caption_label: 'text-sm font-bold flex items-center text-neutral-900',
         nav: 'flex items-center',
         nav_button: 'h-7 w-7 bg-transparent p-0',

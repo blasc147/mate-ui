@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
-import { CalendarIcon } from '@heroicons/react/20/solid';
-import type { Meta } from '@storybook/react';
-import { format } from 'date-fns';
 import { cn } from '../utils';
+import { Button } from './button';
 import { DatePicker, DateRange } from './date-picker';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from './drawer';
 import {
   FormControl,
   FormLabel,
@@ -12,6 +18,10 @@ import {
   InputRightElement,
 } from './input';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
+import { CalendarIcon } from '@heroicons/react/20/solid';
+import type { Meta } from '@storybook/react';
+import { format } from 'date-fns';
+import React, { useState } from 'react';
 
 const Story: Meta<typeof DatePicker> = {
   component: DatePicker,
@@ -142,5 +152,48 @@ export function DatePickerWithRangeSingle({
         </PopoverContent>
       </Popover>
     </div>
+  );
+}
+
+export function DrawerWithDatePickerForMobile() {
+  const [date, setDate] = useState<DateRange | undefined>();
+  return (
+    <Drawer>
+      <DrawerTrigger>
+        <Button type="submit" size="sm">
+          Open Drawer
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>
+            {' '}
+            {date?.from && date?.to
+              ? `${format(date.from, 'LLL dd')} - ${format(date.to, 'LLL dd')}`
+              : 'Select a range'}
+          </DrawerTitle> 
+        </DrawerHeader>
+        <DrawerBody className="h-[85vh]">
+          <DatePicker
+            initialFocus
+            mode="range"
+            defaultMonth={date?.from}
+            selected={date}
+            onSelect={setDate}
+            numberOfMonths={2}
+            className='m-auto mb-10'
+            classNames={{
+              months: 'flex flex-col', 
+              caption_end: 'border-0 mt-8',
+            }}
+          />
+        </DrawerBody>
+        <DrawerFooter>
+          <Button type="submit" size="lg" className={cn('w-full')}>
+            Done
+          </Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 }

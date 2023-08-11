@@ -64,6 +64,8 @@ const sheetVariants = cva(
     'data-[state=open]:duration-500',
     'flex',
     'flex-col',
+    'w-full',
+    'md:w-auto'
   ],
   {
     variants: {
