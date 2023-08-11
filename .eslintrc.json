@@ -21,6 +21,15 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    //add custom tailwind classes
+    "tailwindcss": {
+      "whitelist": [
+        "text-primary-500",
+        "bg-primary-200",
+        "text-success-500",
+        "ring-focus"
+      ]
     }
   },
   "rules": {
