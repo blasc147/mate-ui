@@ -48,6 +48,7 @@ import {
 import { Routes } from '../../constants/routes';
 import Description from '../Description/Description';
 import { Col } from '../Grid';
+import { CopyToClipboard } from '../CopyToClipboard/copyToClipboard';
 
 interface Transactions {
   date: string;
@@ -152,7 +153,9 @@ const BaseDashboard = () => {
                 <div className="flex justify-center items-center">
                   <span className="text-xs">Acct #: ••••••••••••••••</span>
                   <EyeIcon className="w-4 h-4 ml-2" />
-                  <ClipboardDocumentCheckIcon className="w-4 h-4 ml-2" />
+                  <CopyToClipboard tooltipText='Copy'>
+                    <ClipboardDocumentCheckIcon className="ml-2 h-4 w-4" />
+                  </CopyToClipboard>
                 </div>
               </div>
             </CardContent>
