@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '../utils';
 
@@ -47,27 +48,29 @@ export function Tooltip({
   ...props
 }: TooltipProps) {
   return (
-    <TooltipPrimitive.Root
-      open={open}
-      defaultOpen={defaultOpen}
-      onOpenChange={onOpenChange}
-      delayDuration={0}
-    >
-      <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Content
-        side={placement}
-        align={align}
-        className={cn(styles.root({ theme }), className)}
-        {...props}
+    <TooltipProvider>
+      <TooltipPrimitive.Root
+        open={open}
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+        delayDuration={0}
       >
-        {content}
-        <TooltipPrimitive.Arrow
-          className={cn('h-1', 'w-2', {
-            'fill-neutral-700': theme === 'dark',
-            'fill-neutral-300': theme === 'light',
-          })}
-        />
-      </TooltipPrimitive.Content>
-    </TooltipPrimitive.Root>
+        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Content
+          side={placement}
+          align={align}
+          className={cn(styles.root({ theme }), className)}
+          {...props}
+        >
+          {content}
+          <TooltipPrimitive.Arrow
+            className={cn('h-1', 'w-2', {
+              'fill-neutral-700': theme === 'dark',
+              'fill-neutral-300': theme === 'light',
+            })}
+          />
+        </TooltipPrimitive.Content>
+      </TooltipPrimitive.Root>
+    </TooltipProvider>
   );
 }

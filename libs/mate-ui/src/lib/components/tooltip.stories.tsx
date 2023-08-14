@@ -1,4 +1,3 @@
-import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Button } from './button';
@@ -17,7 +16,6 @@ function TooltipComponent({
     setTooltipOpen(open);
   };
   return (
-    <TooltipProvider>
       <Tooltip
         content={content}
         open={tooltipOpen}
@@ -29,7 +27,6 @@ function TooltipComponent({
       >
         <Button>Hover me</Button>
       </Tooltip>
-    </TooltipProvider>
   );
 }
 

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Description from '../Description/Description';
 import { invoices } from './mockData';
 import useScreenSize from '@/hooks/useScreenSize';
@@ -41,6 +42,7 @@ import {
   TableRow,
   Tag,
   TagColorScheme,
+  Tooltip,
   cn,
 } from '@truenorth/mate-ui';
 import { v4 as uuidv4 } from 'uuid';
@@ -52,7 +54,19 @@ enum PaymentStatus {
 
 const List = () => {
   const screenSize = useScreenSize();
+  const [createTooltipOpen, setCreateTooltipOpen] = useState(false);
+  const [makeTooltipOpen, setMakeTooltipOpen] = useState(false);
+  const [uploadTooltipOpen, setUploadTooltipOpen] = useState(false);
 
+  const handleCreateTooltipOpenChange = (open: boolean) => {
+    setCreateTooltipOpen(open);
+  };
+  const handleMakeTooltipOpenChange = (open: boolean) => {
+    setMakeTooltipOpen(open);
+  };
+  const handleUploadTooltipOpenChange = (open: boolean) => {
+    setUploadTooltipOpen(open);
+  };
   return (
     <div className="mx-auto flex flex-wrap justify-between gap-5 lg:pt-10">
       <Col size="main">
@@ -80,24 +94,54 @@ const List = () => {
           <CardContent className="flex-col p-0 pt-4 md:px-0">
             <div className="flex flex-wrap gap-2 pb-6 lg:flex-nowrap lg:justify-between">
               <div className="hidden gap-3 pb-2 lg:flex lg:pb-0">
-                <IconButton
-                  size="md"
-                  themeColor="primary"
-                  icon={<DocumentPlusIcon />}
-                  aria-label={'plus-button'}
-                />
-                <IconButton
-                  size="md"
-                  themeColor="primary"
-                  icon={<ArrowUturnRightIcon />}
-                  aria-label={'dollarButton'}
-                />
-                <IconButton
-                  size="md"
-                  themeColor="primary"
-                  icon={<ArrowUpTrayIcon />}
-                  aria-label={'ArrowButton'}
-                />
+              <Tooltip
+                content='Create New'
+                open={createTooltipOpen}
+                defaultOpen={false}
+                onOpenChange={handleCreateTooltipOpenChange}
+                theme='dark'
+                placement='top'
+                align='center'
+                >
+                  <IconButton
+                    size="md"
+                    themeColor="primary"
+                    icon={<DocumentPlusIcon />}
+                    aria-label={'plus-button'}
+                  />
+                </Tooltip>
+                <Tooltip
+                content='Make Payment'
+                open={makeTooltipOpen}
+                defaultOpen={false}
+                onOpenChange={handleMakeTooltipOpenChange}
+                theme='dark'
+                placement='top'
+                align='center'
+                >
+                  <IconButton
+                    size="md"
+                    themeColor="primary"
+                    icon={<ArrowUturnRightIcon />}
+                    aria-label={'dollarButton'}
+                  />
+                </Tooltip>
+                <Tooltip
+                content='Upload Document'
+                open={uploadTooltipOpen}
+                defaultOpen={false}
+                onOpenChange={handleUploadTooltipOpenChange}
+                theme='dark'
+                placement='top'
+                align='center'
+                >
+                  <IconButton
+                    size="md"
+                    themeColor="primary"
+                    icon={<ArrowUpTrayIcon />}
+                    aria-label={'ArrowButton'}
+                  />
+                </Tooltip>
               </div>
               <div className="flex w-full flex-col gap-3 pb-2 sm:flex-row lg:hidden">
                 <Button

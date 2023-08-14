@@ -14,6 +14,7 @@ export * from './radio-button';
 export * from './table';
 export * from './tabs';
 export * from './tag';
+export * from './tooltip';
 export * from './dropdown';
 export * from './drawer';
 export * from './selector';
