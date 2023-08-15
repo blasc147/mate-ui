@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 
 import { CheckIcon } from '@heroicons/react/24/outline';

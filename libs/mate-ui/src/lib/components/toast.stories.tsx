@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import {
   SparklesIcon,
   ExclamationCircleIcon,
@@ -128,7 +129,7 @@ export const CompleteNeutral = () => {
         actionButton={<Link>Undo</Link>}
         themeColor="neutral"
         leftElement={
-          <ExclamationCircleIcon className="text-neutral-700 w-5 h-5" />
+          <ExclamationCircleIcon className="h-5 w-5 text-neutral-700" />
         }
         buttons={
           <>
@@ -185,7 +186,7 @@ export const SimpleMessagePrimaryWithIcon = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={<SparklesIcon className="h-6 w-6 text-primary-500" />}
+        leftElement={<SparklesIcon className="text-primary-500 h-6 w-6" />}
       />
     </ToastProvider>
   );
@@ -255,7 +256,7 @@ export const CompletePrimary = () => {
         description={'Message'}
         actionButton={<Link>Undo</Link>}
         leftElement={
-          <ExclamationCircleIcon className="text-primary-500 w-5 h-5" />
+          <ExclamationCircleIcon className="text-primary-500 h-5 w-5" />
         }
         buttons={
           <>
@@ -317,7 +318,7 @@ export const SimpleMessageSuccessWithIcon = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={<SparklesIcon className="h-6 w-6 text-success-500" />}
+        leftElement={<SparklesIcon className="text-success-500 h-6 w-6" />}
         themeColor="success"
       />
     </ToastProvider>
@@ -391,7 +392,7 @@ export const CompleteSuccess = () => {
         actionButton={<Link>Undo</Link>}
         themeColor="success"
         leftElement={
-          <ExclamationCircleIcon className="text-success-500 w-5 h-5" />
+          <ExclamationCircleIcon className="text-success-500 h-5 w-5" />
         }
         buttons={
           <>
@@ -453,7 +454,7 @@ export const SimpleMessageWarningWithIcon = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={<SparklesIcon className="h-6 w-6 text-warning-500" />}
+        leftElement={<SparklesIcon className="text-warning-500 h-6 w-6" />}
         themeColor="warning"
       />
     </ToastProvider>
@@ -527,7 +528,7 @@ export const CompleteWarning = () => {
         actionButton={<Link>Undo</Link>}
         themeColor="warning"
         leftElement={
-          <ExclamationCircleIcon className="text-warning-500 w-5 h-5" />
+          <ExclamationCircleIcon className="text-warning-500 h-5 w-5" />
         }
         buttons={
           <>
@@ -589,7 +590,7 @@ export const SimpleMessageErrorWithIcon = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={<SparklesIcon className="h-6 w-6 text-error-500" />}
+        leftElement={<SparklesIcon className="text-error-500 h-6 w-6" />}
         themeColor="error"
       />
     </ToastProvider>
@@ -663,7 +664,7 @@ export const CompleteError = () => {
         actionButton={<Link>Undo</Link>}
         themeColor="error"
         leftElement={
-          <ExclamationCircleIcon className="text-error-500 w-5 h-5" />
+          <ExclamationCircleIcon className="text-error-500 h-5 w-5" />
         }
         buttons={
           <>

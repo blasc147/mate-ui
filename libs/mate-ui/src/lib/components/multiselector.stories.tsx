@@ -73,7 +73,7 @@ export const MultipleSelection = () => {
       <MultiSelectorTrigger>
         <MultiSelectorFormField className="lg:w-[336px]" />
       </MultiSelectorTrigger>
-      <MultiSelectorContent className="lg:w-[336px] w-[220px]">
+      <MultiSelectorContent className="w-[220px] lg:w-[336px]">
         {selectedItems.map((item) => (
           <MultiSelectorItem
             key={item.value as string}

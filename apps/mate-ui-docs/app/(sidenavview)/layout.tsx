@@ -22,13 +22,13 @@ const SidenavLayout = ({ children }: Props) => {
         <div className="hidden h-full px-8 py-6 lg:block lg:w-[16rem]">
           <Sidenav />
         </div>
-        <div className="hidden w-full h-full px-8 py-20 lg:block">
+        <div className="hidden h-full w-full px-8 py-20 lg:block">
           {children}
         </div>
       </div>
       {/* Mobile navbar */}
       <div className="flex flex-col lg:hidden">
-        <div className="flex justify-end w-full px-6 py-6 lg:none">
+        <div className="lg:none flex w-full justify-end p-6">
           <Drawer>
             <DrawerTrigger>
               <Bars3Icon className="h-5 w-5" />
@@ -41,7 +41,7 @@ const SidenavLayout = ({ children }: Props) => {
           </Drawer>
         </div>
       </div>
-      <div className="w-full h-full px-6 pt-8 pb-10 lg:hidden">{children}</div>
+      <div className="h-full w-full px-6 pb-10 pt-8 lg:hidden">{children}</div>
     </>
   );
 };

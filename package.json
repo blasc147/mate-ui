@@ -34,6 +34,7 @@
     "react-day-picker": "^8.7.1",
     "react-dom": "^18.2.0",
     "react-swipeable": "^7.0.1",
+    "react-table": "^7.8.0",
     "tailwind-merge": "^1.13.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0"
@@ -58,7 +59,6 @@
     "@swc/jest": "0.2.20",
     "@tailwindcss/forms": "^0.5.3",
     "@testing-library/react": "14.0.0",
-    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.14.2",
     "@types/react": "18.0.28",

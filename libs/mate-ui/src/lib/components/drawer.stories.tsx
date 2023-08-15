@@ -506,7 +506,7 @@ export function TopDrawer() {
         <DrawerHeader>
           <DrawerTitle>Header</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody className="p-4 max-h-[500px]">
+        <DrawerBody className="max-h-[500px] p-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
           eleifend felis, vel fringilla neque. In tristique dui magna, id
           iaculis turpis pellentesque et. Suspendisse faucibus quam purus, quis

@@ -34,10 +34,10 @@ export const Description: React.FC<Props> = ({
           View code
         </Button>
       </div>
-      <p className="text-lg my-5">{paragraphText}</p>
-      <p className="font-semibold text-base">Mate UI Components used:</p>
+      <p className="my-5 text-lg">{paragraphText}</p>
+      <p className="text-base font-semibold">Mate UI Components used:</p>
 
-      <ul className="list-disc font-normal text-base pl-4 pt-2">
+      <ul className="list-disc pl-4 pt-2 text-base font-normal">
         {listItems.map((item, index) => (
           <li key={index}>{item}</li>
         ))}

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Description from '../Description/Description';
 import { invoices } from './mockData';
 import useScreenSize from '@/hooks/useScreenSize';
@@ -19,7 +20,6 @@ import {
   CardHeader,
   CardTitle,
   Checkbox,
-  CloseButton,
   FormControl,
   Header,
   HeaderSupportiveText,
@@ -27,7 +27,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Link,
   Selector,
   SelectorContent,
   SelectorItem,
@@ -46,6 +45,8 @@ import {
   cn,
 } from '@truenorth/mate-ui';
 import { v4 as uuidv4 } from 'uuid';
+import { useTable, useSortBy, useFilters, Column } from 'react-table';
+export type { Cell } from 'react-table';
 
 enum PaymentStatus {
   Open = 'success',
@@ -67,6 +68,24 @@ const List = () => {
   const handleUploadTooltipOpenChange = (open: boolean) => {
     setUploadTooltipOpen(open);
   };
+  const columns = React.useMemo(() => tableColumns, []);
+  const data = React.useMemo(() => invoices, []);
+  const [selectedStatus, setSelectedStatus] = React.useState('');
+  const [searchFilter, setSearchFilter] = React.useState('');
+  const { headerGroups, rows, prepareRow, setFilter } = useTable(
+    {
+      columns,
+      data,
+    },
+    useFilters,
+    useSortBy
+  );
+
+  useEffect(() => {
+    setFilter('status', selectedStatus);
+    setFilter('id', searchFilter);
+  }, [selectedStatus, searchFilter, setFilter]);
+
   return (
     <div className="mx-auto flex flex-wrap justify-between gap-5 lg:pt-10">
       <Col size="main">
@@ -94,14 +113,14 @@ const List = () => {
           <CardContent className="flex-col p-0 pt-4 md:px-0">
             <div className="flex flex-wrap gap-2 pb-6 lg:flex-nowrap lg:justify-between">
               <div className="hidden gap-3 pb-2 lg:flex lg:pb-0">
-              <Tooltip
-                content='Create New'
-                open={createTooltipOpen}
-                defaultOpen={false}
-                onOpenChange={handleCreateTooltipOpenChange}
-                theme='dark'
-                placement='top'
-                align='center'
+                <Tooltip
+                  content="Create New"
+                  open={createTooltipOpen}
+                  defaultOpen={false}
+                  onOpenChange={handleCreateTooltipOpenChange}
+                  theme="dark"
+                  placement="top"
+                  align="center"
                 >
                   <IconButton
                     size="md"
@@ -111,13 +130,13 @@ const List = () => {
                   />
                 </Tooltip>
                 <Tooltip
-                content='Make Payment'
-                open={makeTooltipOpen}
-                defaultOpen={false}
-                onOpenChange={handleMakeTooltipOpenChange}
-                theme='dark'
-                placement='top'
-                align='center'
+                  content="Make Payment"
+                  open={makeTooltipOpen}
+                  defaultOpen={false}
+                  onOpenChange={handleMakeTooltipOpenChange}
+                  theme="dark"
+                  placement="top"
+                  align="center"
                 >
                   <IconButton
                     size="md"
@@ -127,13 +146,13 @@ const List = () => {
                   />
                 </Tooltip>
                 <Tooltip
-                content='Upload Document'
-                open={uploadTooltipOpen}
-                defaultOpen={false}
-                onOpenChange={handleUploadTooltipOpenChange}
-                theme='dark'
-                placement='top'
-                align='center'
+                  content="Upload Document"
+                  open={uploadTooltipOpen}
+                  defaultOpen={false}
+                  onOpenChange={handleUploadTooltipOpenChange}
+                  theme="dark"
+                  placement="top"
+                  align="center"
                 >
                   <IconButton
                     size="md"
@@ -175,64 +194,100 @@ const List = () => {
               <div className="flex w-full flex-wrap gap-2 md:pt-4 lg:justify-end lg:pt-0">
                 <FormControl className="w-full md:w-[272px]" inputSize="md">
                   <InputGroup>
-                    <Input type="text" placeholder="Search..." />
+                    <Input
+                      type="text"
+                      placeholder="Search..."
+                      onChange={(e) => setSearchFilter(e.target.value)}
+                    />
                     <InputRightElement>
                       <MagnifyingGlassIcon className="h-5 w-5 text-neutral-700" />
                     </InputRightElement>
                   </InputGroup>
                 </FormControl>
-                <div className="flex w-full justify-between pt-2 md:w-[105px] md:justify-end lg:w-auto">
-                  <p className="pl-0 text-sm text-neutral-700 md:pl-3">
-                    Filter by:
-                  </p>
-                  <div className="flex items-center md:hidden">
-                    <Link
-                      colorScheme="neutral"
-                      size="sm"
-                      weight="light"
-                      className="block md:hidden"
-                    >
-                      Clear filters
-                    </Link>
-                    <CloseButton />
-                  </div>
-                </div>
                 <FormControl className="w-full md:w-[135px]">
-                  <Selector selectorSize="md">
+                  <Selector
+                    selectorSize="md"
+                    value={selectedStatus}
+                    onValueChange={setSelectedStatus}
+                  >
                     <SelectorTrigger>
                       <SelectorValue placeholder="Status" />
                     </SelectorTrigger>
                     <SelectorContent>
-                      <SelectorItem value="open">Open Loans</SelectorItem>
-                      <SelectorItem value="paid">Paid Loans</SelectorItem>
+                      <SelectorItem value="">All</SelectorItem>
+                      <SelectorItem value="Open">Open Loans</SelectorItem>
+                      <SelectorItem value="Paid">Paid Loans</SelectorItem>
                     </SelectorContent>
                   </Selector>
                 </FormControl>
-                <FormControl className="w-full md:w-[135px]">
-                  <Selector selectorSize="md">
-                    <SelectorTrigger>
-                      <SelectorValue placeholder="Autopay" />
-                    </SelectorTrigger>
-                    <SelectorContent>
-                      <SelectorItem value="on">On</SelectorItem>
-                      <SelectorItem value="off">Off</SelectorItem>
-                    </SelectorContent>
-                  </Selector>
-                </FormControl>
-                <Link
-                  colorScheme="neutral"
-                  size={
-                    screenSize === 'sm' || screenSize === 'md' ? 'sm' : 'md'
-                  }
-                  weight="light"
-                  className="hidden md:flex"
-                >
-                  Clear filters
-                  <CloseButton />
-                </Link>
               </div>
             </div>
-            <ComplexListTable />
+            <Table>
+              {rows.length > 0 ? (
+                <>
+                  <TableHeader className="h-11">
+                    {headerGroups.map((headerGroup) => (
+                      <TableRow
+                        {...headerGroup.getHeaderGroupProps()}
+                        key={uuidv4()}
+                      >
+                        <TableHead className="hidden w-9 lg:table-cell">
+                          <Checkbox />
+                        </TableHead>
+                        {headerGroup.headers.map((column) => (
+                          <TableHead
+                            {...column.getHeaderProps(
+                              column.sortable && column.getSortByToggleProps()
+                            )}
+                            key={uuidv4()}
+                            className={column.className}
+                            desktopOnly={column.desktopOnly}
+                          >
+                            {column.render('Header')}
+                            {column.sortable && <SortColumn />}
+                          </TableHead>
+                        ))}{' '}
+                        <TableHead></TableHead>
+                      </TableRow>
+                    ))}
+                  </TableHeader>
+                  <TableBody>
+                    {rows.map((row) => {
+                      prepareRow(row);
+                      return (
+                        <TableRow {...row.getRowProps()} key={uuidv4()}>
+                          <TableCell className="hidden lg:table-cell">
+                            <Checkbox />
+                          </TableCell>
+                          {row.cells.map((cell) => (
+                            <TableCell
+                              {...cell.getCellProps({
+                                style: {
+                                  minWidth: cell.column.minWidth,
+                                  width: cell.column.width,
+                                  maxWidth: cell.column.maxWidth,
+                                },
+                              })}
+                              key={uuidv4()}
+                              desktopOnly={cell.column.desktopOnly}
+                            >
+                              {cell.render('Cell')}
+                            </TableCell>
+                          ))}
+                          <TableCell className="p-2">
+                            <EllipsisVerticalIcon className="h-4 w-4" />
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </>
+              ) : (
+                <div className="w-full p-6 text-center text-neutral-500">
+                  We couldn't find any matches for that search
+                </div>
+              )}
+            </Table>
           </CardContent>
         </Card>
       </Col>
@@ -255,115 +310,76 @@ const listItems = [
   'Tag',
 ];
 
-const ComplexListTable = () => (
-  <Table>
-    <TableHeader className="h-11">
-      <TableRow>
-        <TableHead className="hidden lg:flex lg:h-full lg:w-[70px]">
-          <Checkbox />
-        </TableHead>
-        {renderTableHeaders()}
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      {invoices.map((invoice) => (
-        <TableRow key={invoice.id} className="h-14">
-          <TableCell className="hidden lg:flex lg:min-w-[50px]">
-            <Checkbox />
-          </TableCell>
-          <TableCell>{invoice.id}</TableCell>
-          <TableCell className="hidden md:flex">{invoice.loanType}</TableCell>
-          <TableCell
-            className="text-right"
-            desktopOnly
-          >{`$${invoice.payOff}`}</TableCell>
-          <TableCell>{invoice.date}</TableCell>
-          <TableCell desktopOnly>
-            <Tag
-              size="sm"
-              className="capitalize"
-              colorScheme={PaymentStatus[invoice.status] as TagColorScheme}
-            >
-              {invoice.status}
-            </Tag>
-          </TableCell>
-          <TableCell desktopOnly>
-            <div className="flex gap-4">
-              {invoice.autopay}
-              {invoice.autopay === 'On' && (
-                <CheckCircleIcon className="text-success-500 h-4 w-4 self-center" />
-              )}
-            </div>
-          </TableCell>
-          <TableCell className="p-2">
-            <EllipsisVerticalIcon className="h-4 w-4" />
-          </TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-);
-
-const renderTableHeaders = () => {
-  return tableColumns.map((column) => (
-    <TableHead
-      key={uuidv4()}
-      className={column.style}
-      desktopOnly={column.desktopOnly}
-    >
-      {column.name}
-      {column.sortable && <SortColumn />}
-    </TableHead>
-  ));
-};
-
-const tableColumns = [
+const tableColumns: Column[] = [
   {
-    name: 'ID',
-    style: 'lg:w-[290px]',
+    Header: 'ID',
+    accessor: 'id',
+    sortable: true,
+    desktopOnly: false,
+    minWidth: 140,
+    maxWidth: 140,
+  },
+  {
+    Header: 'Loan Type',
+    accessor: 'loanType',
+    sortable: true,
+    desktopOnly: true,
+    minWidth: 140,
+    width: 500,
+    maxWidth: 500,
+  },
+  {
+    Header: 'Payoff',
+    accessor: 'payOff',
+    minWidth: 120,
+    maxWidth: 120,
+    sortable: false,
+    desktopOnly: true,
+    className: 'text-right',
+    Cell: ({ row }) => (
+      <div className="text-right">{`$${row.original.payOff}`}</div>
+    ),
+  },
+  {
+    Header: 'Date Funded',
+    minWidth: 150,
+    maxWidth: 150,
+    accessor: 'date',
     sortable: true,
     desktopOnly: false,
   },
   {
-    name: 'Loan Type',
-    style: 'lg:w-[290px]',
+    Header: 'Status',
+    accessor: 'status',
+    minWidth: 120,
+    maxWidth: 120,
     sortable: true,
     desktopOnly: true,
+    Cell: ({ row }) => (
+      <Tag
+        size="sm"
+        className="capitalize"
+        colorScheme={PaymentStatus[row.original.status] as TagColorScheme}
+      >
+        {row.original.status}
+      </Tag>
+    ),
   },
   {
-    name: 'Payoff',
-    style: 'text-right lg:[290px]',
+    Header: 'Autopay',
+    accessor: 'autopay',
+    minWidth: 120,
+    maxWidth: 120,
     sortable: false,
     desktopOnly: true,
-  },
-  {
-    name: 'Date Funded',
-    style: 'lg:w-[155px]',
-    sortable: true,
-    desktopOnly: false,
-  },
-  {
-    name: 'Status',
-    minWidth: '100px',
-    maxWidth: '150px',
-    style: 'lg:w-[120px]',
-    sortable: true,
-    desktopOnly: true,
-  },
-  {
-    name: 'Autopay',
-    minWidth: '100px',
-    maxWidth: '150px',
-    style: 'lg:w-[105px]',
-    sortable: false,
-    desktopOnly: true,
-  },
-  {
-    // Empty header for additional space, if needed
-    name: '',
-    style: 'text-left lg:w-[68px]',
-    sortable: false,
-    desktopOnly: false,
+    Cell: ({ row }) => (
+      <div className="flex gap-4">
+        {row.original.autopay}
+        {row.original.autopay === 'On' && (
+          <CheckCircleIcon className="text-success-500 h-4 w-4 self-center" />
+        )}
+      </div>
+    ),
   },
 ];
 

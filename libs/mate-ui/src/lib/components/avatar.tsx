@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 
 import { cn } from '../utils';
@@ -180,7 +181,7 @@ const AvatarContext = React.createContext<AvatarProps>({
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   AvatarProps
->(({ className, shape, size='md' , children, ...props }, ref) => (
+>(({ className, shape, size = 'md', children, ...props }, ref) => (
   <span className="absolute">
     <AvatarContext.Provider value={{ size }}>
       <AvatarPrimitive.Root
@@ -210,12 +211,17 @@ const AvatarImage = React.forwardRef<
   AvatarImageProps
 >(({ className, status, ...props }, ref) => {
   const { size } = React.useContext(AvatarContext);
-  return(
-  <>
-    <AvatarPrimitive.Image ref={ref} className={cn(styles.image, className)} {...props}/>
-    {status && <AvatarStatus variant={status} />}
-  </>
-)});
+  return (
+    <>
+      <AvatarPrimitive.Image
+        ref={ref}
+        className={cn(styles.image, className)}
+        {...props}
+      />
+      {status && <AvatarStatus variant={status} />}
+    </>
+  );
+});
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
 const AvatarFallback = React.forwardRef<
@@ -242,7 +248,11 @@ const AvatarActionButton = React.forwardRef<
 >(({ icon, className, ...props }, ref) => {
   const { size } = React.useContext(AvatarContext);
   return (
-    <button ref={ref} className={cn(styles.actionButton({size}), className)} {...props}>
+    <button
+      ref={ref}
+      className={cn(styles.actionButton({ size }), className)}
+      {...props}
+    >
       <Slot className={styles.actionButtonIcon}>{icon}</Slot>
     </button>
   );
@@ -275,7 +285,11 @@ const AvatarLabel = React.forwardRef<HTMLSpanElement, AvatarLabelProps>(
   ({ className, ...props }, ref) => {
     const { size } = React.useContext(AvatarContext);
     return (
-      <span ref={ref} className={cn(styles.label({size}), className)} {...props} />
+      <span
+        ref={ref}
+        className={cn(styles.label({ size }), className)}
+        {...props}
+      />
     );
   }
 );
@@ -293,8 +307,10 @@ const AvatarIcon = React.forwardRef<HTMLSpanElement, AvatarIconProps>(
     const { size } = React.useContext(AvatarContext);
     return (
       <>
-        <span ref={ref} className={cn(styles.avatarIcon({size}), className)}>{icon}</span>
-        {status && <AvatarStatus variant={status}/>}
+        <span ref={ref} className={cn(styles.avatarIcon({ size }), className)}>
+          {icon}
+        </span>
+        {status && <AvatarStatus variant={status} />}
       </>
     );
   }

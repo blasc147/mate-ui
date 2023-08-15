@@ -20,8 +20,8 @@ const Page = () => {
   return (
       <div className="flex flex-col">
         <header className="flex w-full">
-          <div className="flex flex-col w-full max-w-[49rem]">
-            <h3 className="text-3xl font-semibold text-neutral-900 pb-6">
+          <div className="flex w-full max-w-[49rem] flex-col">
+            <h3 className="pb-6 text-3xl font-semibold text-neutral-900">
               Components
             </h3>
             <h5 className="text-xl text-neutral-700">

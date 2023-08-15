@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 import React from 'react';
 import {
@@ -47,8 +48,10 @@ import {
 } from '@truenorth/mate-ui';
 import { Routes } from '../../constants/routes';
 import Description from '../Description/Description';
+import { v4 as uuidv4 } from 'uuid';
 import { Col } from '../Grid';
 import { CopyToClipboard } from '../CopyToClipboard/copyToClipboard';
+import { useTable, useSortBy, Column } from 'react-table';
 
 interface Transactions {
   date: string;
@@ -66,6 +69,61 @@ const listItems = [
   'Table',
 ];
 
+const headers: Column[] = [
+  {
+    Header: 'Date',
+    accessor: 'date',
+    sortable: true,
+    minWidth: 140,
+    maxWidth: 400,
+    desktopOnly: false,
+    Cell: ({ row }) => (
+      <Tag
+        colorScheme={row.id === '0' ? 'warning' : 'neutral'}
+        variant="status"
+        rightIcon={
+          row.id === '0' ? (
+            <ClockIconSolid className="text-warning-700 h-4 w-4" />
+          ) : (
+            <CheckIcon className="h-4 w-4" />
+          )
+        }
+      >
+        {row.original.date}
+      </Tag>
+    ),
+  },
+  {
+    Header: 'Description',
+    accessor: 'description',
+    sortable: true,
+    desktopOnly: true,
+    minWidth: 140,
+    maxWidth: 140,
+    Cell: ({ row }) => (
+      <>
+        {row.original.description}
+        <p className="text-xs text-neutral-600">supportiveText</p>
+      </>
+    ),
+  },
+  {
+    Header: 'Amount',
+    accessor: 'amount',
+    sortable: true,
+    desktopOnly: false,
+    minWidth: 120,
+    maxWidth: 120,
+  },
+  {
+    Header: 'Balance',
+    accessor: 'balance',
+    sortable: true,
+    desktopOnly: true,
+    minWidth: 120,
+    maxWidth: 120,
+  },
+];
 
 const BaseDashboard = () => {
   const transactions: Transactions[] = [
@@ -97,20 +155,29 @@ const BaseDashboard = () => {
     icon: React.ReactNode;
   }) => {
     return (
-      <Card cardStyle="outline" className="flex-1 md:mr-4 mt-2 md:mt-0">
-        <CardContent className="text-primary-500 flex md:flex-col md:justify-between md:items-start items-center p-4">
+      <Card cardStyle="outline" className="mt-2 flex-1 md:mr-4 md:mt-0">
+        <CardContent className="text-primary-500 flex items-center p-4 md:flex-col md:items-start md:justify-between">
           {icon}
-          <h3 className="font-bold  ml-4 md:ml-0">{title}</h3>
+          <h3 className="ml-4  font-bold md:ml-0">{title}</h3>
         </CardContent>
       </Card>
     );
   };
+  const columns = React.useMemo(() => headers, []);
+  const data = React.useMemo(() => transactions, []);
+  const { headerGroups, rows, prepareRow } = useTable(
+    {
+      columns,
+      data,
+    },
+    useSortBy
+  );
 
   return (
     <Card cardStyle="shadow" className="w-full bg-neutral-50">
-      <CardHeader className="md:px-14 md:pt-8 p-8 pb-0 flex-wrap md:flex-wrap-0">
+      <CardHeader className="md:flex-wrap-0 flex-wrap p-8 pb-0 md:px-14 md:pt-8">
         <CardTitle className="text-3xl">Hello Jane</CardTitle>
-        <div className="space-x-2 my-4 md:my-0">
+        <div className="my-4 space-x-2 md:my-0">
           <IconButton
             aria-label="Questions?"
             themeColor="primary"
@@ -131,29 +198,29 @@ const BaseDashboard = () => {
           />
         </div>
       </CardHeader>
-      <h3 className="text-neutral-700 md:px-14 px-8 mt-2">
+      <h3 className="mt-2 px-8 text-neutral-700 md:px-14">
         Tuesday, July 26, 2021
       </h3>
 
-      <CardContent className="flex-col md:px-14 md:py-8 p-8">
-        <div className="flex flex-1 md:space-x-4 md:space-y-0 space-y-6 mb-4 flex-col md:flex-row">
+      <CardContent className="flex-col p-8 md:px-14 md:py-8">
+        <div className="mb-4 flex flex-1 flex-col space-y-6 md:flex-row md:space-x-4 md:space-y-0">
           <Card
             cardStyle="outline"
-            className="md:basis-1/2 min-h-[180px] basis-full"
+            className="min-h-[180px] basis-full md:basis-1/2"
           >
             <CardHeader className="p-4">
               <CardTitle>Available Balance</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col md:flex-row justify-between p-4 md:items-end mt-4 md:mt-0 flex-wrap">
-              <h1 className="text-3xl font-medium mb-2">$ 11,495.30</h1>
-              <div className="space-y-3 flex flex-col items-start">
-                <h3 className="font-semibold mt-6 md:mt-0">
+            <CardContent className="mt-4 flex flex-col flex-wrap justify-between p-4 md:mt-0 md:flex-row md:items-end">
+              <h1 className="mb-2 text-3xl font-medium">$ 11,495.30</h1>
+              <div className="flex flex-col items-start space-y-3">
+                <h3 className="mt-6 font-semibold md:mt-0">
                   TrueNorth Checking Account
                 </h3>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <span className="text-xs">Acct #: ••••••••••••••••</span>
-                  <EyeIcon className="w-4 h-4 ml-2" />
-                  <CopyToClipboard tooltipText='Copy'>
+                  <EyeIcon className="ml-2 h-4 w-4" />
+                  <CopyToClipboard tooltipText="Copy">
                     <ClipboardDocumentCheckIcon className="ml-2 h-4 w-4" />
                   </CopyToClipboard>
                 </div>
@@ -162,7 +229,7 @@ const BaseDashboard = () => {
           </Card>
           <Card
             cardStyle="outline"
-            className="md:basis-1/2 min-h-[180px] basis-full"
+            className="min-h-[180px] basis-full md:basis-1/2"
           >
             <CardHeader className="p-4">
               <CardTitle>Cash Flow</CardTitle>
@@ -177,43 +244,43 @@ const BaseDashboard = () => {
                 </Selector>
               </div>
             </CardHeader>
-            <CardContent className="flex justify-between p-4 md:items-end flex-col md:flex-row">
+            <CardContent className="flex flex-col justify-between p-4 md:flex-row md:items-end">
               <div className="flex flex-col space-y-2">
                 <span className="flex text-xs">
-                  <ArrowTrendingUpIcon className="w-4 h-4 mr-2" />
+                  <ArrowTrendingUpIcon className="mr-2 h-4 w-4" />
                   Money In
                 </span>
-                <h1 className="text-3xl font-medium text-success-500">
+                <h1 className="text-success-500 text-3xl font-medium">
                   $5,600.00
                 </h1>
               </div>
 
-              <div className="space-y-2 flex flex-col items-start md:mt-0 mt-4">
+              <div className="mt-4 flex flex-col items-start space-y-2 md:mt-0">
                 <span className="flex text-xs">
-                  <ArrowTrendingDownIcon className="w-4 h-4 mr-2" />
+                  <ArrowTrendingDownIcon className="mr-2 h-4 w-4" />
                   Money Out
                 </span>
-                <h1 className="text-3xl font-medium text-error-700">
+                <h1 className="text-error-700 text-3xl font-medium">
                   -$577.98
                 </h1>
               </div>
             </CardContent>
           </Card>
         </div>
-        <div className="flex flex-col md:flex-row flex-1 md:space-x-4">
+        <div className="flex flex-1 flex-col md:flex-row md:space-x-4">
           <Card
             cardStyle="outline"
-            className="md:basis-1/2 min-h-[180px] basis-full"
+            className="min-h-[180px] basis-full md:basis-1/2"
           >
             <CardHeader className="p-4">
               <CardTitle>Fund Your Account</CardTitle>
             </CardHeader>
-            <CardContent className="md:items-end flex flex-col md:flex-row space-y-4 md:space-y-0">
+            <CardContent className="flex flex-col space-y-4 md:flex-row md:items-end md:space-y-0">
               <FormControl inputStyle="underlined">
                 <FormLabel>Amount to fund</FormLabel>
                 <InputGroup>
                   <InputLeftElement>
-                    <span className="font-bold text-sm">$</span>
+                    <span className="text-sm font-bold">$</span>
                   </InputLeftElement>
                   <Input type="number" pattern="\d*" />
                 </InputGroup>
@@ -221,22 +288,22 @@ const BaseDashboard = () => {
               <Button className="md:ml-8">Next</Button>
             </CardContent>
           </Card>
-          <div className="flex flex-col md:flex-row md:flex-nowrap md:basis-1/2 basis-full mt-2">
+          <div className="mt-2 flex basis-full flex-col md:basis-1/2 md:flex-row md:flex-nowrap">
             <ActionsCard
               title="Request a Loan"
-              icon={<CurrencyDollarIcon className="w-8 h-8" />}
+              icon={<CurrencyDollarIcon className="h-8 w-8" />}
             />
             <ActionsCard
               title="Send Money"
-              icon={<PaperAirplaneIcon className="w-8 h-8" />}
+              icon={<PaperAirplaneIcon className="h-8 w-8" />}
             />
             <ActionsCard
               title="Transfer Funds"
-              icon={<ArrowsRightLeftIcon className="w-8 h-8" />}
+              icon={<ArrowsRightLeftIcon className="h-8 w-8" />}
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row flex-1 md:space-x-4 md:space-y-0 space-y-4 mt-4">
+        <div className="mt-4 flex flex-1 flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
           <Card cardStyle="outline" className="md:basis-2/3">
             <CardHeader>
               <CardTitle>Latest Transactions</CardTitle>
@@ -250,53 +317,51 @@ const BaseDashboard = () => {
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>
-                      Date
-                      <SortColumn sort="desc" />
-                    </TableHead>
-
-                    <TableHead desktopOnly>
-                      Description
-                      <SortColumn />
-                    </TableHead>
-
-                    <TableHead>
-                      Amount
-                      <SortColumn />
-                    </TableHead>
-                    <TableHead desktopOnly>
-                      Balance
-                      <SortColumn />
-                    </TableHead>
-                  </TableRow>
+                  {headerGroups.map((headerGroup) => (
+                    <TableRow
+                      {...headerGroup.getHeaderGroupProps()}
+                      key={uuidv4()}
+                    >
+                      {headerGroup.headers.map((column) => (
+                        <TableHead
+                          {...column.getHeaderProps(
+                            column.sortable && column.getSortByToggleProps()
+                          )}
+                          key={uuidv4()}
+                          className={column.className}
+                          desktopOnly={column.desktopOnly}
+                        >
+                          {column.render('Header')}
+                          {column.sortable && <SortColumn />}
+                        </TableHead>
+                      ))}
+                    </TableRow>
+                  ))}
                 </TableHeader>
 
                 <TableBody>
-                  {transactions.map((transaction, index) => (
-                    <TableRow key={transaction.date}>
-                      <TableCell>
-                        <Tag
-                          colorScheme={index === 0 ? 'warning' : 'neutral'}
-                          variant="status"
-                          rightIcon={
-                            index === 0 ? (
-                              <ClockIconSolid className="w-4 h-4 text-warning-700" />
-                            ) : (
-                              <CheckIcon className="w-4 h-4" />
-                            )
-                          }
-                        >
-                          {transaction.date}
-                        </Tag>
-                      </TableCell>
-                      <TableCell desktopOnly supportiveText="supportiveText">
-                        {transaction.description}
-                      </TableCell>
-                      <TableCell>{transaction.amount}</TableCell>
-                      <TableCell desktopOnly>{transaction.balance}</TableCell>
-                    </TableRow>
-                  ))}
+                  {rows.map((row) => {
+                    prepareRow(row);
+                    return (
+                      <TableRow {...row.getRowProps()} key={uuidv4()}>
+                        {row.cells.map((cell) => (
+                          <TableCell
+                            {...cell.getCellProps({
+                              style: {
+                                minWidth: cell.column.minWidth,
+                                width: cell.column.width,
+                                maxWidth: cell.column.maxWidth,
+                              },
+                            })}
+                            key={uuidv4()}
+                            desktopOnly={cell.column.desktopOnly}
+                          >
+                            {cell.render('Cell')}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </CardContent>
@@ -319,7 +384,7 @@ const BaseDashboard = () => {
                 <div className="mt-6">
                   <div className="flex justify-between">
                     <div className="text-sm">
-                      <h4 className="text-neutral-900 font-semibold">
+                      <h4 className="font-semibold text-neutral-900">
                         Bank of America
                       </h4>
                       <span>Account ending 3499</span>
@@ -339,9 +404,9 @@ const BaseDashboard = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex justify-between mt-6">
+                  <div className="mt-6 flex justify-between">
                     <div className="text-sm">
-                      <h4 className="text-neutral-900 font-semibold">
+                      <h4 className="font-semibold text-neutral-900">
                         Betterment
                       </h4>
                       <span>Account ending 8270</span>
@@ -378,7 +443,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex gap-5 pt-12 mx-auto flex-wrap justify-between w-full md:w-auto">
+    <div className="mx-auto flex w-full flex-wrap justify-between gap-5 pt-12 md:w-auto">
       <Col size="main">
         <BaseDashboard />
       </Col>

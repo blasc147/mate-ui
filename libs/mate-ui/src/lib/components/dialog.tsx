@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
@@ -55,10 +56,10 @@ const styles = {
     {
       variants: {
         size: {
-          xs: 'max-w-[346px] max-h-[404px]',
-          sm: 'max-w-[518px] max-h-[604px]',
-          md: 'max-w-[692px] max-h-[706px]',
-          lg: 'max-w-[1036px] max-h-[806px]',
+          xs: 'max-h-[404px] max-w-[346px]',
+          sm: 'max-h-[604px] max-w-[518px]',
+          md: 'max-h-[706px] max-w-[692px]',
+          lg: 'max-h-[806px] max-w-[1036px]',
         },
       },
       defaultVariants: {

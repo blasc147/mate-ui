@@ -3,7 +3,6 @@ import React, { ReactNode } from 'react';
 import { ArrowRightIcon, CheckBadgeIcon } from '@heroicons/react/20/solid';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  Header,
   IconButton,
   SortColumn,
   Table,
@@ -18,11 +17,7 @@ import { Col, ColContainer } from '@components';
 import { FigmaIcon, GithubIcon, StorybookIcon } from '@icons';
 import { ProjectUrls } from '@/constants/routes';
 import { Status, componentsList } from './componentsList';
-
-interface Header {
-  name: string;
-  hasSortColumn: boolean;
-}
+import { useTable, useSortBy, Column } from 'react-table';
 
 interface LinkItem {
   name: string;
@@ -30,19 +25,76 @@ interface LinkItem {
   link: string;
   icon: ReactNode;
 }
-
-export const headers: Header[] = [
+const headers: Column[] = [
   {
-    name: 'Component',
-    hasSortColumn: true,
+    Header: 'Component',
+    accessor: 'name',
+    sortable: true,
+    minWidth: 140,
+    width: 540,
+    maxWidth: 900,
+    Cell: ({ row }) => (
+      <div>
+        <p className="text-sm text-neutral-900">{row.original.name}</p>
+        <p className="hidden text-xs text-neutral-600 md:block">
+          {row.original.description}
+        </p>
+      </div>
+    ),
   },
   {
-    name: 'Status',
-    hasSortColumn: true,
+    Header: 'Status',
+    accessor: 'status',
+    sortable: true,
+    minWidth: 120,
+    maxWidth: 120,
+    Cell: ({ row }) => (
+      <Tag
+        colorScheme={
+          row.original.status === Status.Ready ? 'success' : 'neutral'
+        }
+        variant="pill"
+        rightIcon={<CheckBadgeIcon className="h-4 w-4 !text-neutral-700" />}
+        className="text-neutral-900"
+      >
+        {row.original.status}
+      </Tag>
+    ),
   },
   {
-    name: 'Links',
-    hasSortColumn: false,
+    Header: 'Links',
+    accessor: 'link',
+    sortable: false,
+    minWidth: 120,
+    maxWidth: 120,
+    Cell: ({ row }) => (
+      <div className="flex">
+        <IconButton
+          icon={<FigmaIcon />}
+          aria-label="FigmaIcon"
+          themeColor="neutral"
+          size="sm"
+          className="mr-2 flex content-center justify-center"
+          asChild
+        >
+          <a href={row.original.figmaLink} rel="noreferrer" target="_blank" />
+        </IconButton>
+        <IconButton
+          icon={<StorybookIcon />}
+          aria-label="StorybookIcon"
+          themeColor="neutral"
+          size="sm"
+          className="flex content-center justify-center"
+          asChild
+        >
+          <a
+            href={row.original.storybookLink}
+            rel="noreferrer"
+            target="_blank"
+          />
+        </IconButton>
+      </div>
+    ),
   },
 ];
 
@@ -70,81 +122,61 @@ export const linkItems: LinkItem[] = [
 ];
 
 const Components = () => {
+  const columns = React.useMemo(() => headers, []);
+  const data = React.useMemo(() => componentsList, []);
+  const { headerGroups, rows, prepareRow } = useTable(
+    {
+      columns,
+      data,
+    },
+    useSortBy
+  );
   return (
     <ColContainer>
-      <Col size="main" className="max-w-[49rem] h-fit">
+      <Col size="main" className="h-fit max-w-[49rem]">
         <Table>
           <TableHeader>
-            <TableRow>
-              {headers.map((header) => {
-                return (
-                  <TableHead key={uuidv4()} className="pr-0 md:pr-3">
-                    {header.name}
-                    {header.hasSortColumn && <SortColumn />}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {componentsList.map((component) => (
-              <TableRow key={uuidv4()}>
-                <TableCell>
-                  <div>
-                    <p className="text-sm text-neutral-900">{component.name}</p>
-                    <p className="hidden text-xs text-neutral-600 md:block">
-                      {component.description}
-                    </p>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <Tag
-                    colorScheme={
-                      component.status === Status.Ready ? 'success' : 'neutral'
-                    }
-                    variant="pill"
-                    rightIcon={
-                      <CheckBadgeIcon className="w-4 h-4 !text-neutral-700" />
-                    }
-                    className="text-neutral-900"
+            {headerGroups.map((headerGroup) => (
+              <TableRow {...headerGroup.getHeaderGroupProps()} key={uuidv4()}>
+                {headerGroup.headers.map((column) => (
+                  <TableHead
+                    {...column.getHeaderProps(
+                      column.sortable && column.getSortByToggleProps()
+                    )}
+                    key={uuidv4()}
+                    className={column.className}
+                    desktopOnly={column.desktopOnly}
                   >
-                    {component.status}
-                  </Tag>
-                </TableCell>
-                <TableCell>
-                  <div className="flex">
-                    <IconButton
-                      icon={<FigmaIcon />}
-                      aria-label="FigmaIcon"
-                      themeColor="neutral"
-                      size="sm"
-                      className="mr-2 flex justify-center content-center"
-                      asChild
-                    >
-                      <a
-                        href={component.figmaLink}
-                        rel="noreferrer"
-                        target="_blank"
-                      />
-                    </IconButton>
-                    <IconButton
-                      icon={<StorybookIcon />}
-                      aria-label="StorybookIcon"
-                      themeColor="neutral"
-                      size="sm"
-                      className="flex justify-center content-center"
-                      asChild
-                    >
-                      <a
-                        href={component.storybookLink}
-                        rel="noreferrer"
-                        target="_blank"
-                      />
-                    </IconButton>
-                  </div>
-                </TableCell>
+                    {column.render('Header')}
+                    {column.sortable && <SortColumn />}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
+          </TableHeader>
+          <TableBody>
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <TableRow {...row.getRowProps()} key={uuidv4()}>
+                  {row.cells.map((cell) => (
+                    <TableCell
+                      {...cell.getCellProps({
+                        style: {
+                          minWidth: cell.column.minWidth,
+                          width: cell.column.width,
+                          maxWidth: cell.column.maxWidth,
+                        },
+                      })}
+                      key={uuidv4()}
+                      desktopOnly={cell.column.desktopOnly}
+                    >
+                      {cell.render('Cell')}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </Col>
@@ -152,21 +184,21 @@ const Components = () => {
       <Col
         size="aside"
         direction="col"
-        className="mt-10 md:mt-0 md:border-l md:border-neutral-300 h-fit"
+        className="mt-10 h-fit md:mt-0 md:border-l md:border-neutral-300"
       >
         {linkItems.map((item) => {
           return (
             <a
               key={uuidv4()}
-              className="mb-12 md:pl-12 last-of-type:mb-0"
+              className="mb-12 last-of-type:mb-0 md:pl-12"
               href={item.link}
               rel="noreferrer"
               target="_blank"
             >
-              <div className="flex mb-2 items-center">
+              <div className="mb-2 flex items-center">
                 {item.icon}
                 <p className="ml-1 text-neutral-600">{item.name}</p>
-                <ArrowRightIcon className="inline ml-2 w-4 h-4 text-neutral-700" />
+                <ArrowRightIcon className="ml-2 inline h-4 w-4 text-neutral-700" />
               </div>
               <p className="text-neutral-700">{item.description}</p>
             </a>

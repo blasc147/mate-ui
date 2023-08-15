@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 import * as React from 'react';
 import { useRef } from 'react';
@@ -6,7 +7,6 @@ import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { type VariantProps, cva } from 'class-variance-authority';
 import { cn } from '../utils';
 import { CloseButton } from './close-button';
-
 
 const Drawer = SheetPrimitive.Root;
 
@@ -54,7 +54,7 @@ const sheetVariants = cva(
     'fixed',
     'z-50',
     'bg-background',
-    'bg-white rounded',
+    'rounded bg-white',
     'shadow-lg',
     'transition',
     'ease-in-out',
@@ -65,7 +65,7 @@ const sheetVariants = cva(
     'flex',
     'flex-col',
     'w-full',
-    'md:w-auto'
+    'md:w-auto',
   ],
   {
     variants: {
@@ -127,7 +127,7 @@ const DrawerContent = React.forwardRef<
         {...props}
         className={cn(sheetVariants({ side }), className)}
       >
-        <div className="relative p-4 h-full">
+        <div className="relative h-full p-4">
           {children}
           <SheetPrimitive.Close
             ref={closeRef}

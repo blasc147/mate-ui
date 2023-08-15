@@ -234,7 +234,7 @@ export const WithLeadingIconElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="text-neutral-700 h-5 w-5" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
         </InputLeftElement>
         <Input type="text" />
       </InputGroup>
@@ -248,7 +248,7 @@ export const UnderlineWithLeadingIconElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="text-neutral-700 h-5 w-5" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
         </InputLeftElement>
         <Input type="text" />
       </InputGroup>
@@ -263,7 +263,7 @@ export const WithTrailingIconElement: Story = {
       <InputGroup>
         <Input type="text" />
         <InputRightElement>
-          <CheckBadgeIcon className="text-neutral-700 h-5 w-5" />
+          <CheckBadgeIcon className="h-5 w-5 text-neutral-700" />
         </InputRightElement>
       </InputGroup>
     </FormControl>
@@ -277,7 +277,7 @@ export const WithTrailingIconElementAndInError: Story = {
       <InputGroup>
         <Input type="text" />
         <InputRightElement>
-          <CheckBadgeIcon className="text-neutral-700 h-5 w-5" />
+          <CheckBadgeIcon className="h-5 w-5 text-neutral-700" />
         </InputRightElement>
       </InputGroup>
       <FormErrorMessage>Some error text</FormErrorMessage>
@@ -369,7 +369,7 @@ export const WithTrailingTextElement: Story = {
       <InputGroup>
         <Input type="text" className="pr-[60px]" />
         <InputRightElement className="w-[60px]">
-          <span className="font-semibold text-sm text-neutral-900">USD</span>
+          <span className="text-sm font-semibold text-neutral-900">USD</span>
         </InputRightElement>
       </InputGroup>
     </FormControl>
@@ -381,7 +381,7 @@ export const WithLeadingSelectElement: Story = {
     <FormControl>
       <FormLabel>Label</FormLabel>
       <InputGroup>
-        <InputLeftElement className="w-[80px] flex justify-start pl-1">
+        <InputLeftElement className="flex w-[80px] justify-start pl-1">
           <select
             className={cn(
               'border-0',
@@ -409,7 +409,7 @@ export const WithTrailingSelectElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <Input type="text" className="pr-[100px]" />
-        <InputRightElement className="w-[100px] flex justify-end pr-1">
+        <InputRightElement className="flex w-[100px] justify-end pr-1">
           <select
             className={cn(
               'border-0',
@@ -436,7 +436,7 @@ export const UndelineWithTrailingSelectElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <Input type="text" className="pr-[100px]" />
-        <InputRightElement className="w-[100px] flex justify-end pr-1">
+        <InputRightElement className="flex w-[100px] justify-end pr-1">
           <select
             className={cn(
               'border-0',
@@ -483,14 +483,14 @@ export const InputWithExternalAddons: Story = {
     <FormControl>
       <FormLabel>Label</FormLabel>
       <InputGroup>
-        <InputLeftAddon className="flex justify-center items-center w-28 bg-neutral-200">
-          <span className="text-sm font-regular text-neutral-700">
+        <InputLeftAddon className="flex w-28 items-center justify-center bg-neutral-200">
+          <span className="font-regular text-sm text-neutral-700">
             https://
           </span>
         </InputLeftAddon>
         <Input type="text" />
-        <InputRightAddon className="flex justify-center items-center w-20 bg-neutral-200">
-          <span className="text-sm font-regular text-neutral-700">.com</span>
+        <InputRightAddon className="flex w-20 items-center justify-center bg-neutral-200">
+          <span className="font-regular text-sm text-neutral-700">.com</span>
         </InputRightAddon>
       </InputGroup>
     </FormControl>
@@ -502,14 +502,14 @@ export const InputWithExternalAddonsAndInError: Story = {
     <FormControl isError>
       <FormLabel>Label</FormLabel>
       <InputGroup>
-        <InputLeftAddon className="flex justify-center items-center w-28 bg-neutral-200">
-          <span className="text-sm font-regular text-neutral-700">
+        <InputLeftAddon className="flex w-28 items-center justify-center bg-neutral-200">
+          <span className="font-regular text-sm text-neutral-700">
             https://
           </span>
         </InputLeftAddon>
         <Input type="text" />
-        <InputRightAddon className="flex justify-center items-center w-20 bg-neutral-200">
-          <span className="text-sm font-regular text-neutral-700">.com</span>
+        <InputRightAddon className="flex w-20 items-center justify-center bg-neutral-200">
+          <span className="font-regular text-sm text-neutral-700">.com</span>
         </InputRightAddon>
       </InputGroup>
       <FormErrorMessage>Some error text</FormErrorMessage>
@@ -523,7 +523,7 @@ export const ElementCommonUseCase: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="text-neutral-700 h-5 w-5" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
         </InputLeftElement>
         <Input type="text" />
         <InputRightElement>
@@ -545,7 +545,7 @@ export const UnderlineElementCommonUseCase: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="text-neutral-700 h-5 w-5" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
         </InputLeftElement>
         <Input type="text" />
         <InputRightElement>
@@ -568,10 +568,10 @@ export const ElementAndAddonCommonUseCase: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassIcon className="text-neutral-700 h-5 w-5" />
+          <MagnifyingGlassIcon className="h-5 w-5 text-neutral-700" />
         </InputLeftElement>
         <Input type="text" />
-        <InputRightAddon className="flex justify-center items-center px-1">
+        <InputRightAddon className="flex items-center justify-center px-1">
           <Button themeColor="neutral" variant="filled" size="sm">
             Search
           </Button>

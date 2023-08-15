@@ -378,7 +378,7 @@ export const WithMultipleAddons: Story = (() => {
 
           <DropdownItem className="gap-2">
             Item
-            <FaceSmileIcon className="h-5 w-5 ml-auto" />
+            <FaceSmileIcon className="ml-auto h-5 w-5" />
           </DropdownItem>
 
           <DropdownItem className="gap-2">
@@ -386,7 +386,7 @@ export const WithMultipleAddons: Story = (() => {
             <DropdownText>Text</DropdownText>
           </DropdownItem>
 
-          <DropdownItem className="gap-2 items-end">
+          <DropdownItem className="items-end gap-2">
             Item
             <DropdownText>Text</DropdownText>
             <FaceSmileIcon className="h-5 w-5" />

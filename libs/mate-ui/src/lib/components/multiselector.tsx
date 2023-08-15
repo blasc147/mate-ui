@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 import React, { useContext, useEffect, useState } from 'react';
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -12,7 +13,6 @@ import {
 } from './input';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { Tag } from './tag';
-
 
 interface MultiSelectorItemProps extends CheckboxProps {
   children?: React.ReactNode;
@@ -158,7 +158,7 @@ const MultiSelectorFormField = React.forwardRef(
             <Input type="text" readOnly placeholder={placeholder} />
           </InputGroup>
         </FormControl>
-        <div className="flex absolute top-3 z-10 truncate w-[80%]">
+        <div className="absolute top-3 z-10 flex w-[80%] truncate">
           {selectedItems.map(
             ({ label, value }: MultiSelectorItemProps, index) => {
               if (index === 3) {

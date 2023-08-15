@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { ReactNode } from 'react';
 import { PencilIcon, UserIcon } from '@heroicons/react/24/solid';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -183,9 +184,9 @@ function TableComponent() {
               </Button>
             </TableCell>
             <TableCell className="text-right">
-              <div className="flex mb-2">
+              <div className="mb-2 flex">
                 {invoice.avatars.map((avatar) => (
-                  <Avatar className="-mr-1 -mb-4 h-5 w-5">{avatar}</Avatar>
+                  <Avatar className="-mb-4 -mr-1 h-5 w-5">{avatar}</Avatar>
                 ))}
               </div>
             </TableCell>

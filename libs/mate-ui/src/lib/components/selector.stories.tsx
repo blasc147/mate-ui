@@ -8,7 +8,7 @@ import {
   SelectorTrigger,
   SelectorValue,
 } from './selector';
-import { FormLabel, Input } from './input';
+import { FormLabel } from './input';
 
 const Story: Meta<typeof Selector> = {
   component: Selector,

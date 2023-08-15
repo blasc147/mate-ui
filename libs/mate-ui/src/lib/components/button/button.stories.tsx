@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Button>;
 export const PrimaryAllVariantsAndSizes: Story = {
   render: () => (
     <>
-      <div className="grid grid-flow-col gap-4 w-fit">
+      <div className="grid w-fit grid-flow-col gap-4">
         <Button variant="filled" themeColor="primary" size="xl">
           Button
         </Button>
@@ -30,7 +30,7 @@ export const PrimaryAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="primary" size="lg">
           Button
         </Button>
@@ -41,7 +41,7 @@ export const PrimaryAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="primary" size="md">
           Button
         </Button>
@@ -52,7 +52,7 @@ export const PrimaryAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="primary" size="sm">
           Button
         </Button>
@@ -70,7 +70,7 @@ export const PrimaryAllVariantsAndSizes: Story = {
 export const SecondaryAllVariantsAndSizes: Story = {
   render: () => (
     <>
-      <div className="grid grid-flow-col gap-4 w-fit">
+      <div className="grid w-fit grid-flow-col gap-4">
         <Button variant="filled" themeColor="secondary" size="xl">
           Button
         </Button>
@@ -81,7 +81,7 @@ export const SecondaryAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="secondary" size="lg">
           Button
         </Button>
@@ -92,7 +92,7 @@ export const SecondaryAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="secondary" size="md">
           Button
         </Button>
@@ -103,7 +103,7 @@ export const SecondaryAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="secondary" size="sm">
           Button
         </Button>
@@ -121,7 +121,7 @@ export const SecondaryAllVariantsAndSizes: Story = {
 export const NeutralAllVariantsAndSizes: Story = {
   render: () => (
     <>
-      <div className="grid grid-flow-col gap-4 w-fit">
+      <div className="grid w-fit grid-flow-col gap-4">
         <Button variant="filled" themeColor="neutral" size="xl">
           Button
         </Button>
@@ -132,7 +132,7 @@ export const NeutralAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="neutral" size="lg">
           Button
         </Button>
@@ -143,7 +143,7 @@ export const NeutralAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="neutral" size="md">
           Button
         </Button>
@@ -154,7 +154,7 @@ export const NeutralAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="neutral" size="sm">
           Button
         </Button>
@@ -172,7 +172,7 @@ export const NeutralAllVariantsAndSizes: Story = {
 export const DestructiveAllVariantsAndSizes: Story = {
   render: () => (
     <>
-      <div className="grid grid-flow-col gap-4 w-fit">
+      <div className="grid w-fit grid-flow-col gap-4">
         <Button variant="filled" themeColor="destructive" size="xl">
           Button
         </Button>
@@ -183,7 +183,7 @@ export const DestructiveAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="destructive" size="lg">
           Button
         </Button>
@@ -194,7 +194,7 @@ export const DestructiveAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="destructive" size="md">
           Button
         </Button>
@@ -205,7 +205,7 @@ export const DestructiveAllVariantsAndSizes: Story = {
           Button
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="destructive" size="sm">
           Button
         </Button>
@@ -282,7 +282,7 @@ export const LoadingWithIcon: Story = {
 export const AsLink: Story = {
   render: () => (
     <>
-      <div className="grid grid-flow-col gap-4 w-fit">
+      <div className="grid w-fit grid-flow-col gap-4">
         <Button variant="filled" themeColor="primary" size="xl" asChild>
           <a href="https://www.google.com" rel="noreferrer" target="_blank">
             As Link
@@ -299,7 +299,7 @@ export const AsLink: Story = {
           </a>
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="primary" size="lg" asChild>
           <a href="https://www.google.com" rel="noreferrer" target="_blank">
             As Link
@@ -316,7 +316,7 @@ export const AsLink: Story = {
           </a>
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="primary" size="md" asChild>
           <a href="https://www.google.com" rel="noreferrer" target="_blank">
             As Link
@@ -333,7 +333,7 @@ export const AsLink: Story = {
           </a>
         </Button>
       </div>
-      <div className="grid grid-flow-col gap-4 w-fit pt-4">
+      <div className="grid w-fit grid-flow-col gap-4 pt-4">
         <Button variant="filled" themeColor="primary" size="sm" asChild>
           <a href="https://www.google.com" rel="noreferrer" target="_blank">
             As Link

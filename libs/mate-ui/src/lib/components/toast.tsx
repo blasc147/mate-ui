@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import React from 'react';
 import * as RadixToast from '@radix-ui/react-toast';
 import { cva } from 'class-variance-authority';

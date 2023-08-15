@@ -1,11 +1,12 @@
-"use client"
+/* eslint-disable tailwindcss/no-custom-classname */
+'use client';
 
-import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import * as React from 'react';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { cva } from 'class-variance-authority';
-import { ChevronDownIcon } from "@heroicons/react/24/outline"
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-import { cn } from "../utils"
+import { cn } from '../utils';
 
 const styles = {
   base: cn(['flex']),
@@ -108,17 +109,16 @@ type AccordionProps = React.ComponentPropsWithoutRef<
 };
 
 const ChevronComponent = ({ leadingChevron }: ChevronProps) => {
-  return <ChevronDownIcon className={cn(styles.chevron({leadingChevron}))} />;
-}
+  return <ChevronDownIcon className={cn(styles.chevron({ leadingChevron }))} />;
+};
 
 const AccordionContext = React.createContext({
   leadingChevron: false,
 });
 
-
 const Accordion = ({ leadingChevron = false, ...props }: AccordionProps) => {
   return (
-    <AccordionContext.Provider value={{ leadingChevron}}>
+    <AccordionContext.Provider value={{ leadingChevron }}>
       <AccordionPrimitive.Root {...props} />
     </AccordionContext.Provider>
   );
@@ -128,7 +128,11 @@ const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={cn(styles.icon, className)} {...props} />
+  <AccordionPrimitive.Item
+    ref={ref}
+    className={cn(styles.icon, className)}
+    {...props}
+  />
 ));
 AccordionItem.displayName = 'AccordionItem';
 
@@ -151,7 +155,7 @@ const AccordionTrigger = React.forwardRef<
     </AccordionPrimitive.Header>
   );
 });
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
@@ -167,8 +171,13 @@ const AccordionContent = React.forwardRef<
       <div className={styles.contentChild({ leadingChevron })}>{children}</div>
     </AccordionPrimitive.Content>
   );
-  
 });
-AccordionContent.displayName = AccordionPrimitive.Content.displayName
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, type AccordionProps, AccordionItem, AccordionTrigger, AccordionContent }
+export {
+  Accordion,
+  type AccordionProps,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+};
