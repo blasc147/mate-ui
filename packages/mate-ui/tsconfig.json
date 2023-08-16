@@ -6,9 +6,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "paths": {
-      "@components": ["libs/mate-ui/src/lib/components/index.tsx"],
-      "@icons": ["libs/mate-ui/src/lib/icons/index.ts"],
-      "@utils": ["libs/mate-ui/src/lib/utils.ts"]
+      "@components": ["packages/mate-ui/src/lib/components/index.tsx"],
+      "@icons": ["packages/mate-ui/src/lib/icons/index.ts"],
+      "@utils": ["packages/mate-ui/src/lib/utils.ts"]
     }
   },
   "files": [],

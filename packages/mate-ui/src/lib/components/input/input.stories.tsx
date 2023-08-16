@@ -20,7 +20,7 @@ import {
   InputRightAddon,
   InputRightElement,
   Select,
-} from './';
+} from '.';
 import { FormLabel } from './form-label';
 
 const Story: Meta<typeof Input> = {

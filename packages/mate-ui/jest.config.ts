@@ -9,5 +9,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/mate-ui',
+  coverageDirectory: '../../coverage/packages/mate-ui',
 };

@@ -13,7 +13,7 @@
     "incremental": true,
     "types": ["jest", "node"],
     "paths": {
-      "@truenorth/mate-ui": ["libs/mate-ui/src/index.ts"],
+      "@truenorth/mate-ui": ["packages/mate-ui/src/index.ts"],
       "@components": ["apps/mate-ui-docs/app/components/index.tsx"],
       "@icons": ["apps/mate-ui-docs/app/icons/index.ts"],
       "@/constants/*": ["apps/mate-ui-docs/app/constants/*"],
