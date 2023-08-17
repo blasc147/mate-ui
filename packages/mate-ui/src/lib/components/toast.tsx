@@ -16,20 +16,33 @@ const styles = {
     'bg-white',
     'py-4',
     'shadow-md',
-    'm-4'
+    'm-4',
+    'w-[335px]',
+    'md:w-[377px]'
   ),
-  root: cn('ml-4'),
-  leftElement: cn('ml-4'),
-  title: cn('font-bold', 'font-sm', 'text-black'),
-  close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'pr-4'),
-  actions: cn('ml-4', 'flex'),
-  description: cn('font-normal', 'font-sm', 'text-neutral-700', 'mr-4'),
+  root: cn('w-full', 'ml-4', 'flex', 'flex-col', 'md:flex-row'),
+  leftElement: cva(['h-5', 'w-5', 'mb-2', 'md:mb-0', 'md:mr-4'], {
+    variants: {
+      themeColor: {
+        neutral: ['text-neutral-700'],
+        primary: ['text-primary-500'],
+        success: ['text-success-500'],
+        warning: ['text-warning-500'],
+        error: ['text-error-500'],
+      },
+    },
+  }),
+  avatarElement: cn('w-full', 'max-w-[32px]'),
+  title: cn('font-bold', 'text-sm', 'text-black'),
+  close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'mr-[18px]'),
+  actions: cn('flex'),
+  description: cn('text-sm', 'text-neutral-700'),
   buttons: cn('flex', 'mt-2'),
   viewport: cn('fixed', 'right-0', 'bottom-0', 'flex', 'flex-col', 'z-9'),
   border: cva(['w-1', 'rounded-r-[4px]'], {
     variants: {
       themeColor: {
-        neutral: ['transparent'],
+        neutral: ['bg-transparent'],
         primary: ['bg-primary-500'],
         success: ['bg-success-500'],
         warning: ['bg-warning-500'],
@@ -45,6 +58,7 @@ interface ToastProps extends RadixToast.ToastProps {
   className?: string;
   themeColor?: ToastThemeColor;
   leftElement?: React.ReactElement;
+  avatarElement?: React.ReactElement;
   buttons?: React.ReactElement;
   title?: string;
   description?: string;
@@ -53,6 +67,7 @@ interface ToastProps extends RadixToast.ToastProps {
 
 const Toast = ({
   leftElement,
+  avatarElement,
   className,
   title,
   description,
@@ -69,28 +84,21 @@ const Toast = ({
         open={open}
         onOpenChange={onOpenChange}
       >
-        <div className={cn(styles.border({ themeColor }))}></div>
-        {leftElement && <div className={styles.leftElement}>{leftElement}</div>}
+        <div className={cn(styles.border({ themeColor }))}>&nbsp;</div>
         <div className={styles.root}>
-          <div className="flex justify-between">
-            <RadixToast.Title className={styles.title}>
-              {title}
-            </RadixToast.Title>
-            <div className={cn(styles.actions, 'block md:hidden')}>
-              <div className="flex">
-                {actionButton && <div>{actionButton}</div>}
-                <RadixToast.Close className={styles.close}>
-                  <CloseButton aria-label="Toast-button"></CloseButton>
-                </RadixToast.Close>
-              </div>
+            {leftElement && <div className={cn(styles.leftElement({ themeColor }))}>{leftElement}</div>}
+            {avatarElement && <div className={cn(styles.leftElement({ themeColor }),styles.avatarElement)}>{avatarElement}</div>}
+            <div className="flex flex-col">
+              <RadixToast.Title className={styles.title}>
+                {title}
+              </RadixToast.Title>
+              <RadixToast.Description className={styles.description}>
+                {description}
+              </RadixToast.Description>
+              {buttons && <div className={styles.buttons}>{buttons}</div>}
             </div>
           </div>
-          <RadixToast.Description className={styles.description}>
-            {description}
-          </RadixToast.Description>
-          {buttons && <div className={styles.buttons}>{buttons}</div>}
-        </div>
-        <div className={cn(styles.actions, 'hidden md:block')}>
+        <div className={cn(styles.actions)}>
           <div className="flex">
             {actionButton && <div>{actionButton}</div>}
             <RadixToast.Close className={styles.close}>

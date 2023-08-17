@@ -2,7 +2,6 @@
 import {
   SparklesIcon,
   ExclamationCircleIcon,
-  PlusIcon,
 } from '@heroicons/react/20/solid';
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
@@ -10,106 +9,25 @@ import { cn } from '../utils';
 import { Button } from './button';
 import { Link } from './link';
 import { Toast, ToastProvider } from './toast';
+import { Avatar, AvatarImage } from './avatar';
+
+interface ToastStoryArgs {
+  themeColor: 'neutral' | 'primary' | 'success' | 'warning' | 'error';
+}
 
 const Story: Meta<typeof Toast> = {
   component: Toast,
   title: 'Toast',
+  argTypes: {
+    themeColor: {
+      options: ['neutral', 'primary', 'success', 'warning', 'error'],
+      control: { type: 'radio' },
+    },
+  },
 };
 export default Story;
 
-export const SimpleMessageNeutral = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        themeColor="neutral"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageNeutralWithIcon = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        leftElement={<SparklesIcon className="h-6 w-6 text-neutral-500" />}
-        themeColor="neutral"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageNeutralWithDescription = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        themeColor="neutral"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageNeutralWithDescriptionAndButton = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        buttons={<Button size="sm">Button</Button>}
-        themeColor="neutral"
-      />
-    </ToastProvider>
-  );
-};
-
-export const CompleteNeutral = () => {
+export const ToastTheme = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider>
@@ -126,11 +44,9 @@ export const CompleteNeutral = () => {
         onOpenChange={setOpen}
         title={'Title'}
         description={'Message'}
-        actionButton={<Link>Undo</Link>}
-        themeColor="neutral"
-        leftElement={
-          <ExclamationCircleIcon className="h-5 w-5 text-neutral-700" />
-        }
+        themeColor={themeColor}
+        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        leftElement={<ExclamationCircleIcon />}
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
@@ -141,8 +57,6 @@ export const CompleteNeutral = () => {
               themeColor="neutral"
               type="submit"
               size="sm"
-              leftIcon={<PlusIcon />}
-              rightIcon={<PlusIcon />}
             >
               Button
             </Button>
@@ -153,24 +67,7 @@ export const CompleteNeutral = () => {
   );
 };
 
-export const SimpleMessagePrimary = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast open={open} onOpenChange={setOpen} title={'Message sent'} />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessagePrimaryWithIcon = () => {
+export const TitleWithButtons = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -186,78 +83,8 @@ export const SimpleMessagePrimaryWithIcon = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={<SparklesIcon className="text-primary-500 h-6 w-6" />}
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessagePrimaryWithDescription = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessagePrimaryWithDescriptionAndButton = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        buttons={<Button size="sm">Button</Button>}
-      />
-    </ToastProvider>
-  );
-};
-
-export const CompletePrimary = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider>
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Title'}
-        description={'Message'}
-        actionButton={<Link>Undo</Link>}
-        leftElement={
-          <ExclamationCircleIcon className="text-primary-500 h-5 w-5" />
-        }
+        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        themeColor={themeColor}
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
@@ -268,8 +95,6 @@ export const CompletePrimary = () => {
               type="submit"
               size="sm"
               themeColor="neutral"
-              leftIcon={<PlusIcon />}
-              rightIcon={<PlusIcon />}
             >
               Button
             </Button>
@@ -280,7 +105,7 @@ export const CompletePrimary = () => {
   );
 };
 
-export const SimpleMessageSuccess = () => {
+export const TitleAndDescriptionWithButtons = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -296,104 +121,9 @@ export const SimpleMessageSuccess = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        themeColor="success"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageSuccessWithIcon = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        leftElement={<SparklesIcon className="text-success-500 h-6 w-6" />}
-        themeColor="success"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageSuccessWithDescription = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        themeColor="success"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageSuccessWithDescriptionAndButton = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        buttons={<Button size="sm">Button</Button>}
-        themeColor="success"
-      />
-    </ToastProvider>
-  );
-};
-
-export const CompleteSuccess = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider>
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Title'}
         description={'Message'}
-        actionButton={<Link>Undo</Link>}
-        themeColor="success"
-        leftElement={
-          <ExclamationCircleIcon className="text-success-500 h-5 w-5" />
-        }
+        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        themeColor={ themeColor }
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
@@ -404,8 +134,6 @@ export const CompleteSuccess = () => {
               type="submit"
               size="sm"
               themeColor="neutral"
-              leftIcon={<PlusIcon />}
-              rightIcon={<PlusIcon />}
             >
               Button
             </Button>
@@ -416,7 +144,7 @@ export const CompleteSuccess = () => {
   );
 };
 
-export const SimpleMessageWarning = () => {
+export const OnlyTitle = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -432,13 +160,14 @@ export const SimpleMessageWarning = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        themeColor="warning"
+        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        themeColor={ themeColor }
       />
     </ToastProvider>
   );
 };
 
-export const SimpleMessageWarningWithIcon = () => {
+export const TitleWithDescription = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -454,14 +183,15 @@ export const SimpleMessageWarningWithIcon = () => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        leftElement={<SparklesIcon className="text-warning-500 h-6 w-6" />}
-        themeColor="warning"
+        description={'Message'}
+        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        themeColor={ themeColor }
       />
     </ToastProvider>
   );
 };
 
-export const SimpleMessageWarningWithDescription = () => {
+export const TitleWithDescriptionAndLink = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -476,15 +206,16 @@ export const SimpleMessageWarningWithDescription = () => {
       <Toast
         open={open}
         onOpenChange={setOpen}
-        title={'Message sent'}
+        title={'Successfully saved!'}
         description={'Anyone with a link can now view this file.'}
-        themeColor="warning"
+        themeColor={ themeColor }
+        buttons={<Link size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>}
       />
     </ToastProvider>
   );
 };
 
-export const SimpleMessageWarningWithDescriptionAndButton = () => {
+export const TitleWithDescriptionAndButton = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -499,16 +230,44 @@ export const SimpleMessageWarningWithDescriptionAndButton = () => {
       <Toast
         open={open}
         onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        buttons={<Button size="sm">Button</Button>}
-        themeColor="warning"
+        title={'Breaking news on the go!'}
+        description={'Enable push notifications to get alerts for major markets and crypto news.'}
+        themeColor={ themeColor }
+        buttons={<Button variant="filled" themeColor="primary" size="sm">Button</Button>}
       />
     </ToastProvider>
   );
 };
 
-export const CompleteWarning = () => {
+export const TitleWithDescriptionAndLinks = ({ themeColor }: ToastStoryArgs) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <ToastProvider swipeDirection="right">
+      <Button
+        onClick={() => setOpen(true)}
+        variant="outlined"
+        size="sm"
+        className={cn('mr-4')}
+      >
+        Open
+      </Button>
+      <Toast
+        open={open}
+        onOpenChange={setOpen}
+        title={'Successfully saved!'}
+        description={'Anyone with a link can now view this file.'}
+        themeColor={ themeColor }
+        buttons={
+          <>
+            <Link size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>
+            <Link className='ml-3' weight='light' size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>
+          </>}
+      />
+    </ToastProvider>
+  );
+};
+
+export const BottomButtonsPrimary = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider>
@@ -523,13 +282,9 @@ export const CompleteWarning = () => {
       <Toast
         open={open}
         onOpenChange={setOpen}
-        title={'Title'}
-        description={'Message'}
-        actionButton={<Link>Undo</Link>}
-        themeColor="warning"
-        leftElement={
-          <ExclamationCircleIcon className="text-warning-500 h-5 w-5" />
-        }
+        title={'Breaking news on the go!'}
+        description={'Enable push notifications to get alerts for major markets and crypto news.'}
+        themeColor={ themeColor }
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
@@ -540,8 +295,6 @@ export const CompleteWarning = () => {
               type="submit"
               size="sm"
               themeColor="neutral"
-              leftIcon={<PlusIcon />}
-              rightIcon={<PlusIcon />}
             >
               Button
             </Button>
@@ -552,99 +305,7 @@ export const CompleteWarning = () => {
   );
 };
 
-export const SimpleMessageError = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        themeColor="error"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageErrorWithIcon = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        leftElement={<SparklesIcon className="text-error-500 h-6 w-6" />}
-        themeColor="error"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageErrorWithDescription = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        themeColor="error"
-      />
-    </ToastProvider>
-  );
-};
-
-export const SimpleMessageErrorWithDescriptionAndButton = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <ToastProvider swipeDirection="right">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        size="sm"
-        className={cn('mr-4')}
-      >
-        Open
-      </Button>
-      <Toast
-        open={open}
-        onOpenChange={setOpen}
-        title={'Message sent'}
-        description={'Anyone with a link can now view this file.'}
-        buttons={<Button size="sm">Button</Button>}
-        themeColor="error"
-      />
-    </ToastProvider>
-  );
-};
-
-export const CompleteError = () => {
+export const BottomButtonsAndLinkPrimary = ({ themeColor }: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider>
@@ -659,25 +320,84 @@ export const CompleteError = () => {
       <Toast
         open={open}
         onOpenChange={setOpen}
-        title={'Title'}
-        description={'Message'}
-        actionButton={<Link>Undo</Link>}
-        themeColor="error"
-        leftElement={
-          <ExclamationCircleIcon className="text-error-500 h-5 w-5" />
-        }
+        title={'Breaking news on the go!'}
+        description={'Enable push notifications to get alerts for major markets and crypto news.'}
+        themeColor={ themeColor }
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
               Button
             </Button>
+            <Link size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>
+          </>
+        }
+      />
+    </ToastProvider>
+  );
+};
+
+export const LeadingFigures = ({ themeColor }: ToastStoryArgs) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <ToastProvider swipeDirection="right">
+      <Button
+        onClick={() => setOpen(true)}
+        variant="outlined"
+        size="sm"
+        className={cn('mr-4')}
+      >
+        Open
+      </Button>
+      <Toast
+        open={open}
+        onOpenChange={setOpen}
+        title={'Save up to 5% in your next purchase!'}
+        leftElement={<SparklesIcon className="h-5 w-5 text-primary-500" />}
+        themeColor={ themeColor }
+        buttons={
+          <>
+            <Button variant="filled" size="sm" className={cn('mr-4')}>Button</Button>
             <Button
               variant="outlined"
               type="submit"
               size="sm"
               themeColor="neutral"
-              leftIcon={<PlusIcon />}
-              rightIcon={<PlusIcon />}
+            >
+              Button
+            </Button>
+          </>
+        }
+      />
+    </ToastProvider>
+  );
+};
+
+export const ToastWithAvatar = ({ themeColor }: ToastStoryArgs) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <ToastProvider swipeDirection="right">
+      <Button
+        onClick={() => setOpen(true)}
+        variant="outlined"
+        size="sm"
+        className={cn('mr-4')}
+      >
+        Open
+      </Button>
+      <Toast
+        open={open}
+        onOpenChange={setOpen}
+        title={'Save up to 5% in your next purchase!'}
+        themeColor={ themeColor }
+        avatarElement={<Avatar size='sm'><AvatarImage src="adam-smith.png" /></Avatar>}
+        buttons={
+          <>
+            <Button variant="filled" size="sm" className={cn('mr-4')}>Button</Button>
+            <Button
+              variant="outlined"
+              type="submit"
+              size="sm"
+              themeColor="neutral"
             >
               Button
             </Button>
