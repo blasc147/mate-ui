@@ -102,7 +102,7 @@ export const Sidenav = () => {
           isActive={pathName === Routes.Patterns}
           onClick={() => navigation.push(Routes.Patterns)}
         >
-          Patters
+          Patterns
         </SidenavItem>
       </div>
     </nav>
