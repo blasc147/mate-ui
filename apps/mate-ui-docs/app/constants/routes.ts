@@ -2,6 +2,10 @@ export enum Routes {
   Examples = 'examples',
   DashboardPreview = 'dashboard-preview',
   Components = 'components-page',
+  Introduction = 'introduction',
+  GettingStarted = 'getting-started',
+  Foundations = 'foundations',
+  Patterns = 'patterns',
 }
 
 export enum ProjectUrls {

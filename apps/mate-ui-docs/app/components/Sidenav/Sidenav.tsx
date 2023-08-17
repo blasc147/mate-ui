@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import {
   ChevronRightIcon,
   MagnifyingGlassIcon,
@@ -10,12 +10,41 @@ import {
   InputGroup,
   InputRightAddon,
   Link,
+  cn,
 } from '@truenorth/mate-ui';
 import { MateLogo } from '@icons';
 import { Routes } from '@/constants/routes';
 
+const SidenavItem = ({
+  onClick,
+  isActive,
+  children,
+  rightIcon,
+}: {
+  onClick?: () => void;
+  isActive?: boolean;
+  children: React.ReactNode;
+  rightIcon?: React.ReactNode;
+}) => {
+  return (
+    <Button
+      variant="ghost"
+      themeColor="neutral"
+      rightIcon={rightIcon}
+      className={cn('mb-2 justify-start px-2', {
+        '!bg-neutral-200': isActive,
+        'justify-between': rightIcon,
+      })}
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  );
+};
+
 export const Sidenav = () => {
   const navigation = useRouter();
+  const pathName = usePathname().substring(1);
   return (
     <nav>
       <div className="pb-12">
@@ -35,54 +64,46 @@ export const Sidenav = () => {
       </div>
 
       <div className="flex flex-col border-b border-neutral-300 pb-6 text-neutral-700">
-        <Button
-          variant="ghost"
-          themeColor="neutral"
-          className="mb-2 justify-start px-2"
+        <SidenavItem
+          onClick={() => navigation.push(Routes.Introduction)}
+          isActive={pathName === Routes.Introduction}
         >
           Introduction
-        </Button>
-        <Button
-          variant="ghost"
-          themeColor="neutral"
-          className="justify-start px-2"
+        </SidenavItem>
+        <SidenavItem
+          isActive={pathName === Routes.Examples}
           onClick={() => navigation.push(Routes.Examples)}
         >
           Examples
-        </Button>
+        </SidenavItem>
       </div>
       <div className="flex flex-col pt-6 text-neutral-700">
-        <Button
-          variant="ghost"
-          themeColor="neutral"
-          className="mb-2 justify-between px-2"
+        <SidenavItem
           rightIcon={<ChevronRightIcon />}
+          isActive={pathName === Routes.GettingStarted}
+          onClick={() => navigation.push(Routes.GettingStarted)}
         >
           Getting Started
-        </Button>
-        <Button
-          variant="ghost"
-          themeColor="neutral"
-          className="mb-2 justify-between px-2"
+        </SidenavItem>
+        <SidenavItem
           rightIcon={<ChevronRightIcon />}
+          isActive={pathName === Routes.Foundations}
+          onClick={() => navigation.push(Routes.Foundations)}
         >
           Foundations
-        </Button>
-        <Button
-          variant="ghost"
-          themeColor="neutral"
-          className="mb-2 justify-start px-2"
+        </SidenavItem>
+        <SidenavItem
+          isActive={pathName === Routes.Components}
           onClick={() => navigation.push(Routes.Components)}
         >
           Components
-        </Button>
-        <Button
-          variant="ghost"
-          themeColor="neutral"
-          className="justify-start px-2"
+        </SidenavItem>
+        <SidenavItem
+          isActive={pathName === Routes.Patterns}
+          onClick={() => navigation.push(Routes.Patterns)}
         >
           Patters
-        </Button>
+        </SidenavItem>
       </div>
     </nav>
   );
