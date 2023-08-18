@@ -10,8 +10,8 @@ import { Tag } from './tag';
 
 const Table = React.forwardRef<
   HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableElement> & { hasPagination?: boolean }
+>(({ className, hasPagination = false, ...props }, ref) => (
   <div
     className={cn(
       'w-full',
@@ -19,7 +19,8 @@ const Table = React.forwardRef<
       'bg-white',
       'rounded-lg',
       'border',
-      'border-neutral-300	'
+      'border-neutral-300',
+      hasPagination ? 'rounded-b-none border-b-0' : ''
     )}
   >
     <table

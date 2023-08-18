@@ -27,6 +27,10 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  ItemsCounter,
+  Pagination,
+  PaginationButtons,
+  Resizer,
   Selector,
   SelectorContent,
   SelectorItem,
@@ -45,7 +49,13 @@ import {
   cn,
 } from '@truenorth/mate-ui';
 import { v4 as uuidv4 } from 'uuid';
-import { useTable, useSortBy, useFilters, Column } from 'react-table';
+import {
+  useTable,
+  useSortBy,
+  useFilters,
+  Column,
+  usePagination,
+} from 'react-table';
 export type { Cell } from 'react-table';
 
 enum PaymentStatus {
@@ -58,6 +68,13 @@ const List = () => {
   const [createTooltipOpen, setCreateTooltipOpen] = useState(false);
   const [makeTooltipOpen, setMakeTooltipOpen] = useState(false);
   const [uploadTooltipOpen, setUploadTooltipOpen] = useState(false);
+  const [checkboxStates, setCheckboxStates] = useState({});
+  const handleCheckboxChange = (rowIndex) => {
+    setCheckboxStates((prevStates) => ({
+      ...prevStates,
+      [rowIndex]: !prevStates[rowIndex],
+    }));
+  };
 
   const handleCreateTooltipOpenChange = (open: boolean) => {
     setCreateTooltipOpen(open);
@@ -72,19 +89,37 @@ const List = () => {
   const data = React.useMemo(() => invoices, []);
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [searchFilter, setSearchFilter] = React.useState('');
-  const { headerGroups, rows, prepareRow, setFilter } = useTable(
+  const {
+    headerGroups,
+    rows,
+    prepareRow,
+    setFilter,
+    page,
+    state: { pageIndex, pageSize },
+    nextPage,
+    setPageSize,
+    previousPage,
+    gotoPage,
+  } = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0, pageSize: 10 },
     },
     useFilters,
-    useSortBy
+    useSortBy,
+    usePagination
   );
 
   useEffect(() => {
     setFilter('status', selectedStatus);
     setFilter('id', searchFilter);
   }, [selectedStatus, searchFilter, setFilter]);
+
+  const selectedRows: number = Object.values(checkboxStates).reduce(
+    (a: number, item) => a + (item === true ? 1 : 0),
+    0
+  ) as number;
 
   return (
     <div className="mx-auto flex flex-wrap justify-between gap-5 lg:pt-10">
@@ -222,7 +257,7 @@ const List = () => {
                 </FormControl>
               </div>
             </div>
-            <Table>
+            <Table hasPagination>
               {rows.length > 0 ? (
                 <>
                   <TableHeader className="h-11">
@@ -234,31 +269,51 @@ const List = () => {
                         <TableHead className="hidden w-9 lg:table-cell">
                           <Checkbox />
                         </TableHead>
-                        {headerGroup.headers.map((column) => (
-                          <TableHead
-                            {...column.getHeaderProps(
-                              column.sortable && column.getSortByToggleProps()
-                            )}
-                            key={uuidv4()}
-                            className={column.className}
-                            desktopOnly={column.desktopOnly}
-                          >
-                            {column.render('Header')}
-                            {column.sortable && <SortColumn />}
-                          </TableHead>
-                        ))}{' '}
+                        {headerGroup.headers.map((column) => {
+                          return (
+                            <TableHead
+                              {...column.getHeaderProps(
+                                column.sortable && column.getSortByToggleProps()
+                              )}
+                              key={uuidv4()}
+                              className={column.className}
+                              desktopOnly={column.desktopOnly}
+                            >
+                              {column.render('Header')}
+                              {column.sortable && (
+                                <SortColumn
+                                  sort={
+                                    !column?.isSorted
+                                      ? undefined
+                                      : column.isSortedDesc
+                                      ? 'desc'
+                                      : 'asc'
+                                  }
+                                />
+                              )}
+                            </TableHead>
+                          );
+                        })}{' '}
                         <TableHead></TableHead>
                       </TableRow>
                     ))}
                   </TableHeader>
                   <TableBody>
-                    {rows.map((row) => {
+                    {page.map((row, rowIndex) => {
                       prepareRow(row);
+                      const isCheckboxChecked =
+                        checkboxStates[`${pageIndex}${rowIndex}`] || false;
                       return (
                         <TableRow {...row.getRowProps()} key={uuidv4()}>
-                          <TableCell className="hidden lg:table-cell">
-                            <Checkbox />
+                          <TableCell>
+                            <Checkbox
+                              checked={isCheckboxChecked}
+                              onCheckedChange={() =>
+                                handleCheckboxChange(`${pageIndex}${rowIndex}`)
+                              }
+                            />
                           </TableCell>
+
                           {row.cells.map((cell) => (
                             <TableCell
                               {...cell.getCellProps({
@@ -288,6 +343,34 @@ const List = () => {
                 </div>
               )}
             </Table>
+            <Pagination
+              selectedRows={selectedRows}
+              totalItems={data.length}
+              showRowSelection
+              className="px-6"
+            >
+              <Resizer
+                currentPageSize={`${pageSize}`}
+                onChangePageSize={(newPageSize) => {
+                  setPageSize(parseInt(newPageSize, 10));
+                }}
+                pagesSizes={['10', '20', '30']}
+              />
+              <ItemsCounter
+                currentPage={pageIndex + 1}
+                totalPages={Math.ceil(rows.length / pageSize)}
+              />
+              <PaginationButtons
+                canNextPage={pageIndex < Math.ceil(rows.length / pageSize) - 1}
+                canPreviousPage={pageIndex > 0}
+                onNextPage={() => nextPage()}
+                onPrevPage={() => previousPage()}
+                onLastPage={() =>
+                  gotoPage(Math.ceil(rows.length / pageSize) - 1)
+                }
+                onFirstPage={() => gotoPage(0)}
+              />
+            </Pagination>
           </CardContent>
         </Card>
       </Col>

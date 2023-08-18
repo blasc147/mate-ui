@@ -119,7 +119,7 @@ function TableComponent() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>
+          <TableHead desktopOnly>
             <Checkbox />
           </TableHead>
           <TableHead>
@@ -127,45 +127,45 @@ function TableComponent() {
             <SortColumn sort="desc" />
           </TableHead>
 
-          <TableHead>
+          <TableHead desktopOnly>
             Transaction ID
             <SortColumn />
           </TableHead>
 
-          <TableHead>
+          <TableHead desktopOnly>
             Loan ID
             <SortColumn />
           </TableHead>
 
-          <TableHead>Space</TableHead>
+          <TableHead desktopOnly>Space</TableHead>
 
           <TableHead className="text-right">Balance</TableHead>
 
-          <TableHead>
+          <TableHead desktopOnly>
             Status
             <SortColumn />
           </TableHead>
 
-          <TableHead className="w-[0px]">
+          <TableHead className="w-[0px]" desktopOnly>
             <Button size={'sm'} className="absolute top-6">
               Header
             </Button>
           </TableHead>
-          <TableHead> Avatar</TableHead>
+          <TableHead desktopOnly> Avatar</TableHead>
         </TableRow>
       </TableHeader>
 
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.date}>
-            <TableCell>
+            <TableCell desktopOnly>
               <Checkbox />
             </TableCell>
             <TableCell>{invoice.date}</TableCell>
-            <TableCell supportiveText="supportiveText">
+            <TableCell supportiveText="supportiveText" desktopOnly>
               {invoice.invoice}
             </TableCell>
-            <TableCell>
+            <TableCell desktopOnly>
               <Link weight="light" asChild>
                 <div className="flex">
                   <button>{invoice.loanId}</button>
@@ -173,9 +173,9 @@ function TableComponent() {
                 </div>
               </Link>
             </TableCell>
-            <TableCell></TableCell>
+            <TableCell desktopOnly></TableCell>
             <TableCell className="text-right">{`$${invoice.totalAmount}`}</TableCell>
-            <TableCell>
+            <TableCell desktopOnly>
               <Tag className="capitalize">{invoice.paymentStatus}</Tag>
             </TableCell>
             <TableCell className="text-right" desktopOnly>
@@ -183,7 +183,7 @@ function TableComponent() {
                 Button
               </Button>
             </TableCell>
-            <TableCell className="text-right">
+            <TableCell className="text-right" desktopOnly>
               <div className="mb-2 flex">
                 {invoice.avatars.map((avatar) => (
                   <Avatar className="-mb-4 -mr-1 h-5 w-5">{avatar}</Avatar>

@@ -19,3 +19,4 @@ export * from './dropdown';
 export * from './drawer';
 export * from './selector';
 export * from './multiselector';
+export * from './pagination';
