@@ -14,7 +14,7 @@ const styles = {
     'w-full',
     'rounded-md',
     'bg-white',
-    'py-4',
+    'py-3',
     'shadow-md',
     'm-4',
     'w-[335px]',
