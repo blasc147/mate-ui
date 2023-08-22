@@ -75,12 +75,7 @@ const List = () => {
   const [makeTooltipOpen, setMakeTooltipOpen] = useState(false);
   const [uploadTooltipOpen, setUploadTooltipOpen] = useState(false);
   const [checkboxStates, setCheckboxStates] = useState({});
-  const handleCheckboxChange = (rowIndex) => {
-    setCheckboxStates((prevStates) => ({
-      ...prevStates,
-      [rowIndex]: !prevStates[rowIndex],
-    }));
-  };
+  const [selectAll, setSelectAll] = useState(false);
 
   const handleCreateTooltipOpenChange = (open: boolean) => {
     setCreateTooltipOpen(open);
@@ -126,6 +121,29 @@ const List = () => {
     (a: number, item) => a + (item === true ? 1 : 0),
     0
   ) as number;
+
+  const handleRowCheckboxChange = (rowId) => {
+    setCheckboxStates((prevSelectedRows) => ({
+      ...prevSelectedRows,
+      [rowId]: !prevSelectedRows[rowId],
+    }));
+  };
+
+  const handleSelectAllCheckboxChange = () => {
+    const newSelectAll = !selectAll;
+
+    if (newSelectAll) {
+      const newSelectedRows = {};
+      rows.forEach((row) => {
+        newSelectedRows[row.id] = true;
+      });
+      setCheckboxStates(newSelectedRows);
+    } else {
+      setCheckboxStates({});
+    }
+
+    setSelectAll(newSelectAll);
+  };
 
   return (
     <div className="mx-auto flex flex-wrap justify-between gap-5 lg:pt-10">
@@ -273,7 +291,10 @@ const List = () => {
                         key={uuidv4()}
                       >
                         <TableHead className="hidden w-9 lg:table-cell">
-                          <Checkbox />
+                          <Checkbox
+                            checked={selectAll}
+                            onCheckedChange={handleSelectAllCheckboxChange}
+                          />
                         </TableHead>
                         {headerGroup.headers.map((column) => {
                           return (
@@ -338,10 +359,10 @@ const List = () => {
                     ))}
                   </TableHeader>
                   <TableBody>
-                    {page.map((row, rowIndex) => {
+                    {page.map((row) => {
                       prepareRow(row);
-                      const isCheckboxChecked =
-                        checkboxStates[`${pageIndex}${rowIndex}`] || false;
+                      const isCheckboxChecked = checkboxStates[row.id] || false;
+
                       return (
                         <TableRow
                           {...row.getRowProps()}
@@ -354,7 +375,7 @@ const List = () => {
                             <Checkbox
                               checked={isCheckboxChecked}
                               onCheckedChange={() =>
-                                handleCheckboxChange(`${pageIndex}${rowIndex}`)
+                                handleRowCheckboxChange(row.id)
                               }
                             />
                           </TableCell>
