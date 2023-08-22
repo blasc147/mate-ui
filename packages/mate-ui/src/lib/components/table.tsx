@@ -79,7 +79,7 @@ const TableHead = React.forwardRef<
       'px-6',
       'py-3',
       'text-left',
-      'text-neutral-600',
+      'text-neutral-700',
       'font-medium',
       'text-xs',
       'align-middle',

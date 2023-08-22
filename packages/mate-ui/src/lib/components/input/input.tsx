@@ -13,6 +13,7 @@ import {
 } from './utils';
 
 const styles = {
+  // eslint-disable-next-line tailwindcss/no-custom-classname
   input: cva(
     [
       'flex',

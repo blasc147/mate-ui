@@ -29,6 +29,7 @@ const styles = {
       'rounded',
       'border',
       'px-4',
+      'items-center',
       'focus:ring-1',
       'focus:ring-focus',
       'focus:border-focus',
@@ -37,7 +38,7 @@ const styles = {
     {
       variants: {
         padding: {
-          sm: ['py-2', 'h-8'],
+          sm: ['py-2.5', 'h-[34px]'],
           md: ['py-2.5', 'h-10'],
           lg: ['py-3', 'h-11'],
         },
