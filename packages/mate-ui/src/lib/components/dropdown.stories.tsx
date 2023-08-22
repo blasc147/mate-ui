@@ -110,7 +110,7 @@ export const WithLeadingIcon: Story = {
       <DropdownTrigger asChild>
         <Button variant="outlined">Button</Button>
       </DropdownTrigger>
-      <DropdownContent>
+      <DropdownContent className="min-w-[336px]">
         <DropdownHeader>Header</DropdownHeader>
 
         <DropdownItem className="gap-2">
@@ -138,7 +138,7 @@ export const WithTrailingIcon: Story = {
       <DropdownTrigger asChild>
         <Button variant="outlined">Button</Button>
       </DropdownTrigger>
-      <DropdownContent>
+      <DropdownContent className="min-w-[336px]">
         <DropdownHeader>Header</DropdownHeader>
 
         <DropdownItem className="justify-between">
@@ -165,7 +165,7 @@ export const WithTrailingText: Story = {
       <DropdownTrigger asChild>
         <Button variant="outlined">Button</Button>
       </DropdownTrigger>
-      <DropdownContent>
+      <DropdownContent className="min-w-[336px]">
         <DropdownHeader>Header</DropdownHeader>
 
         <DropdownItem className="justify-between">

@@ -5,6 +5,8 @@ import { invoices } from './mockData';
 import useScreenSize from '@/hooks/useScreenSize';
 import { Col } from '@components';
 import {
+  ArrowDownIcon,
+  ArrowUpIcon,
   ArrowUpTrayIcon,
   ArrowUturnRightIcon,
   CheckCircleIcon,
@@ -20,6 +22,10 @@ import {
   CardHeader,
   CardTitle,
   Checkbox,
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownTrigger,
   FormControl,
   Header,
   HeaderSupportiveText,
@@ -276,24 +282,57 @@ const List = () => {
                                 column.sortable && column.getSortByToggleProps()
                               )}
                               key={uuidv4()}
-                              className={column.className}
+                              className={cn(
+                                { 'px-4': column.sortable },
+                                column.className
+                              )}
                               desktopOnly={column.desktopOnly}
+                              isSortable={column.sortable}
+                              onClick={(e) => e.preventDefault()}
                             >
-                              {column.render('Header')}
-                              {column.sortable && (
-                                <SortColumn
-                                  sort={
-                                    !column?.isSorted
-                                      ? undefined
-                                      : column.isSortedDesc
-                                      ? 'desc'
-                                      : 'asc'
-                                  }
-                                />
+                              {column.sortable ? (
+                                <div className="flex h-4 items-center space-x-2">
+                                  <Dropdown>
+                                    <DropdownTrigger asChild>
+                                      <button className="rounded px-2 py-1 hover:bg-neutral-300">
+                                        {column.render('Header')}
+                                        <SortColumn
+                                          sort={
+                                            !column?.isSorted
+                                              ? undefined
+                                              : column.isSortedDesc
+                                              ? 'desc'
+                                              : 'asc'
+                                          }
+                                        />
+                                      </button>
+                                    </DropdownTrigger>
+                                    <DropdownContent align="start">
+                                      <DropdownItem
+                                        onSelect={() => {
+                                          column.toggleSortBy(false);
+                                        }}
+                                      >
+                                        <ArrowUpIcon className="mr-1 h-5 w-5" />
+                                        Asc
+                                      </DropdownItem>
+                                      <DropdownItem
+                                        onSelect={() =>
+                                          column.toggleSortBy(true)
+                                        }
+                                      >
+                                        <ArrowDownIcon className="mr-1 h-5 w-5" />
+                                        Desc
+                                      </DropdownItem>
+                                    </DropdownContent>
+                                  </Dropdown>
+                                </div>
+                              ) : (
+                                column.render('Header')
                               )}
                             </TableHead>
                           );
-                        })}{' '}
+                        })}
                         <TableHead></TableHead>
                       </TableRow>
                     ))}
@@ -304,7 +343,13 @@ const List = () => {
                       const isCheckboxChecked =
                         checkboxStates[`${pageIndex}${rowIndex}`] || false;
                       return (
-                        <TableRow {...row.getRowProps()} key={uuidv4()}>
+                        <TableRow
+                          {...row.getRowProps()}
+                          key={uuidv4()}
+                          className={cn({
+                            'bg-neutral-200': isCheckboxChecked,
+                          })}
+                        >
                           <TableCell>
                             <Checkbox
                               checked={isCheckboxChecked}

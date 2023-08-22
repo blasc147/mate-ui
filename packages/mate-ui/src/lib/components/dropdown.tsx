@@ -8,7 +8,6 @@ import { cn } from '../utils';
 const styles = {
   content: cn(
     'z-50',
-    'min-w-[336px]',
     'overflow-hidden',
     'border',
     'border-neutral-300',
