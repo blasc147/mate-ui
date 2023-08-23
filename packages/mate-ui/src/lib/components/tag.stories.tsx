@@ -5,88 +5,76 @@ import { Tag } from './tag';
 const Story: Meta<typeof Tag> = {
   component: Tag,
   title: 'Tag',
+  argTypes: {
+
+    themeColor: {
+      options: [
+        'success',
+        'neutral',
+        'primary',
+        'secondary',
+        'error',
+        'info',
+        'warning',
+      ],
+      control: { type: 'radio' },
+    },
+    size: {
+      options: [
+        'md',
+        'sm',
+      ],
+      control: { type: 'radio' },
+    },
+  },
 };
 export default Story;
 
 type Story = StoryObj<typeof Tag>;
 
-export const PrimaryPill: Story = {
+export const Pill: Story = {
   args: {
     children: 'Label',
-    colorScheme: 'primary',
+    themeColor: 'primary',
+    size:'md',
     variant: 'pill',
   },
 };
 
-export const PrimaryBadge: Story = {
+export const Badge: Story = {
   args: {
     children: 'Label',
-    colorScheme: 'primary',
+    themeColor: 'primary',
+    size:'md',
     variant: 'badge',
   },
 };
 
-export const PrimaryStatus: Story = {
+export const Status: Story = {
   args: {
     children: 'Label',
-    colorScheme: 'primary',
+    themeColor: 'primary',
+    size:'md',
+    withDot: true,
     variant: 'status',
   },
 };
 
-export const PrimaryQuiet: Story = {
+export const Quiet: Story = {
   args: {
     children: 'Label',
-    colorScheme: 'primary',
+    themeColor: 'primary',
+    size:'md',
+    withDot: true,
     variant: 'quiet',
-  },
-};
-
-export const Neutral: Story = {
-  args: {
-    children: 'Label',
-    colorScheme: 'neutral',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    children: 'Label',
-    colorScheme: 'secondary',
-  },
-};
-
-export const Info: Story = {
-  args: {
-    children: 'Label',
-    colorScheme: 'info',
-  },
-};
-
-export const Success: Story = {
-  args: {
-    children: 'Label',
-    colorScheme: 'success',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    children: 'Label',
-    colorScheme: 'warning',
-  },
-};
-
-export const Error: Story = {
-  args: {
-    children: 'Label',
-    colorScheme: 'error',
   },
 };
 
 export const WithRightIcon: Story = {
   args: {
     children: 'Label',
+    themeColor: 'primary',
+    size:'md',
     rightIcon: <StarIcon />,
   },
 };
@@ -94,7 +82,8 @@ export const WithRightIcon: Story = {
 export const WithLeftIcon: Story = {
   args: {
     children: 'Label',
-    colorScheme: 'primary',
+    themeColor: 'primary',
+    size:'md',
     leftIcon: <StarIcon />,
   },
 };

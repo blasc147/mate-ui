@@ -79,8 +79,9 @@ const headers: Column[] = [
     desktopOnly: false,
     Cell: ({ row }) => (
       <Tag
-        colorScheme={row.id === '0' ? 'warning' : 'neutral'}
+        themeColor={row.id === '0' ? 'warning' : 'neutral'}
         variant="status"
+        withDot
         rightIcon={
           row.id === '0' ? (
             <ClockIconSolid className="text-warning-700 h-4 w-4" />

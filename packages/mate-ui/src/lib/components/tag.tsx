@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '../utils';
 import { Slot } from '@radix-ui/react-slot';
 
-export type TagColorScheme =
+export type TagThemeColor =
   | 'success'
   | 'neutral'
   | 'primary'
@@ -30,7 +30,7 @@ const styles = {
           status: ['px-2', 'py-1', 'rounded-full'],
           quiet: [],
         },
-        colorScheme: {
+        themeColor: {
           neutral: [],
           primary: [],
           secondary: [],
@@ -44,81 +44,81 @@ const styles = {
         // neutral
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'neutral',
+          themeColor: 'neutral',
           className: ['bg-neutral-200'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'neutral',
+          themeColor: 'neutral',
           className: ['text-neutral-700'],
         },
         // primary
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'primary',
+          themeColor: 'primary',
           className: ['bg-primary-200'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'primary',
+          themeColor: 'primary',
           className: ['text-primary-500'],
         },
         // secondary
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'secondary',
+          themeColor: 'secondary',
           className: ['bg-secondary-200'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'secondary',
+          themeColor: 'secondary',
           className: ['text-secondary-600'],
         },
         // info
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'info',
+          themeColor: 'info',
           className: ['bg-info-200'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'info',
+          themeColor: 'info',
           className: ['text-info-700'],
         },
         // success
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'success',
+          themeColor: 'success',
           className: ['bg-success-100'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'success',
+          themeColor: 'success',
           className: ['text-success-700'],
         },
         // warning
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'warning',
+          themeColor: 'warning',
           className: ['bg-warning-100'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'warning',
+          themeColor: 'warning',
           className: ['text-warning-700'],
         },
         // error
         {
           variant: ['pill', 'badge', 'status'],
-          colorScheme: 'error',
+          themeColor: 'error',
           className: ['bg-error-100'],
         },
         {
           variant: ['pill', 'badge'],
-          colorScheme: 'error',
+          themeColor: 'error',
           className: ['text-error-500'],
         },
-        // status/quiet for any colorScheme
+        // status/quiet for any themeColor
         {
           variant: ['status', 'quiet'],
           className: ['text-neutral-900'],
@@ -126,7 +126,7 @@ const styles = {
       ],
       defaultVariants: {
         variant: 'pill',
-        colorScheme: 'neutral',
+        themeColor: 'neutral',
         size: 'md',
       },
     }
@@ -137,7 +137,7 @@ const styles = {
         md: ['w-2', 'h-2'],
         sm: ['w-1.5', 'h-1.5'],
       },
-      colorScheme: {
+      themeColor: {
         neutral: ['bg-neutral-700'],
         primary: ['bg-primary-500'],
         secondary: ['bg-secondary-600'],
@@ -148,7 +148,7 @@ const styles = {
       },
     },
     defaultVariants: {
-      colorScheme: 'neutral',
+      themeColor: 'neutral',
       size: 'md',
     },
   }),
@@ -158,7 +158,7 @@ const styles = {
         md: ['w-3', 'h-3'],
         sm: ['w-2', 'h-2'],
       },
-      colorScheme: {
+      themeColor: {
         neutral: ['text-neutral-700'],
         primary: ['text-primary-500'],
         secondary: ['text-secondary-600'],
@@ -169,7 +169,7 @@ const styles = {
       },
     },
     defaultVariants: {
-      colorScheme: 'neutral',
+      themeColor: 'neutral',
       size: 'md',
     },
   }),
@@ -180,19 +180,21 @@ interface TagProps
     VariantProps<typeof styles.root> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  withDot?: boolean;
 }
 
 const Tag = ({
   className,
   variant,
-  colorScheme,
+  themeColor,
   size,
   children,
   leftIcon: _leftIcon,
   rightIcon: _rightIcon,
+  withDot = false,
   ...props
 }: TagProps) => {
-  const iconClasses = styles.icon({ colorScheme, size });
+  const iconClasses = styles.icon({ themeColor, size });
 
   const leftIcon = _leftIcon && (
     <Slot className={iconClasses}>{_leftIcon}</Slot>
@@ -204,11 +206,11 @@ const Tag = ({
 
   return (
     <span
-      className={cn(styles.root({ variant, colorScheme, size }), className)}
+      className={cn(styles.root({ variant, themeColor, size }), className)}
       {...props}
     >
-      {VARIANTS_WITH_DOT.includes(variant) && (
-        <span className={styles.dot({ colorScheme, size })} />
+      {VARIANTS_WITH_DOT.includes(variant) && withDot && (
+        <span className={styles.dot({ themeColor, size })} />
       )}
       {leftIcon}
       {children}

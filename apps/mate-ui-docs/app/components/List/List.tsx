@@ -50,7 +50,7 @@ import {
   TableHeader,
   TableRow,
   Tag,
-  TagColorScheme,
+  TagThemeColor,
   Tooltip,
   cn,
 } from '@truenorth/mate-ui';
@@ -508,7 +508,7 @@ const tableColumns: Column[] = [
       <Tag
         size="sm"
         className="capitalize"
-        colorScheme={PaymentStatus[row.original.status] as TagColorScheme}
+        themeColor={PaymentStatus[row.original.status] as TagThemeColor}
       >
         {row.original.status}
       </Tag>

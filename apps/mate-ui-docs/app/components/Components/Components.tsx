@@ -50,12 +50,11 @@ const headers: Column[] = [
     maxWidth: 120,
     Cell: ({ row }) => (
       <Tag
-        colorScheme={
+        themeColor={
           row.original.status === Status.Ready ? 'success' : 'neutral'
         }
-        variant="pill"
+        variant="status"
         rightIcon={<CheckBadgeIcon className="h-4 w-4 !text-neutral-700" />}
-        className="text-neutral-900"
       >
         {row.original.status}
       </Tag>
