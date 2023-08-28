@@ -15,7 +15,7 @@
     "paths": {
       "@truenorth/mate-ui": ["packages/mate-ui/src/index.ts"],
       "@components": ["apps/mate-ui-docs/app/components/index.tsx"],
-      "@icons": ["apps/mate-ui-docs/app/icons/index.ts"],
+      "@icons": ["apps/mate-ui-docs/app/_icons/index.ts"],
       "@/constants/*": ["apps/mate-ui-docs/app/constants/*"],
       "@/hooks/*": ["apps/mate-ui-docs/app/hooks/*"],
       "@/utils/*": ["apps/mate-ui-docs/app/utils/*"],

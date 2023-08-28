@@ -12,7 +12,7 @@ import {
   Link,
   cn,
 } from '@truenorth/mate-ui';
-import { MateLogo } from '@icons';
+import { MateLogo } from 'apps/mate-ui-docs/app/_icons';
 import { Routes } from '@/constants/routes';
 
 const SidenavItem = ({

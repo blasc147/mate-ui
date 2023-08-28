@@ -6,6 +6,8 @@ export enum Routes {
   GettingStarted = 'getting-started',
   Foundations = 'foundations',
   Patterns = 'patterns',
+  ComplexList = 'complex-list',
+  Dashboard = 'dashboard',
 }
 
 export enum ProjectUrls {

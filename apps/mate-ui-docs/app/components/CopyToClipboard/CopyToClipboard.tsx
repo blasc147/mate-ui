@@ -1,4 +1,5 @@
-import { Tooltip } from "@truenorth/mate-ui";
+'use client';
+import { Tooltip } from '@truenorth/mate-ui';
 import React, { useState } from 'react';
 
 interface CopyToClipboardProps {
@@ -6,7 +7,7 @@ interface CopyToClipboardProps {
   tooltipText: string;
 }
 
-export function CopyToClipboard({ children, tooltipText }: CopyToClipboardProps) {
+const CopyToClipboard = ({ children, tooltipText }: CopyToClipboardProps) => {
   const [copyTooltip, setCopyTooltip] = useState(tooltipText);
   const [showTooltip, setShowTooltip] = useState(false);
   const [showTooltipTimeout, setShowTooltipTimeout] =
@@ -46,4 +47,6 @@ export function CopyToClipboard({ children, tooltipText }: CopyToClipboardProps)
       </div>
     </Tooltip>
   );
-}
+};
+
+export { CopyToClipboard };

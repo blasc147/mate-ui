@@ -1,36 +1,53 @@
-import { Examples } from '@components';
+'use client';
+import React from 'react';
+import { DescriptionHeader } from '../../components/ExampleHeader';
+import { Card, CardContent, CardHeader, CardTitle } from '@truenorth/mate-ui';
+import { DashMenuIcon, ListMenuIcon } from '@icons';
+import { Routes } from '@/constants/routes';
+import Link from 'next/link';
 
-export const metadata = {
-  title: 'Mate UI',
-  description: 'Mate UI Component Library',
-  icons: {
-    icon: '/assets/favicon.png',
-  },
-  viewport: {
-    width: 'device-width',
-    height: 'device-height',
-    initialScale: 1,
-    maximumScale: 1,
-    minimumScale: 1,
-  },
+type GridDataProps = {
+  title: string;
+  icon: React.ReactElement;
+  route: string;
 };
 
+const gridData: GridDataProps[] = [
+  {
+    title: 'Dashboard',
+    icon: <DashMenuIcon width={180} height={122} />,
+    route: Routes.Dashboard,
+  },
+  {
+    title: 'Complex List',
+    icon: <ListMenuIcon width={180} height={122} />,
+    route: Routes.ComplexList,
+  },
+];
 
 const Page = () => {
   return (
-      <div className="flex flex-col">
-        <header className="flex w-full">
-          <div className="flex w-full flex-col pb-12">
-            <h3 className="pb-6 text-3xl font-semibold text-neutral-900">
-              Dashboard
-            </h3>
-            <h5 className="text-xl text-neutral-700">
-              Explore some examples of layouts built using Mate UI components
-            </h5>
-          </div>
-        </header>
-        <Examples/>
+    <div className="flex flex-col">
+      <DescriptionHeader
+        paragraphText="Explore some examples of layouts built using Mate UI components"
+        title="Examples"
+      />
+
+      <div className="grid gap-4 py-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {gridData.map((card, index) => (
+          <Link key={index} href={card.route}>
+            <Card cardStyle="shadow" className="border border-neutral-300">
+              <CardHeader>
+                <CardTitle size="md">{card.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="justify-center bg-neutral-200">
+                {card.icon}
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
       </div>
+    </div>
   );
 };
 

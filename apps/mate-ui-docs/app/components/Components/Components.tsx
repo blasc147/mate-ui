@@ -14,7 +14,11 @@ import {
   Tag,
 } from '@truenorth/mate-ui';
 import { Col, ColContainer } from '@components';
-import { FigmaIcon, GithubIcon, StorybookIcon } from '@icons';
+import {
+  FigmaIcon,
+  GithubIcon,
+  StorybookIcon,
+} from 'apps/mate-ui-docs/app/_icons';
 import { ProjectUrls } from '@/constants/routes';
 import { Status, componentsList } from './componentsList';
 import { useTable, useSortBy, Column } from 'react-table';

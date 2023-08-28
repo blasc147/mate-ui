@@ -46,12 +46,9 @@ import {
   TableRow,
   Tag,
 } from '@truenorth/mate-ui';
-import { Routes } from '../../constants/routes';
-import Description from '../Description/Description';
 import { v4 as uuidv4 } from 'uuid';
-import { Col } from '../Grid';
-import { CopyToClipboard } from '../CopyToClipboard/copyToClipboard';
 import { useTable, useSortBy, Column } from 'react-table';
+import { CopyToClipboard } from '@components';
 
 interface Transactions {
   date: string;
@@ -59,15 +56,6 @@ interface Transactions {
   amount: string;
   balance: string;
 }
-
-const listItems = [
-  'Button',
-  'Card',
-  'Icon Button',
-  'Input',
-  'Selector',
-  'Table',
-];
 
 const headers: Column[] = [
   {
@@ -125,8 +113,7 @@ const headers: Column[] = [
     maxWidth: 120,
   },
 ];
-
-const BaseDashboard = () => {
+export const BaseDashboard = () => {
   const transactions: Transactions[] = [
     {
       date: 'Today, 12:46pm',
@@ -436,27 +423,3 @@ const BaseDashboard = () => {
     </Card>
   );
 };
-
-const Dashboard = () => {
-  const openInNewTab = (url) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-    if (newWindow) newWindow.opener = null;
-  };
-
-  return (
-    <div className="mx-auto flex w-full flex-wrap justify-between gap-5 pt-12 md:w-auto">
-      <Col size="main">
-        <BaseDashboard />
-      </Col>
-      <Col size="aside" direction="col">
-        <Description
-          paragraphText="Responsive, consumer-facing dashboard for servicing a financial account, such as a bank account."
-          listItems={listItems}
-          onPreview={() => openInNewTab(Routes.DashboardPreview)}
-        />
-      </Col>
-    </div>
-  );
-};
-
-export { Dashboard, BaseDashboard };
