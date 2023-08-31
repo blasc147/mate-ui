@@ -5,16 +5,17 @@ import React, { useState } from 'react';
 interface CopyToClipboardProps {
   children: React.ReactNode;
   tooltipText: string;
+  contentToCopy: string;
 }
 
-const CopyToClipboard = ({ children, tooltipText }: CopyToClipboardProps) => {
+const CopyToClipboard = ({ children, tooltipText, contentToCopy }: CopyToClipboardProps) => {
   const [copyTooltip, setCopyTooltip] = useState(tooltipText);
   const [showTooltip, setShowTooltip] = useState(false);
   const [showTooltipTimeout, setShowTooltipTimeout] =
     useState<ReturnType<typeof setTimeout>>();
 
   const copy = () => {
-    navigator.clipboard.writeText(tooltipText);
+    navigator.clipboard.writeText(contentToCopy);
     setCopyTooltip('Copied to clipboard');
     const timeout = setTimeout(() => {
       setShowTooltip(false);

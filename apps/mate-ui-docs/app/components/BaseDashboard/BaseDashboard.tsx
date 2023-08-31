@@ -7,15 +7,16 @@ import {
   ArrowsRightLeftIcon,
   CheckIcon,
   ClockIcon as ClockIconSolid,
+  EyeSlashIcon,
+  EyeIcon,
+  ClipboardDocumentCheckIcon,
 } from '@heroicons/react/20/solid';
 import {
   ArrowRightIcon,
-  ClipboardDocumentCheckIcon,
   ClockIcon,
   Cog6ToothIcon,
   CurrencyDollarIcon,
   EllipsisVerticalIcon,
-  EyeIcon,
   PaperAirplaneIcon,
   PlusIcon,
   QuestionMarkCircleIcon,
@@ -161,6 +162,8 @@ export const BaseDashboard = () => {
     useSortBy
   );
 
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+
   return (
     <Card cardStyle="shadow" className="w-full bg-neutral-50">
       <CardHeader className="md:flex-wrap-0 flex-wrap p-8 pb-0 md:px-14 md:pt-8">
@@ -206,11 +209,29 @@ export const BaseDashboard = () => {
                   TrueNorth Checking Account
                 </h3>
                 <div className="flex items-center justify-center">
-                  <span className="text-xs">Acct #: ••••••••••••••••</span>
-                  <EyeIcon className="ml-2 h-4 w-4" />
-                  <CopyToClipboard tooltipText="Copy">
-                    <ClipboardDocumentCheckIcon className="ml-2 h-4 w-4" />
-                  </CopyToClipboard>
+                  <span className="text-xs">
+                    Acct #:
+                    {showPassword ? '888888888888888' : '••••••••••••••••'}
+                  </span>
+                  <IconButton
+                    className="ml-2"
+                    variant="ghost"
+                    themeColor="neutral"
+                    aria-label="show-hide"
+                    onClick={() => setShowPassword(!showPassword)}
+                    icon={!showPassword ? <EyeIcon className="h-4 w-4" /> : <EyeSlashIcon className="h-4 w-4" /> }
+                  />
+                  <IconButton
+                    className="ml-2 font-normal"
+                    variant="ghost"
+                    themeColor="neutral"
+                    aria-label="show-hide"
+                    icon={
+                      <CopyToClipboard tooltipText="copy" contentToCopy='888888888888888'>
+                        <ClipboardDocumentCheckIcon className="h-4 w-4" />
+                      </CopyToClipboard>
+                    }
+                  />
                 </div>
               </div>
             </CardContent>
