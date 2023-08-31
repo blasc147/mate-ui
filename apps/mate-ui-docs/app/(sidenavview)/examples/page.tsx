@@ -36,7 +36,11 @@ const Page = () => {
       <div className="grid gap-4 py-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {gridData.map((card, index) => (
           <Link key={index} href={card.route}>
-            <Card cardStyle="shadow" className="border border-neutral-300">
+            <Card
+              cardStyle="shadow"
+              className="border border-neutral-300"
+              padding="sm"
+            >
               <CardHeader>
                 <CardTitle size="md">{card.title}</CardTitle>
               </CardHeader>
