@@ -1,23 +1,39 @@
+import React, { ReactNode } from 'react';
+import {
+  FigmaIcon,
+  GithubIcon,
+  StorybookIcon,
+} from 'apps/mate-ui-docs/app/_icons';
+import { ProjectUrls } from '@/constants/routes';
+
 export enum Status {
   Ready = 'Ready',
   InProgress = 'In progress',
 }
 
 interface Component {
-  name: string;
-  description: string;
-  status: Status;
-  figmaLink: string;
-  storybookLink: string;
+name: string;
+description: string;
+status: Status;
+figmaLink: string;
+storybookLink: string;
 }
 
-export const componentsList: Component[] = [
+
+interface LinkItem {
+  name: string;
+  description: string;
+  link: string;
+  icon: ReactNode;
+}
+
+export const componentsData: Component[] = [
   {
     name: 'Accordion',
     description: 'Reveals or hides associated sections of content.',
     status: Status.Ready,
     figmaLink:
-      'https://www.figma.com/file/6zMgZETAVqw9TgqFxRY3IY/Mate-UI-2.0?node-id=2039%3A4464&mode=dev',
+      'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?type=design&node-id=2161-5141&mode=design&t=lm3buiMyWrhngtae-0',
     storybookLink:
       'https://mate-ui-storybook.vercel.app/?path=/story/accordion--default',
   },
@@ -239,5 +255,28 @@ export const componentsList: Component[] = [
       'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?type=design&node-id=2039-4466&mode=design&t=qMcouYM8P8NgTrz9-0',
     storybookLink:
       'https://mate-ui-storybook.vercel.app/?path=/story/tooltip--default',
+  },
+];
+
+export const linkItems: LinkItem[] = [
+  {
+    name: 'Figma',
+    description: 'Documentation, anatomy, variants and examples.',
+    link: ProjectUrls.Figma,
+    icon: <FigmaIcon />,
+  },
+  {
+    name: 'Storybook',
+    description:
+      'Library of isolated component builds ready for development and testing.',
+    link: ProjectUrls.Storybook,
+    icon: <StorybookIcon />,
+  },
+  {
+    name: 'Github',
+    description:
+      'Library of isolated component builds ready for development and testing.',
+    link: ProjectUrls.Github,
+    icon: <GithubIcon />,
   },
 ];

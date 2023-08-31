@@ -1,9 +1,7 @@
 'use client';
-import React, { ReactNode } from 'react';
-import { ArrowRightIcon, CheckBadgeIcon } from '@heroicons/react/20/solid';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  IconButton,
   SortColumn,
   Table,
   TableBody,
@@ -11,122 +9,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  Tag,
 } from '@truenorth/mate-ui';
 import { Col, ColContainer } from '@components';
-import {
-  FigmaIcon,
-  GithubIcon,
-  StorybookIcon,
-} from 'apps/mate-ui-docs/app/_icons';
-import { ProjectUrls } from '@/constants/routes';
-import { Status, componentsList } from './componentsList';
-import { useTable, useSortBy, Column } from 'react-table';
-
-interface LinkItem {
-  name: string;
-  description: string;
-  link: string;
-  icon: ReactNode;
-}
-const headers: Column[] = [
-  {
-    Header: 'Component',
-    accessor: 'name',
-    sortable: true,
-    minWidth: 140,
-    width: 540,
-    maxWidth: 900,
-    Cell: ({ row }) => (
-      <div>
-        <p className="text-sm text-neutral-900">{row.original.name}</p>
-        <p className="hidden text-xs text-neutral-600 md:block">
-          {row.original.description}
-        </p>
-      </div>
-    ),
-  },
-  {
-    Header: 'Status',
-    accessor: 'status',
-    sortable: true,
-    minWidth: 120,
-    maxWidth: 120,
-    Cell: ({ row }) => (
-      <Tag
-        themeColor={
-          row.original.status === Status.Ready ? 'success' : 'neutral'
-        }
-        variant="status"
-        rightIcon={<CheckBadgeIcon className="h-4 w-4 !text-neutral-700" />}
-      >
-        {row.original.status}
-      </Tag>
-    ),
-  },
-  {
-    Header: 'Links',
-    accessor: 'link',
-    sortable: false,
-    minWidth: 120,
-    maxWidth: 120,
-    Cell: ({ row }) => (
-      <div className="flex">
-        <IconButton
-          icon={<FigmaIcon />}
-          aria-label="FigmaIcon"
-          themeColor="neutral"
-          size="sm"
-          className="mr-2 flex content-center justify-center"
-          asChild
-        >
-          <a href={row.original.figmaLink} rel="noreferrer" target="_blank" />
-        </IconButton>
-        <IconButton
-          icon={<StorybookIcon />}
-          aria-label="StorybookIcon"
-          themeColor="neutral"
-          size="sm"
-          className="flex content-center justify-center"
-          asChild
-        >
-          <a
-            href={row.original.storybookLink}
-            rel="noreferrer"
-            target="_blank"
-          />
-        </IconButton>
-      </div>
-    ),
-  },
-];
-
-export const linkItems: LinkItem[] = [
-  {
-    name: 'Figma',
-    description: 'Documentation, anatomy, variants and examples.',
-    link: ProjectUrls.Figma,
-    icon: <FigmaIcon />,
-  },
-  {
-    name: 'Storybook',
-    description:
-      'Library of isolated component builds ready for development and testing.',
-    link: ProjectUrls.Storybook,
-    icon: <StorybookIcon />,
-  },
-  {
-    name: 'Github',
-    description:
-      'Library of isolated component builds ready for development and testing.',
-    link: ProjectUrls.Github,
-    icon: <GithubIcon />,
-  },
-];
+import { componentsData, linkItems } from './componentsData';
+import { headers } from './headersData';
+import { useTable, useSortBy } from 'react-table';
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
 
 const Components = () => {
   const columns = React.useMemo(() => headers, []);
-  const data = React.useMemo(() => componentsList, []);
+  const data = React.useMemo(() => componentsData, []);
   const { headerGroups, rows, prepareRow } = useTable(
     {
       columns,
