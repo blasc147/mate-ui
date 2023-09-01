@@ -1,4 +1,12 @@
-export const invoices = [
+export type Invoice = {
+  id: string;
+  loanType: 'Personal' | 'Business' | 'Auto';
+  payOff: string;
+  date: string;
+  status: 'Open' | 'Paid';
+  autopay: 'On' | 'Off';
+};
+export const invoices: Invoice[] = [
   {
     id: 'A-2023-010',
     loanType: 'Personal',

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes } from '@/constants/routes';
 import { Breadcrumbs, ComponentList, DescriptionHeader } from '@components';
 
-import { invoices } from './mockData';
+import { Invoice, invoices } from './mockData';
 import useScreenSize from '@/hooks/useScreenSize';
 import {
   ArrowDownIcon,
@@ -73,11 +73,9 @@ enum PaymentStatus {
 
 const List = () => {
   const screenSize = useScreenSize();
-  const [createTooltipOpen, setCreateTooltipOpen] = useState(false);
-  const [makeTooltipOpen, setMakeTooltipOpen] = useState(false);
-  const [uploadTooltipOpen, setUploadTooltipOpen] = useState(false);
-  const [checkboxStates, setCheckboxStates] = useState({});
-  const [selectAll, setSelectAll] = useState(false);
+  const [createTooltipOpen, setCreateTooltipOpen] = useState<boolean>(false);
+  const [makeTooltipOpen, setMakeTooltipOpen] = useState<boolean>(false);
+  const [uploadTooltipOpen, setUploadTooltipOpen] = useState<boolean>(false);
 
   const handleCreateTooltipOpenChange = (open: boolean) => {
     setCreateTooltipOpen(open);
@@ -89,72 +87,17 @@ const List = () => {
     setUploadTooltipOpen(open);
   };
   const columns = React.useMemo(() => tableColumns, []);
-  const data = React.useMemo(() => invoices, []);
-  const [selectedStatus, setSelectedStatus] = React.useState('');
-  const [searchFilter, setSearchFilter] = React.useState('');
-  const {
-    headerGroups,
-    rows,
-    prepareRow,
-    setFilter,
-    page,
-    state: { pageIndex, pageSize },
-    nextPage,
-    setPageSize,
-    previousPage,
-    gotoPage,
-  } = useTable(
-    {
-      columns,
-      data,
-      initialState: { pageIndex: 0, pageSize: 10 },
-    },
-    useFilters,
-    useSortBy,
-    usePagination
-  );
-
-  useEffect(() => {
-    setFilter('status', selectedStatus);
-    setFilter('id', searchFilter);
-  }, [selectedStatus, searchFilter, setFilter]);
-
-  const selectedRows: number = Object.values(checkboxStates).reduce(
-    (a: number, item) => a + (item === true ? 1 : 0),
-    0
-  ) as number;
-
-  const handleRowCheckboxChange = (rowId) => {
-    setCheckboxStates((prevSelectedRows) => ({
-      ...prevSelectedRows,
-      [rowId]: !prevSelectedRows[rowId],
-    }));
-  };
-
-  const handleSelectAllCheckboxChange = () => {
-    const newSelectAll = !selectAll;
-
-    if (newSelectAll) {
-      const newSelectedRows = {};
-      rows.forEach((row) => {
-        newSelectedRows[row.id] = true;
-      });
-      setCheckboxStates(newSelectedRows);
-    } else {
-      setCheckboxStates({});
-    }
-
-    setSelectAll(newSelectAll);
-  };
+  const data: Invoice[] = React.useMemo(() => invoices, []);
+  const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [searchFilter, setSearchFilter] = React.useState<string>('');
 
   return (
-    <div className="mx-auto flex flex-wrap justify-between gap-5">
+    <div className="flex flex-wrap justify-between gap-5">
       <Card
-        cardStyle="shadow"
         padding={screenSize === 'sm' ? 'none' : 'lg'}
-        className={cn('w-full shadow-none')}
+        className={cn('w-full md:border md:border-neutral-300 md:shadow-lg')}
       >
-        <CardHeader className="md:px-0">
+        <CardHeader>
           <CardTitle size="md" className="text-2xl md:text-3xl">
             Loan Manager
           </CardTitle>
@@ -170,7 +113,7 @@ const List = () => {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="flex-col p-0 pt-4 md:px-0">
+        <CardContent className="flex-col pt-4 ">
           <div className="flex flex-wrap gap-2 pb-6 lg:flex-nowrap lg:justify-between">
             <div className="hidden gap-3 pb-2 lg:flex lg:pb-0">
               <Tooltip
@@ -282,161 +225,242 @@ const List = () => {
               </FormControl>
             </div>
           </div>
-          <Table hasPagination>
-            {rows.length > 0 ? (
-              <>
-                <TableHeader className="h-11">
-                  {headerGroups.map((headerGroup) => (
-                    <TableRow
-                      {...headerGroup.getHeaderGroupProps()}
-                      key={uuidv4()}
-                    >
-                      <TableHead className="hidden w-9 lg:table-cell">
-                        <Checkbox
-                          checked={selectAll}
-                          onCheckedChange={handleSelectAllCheckboxChange}
-                        />
-                      </TableHead>
-                      {headerGroup.headers.map((column) => {
-                        return (
-                          <TableHead
-                            {...column.getHeaderProps(
-                              column.sortable && column.getSortByToggleProps()
-                            )}
-                            key={uuidv4()}
-                            className={cn(
-                              { 'px-4': column.sortable },
-                              column.className
-                            )}
-                            desktopOnly={column.desktopOnly}
-                            isSortable={column.sortable}
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            {column.sortable ? (
-                              <div className="flex h-4 items-center space-x-2">
-                                <Dropdown>
-                                  <DropdownTrigger asChild>
-                                    <button className="rounded px-2 py-1 hover:bg-neutral-300">
-                                      {column.render('Header')}
-                                      <SortColumn
-                                        sort={
-                                          !column?.isSorted
-                                            ? undefined
-                                            : column.isSortedDesc
-                                            ? 'desc'
-                                            : 'asc'
-                                        }
-                                      />
-                                    </button>
-                                  </DropdownTrigger>
-                                  <DropdownContent align="start">
-                                    <DropdownItem
-                                      onSelect={() => {
-                                        column.toggleSortBy(false);
-                                      }}
-                                    >
-                                      <ArrowUpIcon className="mr-1 h-5 w-5" />
-                                      Asc
-                                    </DropdownItem>
-                                    <DropdownItem
-                                      onSelect={() => column.toggleSortBy(true)}
-                                    >
-                                      <ArrowDownIcon className="mr-1 h-5 w-5" />
-                                      Desc
-                                    </DropdownItem>
-                                  </DropdownContent>
-                                </Dropdown>
-                              </div>
-                            ) : (
-                              column.render('Header')
-                            )}
-                          </TableHead>
-                        );
-                      })}
-                      <TableHead></TableHead>
-                    </TableRow>
-                  ))}
-                </TableHeader>
-                <TableBody>
-                  {page.map((row) => {
-                    prepareRow(row);
-                    const isCheckboxChecked = checkboxStates[row.id] || false;
-
-                    return (
-                      <TableRow
-                        {...row.getRowProps()}
-                        key={uuidv4()}
-                        className={cn({
-                          'bg-neutral-200': isCheckboxChecked,
-                        })}
-                      >
-                        <TableCell>
-                          <Checkbox
-                            checked={isCheckboxChecked}
-                            onCheckedChange={() =>
-                              handleRowCheckboxChange(row.id)
-                            }
-                          />
-                        </TableCell>
-
-                        {row.cells.map((cell) => (
-                          <TableCell
-                            {...cell.getCellProps({
-                              style: {
-                                minWidth: cell.column.minWidth,
-                                width: cell.column.width,
-                                maxWidth: cell.column.maxWidth,
-                              },
-                            })}
-                            key={uuidv4()}
-                            desktopOnly={cell.column.desktopOnly}
-                          >
-                            {cell.render('Cell')}
-                          </TableCell>
-                        ))}
-                        <TableCell className="p-2">
-                          <EllipsisVerticalIcon className="h-4 w-4" />
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </>
-            ) : (
-              <div className="w-full p-6 text-center text-neutral-500">
-                We couldn't find any matches for that search
-              </div>
-            )}
-          </Table>
-          <Pagination
-            selectedRows={selectedRows}
-            totalItems={data.length}
-            showRowSelection
-            className="px-6"
-          >
-            <Resizer
-              currentPageSize={`${pageSize}`}
-              onChangePageSize={(newPageSize) => {
-                setPageSize(parseInt(newPageSize, 10));
-              }}
-              pagesSizes={['10', '20', '30']}
-            />
-            <ItemsCounter
-              currentPage={pageIndex + 1}
-              totalPages={Math.ceil(rows.length / pageSize)}
-            />
-            <PaginationButtons
-              canNextPage={pageIndex < Math.ceil(rows.length / pageSize) - 1}
-              canPreviousPage={pageIndex > 0}
-              onNextPage={() => nextPage()}
-              onPrevPage={() => previousPage()}
-              onLastPage={() => gotoPage(Math.ceil(rows.length / pageSize) - 1)}
-              onFirstPage={() => gotoPage(0)}
-            />
-          </Pagination>
+          <InvoicesTable
+            columns={columns}
+            data={data}
+            filters={searchFilter}
+            status={selectedStatus}
+          />
         </CardContent>
       </Card>
     </div>
+  );
+};
+
+type TableProps = {
+  columns: Column[];
+  data: Invoice[];
+  filters: string;
+  status: string;
+};
+
+const InvoicesTable: React.FC<TableProps> = ({
+  columns,
+  data,
+  filters,
+  status,
+}) => {
+  const [selectAll, setSelectAll] = useState<boolean>(false);
+  const [checkboxStates, setCheckboxStates] = useState<Record<string, boolean>>(
+    {}
+  );
+
+  const {
+    headerGroups,
+    rows,
+    prepareRow,
+    setFilter,
+    page,
+    state: { pageIndex, pageSize },
+    nextPage,
+    setPageSize,
+    previousPage,
+    gotoPage,
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0, pageSize: 10 },
+    },
+    useFilters,
+    useSortBy,
+    usePagination
+  );
+
+  useEffect(() => {
+    setFilter('status', status);
+    setFilter('id', filters);
+  }, [status, filters, setFilter]);
+
+  const handleRowCheckboxChange = (rowId) => {
+    setCheckboxStates((prevSelectedRows) => ({
+      ...prevSelectedRows,
+      [rowId]: !prevSelectedRows[rowId],
+    }));
+  };
+
+  const handleSelectAllCheckboxChange = () => {
+    const newSelectAll = !selectAll;
+
+    if (newSelectAll) {
+      const newSelectedRows = {};
+      rows.forEach((row) => {
+        newSelectedRows[row.id] = true;
+      });
+      setCheckboxStates(newSelectedRows);
+    } else {
+      setCheckboxStates({});
+    }
+
+    setSelectAll(newSelectAll);
+  };
+  const selectedRows: number = Object.values(checkboxStates).reduce(
+    (a: number, item) => a + (item === true ? 1 : 0),
+    0
+  ) as number;
+
+  return (
+    <>
+      <Table hasPagination>
+        {rows.length > 0 ? (
+          <>
+            <TableHeader className="h-11">
+              {headerGroups.map((headerGroup) => (
+                <TableRow {...headerGroup.getHeaderGroupProps()} key={uuidv4()}>
+                  <TableHead className="hidden w-9 lg:table-cell" desktopOnly>
+                    <Checkbox
+                      checked={selectAll}
+                      onCheckedChange={handleSelectAllCheckboxChange}
+                    />
+                  </TableHead>
+                  {headerGroup.headers.map((column) => {
+                    return (
+                      <TableHead
+                        {...column.getHeaderProps(
+                          column.sortable && column.getSortByToggleProps()
+                        )}
+                        key={uuidv4()}
+                        className={cn(
+                          { 'px-4': column.sortable },
+                          column.className
+                        )}
+                        desktopOnly={column.desktopOnly}
+                        isSortable={column.sortable}
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        {column.sortable ? (
+                          <div className="flex h-4 items-center space-x-2">
+                            <Dropdown>
+                              <DropdownTrigger asChild>
+                                <button className="rounded px-2 py-1 hover:bg-neutral-300">
+                                  {column.render('Header')}
+                                  <SortColumn
+                                    sort={
+                                      !column?.isSorted
+                                        ? undefined
+                                        : column.isSortedDesc
+                                        ? 'desc'
+                                        : 'asc'
+                                    }
+                                  />
+                                </button>
+                              </DropdownTrigger>
+                              <DropdownContent align="start">
+                                <DropdownItem
+                                  onSelect={() => {
+                                    column.toggleSortBy(false);
+                                  }}
+                                >
+                                  <ArrowUpIcon className="mr-1 h-5 w-5" />
+                                  Asc
+                                </DropdownItem>
+                                <DropdownItem
+                                  onSelect={() => column.toggleSortBy(true)}
+                                >
+                                  <ArrowDownIcon className="mr-1 h-5 w-5" />
+                                  Desc
+                                </DropdownItem>
+                              </DropdownContent>
+                            </Dropdown>
+                          </div>
+                        ) : (
+                          column.render('Header')
+                        )}
+                      </TableHead>
+                    );
+                  })}
+                  <TableHead></TableHead>
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {page.map((row) => {
+                prepareRow(row);
+                const isCheckboxChecked = checkboxStates[row.id] || false;
+
+                return (
+                  <TableRow
+                    {...row.getRowProps()}
+                    key={uuidv4()}
+                    className={cn({
+                      'bg-neutral-200': isCheckboxChecked,
+                    })}
+                  >
+                    <TableCell desktopOnly>
+                      <Checkbox
+                        checked={isCheckboxChecked}
+                        onCheckedChange={() => handleRowCheckboxChange(row.id)}
+                      />
+                    </TableCell>
+
+                    {row.cells.map((cell) => (
+                      <TableCell
+                        {...cell.getCellProps({
+                          style: {
+                            minWidth: cell.column.minWidth,
+                            width: cell.column.width,
+                            maxWidth: cell.column.maxWidth,
+                          },
+                        })}
+                        key={uuidv4()}
+                        desktopOnly={cell.column.desktopOnly}
+                      >
+                        {cell.render('Cell')}
+                      </TableCell>
+                    ))}
+                    <TableCell className="">
+                      <div className="flex  justify-end">
+                        <EllipsisVerticalIcon className="h-4 w-4	" />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </>
+        ) : (
+          <div className="w-full p-6 text-center text-neutral-500">
+            We couldn't find any matches for that search
+          </div>
+        )}
+      </Table>{' '}
+      <Pagination
+        selectedRows={selectedRows}
+        totalItems={data.length}
+        showRowSelection
+        className="px-6"
+      >
+        <Resizer
+          currentPageSize={`${pageSize}`}
+          onChangePageSize={(newPageSize) => {
+            setPageSize(parseInt(newPageSize, 10));
+          }}
+          pagesSizes={['10', '20', '30']}
+        />
+        <ItemsCounter
+          currentPage={pageIndex + 1}
+          totalPages={Math.ceil(rows.length / pageSize)}
+        />
+        <PaginationButtons
+          canNextPage={pageIndex < Math.ceil(rows.length / pageSize) - 1}
+          canPreviousPage={pageIndex > 0}
+          onNextPage={() => nextPage()}
+          onPrevPage={() => previousPage()}
+          onLastPage={() => gotoPage(Math.ceil(rows.length / pageSize) - 1)}
+          onFirstPage={() => gotoPage(0)}
+        />
+      </Pagination>
+    </>
   );
 };
 const listItems = [
@@ -455,7 +479,7 @@ const tableColumns: Column[] = [
     sortable: true,
     desktopOnly: false,
     minWidth: 140,
-    maxWidth: 140,
+    maxWidth: 500,
   },
   {
     Header: 'Loan Type',
@@ -464,7 +488,7 @@ const tableColumns: Column[] = [
     desktopOnly: true,
     minWidth: 140,
     width: 500,
-    maxWidth: 500,
+    maxWidth: 900,
   },
   {
     Header: 'Payoff',
@@ -529,6 +553,7 @@ const Page = () => {
         paragraphText="Responsive design for a complex list, featuring different types of content."
         title="Complex List"
         onPreview={() => openInNewTab(Routes.DashboardPreview)}
+        hasPreviewButtons
       />
       <List />
       <ComponentList listItems={listItems} />

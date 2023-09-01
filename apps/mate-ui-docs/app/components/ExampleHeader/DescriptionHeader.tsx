@@ -17,34 +17,31 @@ export const DescriptionHeader: React.FC<Props> = ({
   hasPreviewButtons = false,
 }) => {
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+      <div className="order-1 bg-red-300 sm:order-1">
         <Header variant={'h1'}>{title}</Header>
-        <div className="flex gap-3">
-          {hasPreviewButtons && (
-            <>
-              <Button
-                variant="outlined"
-                size="sm"
-                rightIcon={<EyeIcon />}
-                onClick={onPreview}
-              >
-                Preview
-              </Button>
-              <Button
-                variant="outlined"
-                size="sm"
-                rightIcon={<CodeBracketIcon />}
-                onClick={onViewCode}
-              >
-                View code
-              </Button>
-            </>
-          )}
-        </div>
       </div>
 
-      <p className="my-5 text-lg">{paragraphText}</p>
+      <div className="order-2 bg-green-300 sm:order-3 sm:col-span-2">
+        <p className="my-5 text-lg">{paragraphText}</p>
+      </div>
+
+      <div className="order-3 flex items-center gap-2 bg-blue-300 sm:order-2 md:justify-end">
+        {hasPreviewButtons && (
+          <>
+            <Button size="sm" rightIcon={<EyeIcon />} onClick={onPreview}>
+              Preview
+            </Button>
+            <Button
+              size="sm"
+              rightIcon={<CodeBracketIcon />}
+              onClick={onViewCode}
+            >
+              View code
+            </Button>
+          </>
+        )}
+      </div>
     </div>
   );
 };
