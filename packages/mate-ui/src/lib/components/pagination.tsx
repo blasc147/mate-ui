@@ -14,7 +14,7 @@ import {
 } from './selector';
 import { FormControl } from './input';
 import { IconButton } from './icon-button';
-import { cn } from '../utils';
+import { cn, getScreenSize } from '../utils';
 
 const ItemsCounter = ({
   currentPage,
@@ -50,6 +50,7 @@ const PaginationButtons = ({
       <IconButton
         aria-label="firstPage"
         themeColor="neutral"
+        className="hidden sm:inline-flex"
         onClick={onFirstPage}
         disabled={!canPreviousPage}
         variant="outlined"
@@ -62,7 +63,7 @@ const PaginationButtons = ({
         onClick={onPrevPage}
         disabled={!canPreviousPage}
         variant="outlined"
-        size={'sm'}
+        size={getScreenSize() === 'sm' ? 'lg' : 'sm'}
         icon={<ChevronLeftIcon />}
       />
 
@@ -72,11 +73,12 @@ const PaginationButtons = ({
         onClick={onNextPage}
         disabled={!canNextPage}
         variant="outlined"
-        size={'sm'}
+        size={getScreenSize() === 'sm' ? 'lg' : 'sm'}
         icon={<ChevronRightIcon />}
       />
       <IconButton
         aria-label="LastPage"
+        className="hidden sm:inline-flex"
         themeColor="neutral"
         onClick={onLastPage}
         disabled={!canNextPage}
@@ -98,7 +100,7 @@ const Resizer = ({
   onChangePageSize: (newPageSize: string) => void;
 }) => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="hidden gap-2 items-center sm:inline-flex">
       <span className="text-base font-normal">Rows per page</span>
       <FormControl className="w-16">
         <Selector
@@ -161,13 +163,17 @@ const Pagination = ({
     <div
       className={cn(
         'flex',
-        'items-center',
+        'items-start',
         'rounded-b-lg',
         'border',
         'p-4',
-        'gap-4',
+        'gap-2',
         'border-neutral-300	',
         'border-t-0',
+        'flex-col',
+        'sm:flex-row',
+        'sm:gap-4',
+        'sm:items-center',
         className,
         showRowSelection ? 'justify-between' : 'justify-end'
       )}
@@ -176,7 +182,9 @@ const Pagination = ({
         <SelectedRows selectedRows={selectedRows} totalRows={totalItems} />
       )}
 
-      <div className="flex items-center gap-4 text-base">{children}</div>
+      <div className="flex w-full items-center justify-between gap-4 text-base sm:w-auto">
+        {children}
+      </div>
     </div>
   );
 };
