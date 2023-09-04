@@ -46,6 +46,7 @@ import {
   TableHeader,
   TableRow,
   Tag,
+  Tooltip,
 } from '@truenorth/mate-ui';
 import { v4 as uuidv4 } from 'uuid';
 import { useTable, useSortBy, Column } from 'react-table';
@@ -163,6 +164,11 @@ export const BaseDashboard = () => {
   );
 
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState<boolean>(false);
+
+  const handleTooltipOpenChange = (open: boolean) => {
+    setTooltipOpen(open);
+  };
 
   return (
     <Card cardStyle="shadow" className="w-full bg-neutral-50">
@@ -213,21 +219,40 @@ export const BaseDashboard = () => {
                     Acct #:
                     {showPassword ? '888888888888888' : '••••••••••••••••'}
                   </span>
-                  <IconButton
-                    className="ml-2"
-                    variant="ghost"
-                    themeColor="neutral"
-                    aria-label="show-hide"
-                    onClick={() => setShowPassword(!showPassword)}
-                    icon={!showPassword ? <EyeIcon className="h-4 w-4" /> : <EyeSlashIcon className="h-4 w-4" /> }
-                  />
+                  <Tooltip
+                    content={!showPassword ? 'Show' : 'Hide'}
+                    open={tooltipOpen}
+                    defaultOpen={false}
+                    onOpenChange={handleTooltipOpenChange}
+                    theme="dark"
+                    placement="top"
+                    align="center"
+                  >
+                    <IconButton
+                      className="ml-2"
+                      variant="ghost"
+                      themeColor="neutral"
+                      aria-label="show-hide"
+                      onClick={() => setShowPassword(!showPassword)}
+                      icon={
+                        !showPassword ? (
+                          <EyeIcon className="h-4 w-4" />
+                        ) : (
+                          <EyeSlashIcon className="h-4 w-4" />
+                        )
+                      }
+                    />
+                  </Tooltip>
                   <IconButton
                     className="ml-2 font-normal"
                     variant="ghost"
                     themeColor="neutral"
                     aria-label="show-hide"
                     icon={
-                      <CopyToClipboard tooltipText="copy" contentToCopy='888888888888888'>
+                      <CopyToClipboard
+                        tooltipText="copy"
+                        contentToCopy="888888888888888"
+                      >
                         <ClipboardDocumentCheckIcon className="h-4 w-4" />
                       </CopyToClipboard>
                     }
