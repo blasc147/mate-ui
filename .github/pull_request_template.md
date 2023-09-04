@@ -1,12 +1,22 @@
-<!-- delete as appropriate -->
-
-Closes LSP-####
-Part of LSP-####
-
-## Brief summary
-
-<!-- What changed? Give a brief summary of the ticket and what you've done. -->
-
-### Screenshots
-
-<!-- ideally two (or more) screenshots showing the diff between before and after -->
+## Summary
+​
+_[Short description of what has changed]_
+​
+---
+​
+## Jira
+_[Add Jira tkt url]_
+​
+---
+​
+## Screenshots
+​
+_[Screenshots]_
+​
+​
+## ✅ Checklist
+​
+- [ ] The PR title follows the convention we established [conventional-commit](https://www.conventionalcommits.org/en/v1.0.0/)
+- [ ] I performed a functional test on my final commit
+​
+💯

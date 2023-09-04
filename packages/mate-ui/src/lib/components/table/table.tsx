@@ -4,9 +4,31 @@ import {
   ChevronUpDownIcon,
   ChevronUpIcon,
 } from '@heroicons/react/24/outline';
-import { cn } from '../utils';
-import { Link } from './link';
-import { Tag } from './tag';
+import { cn } from '../../utils';
+import { Link } from '../link';
+import { Tag } from '../tag';
+import { Slot } from '@radix-ui/react-slot';
+
+interface SupportiveTextProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {
+  asChild?: boolean;
+  className?: string;
+}
+
+const SupportiveText = ({
+  asChild,
+  ...props
+}: SupportiveTextProps) => {
+  const Comp = asChild ? Slot : 'p';
+
+  return (
+    <Comp
+      className='text-xs text-neutral-600'
+      {...props}
+    />
+  );
+};
+
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -102,7 +124,6 @@ const TableCell = React.forwardRef<
     typeof children === 'string' ||
     (React.isValidElement(children) &&
       (children.type === Tag || children.type === Link));
-
   return (
     <td
       ref={ref}
@@ -172,4 +193,5 @@ export {
   TableRow,
   TableCell,
   SortColumn,
+  SupportiveText,
 };

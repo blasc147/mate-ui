@@ -11,7 +11,7 @@ export * from './icon-button';
 export * from './input';
 export * from './link';
 export * from './radio-button';
-export * from './table';
+export * from './table/table';
 export * from './tabs';
 export * from './tag';
 export * from './tooltip';
