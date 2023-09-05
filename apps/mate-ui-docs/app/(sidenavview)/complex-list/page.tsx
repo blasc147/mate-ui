@@ -317,7 +317,7 @@ const InvoicesTable: React.FC<TableProps> = ({
             <TableHeader className="h-11">
               {headerGroups.map((headerGroup) => (
                 <TableRow {...headerGroup.getHeaderGroupProps()} key={uuidv4()}>
-                  <TableHead className="hidden w-9 lg:table-cell" desktopOnly>
+                  <TableHead className="w-9">
                     <Checkbox
                       checked={selectAll}
                       onCheckedChange={handleSelectAllCheckboxChange}
@@ -396,7 +396,7 @@ const InvoicesTable: React.FC<TableProps> = ({
                       'bg-neutral-200': isCheckboxChecked,
                     })}
                   >
-                    <TableCell desktopOnly>
+                    <TableCell>
                       <Checkbox
                         checked={isCheckboxChecked}
                         onCheckedChange={() => handleRowCheckboxChange(row.id)}

@@ -14,19 +14,19 @@ import {
   TableRow,
 } from './table';
 import { useTable, useSortBy } from 'react-table';
-import { invoices, tableColumns } from './mockData'
+import { invoices, tableColumns } from './mockData';
 import { cn } from '../../utils';
-import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from '../dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownTrigger,
+} from '../dropdown';
 
 function TableComponent() {
   const columns = React.useMemo(() => tableColumns, []);
   const [checkboxStates, setCheckboxStates] = useState({});
   const [selectAll, setSelectAll] = useState(false);
-
-  const selectedRows: number = Object.values(checkboxStates).reduce(
-    (a: number, item) => a + (item === true ? 1 : 0),
-    0
-  ) as number;
 
   const handleRowCheckboxChange = (rowId) => {
     setCheckboxStates((prevSelectedRows) => ({
@@ -51,14 +51,13 @@ function TableComponent() {
     setSelectAll(newSelectAll);
   };
 
-  const { getTableProps, headerGroups, rows, prepareRow } =
-    useTable(
-      {
-        columns,
-        data: invoices,
-      },
-      useSortBy
-    );
+  const { getTableProps, headerGroups, rows, prepareRow } = useTable(
+    {
+      columns,
+      data: invoices,
+    },
+    useSortBy
+  );
 
   return (
     <Table {...getTableProps()}>
@@ -133,7 +132,7 @@ function TableComponent() {
           const isCheckboxChecked = checkboxStates[row.id] || false;
           return (
             <TableRow {...row.getRowProps()} key={index}>
-              <TableCell className='w-[55px]' desktopOnly>
+              <TableCell className="w-[55px]" desktopOnly>
                 <Checkbox
                   checked={isCheckboxChecked}
                   onCheckedChange={() => handleRowCheckboxChange(row.id)}
@@ -156,7 +155,6 @@ function TableComponent() {
                     {cell.render('Cell')}
                   </TableCell>
                 );
-                
               })}
             </TableRow>
           );
