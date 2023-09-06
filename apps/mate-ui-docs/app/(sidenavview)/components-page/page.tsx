@@ -20,11 +20,11 @@ const Page = () => {
   return (
       <div className="flex flex-col">
         <header className="flex w-full">
-          <div className="flex w-full max-w-[49rem] flex-col">
+          <div className="flex w-full flex-col">
             <h3 className="pb-6 text-3xl font-semibold text-neutral-900">
               Components
             </h3>
-            <h5 className="text-xl text-neutral-700">
+            <h5 className="max-w-[688px] text-xl text-neutral-700">
               Components are the building blocks of the Mate UI design system.
               Thoughtfully designed and thoroughly tested with the goal to
               ensure visual consistency, responsiveness, and accessibility.

@@ -21,8 +21,8 @@ export const Col: React.FC<ColProps> = (props) => {
     <div
       className={cn(props.className, 'flex', {
         'flex-col': props.direction === 'col',
-        'xl:w-[70%] w-full': props.size === 'main',
-        'xl:w-1/4 w-full': props.size === 'aside',
+        '2xl:w-[70%] w-full': props.size === 'main',
+        '2xl:w-1/4 w-full': props.size === 'aside',
         [`justify-${props.justify}`]: !!props.justify,
       })}
     >

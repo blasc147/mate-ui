@@ -11,7 +11,7 @@ function ColContainer({ children, className }: ColContainerProps) {
     <div
       className={cn(
         className,
-        'flex gap-5 pt-12 m-full flex-wrap justify-between'
+        'flex gap-5 pt-12 m-full flex-wrap justify-between flex-col 2xl:flex-row'
       )}
     >
       {children}

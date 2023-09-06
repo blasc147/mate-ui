@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import {
   SortColumn,
   Table,
@@ -15,8 +14,10 @@ import { componentsData, linkItems } from './componentsData';
 import { headers } from './headersData';
 import { useTable, useSortBy } from 'react-table';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
+import useScreenSize from '@/hooks/useScreenSize';
 
 const Components = () => {
+  const screenSize = useScreenSize();
   const columns = React.useMemo(() => headers, []);
   const data = React.useMemo(() => componentsData, []);
   const { headerGroups, rows, prepareRow } = useTable(
@@ -28,17 +29,20 @@ const Components = () => {
   );
   return (
     <ColContainer>
-      <Col size="main" className="h-fit max-w-[49rem]">
+      <Col size="main" className="h-fit">
         <Table>
           <TableHeader>
-            {headerGroups.map((headerGroup) => (
-              <TableRow {...headerGroup.getHeaderGroupProps()} key={uuidv4()}>
+            {headerGroups.map((headerGroup, index) => (
+              <TableRow
+                {...headerGroup.getHeaderGroupProps()}
+                key={index}
+              >
                 {headerGroup.headers.map((column) => (
                   <TableHead
                     {...column.getHeaderProps(
                       column.sortable && column.getSortByToggleProps()
                     )}
-                    key={uuidv4()}
+                    key={column.name+index}
                     className={column.className}
                     desktopOnly={column.desktopOnly}
                   >
@@ -53,7 +57,7 @@ const Components = () => {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <TableRow {...row.getRowProps()} key={uuidv4()}>
+                <TableRow {...row.getRowProps()} key={row.original.id}>
                   {row.cells.map((cell) => (
                     <TableCell
                       {...cell.getCellProps({
@@ -63,7 +67,7 @@ const Components = () => {
                           maxWidth: cell.column.maxWidth,
                         },
                       })}
-                      key={uuidv4()}
+                      key={cell.column.id}
                       desktopOnly={cell.column.desktopOnly}
                     >
                       {cell.render('Cell')}
@@ -75,17 +79,16 @@ const Components = () => {
           </TableBody>
         </Table>
       </Col>
-
       <Col
         size="aside"
-        direction="col"
-        className="mt-10 h-fit md:mt-0 md:border-l md:border-neutral-300"
+        direction={screenSize === 'md' || screenSize === 'lg' || screenSize === 'xl' ? 'row' : 'col'}
+        className="mt-10 h-fit 2xl:mt-0 2xl:border-l 2xl:border-neutral-300"
       >
-        {linkItems.map((item) => {
+        {linkItems.map((item, index) => {
           return (
             <a
-              key={uuidv4()}
-              className="mb-12 last-of-type:mb-0 md:pl-12"
+              key={index}
+              className="mb-12 last-of-type:mb-0 last-of-type:mr-0 md:mr-12 md:w-1/3 2xl:w-full 2xl:pl-12"
               href={item.link}
               rel="noreferrer"
               target="_blank"
