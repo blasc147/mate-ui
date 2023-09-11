@@ -7,8 +7,10 @@ import {
   DrawerContent,
   DrawerSides,
   DrawerTrigger,
+  Link,
 } from '@truenorth/mate-ui';
 import React from 'react';
+import { MateLogo } from '../_icons/mate-logo-sidenav';
 
 type Props = {
   children: React.ReactElement;
@@ -28,7 +30,10 @@ const SidenavLayout = ({ children }: Props) => {
       </div>
       {/* Mobile navbar */}
       <div className="flex flex-col lg:hidden">
-        <div className="flex w-full justify-end p-6">
+        <div className="flex w-full justify-between px-6 py-4">
+          <Link href="/" className="lg:hidden">
+            <MateLogo />
+          </Link>
           <Drawer>
             <DrawerTrigger>
               <Bars3Icon className="h-5 w-5" />
