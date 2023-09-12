@@ -145,10 +145,10 @@ export const BaseDashboard = () => {
     icon: React.ReactNode;
   }) => {
     return (
-      <Card cardStyle="outline" className="mt-2 flex-1 md:mr-4 md:mt-0">
-        <CardContent className="text-primary-500 flex items-center p-4 md:flex-col md:items-start md:justify-between">
+      <Card cardStyle="outline" className="mt-2 flex-1 p-8 md:mt-0">
+        <CardContent className="text-primary-500 flex items-center p-0 2xl:flex-col 2xl:items-start 2xl:justify-between">
           {icon}
-          <h3 className="ml-4  font-bold md:ml-0">{title}</h3>
+          <h3 className="ml-4 font-bold 2xl:ml-0">{title}</h3>
         </CardContent>
       </Card>
     );
@@ -300,8 +300,8 @@ export const BaseDashboard = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
-        <div className="flex flex-1 flex-col md:flex-row md:space-x-4">
+        </div> 
+        <div className="flex flex-1 flex-col space-y-4 2xl:space-y-0 2xl:flex-row 2xl:space-x-4 hola">
           <Card
             cardStyle="outline"
             className="min-h-[180px] basis-full md:basis-1/2"
@@ -310,7 +310,7 @@ export const BaseDashboard = () => {
               <CardTitle>Fund Your Account</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col space-y-4 md:flex-row md:items-end md:space-y-0">
-              <FormControl inputStyle="underlined">
+              <FormControl inputStyle="underlined" className='relative w-full'>
                 <FormLabel>Amount to fund</FormLabel>
                 <InputGroup>
                   <InputLeftElement>
@@ -322,7 +322,7 @@ export const BaseDashboard = () => {
               <Button className="md:ml-8">Next</Button>
             </CardContent>
           </Card>
-          <div className="mt-2 flex basis-full flex-col md:basis-1/2 md:flex-row md:flex-nowrap">
+          <div className="flex basis-full flex-col md:flex-row md:space-x-4  2xl:basis-1/2 2xl:flex-nowrap">
             <ActionsCard
               title="Request a Loan"
               icon={<CurrencyDollarIcon className="h-8 w-8" />}
@@ -337,7 +337,7 @@ export const BaseDashboard = () => {
             />
           </div>
         </div>
-        <div className="mt-4 flex flex-1 flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+        <div className="mt-4 flex flex-1 flex-col space-y-4 2xl:flex-row 2xl:space-x-4 2xl:space-y-0">
           <Card cardStyle="outline" className="md:basis-2/3">
             <CardHeader>
               <CardTitle>Latest Transactions</CardTitle>

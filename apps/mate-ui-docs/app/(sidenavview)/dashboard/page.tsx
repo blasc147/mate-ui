@@ -28,9 +28,10 @@ const Page = () => {
         paragraphText="Responsive, consumer-facing dashboard for servicing a financial account, such as a bank account."
         onPreview={() => openInNewTab(Routes.DashboardPreview)}
         title="Dashboard"
+        hasPreviewButtons
       />
       <BaseDashboard />
-      <ComponentList listItems={listItems} />
+      <ComponentList className='mt-12' listItems={listItems} />
     </div>
   );
 };
