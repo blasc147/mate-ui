@@ -1,11 +1,5 @@
-export type Invoice = {
-  id: string;
-  loanType: 'Personal' | 'Business' | 'Auto';
-  payOff: string;
-  date: string;
-  status: 'Open' | 'Paid';
-  autopay: 'On' | 'Off';
-};
+import { Invoice } from '@/types/complex-list';
+
 export const invoices: Invoice[] = [
   {
     id: 'A-2023-010',

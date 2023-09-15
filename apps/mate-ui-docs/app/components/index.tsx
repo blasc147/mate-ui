@@ -5,4 +5,3 @@ export * from './ColContainer';
 export * from './CopyToClipboard';
 export * from './ExampleHeader';
 export * from './Breadcrumns';
-export * from './BaseDashboard';

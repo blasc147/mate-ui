@@ -300,7 +300,7 @@ export const BaseDashboard = () => {
               </div>
             </CardContent>
           </Card>
-        </div> 
+        </div>
         <div className="flex flex-1 flex-col space-y-4 2xl:space-y-0 2xl:flex-row 2xl:space-x-4 hola">
           <Card
             cardStyle="outline"
@@ -310,7 +310,7 @@ export const BaseDashboard = () => {
               <CardTitle>Fund Your Account</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col space-y-4 md:flex-row md:items-end md:space-y-0">
-              <FormControl inputStyle="underlined" className='relative w-full'>
+              <FormControl inputStyle="underlined" className="relative w-full">
                 <FormLabel>Amount to fund</FormLabel>
                 <InputGroup>
                   <InputLeftElement>

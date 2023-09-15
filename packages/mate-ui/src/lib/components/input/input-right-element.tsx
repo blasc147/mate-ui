@@ -4,7 +4,6 @@ import React from 'react';
 import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { cva } from 'class-variance-authority';
-import { InputStyles } from './input';
 
 const styles = {
   root: cva(

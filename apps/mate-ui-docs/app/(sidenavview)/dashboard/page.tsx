@@ -1,14 +1,9 @@
 'use client';
 import React from 'react';
-import { Routes } from '@/constants/routes';
-import {
-  Breadcrumbs,
-  ComponentList,
-  DescriptionHeader,
-  BaseDashboard,
-} from '@components';
+import { ProjectUrls, Routes } from '@/constants/routes';
+import { Breadcrumbs, ComponentList, DescriptionHeader } from '@components';
 import { openInNewTab } from '@/utils/openInNewTab';
-
+import { BaseDashboard } from './base-dashboard-section';
 
 const listItems = [
   'Button',
@@ -29,9 +24,10 @@ const Page = () => {
         onPreview={() => openInNewTab(Routes.DashboardPreview)}
         title="Dashboard"
         hasPreviewButtons
+        onViewCode={() => openInNewTab(ProjectUrls.Github)}
       />
       <BaseDashboard />
-      <ComponentList className='mt-12' listItems={listItems} />
+      <ComponentList className="mt-12" listItems={listItems} />
     </div>
   );
 };

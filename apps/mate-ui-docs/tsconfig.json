@@ -19,6 +19,7 @@
       "@/constants/*": ["apps/mate-ui-docs/app/constants/*"],
       "@/hooks/*": ["apps/mate-ui-docs/app/hooks/*"],
       "@/utils/*": ["apps/mate-ui-docs/app/utils/*"],
+      "@/types/*": ["apps/mate-ui-docs/types/*"],
       "@styles": ["apps/mate-ui-docs/styles/global.css"]
     },
     "strictNullChecks": true,

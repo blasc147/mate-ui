@@ -1,11 +1,7 @@
-
-import { BaseDashboard } from '@components';
-
+import { BaseDashboard } from '../(sidenavview)/dashboard/base-dashboard-section';
 
 const Page = () => {
-  return (
-      <BaseDashboard />
-  );
+  return <BaseDashboard />;
 };
 
 export default Page;
