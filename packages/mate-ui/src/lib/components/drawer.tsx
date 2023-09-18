@@ -127,7 +127,7 @@ const DrawerContent = React.forwardRef<
         {...props}
         className={cn(sheetVariants({ side }), className)}
       >
-        <div className="relative h-full p-4">
+        <div className="relative h-full">
           {children}
           <SheetPrimitive.Close
             ref={closeRef}
@@ -213,7 +213,14 @@ const DrawerBody = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn('overflow-x-auto', 'flex', 'flex-1', 'mb-12', className)}
+    className={cn(
+      'overflow-x-auto',
+      'flex',
+      'flex-1',
+      'mb-12',
+      'p-4',
+      className
+    )}
     {...props}
   />
 );

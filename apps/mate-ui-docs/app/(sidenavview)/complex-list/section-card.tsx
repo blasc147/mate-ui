@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { invoices } from './mockData';
+import { invoices } from './table-mock-data';
 import useScreenSize from '@/hooks/useScreenSize';
 import {
   ArrowUpTrayIcon,
@@ -36,6 +36,8 @@ import {
 import { Invoice } from '@/types/complex-list';
 import { Column } from 'react-table';
 import { InvoicesTable } from './section-table';
+import { UserInfoDrawer } from './section-user-menu';
+import { UserInfoDropDown } from './section-user-dropdown';
 export type { Cell } from 'react-table';
 
 export const CardSection = () => {
@@ -75,9 +77,7 @@ export const CardSection = () => {
                 Account ID #10734181
               </HeaderSupportiveText>
             </div>
-            <div className="bg-primary-200 flex h-12 w-12 rounded">
-              <UserIcon className="text-primary-500 mx-auto h-8 w-8 self-center" />
-            </div>
+            {screenSize === 'sm' ? <UserInfoDrawer /> : <UserInfoDropDown />}
           </div>
         </CardHeader>
         <CardContent className="flex-col pt-4 ">
