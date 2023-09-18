@@ -1,111 +1,101 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import {
-  ChevronRightIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/20/solid';
-import {
-  Button,
-  Input,
-  InputGroup,
-  InputRightAddon,
-  Link,
-  cn,
-} from '@truenorth/mate-ui';
 import { MateLogo } from 'apps/mate-ui-docs/app/_icons';
-import { Routes } from '@/constants/routes';
+import { SidenavItem } from './SidenavItem';
+import { sidenavItemsTop, sidenavItemsBottom } from './sidenavItemsInfo';
+import Link from 'next/link';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { cn } from '@truenorth/mate-ui';
 
-const SidenavItem = ({
-  onClick,
-  isActive,
-  children,
-  rightIcon,
-}: {
-  onClick?: () => void;
-  isActive?: boolean;
-  children: React.ReactNode;
-  rightIcon?: React.ReactNode;
-}) => {
-  return (
-    <Button
-      variant="ghost"
-      themeColor="neutral"
-      rightIcon={rightIcon}
-      className={cn('mb-2 justify-start px-2', {
-        '!bg-neutral-200': isActive,
-        'justify-between': rightIcon,
-      })}
-      onClick={onClick}
-    >
-      {children}
-    </Button>
-  );
+const styles = {
+  inputRightIcon: 'flex items-center justify-center border-l-0 px-1',
+  magnifyingGlassIcon: 'h-5 w-5 text-neutral-400',
+  itemsContainer: 'flex flex-col text-neutral-700',
+  itemsContainerTop: 'pb-6 border-b border-neutral-300',
+  itemsContainerBottom: 'pt-6',
 };
 
 export const Sidenav = () => {
+  const [activeSubmenu, setActiveSubmenu] = useState<string>('');
   const navigation = useRouter();
   const pathName = usePathname().substring(1);
+
+  const handleItemClick = (route, hasSubItems, label) => {
+    if (hasSubItems) {
+      setActiveSubmenu(activeSubmenu === label ? '' : label);
+    }
+    navigation.push(route);
+  };
+
+  const renderSidenavItems = (
+    items,
+    activeSubmenu,
+    pathName,
+    handleItemClick
+  ) => {
+    return items.map((item) => (
+      <div key={item.path}>
+        <SidenavItem
+          className="text-neutral-900"
+          isActive={pathName === item.path}
+          rightIcon={
+            item.submenuItems && item.submenuItems.length > 0 ? (
+              <ChevronRightIcon />
+            ) : null
+          }
+          onClick={() =>
+            handleItemClick(
+              item.path,
+              item.submenuItems && item.submenuItems.length > 0,
+              item.label
+            )
+          }
+        >
+          {item.label}
+        </SidenavItem>
+        {activeSubmenu === item.label &&
+          item.submenuItems?.map((subItem) => (
+            <SidenavItem
+              key={subItem.label}
+              isActive={pathName === subItem.path}
+              rightIcon={subItem.rightIcon}
+              onClick={() =>
+                handleItemClick(subItem.path, false, subItem.label)
+              }
+              className="ml-4 text-neutral-600"
+            >
+              {subItem.label}
+            </SidenavItem>
+          ))}
+      </div>
+    ));
+  };
+
   return (
-    <nav>
+    <>
       <div className="pb-12">
         <Link href="/">
           <MateLogo />
         </Link>
       </div>
-      <div className="pb-12">
-        <InputGroup>
-          <Input type="text" className="border-r-0" />
-          <InputRightAddon className="flex items-center justify-center border-l-0 px-1">
-            <Button themeColor="neutral" variant="ghost" size="sm">
-              <MagnifyingGlassIcon className="h-5 w-5 text-neutral-400" />
-            </Button>
-          </InputRightAddon>
-        </InputGroup>
+      <div className={cn(styles.itemsContainer, styles.itemsContainerTop)}>
+        {renderSidenavItems(
+          sidenavItemsTop,
+          activeSubmenu,
+          pathName,
+          handleItemClick
+        )}
       </div>
-
-      <div className="flex flex-col border-b border-neutral-300 pb-6 text-neutral-700">
-        <SidenavItem
-          onClick={() => navigation.push(Routes.Introduction)}
-          isActive={pathName === Routes.Introduction}
-        >
-          Introduction
-        </SidenavItem>
-        <SidenavItem
-          isActive={pathName === Routes.Examples}
-          onClick={() => navigation.push(Routes.Examples)}
-        >
-          Examples
-        </SidenavItem>
+      <div className={cn(styles.itemsContainer, styles.itemsContainerBottom)}>
+        {renderSidenavItems(
+          sidenavItemsBottom,
+          activeSubmenu,
+          pathName,
+          handleItemClick
+        )}
       </div>
-      <div className="flex flex-col pt-6 text-neutral-700">
-        <SidenavItem
-          rightIcon={<ChevronRightIcon />}
-          isActive={pathName === Routes.GettingStarted}
-          onClick={() => navigation.push(Routes.GettingStarted)}
-        >
-          Getting Started
-        </SidenavItem>
-        <SidenavItem
-          rightIcon={<ChevronRightIcon />}
-          isActive={pathName === Routes.Foundations}
-          onClick={() => navigation.push(Routes.Foundations)}
-        >
-          Foundations
-        </SidenavItem>
-        <SidenavItem
-          isActive={pathName === Routes.Components}
-          onClick={() => navigation.push(Routes.Components)}
-        >
-          Components
-        </SidenavItem>
-        <SidenavItem
-          isActive={pathName === Routes.Patterns}
-          onClick={() => navigation.push(Routes.Patterns)}
-        >
-          Patterns
-        </SidenavItem>
-      </div>
-    </nav>
+    </>
   );
 };
 
