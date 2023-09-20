@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { TableProps } from '@/types/complex-list';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -27,6 +26,7 @@ import {
 } from '@truenorth/mate-ui';
 import { useTable, useSortBy, useFilters, usePagination } from 'react-table';
 import { v4 as uuidv4 } from 'uuid';
+import { TableProps } from '@/types/complex-list';
 
 export const InvoicesTable: React.FC<TableProps> = ({
   columns,

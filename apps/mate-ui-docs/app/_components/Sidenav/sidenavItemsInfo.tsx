@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes } from '@/constants/routes';
+import { Routes } from 'apps/mate-ui-docs/app/_constants/routes';
 
 export interface SidenavItemInfo {
   label: string;

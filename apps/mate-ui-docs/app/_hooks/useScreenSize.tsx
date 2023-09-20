@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { getCurrentScreenSize } from '@/utils/getCurrentScreenSize';
+import { getCurrentScreenSize } from 'apps/mate-ui-docs/app/_utils/getCurrentScreenSize';
 
 export type TailwindSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 

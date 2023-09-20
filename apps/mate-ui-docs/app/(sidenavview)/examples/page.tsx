@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { DescriptionHeader } from '../../components/ExampleHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@truenorth/mate-ui';
 import { DashMenuIcon, ListMenuIcon } from '@icons';
-import { Routes } from '@/constants/routes';
+import { Routes } from 'apps/mate-ui-docs/app/_constants/routes';
 import Link from 'next/link';
+import { DescriptionHeader } from '@components';
 
 type GridDataProps = {
   title: string;

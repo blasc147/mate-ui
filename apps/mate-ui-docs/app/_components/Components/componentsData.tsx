@@ -4,7 +4,7 @@ import {
   GithubIcon,
   StorybookIcon,
 } from 'apps/mate-ui-docs/app/_icons';
-import { ProjectUrls } from '@/constants/routes';
+import { ProjectUrls } from 'apps/mate-ui-docs/app/_constants/routes';
 
 export enum Status {
   Ready = 'Ready',
@@ -12,13 +12,12 @@ export enum Status {
 }
 
 interface Component {
-name: string;
-description: string;
-status: Status;
-figmaLink: string;
-storybookLink: string;
+  name: string;
+  description: string;
+  status: Status;
+  figmaLink: string;
+  storybookLink: string;
 }
-
 
 interface LinkItem {
   name: string;

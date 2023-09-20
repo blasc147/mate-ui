@@ -33,11 +33,11 @@ import {
   Tooltip,
   cn,
 } from '@truenorth/mate-ui';
-import { Invoice } from '@/types/complex-list';
 import { Column } from 'react-table';
 import { InvoicesTable } from './section-table';
 import { UserInfoDrawer } from './section-user-menu';
 import { UserInfoDropDown } from './section-user-dropdown';
+import { Invoice } from '@/types/complex-list';
 export type { Cell } from 'react-table';
 
 export const CardSection = () => {
