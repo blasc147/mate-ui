@@ -1,11 +1,8 @@
 import { Column } from 'react-table';
-import {
-    IconButton,
-    Tag,
-  } from '@truenorth/mate-ui';
-  import { CheckBadgeIcon } from '@heroicons/react/20/solid';
-  import { Status } from './componentsData';
-  import { FigmaIcon, StorybookIcon } from 'apps/mate-ui-docs/app/_icons';
+import { IconButton, Tag } from '@truenorth/mate-ui';
+import { CheckBadgeIcon } from '@heroicons/react/20/solid';
+import { FigmaIcon, StorybookIcon } from '@icons';
+import { Status } from '@/types/component-list';
 
 export const headers: Column[] = [
   {

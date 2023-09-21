@@ -1,12 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { MateLogo } from 'apps/mate-ui-docs/app/_icons';
 import { SidenavItem } from './SidenavItem';
 import { sidenavItemsTop, sidenavItemsBottom } from './sidenavItemsInfo';
 import Link from 'next/link';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { cn } from '@truenorth/mate-ui';
+import { MateLogo } from '@icons';
 
 const styles = {
   inputRightIcon: 'flex items-center justify-center border-l-0 px-1',
@@ -15,8 +15,11 @@ const styles = {
   itemsContainerTop: 'pb-6 border-b border-neutral-300',
   itemsContainerBottom: 'pt-6',
 };
+type SidenavProps = {
+  closeDrawer?: () => void;
+};
 
-export const Sidenav = () => {
+export const Sidenav: React.FC<SidenavProps> = ({ closeDrawer }) => {
   const [activeSubmenu, setActiveSubmenu] = useState<string>('');
   const navigation = useRouter();
   const pathName = usePathname().substring(1);
@@ -26,6 +29,10 @@ export const Sidenav = () => {
       setActiveSubmenu(activeSubmenu === label ? '' : label);
     }
     navigation.push(route);
+
+    if (!hasSubItems && closeDrawer) {
+      closeDrawer();
+    }
   };
 
   const renderSidenavItems = (
@@ -44,13 +51,13 @@ export const Sidenav = () => {
               <ChevronRightIcon />
             ) : null
           }
-          onClick={() =>
+          onClick={() => {
             handleItemClick(
               item.path,
               item.submenuItems && item.submenuItems.length > 0,
               item.label
-            )
-          }
+            );
+          }}
         >
           {item.label}
         </SidenavItem>

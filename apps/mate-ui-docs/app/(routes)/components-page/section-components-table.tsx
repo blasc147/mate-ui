@@ -10,11 +10,11 @@ import {
   TableRow,
 } from '@truenorth/mate-ui';
 import { Col, ColContainer } from '@components';
-import { componentsData, linkItems } from './componentsData';
-import { headers } from './headersData';
 import { useTable, useSortBy } from 'react-table';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import useScreenSize from '@/hooks/useScreenSize';
+import { headers } from './headers-data';
+import { componentsData, linkItems } from './components-data';
 
 const Components = () => {
   const screenSize = useScreenSize();
@@ -33,16 +33,13 @@ const Components = () => {
         <Table>
           <TableHeader>
             {headerGroups.map((headerGroup, index) => (
-              <TableRow
-                {...headerGroup.getHeaderGroupProps()}
-                key={index}
-              >
+              <TableRow {...headerGroup.getHeaderGroupProps()} key={index}>
                 {headerGroup.headers.map((column) => (
                   <TableHead
                     {...column.getHeaderProps(
                       column.sortable && column.getSortByToggleProps()
                     )}
-                    key={column.name+index}
+                    key={column.name + index}
                     className={column.className}
                     desktopOnly={column.desktopOnly}
                   >
@@ -81,7 +78,11 @@ const Components = () => {
       </Col>
       <Col
         size="aside"
-        direction={screenSize === 'md' || screenSize === 'lg' || screenSize === 'xl' ? 'row' : 'col'}
+        direction={
+          screenSize === 'md' || screenSize === 'lg' || screenSize === 'xl'
+            ? 'row'
+            : 'col'
+        }
         className="mt-10 h-fit 2xl:mt-0 2xl:border-l 2xl:border-neutral-300"
       >
         {linkItems.map((item, index) => {

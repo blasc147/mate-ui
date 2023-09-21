@@ -1,6 +1,7 @@
 'use client';
 import { Sidenav } from '@components';
 import { Bars3Icon } from '@heroicons/react/20/solid';
+import { MateLogo } from '@icons';
 import {
   Drawer,
   DrawerBody,
@@ -10,13 +11,13 @@ import {
   Link,
 } from '@truenorth/mate-ui';
 import React from 'react';
-import { MateLogo } from '../_icons/mate-logo-sidenav';
 
 type Props = {
   children: React.ReactElement;
 };
 
 const SidenavLayout = ({ children }: Props) => {
+  const [open, setOpen] = React.useState<boolean>(false);
   return (
     <>
       {/* Desktop navbar */}
@@ -34,13 +35,13 @@ const SidenavLayout = ({ children }: Props) => {
           <Link href="/" className="lg:hidden">
             <MateLogo />
           </Link>
-          <Drawer>
+          <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger>
               <Bars3Icon className="h-5 w-5" />
             </DrawerTrigger>
             <DrawerContent side={DrawerSides.Left}>
-              <DrawerBody className="h-[85vh]">
-                <Sidenav />
+              <DrawerBody className="flex h-full flex-col">
+                <Sidenav closeDrawer={() => setOpen(false)} />
               </DrawerBody>
             </DrawerContent>
           </Drawer>

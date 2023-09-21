@@ -1,4 +1,4 @@
-import { BaseDashboard } from '../(sidenavview)/dashboard/base-dashboard-section';
+import { BaseDashboard } from '../(routes)/dashboard/base-dashboard-section';
 
 const Page = () => {
   return <BaseDashboard />;

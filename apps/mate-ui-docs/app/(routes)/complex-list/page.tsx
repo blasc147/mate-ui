@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { ProjectUrls, Routes } from 'apps/mate-ui-docs/app/_constants/routes';
 import { Breadcrumbs, ComponentList, DescriptionHeader } from '@components';
-import { openInNewTab } from 'apps/mate-ui-docs/app/_utils/openInNewTab';
 import { CardSection } from './section-card';
+import { openInNewTab } from '@/utils/openInNewTab';
+import { ProjectUrls, Routes } from '@/constants/routes';
 export type { Cell } from 'react-table';
 
 const listItems = [

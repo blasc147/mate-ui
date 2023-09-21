@@ -2,9 +2,9 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@truenorth/mate-ui';
 import { DashMenuIcon, ListMenuIcon } from '@icons';
-import { Routes } from 'apps/mate-ui-docs/app/_constants/routes';
 import Link from 'next/link';
 import { DescriptionHeader } from '@components';
+import { Routes } from '@/constants/routes';
 
 type GridDataProps = {
   title: string;

@@ -1,14 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { invoices } from './table-mock-data';
-import useScreenSize from '@/hooks/useScreenSize';
 import {
   ArrowUpTrayIcon,
   ArrowUturnRightIcon,
   CheckCircleIcon,
   DocumentPlusIcon,
   MagnifyingGlassIcon,
-  UserIcon,
 } from '@heroicons/react/20/solid';
 import {
   Button,
@@ -37,6 +35,7 @@ import { Column } from 'react-table';
 import { InvoicesTable } from './section-table';
 import { UserInfoDrawer } from './section-user-menu';
 import { UserInfoDropDown } from './section-user-dropdown';
+import useScreenSize from '@/hooks/useScreenSize';
 import { Invoice } from '@/types/complex-list';
 export type { Cell } from 'react-table';
 

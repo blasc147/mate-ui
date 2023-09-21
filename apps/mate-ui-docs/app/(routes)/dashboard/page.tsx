@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { ProjectUrls, Routes } from 'apps/mate-ui-docs/app/_constants/routes';
 import { Breadcrumbs, ComponentList, DescriptionHeader } from '@components';
-import { openInNewTab } from 'apps/mate-ui-docs/app/_utils/openInNewTab';
 import { BaseDashboard } from './base-dashboard-section';
+import { openInNewTab } from '@/utils/openInNewTab';
+import { ProjectUrls, Routes } from '@/constants/routes';
 
 const listItems = [
   'Button',

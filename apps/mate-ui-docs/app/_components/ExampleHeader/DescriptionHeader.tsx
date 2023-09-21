@@ -1,7 +1,6 @@
 import React from 'react';
 import { CodeBracketIcon, EyeIcon } from '@heroicons/react/20/solid';
 import { Button, Header } from '@truenorth/mate-ui';
-import '@styles';
 
 interface Props {
   paragraphText: string;
