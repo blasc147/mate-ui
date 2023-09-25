@@ -1,5 +1,3 @@
-'use client';
-
 import { Routes } from '@/constants/routes';
 import { ArrowLeftIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
