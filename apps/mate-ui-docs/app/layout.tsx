@@ -21,7 +21,7 @@ const RootLayout = ({ children }: Props) => {
               <div className="hidden h-full px-8 py-6 lg:block lg:w-[16rem]">
                 <Sidenav />
               </div>
-              <div className="mx-auto flex h-full w-full max-w-[1536px] flex-col px-8 gap-4">
+              <div className="mx-auto flex h-full w-full max-w-[1536px] flex-col gap-4 px-8">
                 <ThemeToggle />
                 {children}
               </div>
