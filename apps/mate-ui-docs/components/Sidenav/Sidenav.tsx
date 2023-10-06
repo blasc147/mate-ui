@@ -6,7 +6,7 @@ import { sidenavItemsTop, sidenavItemsBottom } from './sidenavItemsInfo';
 import Link from 'next/link';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { cn } from '@truenorth/mate-ui';
-import { MateLogo } from '@icons';
+import { MateLogo } from 'apps/mate-ui-docs/icons';
 
 const styles = {
   inputRightIcon: 'flex items-center justify-center border-l-0 px-1',
