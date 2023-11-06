@@ -26,6 +26,7 @@ import React, { useState } from 'react';
 const Story: Meta<typeof DatePicker> = {
   component: DatePicker,
   title: 'DatePicker',
+  tags: ['autodocs'],
 };
 export default Story;
 

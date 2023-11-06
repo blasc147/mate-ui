@@ -19,35 +19,35 @@ const styles = {
       'w-4',
       'rounded-full',
       'border',
-      'active:border-primary-500',
+      'active:border-indigo-500',
       'focus:outline-none',
       'focus-visible:ring-2',
       'ring-offset-1',
       'ring-focus',
       'disabled:cursor-not-allowed',
       'hover:shadow-lg',
-      'disabled:data-[state=checked]:border-neutral-400',
-      'disabled:data-[state=unchecked]:bg-neutral-400',
-      'disabled:active:border-neutral-400',
+      'disabled:data-[state=checked]:border-grey-400',
+      'disabled:data-[state=unchecked]:bg-grey-400',
+      'disabled:active:border-grey-400',
       'group',
     ],
     {
       variants: {
         error: {
           false: [
-            'active:border-primary-500',
-            'focus:border-primary-500',
-            'data-[state=checked]:border-primary-500',
-            'data-[state=checked]:active:border-primary-700',
-            'text-primary-500',
-            'border-neutral-400',
+            'active:border-indigo-500',
+            'focus:border-indigo-500',
+            'data-[state=checked]:border-indigo-500',
+            'data-[state=checked]:active:border-indigo-700',
+            'text-indigo-500',
+            'border-grey-400',
           ],
           true: [
-            'active:border-error-800',
-            'focus:border-error-700',
-            'data-[state=checked]:border-error-700',
-            'data-[state=checked]:active:border-error-800',
-            'text-error-700',
+            'active:border-red-800',
+            'focus:border-red-700',
+            'data-[state=checked]:border-red-700',
+            'data-[state=checked]:active:border-red-800',
+            'text-red-700',
           ],
         },
       },
@@ -60,32 +60,32 @@ const styles = {
     [
       'h-3',
       'w-3',
-      'group-disabled:text-neutral-400',
-      'group-disabled:fill-neutral-400',
+      'group-disabled:text-grey-400',
+      'group-disabled:fill-grey-400',
     ],
     {
       variants: {
         error: {
-          true: 'fill-error-700 active:fill-error-800 active:text-error-800',
+          true: 'fill-red-700 active:fill-red-800 active:text-red-800',
           false:
-            'fill-primary-500 active:fill-primary-700 active:text-primary-700',
+            'fill-indigo-500 active:fill-indigo-700 active:text-indigo-700',
         },
       },
       defaultVariants: { error: false },
     }
   ),
   label: cva(
-    ['text-neutral-900', 'text-sm', 'font-semibold', 'flex', 'flex-col'],
+    ['text-grey-900', 'text-sm', 'font-semibold', 'flex', 'flex-col'],
     {
       variants: {
-        disabled: { true: 'text-neutral-600' },
+        disabled: { true: 'text-grey-600' },
       },
       defaultVariants: { disabled: false },
     }
   ),
-  subText: cva(['text-neutral-900', 'text-sm', 'font-normal'], {
+  subText: cva(['text-grey-900', 'text-sm', 'font-normal'], {
     variants: {
-      disabled: { true: 'text-neutral-600' },
+      disabled: { true: 'text-grey-600' },
     },
     defaultVariants: { disabled: false },
   }),

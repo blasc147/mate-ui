@@ -1,11 +1,9 @@
-'use client';
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
 import { LoaderIcon } from '../icons/loader';
 import { cn } from '../utils';
 import { buttonStyles } from './button';
-
 
 const iconButtonVariantsSize = cva(
   ['inline-flex', 'items-center', 'justify-center'],

@@ -37,7 +37,7 @@ const DrawerOverlay = React.forwardRef<
     className={cn(
       'fixed',
       'inset-0',
-      'bg-neutral-900/25',
+      'bg-grey-900/25',
       'z-50',
       'data-[state=closed]:animate-fade-out',
       'data-[state=open]:animate-fade-in',
@@ -174,7 +174,7 @@ const DrawerContent = React.forwardRef<
                   'top-2',
                   'h-1',
                   'w-10',
-                  'bg-neutral-400',
+                  'bg-grey-400',
                   'rounded-2xl'
                 )}
               ></div>
@@ -196,7 +196,7 @@ const DrawerHeader = ({
       'flex',
       'flex-col',
       'text-left',
-      'text-neutral-900',
+      'text-grey-900',
       'font-bold',
       'text-base',
       'sm:text-sm',

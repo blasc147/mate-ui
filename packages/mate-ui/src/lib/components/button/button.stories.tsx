@@ -11,6 +11,7 @@ const Story: Meta<typeof Button> = {
       url: 'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?type=design&node-id=2022-4752&mode=design&t=wPRhmXh9qSdthywd-0',
     },
   },
+  tags: ['autodocs'],
 };
 export default Story;
 

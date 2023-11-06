@@ -7,6 +7,7 @@ import { Link } from './link';
 const Story: Meta<typeof Alert> = {
   component: Alert,
   title: 'Alert',
+  tags: ['autodocs'],
 };
 
 export default Story;

@@ -1,8 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import {
-  SparklesIcon,
-  ExclamationCircleIcon,
-} from '@heroicons/react/20/solid';
+import { SparklesIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
 import { cn } from '../utils';
@@ -24,6 +21,7 @@ const Story: Meta<typeof Toast> = {
       control: { type: 'radio' },
     },
   },
+  tags: ['autodocs'],
 };
 export default Story;
 
@@ -45,7 +43,7 @@ export const ToastTheme = ({ themeColor }: ToastStoryArgs) => {
         title={'Title'}
         description={'Message'}
         themeColor={themeColor}
-        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        actionButton={<Link className="text-sm text-grey-600">Undo</Link>}
         leftElement={<ExclamationCircleIcon />}
         buttons={
           <>
@@ -83,7 +81,7 @@ export const TitleWithButtons = ({ themeColor }: ToastStoryArgs) => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
+        actionButton={<Link className="text-sm text-grey-600">Undo</Link>}
         themeColor={themeColor}
         buttons={
           <>
@@ -105,7 +103,9 @@ export const TitleWithButtons = ({ themeColor }: ToastStoryArgs) => {
   );
 };
 
-export const TitleAndDescriptionWithButtons = ({ themeColor }: ToastStoryArgs) => {
+export const TitleAndDescriptionWithButtons = ({
+  themeColor,
+}: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -122,8 +122,8 @@ export const TitleAndDescriptionWithButtons = ({ themeColor }: ToastStoryArgs) =
         onOpenChange={setOpen}
         title={'Message sent'}
         description={'Message'}
-        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
-        themeColor={ themeColor }
+        actionButton={<Link className="text-sm text-grey-600">Undo</Link>}
+        themeColor={themeColor}
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
@@ -160,8 +160,8 @@ export const OnlyTitle = ({ themeColor }: ToastStoryArgs) => {
         open={open}
         onOpenChange={setOpen}
         title={'Message sent'}
-        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
-        themeColor={ themeColor }
+        actionButton={<Link className="text-sm text-grey-600">Undo</Link>}
+        themeColor={themeColor}
       />
     </ToastProvider>
   );
@@ -184,8 +184,8 @@ export const TitleWithDescription = ({ themeColor }: ToastStoryArgs) => {
         onOpenChange={setOpen}
         title={'Message sent'}
         description={'Message'}
-        actionButton={<Link className='text-sm text-neutral-600'>Undo</Link>}
-        themeColor={ themeColor }
+        actionButton={<Link className="text-sm text-grey-600">Undo</Link>}
+        themeColor={themeColor}
       />
     </ToastProvider>
   );
@@ -208,14 +208,25 @@ export const TitleWithDescriptionAndLink = ({ themeColor }: ToastStoryArgs) => {
         onOpenChange={setOpen}
         title={'Successfully saved!'}
         description={'Anyone with a link can now view this file.'}
-        themeColor={ themeColor }
-        buttons={<Link size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>}
+        themeColor={themeColor}
+        buttons={
+          <Link
+            size="sm"
+            href="https://www.google.com"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Link
+          </Link>
+        }
       />
     </ToastProvider>
   );
 };
 
-export const TitleWithDescriptionAndButton = ({ themeColor }: ToastStoryArgs) => {
+export const TitleWithDescriptionAndButton = ({
+  themeColor,
+}: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -231,15 +242,23 @@ export const TitleWithDescriptionAndButton = ({ themeColor }: ToastStoryArgs) =>
         open={open}
         onOpenChange={setOpen}
         title={'Breaking news on the go!'}
-        description={'Enable push notifications to get alerts for major markets and crypto news.'}
-        themeColor={ themeColor }
-        buttons={<Button variant="filled" themeColor="primary" size="sm">Button</Button>}
+        description={
+          'Enable push notifications to get alerts for major markets and crypto news.'
+        }
+        themeColor={themeColor}
+        buttons={
+          <Button variant="filled" themeColor="primary" size="sm">
+            Button
+          </Button>
+        }
       />
     </ToastProvider>
   );
 };
 
-export const TitleWithDescriptionAndLinks = ({ themeColor }: ToastStoryArgs) => {
+export const TitleWithDescriptionAndLinks = ({
+  themeColor,
+}: ToastStoryArgs) => {
   const [open, setOpen] = useState(false);
   return (
     <ToastProvider swipeDirection="right">
@@ -256,12 +275,29 @@ export const TitleWithDescriptionAndLinks = ({ themeColor }: ToastStoryArgs) => 
         onOpenChange={setOpen}
         title={'Successfully saved!'}
         description={'Anyone with a link can now view this file.'}
-        themeColor={ themeColor }
+        themeColor={themeColor}
         buttons={
           <>
-            <Link size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>
-            <Link className='ml-3' weight='light' size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>
-          </>}
+            <Link
+              size="sm"
+              href="https://www.google.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Link
+            </Link>
+            <Link
+              className="ml-3"
+              weight="light"
+              size="sm"
+              href="https://www.google.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Link
+            </Link>
+          </>
+        }
       />
     </ToastProvider>
   );
@@ -283,8 +319,10 @@ export const BottomButtonsPrimary = ({ themeColor }: ToastStoryArgs) => {
         open={open}
         onOpenChange={setOpen}
         title={'Breaking news on the go!'}
-        description={'Enable push notifications to get alerts for major markets and crypto news.'}
-        themeColor={ themeColor }
+        description={
+          'Enable push notifications to get alerts for major markets and crypto news.'
+        }
+        themeColor={themeColor}
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
@@ -321,14 +359,23 @@ export const BottomButtonsAndLinkPrimary = ({ themeColor }: ToastStoryArgs) => {
         open={open}
         onOpenChange={setOpen}
         title={'Breaking news on the go!'}
-        description={'Enable push notifications to get alerts for major markets and crypto news.'}
-        themeColor={ themeColor }
+        description={
+          'Enable push notifications to get alerts for major markets and crypto news.'
+        }
+        themeColor={themeColor}
         buttons={
           <>
             <Button variant="filled" size="sm" className={cn('mr-4')}>
               Button
             </Button>
-            <Link size='sm' href="https://www.google.com" rel="noreferrer" target="_blank">Link</Link>
+            <Link
+              size="sm"
+              href="https://www.google.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Link
+            </Link>
           </>
         }
       />
@@ -352,11 +399,13 @@ export const LeadingFigures = ({ themeColor }: ToastStoryArgs) => {
         open={open}
         onOpenChange={setOpen}
         title={'Save up to 5% in your next purchase!'}
-        leftElement={<SparklesIcon className="h-5 w-5 text-primary-500" />}
-        themeColor={ themeColor }
+        leftElement={<SparklesIcon className="h-5 w-5 text-indigo-500" />}
+        themeColor={themeColor}
         buttons={
           <>
-            <Button variant="filled" size="sm" className={cn('mr-4')}>Button</Button>
+            <Button variant="filled" size="sm" className={cn('mr-4')}>
+              Button
+            </Button>
             <Button
               variant="outlined"
               type="submit"
@@ -388,11 +437,17 @@ export const ToastWithAvatar = ({ themeColor }: ToastStoryArgs) => {
         open={open}
         onOpenChange={setOpen}
         title={'Save up to 5% in your next purchase!'}
-        themeColor={ themeColor }
-        avatarElement={<Avatar size='sm'><AvatarImage src="adam-smith.png" /></Avatar>}
+        themeColor={themeColor}
+        avatarElement={
+          <Avatar size="sm">
+            <AvatarImage src="adam-smith.png" />
+          </Avatar>
+        }
         buttons={
           <>
-            <Button variant="filled" size="sm" className={cn('mr-4')}>Button</Button>
+            <Button variant="filled" size="sm" className={cn('mr-4')}>
+              Button
+            </Button>
             <Button
               variant="outlined"
               type="submit"

@@ -10,7 +10,7 @@ const styles = {
     'z-50',
     'overflow-hidden',
     'border',
-    'border-neutral-300',
+    'border-grey-300',
     'rounded-lg',
     'shadow-lg',
     'bg-white',
@@ -36,13 +36,13 @@ const styles = {
     'rounded',
     'outline-none',
     'transition-colors',
-    'focus:bg-neutral-100',
-    'active:bg-neutral-200',
+    'focus:bg-grey-100',
+    'active:bg-grey-200',
     'data-[disabled]:pointer-events-none',
-    'data-[disabled]:text-neutral-500',
+    'data-[disabled]:text-grey-500',
     'py-2',
     'px-3',
-    'text-neutral-700',
+    'text-grey-700',
     'text-m',
     'font-regular'
   ),
@@ -66,7 +66,7 @@ const DropdownSubTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
-    className={cn(styles.item, 'data-[state=open]:bg-neutral-100', className)}
+    className={cn(styles.item, 'data-[state=open]:bg-grey-100', className)}
     {...props}
   >
     {children}
@@ -168,7 +168,7 @@ const DropdownRadioItem = React.forwardRef<
           className={cn(
             'w-[7px]',
             'h-[7px]',
-            'bg-neutral-700',
+            'bg-grey-700',
             'rounded-full',
             'block'
           )}
@@ -191,7 +191,7 @@ const DropdownHeader = React.forwardRef<
       'py-2',
       'text-m',
       'font-semibold',
-      'text-neutral-700',
+      'text-grey-700',
       className
     )}
     {...props}
@@ -205,7 +205,7 @@ const DropdownSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1', 'my-1', 'h-px', 'bg-neutral-300', className)}
+    className={cn('-mx-1', 'my-1', 'h-px', 'bg-grey-300', className)}
     {...props}
   />
 ));
@@ -221,7 +221,7 @@ const DropdownText = ({
         'ml-auto',
         'text-xs',
         'font-regular',
-        'text-neutral-600',
+        'text-grey-600',
         className
       )}
       {...props}

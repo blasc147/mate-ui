@@ -23,10 +23,10 @@ const styles = {
       'py-2.5',
       'text-sm',
       'font-regular',
-      'text-neutral-900',
-      'placeholder:text-neutral-600',
-      'disabled:bg-neutral-100',
-      'disabled:text-neutral-700',
+      'text-strong',
+      'placeholder:text-grey-600',
+      'disabled:bg-grey-100',
+      'disabled:text-grey-700',
       'disabled:cursor-not-allowed',
       'relative',
       'z-10',
@@ -37,7 +37,7 @@ const styles = {
           outlined: [
             'rounded',
             'border',
-            'border-neutral-400',
+            'border-grey-400',
             'px-4',
             'focus:ring-1',
             'focus:ring-focus',
@@ -46,13 +46,13 @@ const styles = {
           underlined: [
             'border-t-0',
             'border-r-0',
-            'border-neutral-600',
+            'border-grey-600',
             'border-l-0',
             'border-b-1',
             'focus:ring-0',
             'hover:border-b-2',
             'focus:outline-none',
-            'focus:border-primary-500',
+            'focus:border-indigo-500',
             'focus:border-b-2',
             'px-0',
           ],
@@ -75,7 +75,7 @@ const styles = {
           true: 'rounded-r-none',
         },
         isError: {
-          true: 'border-error-500',
+          true: 'border-red-500',
         },
         hasInputGroup: {
           false: [],
@@ -141,7 +141,7 @@ const styles = {
       },
     }
   ),
-  errorIndicator: cn('h-5', 'w-5', 'text-error-500'),
+  errorIndicator: cn('h-5', 'w-5', 'text-red-500'),
 };
 
 const Input = React.forwardRef<

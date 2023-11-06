@@ -7,7 +7,7 @@ import {
   MultiSelectorItem,
   MultiSelectorTrigger,
   MultiSelectorFormField,
-  Item,
+  MultiSelectorItemProps,
 } from './multiselector';
 
 const Story: Meta<typeof MultiSelector> = {
@@ -20,7 +20,7 @@ export default Story;
 
 type Story = StoryObj<typeof MultiSelector>;
 
-const items: Item[] = [
+const items: MultiSelectorItemProps[] = [
   {
     value: 'Item1',
     label: 'Item1',
@@ -52,7 +52,7 @@ export const MultipleSelection = () => {
   const [selectedItems, setSelectedItems] = useState(items);
 
   const handleCheckedChange = (value: string, checked: boolean) => {
-    const newItems = selectedItems.map((checkbox: Item) => {
+    const newItems = selectedItems.map((checkbox: MultiSelectorItemProps) => {
       if (checkbox.value === value) {
         return {
           ...checkbox,

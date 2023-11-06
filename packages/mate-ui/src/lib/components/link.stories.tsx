@@ -5,6 +5,7 @@ import { Link } from './link';
 const Story: Meta<typeof Link> = {
   component: Link,
   title: 'Link',
+  tags: ['autodocs'],
 };
 export default Story;
 

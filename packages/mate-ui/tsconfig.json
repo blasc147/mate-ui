@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
-    "allowJs": true,
-    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "paths": {
       "@components": ["packages/mate-ui/src/lib/components/index.tsx"],
       "@icons": ["packages/mate-ui/src/lib/icons/index.ts"],

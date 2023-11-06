@@ -1,6 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-'use client';
-
 import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '../utils';
@@ -45,83 +43,83 @@ const styles = {
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'neutral',
-          className: ['bg-neutral-200'],
+          className: ['bg-grey-200'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'neutral',
-          className: ['text-neutral-700'],
+          className: ['text-grey-700'],
         },
         // primary
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'primary',
-          className: ['bg-primary-200'],
+          className: ['bg-indigo-200'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'primary',
-          className: ['text-primary-500'],
+          className: ['text-indigo-500'],
         },
         // secondary
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'secondary',
-          className: ['bg-secondary-200'],
+          className: ['bg-teal-200'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'secondary',
-          className: ['text-secondary-600'],
+          className: ['text-teal-600'],
         },
         // info
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'info',
-          className: ['bg-info-200'],
+          className: ['bg-blue-200'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'info',
-          className: ['text-info-700'],
+          className: ['text-blue-700'],
         },
         // success
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'success',
-          className: ['bg-success-100'],
+          className: ['bg-green-100'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'success',
-          className: ['text-success-700'],
+          className: ['text-green-700'],
         },
         // warning
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'warning',
-          className: ['bg-warning-100'],
+          className: ['bg-yellow-100'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'warning',
-          className: ['text-warning-700'],
+          className: ['text-yellow-700'],
         },
         // error
         {
           variant: ['pill', 'badge', 'status'],
           themeColor: 'error',
-          className: ['bg-error-100'],
+          className: ['bg-red-100'],
         },
         {
           variant: ['pill', 'badge'],
           themeColor: 'error',
-          className: ['text-error-500'],
+          className: ['text-red-500'],
         },
         // status/quiet for any themeColor
         {
           variant: ['status', 'quiet'],
-          className: ['text-neutral-900'],
+          className: ['text-grey-900'],
         },
       ],
       defaultVariants: {
@@ -138,13 +136,13 @@ const styles = {
         sm: ['w-1.5', 'h-1.5'],
       },
       themeColor: {
-        neutral: ['bg-neutral-700'],
-        primary: ['bg-primary-500'],
-        secondary: ['bg-secondary-600'],
-        info: ['bg-info-500'],
-        success: ['bg-success-500'],
-        warning: ['bg-warning-500'],
-        error: ['bg-error-500'],
+        neutral: ['bg-grey-700'],
+        primary: ['bg-indigo-500'],
+        secondary: ['bg-teal-600'],
+        info: ['bg-blue-500'],
+        success: ['bg-green-500'],
+        warning: ['bg-yellow-500'],
+        error: ['bg-red-500'],
       },
     },
     defaultVariants: {
@@ -159,13 +157,13 @@ const styles = {
         sm: ['w-2', 'h-2'],
       },
       themeColor: {
-        neutral: ['text-neutral-700'],
-        primary: ['text-primary-500'],
-        secondary: ['text-secondary-600'],
-        info: ['text-info-500'],
-        success: ['text-success-500'],
-        warning: ['text-warning-500'],
-        error: ['text-error-500'],
+        neutral: ['text-grey-700'],
+        primary: ['text-indigo-500'],
+        secondary: ['text-teal-600'],
+        info: ['text-blue-500'],
+        success: ['text-green-500'],
+        warning: ['text-yellow-500'],
+        error: ['text-red-500'],
       },
     },
     defaultVariants: {

@@ -1,6 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-'use client';
-
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
@@ -11,29 +9,29 @@ const styles = {
   root: cva(['relative', 'flex', 'p-4', 'border', 'rounded-md'], {
     variants: {
       colorScheme: {
-        primary: ['bg-primary-100', 'border-primary-200'],
-        neutral: ['bg-neutral-100', 'border-neutral-200'],
-        info: ['bg-info-100', 'border-info-200'],
-        success: ['bg-success-100', 'border-success-200'],
-        warning: ['bg-warning-100', 'border-warning-200'],
-        error: ['bg-error-100', 'border-error-200'],
+        primary: ['bg-indigo-100', 'border-indigo-200'],
+        neutral: ['bg-grey-100', 'border-grey-200'],
+        info: ['bg-blue-100', 'border-blue-200'],
+        success: ['bg-green-100', 'border-green-200'],
+        warning: ['bg-yellow-100', 'border-yellow-200'],
+        error: ['bg-red-100', 'border-red-200'],
       },
     },
     defaultVariants: {
       colorScheme: 'primary',
     },
   }),
-  title: cn('text-neutral-900', 'font-semibold', 'text-sm'),
-  description: cn('text-neutral-700', 'text-sm', 'mt-1'),
+  title: cn('text-grey-900', 'font-semibold', 'text-sm'),
+  description: cn('text-grey-700', 'text-sm', 'mt-1'),
   icon: cva(['h-5', 'w-5', 'mr-4'], {
     variants: {
       colorScheme: {
-        primary: 'text-primary-500',
-        neutral: 'text-neutral-500',
-        info: 'text-info-500',
-        success: 'text-success-500',
-        warning: 'text-warning-500',
-        error: 'text-error-500',
+        primary: 'text-indigo-500',
+        neutral: 'text-grey-500',
+        info: 'text-blue-500',
+        success: 'text-green-500',
+        warning: 'text-yellow-500',
+        error: 'text-red-500',
       },
     },
     defaultVariants: {

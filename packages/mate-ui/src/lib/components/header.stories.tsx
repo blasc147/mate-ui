@@ -3,6 +3,7 @@ import { Header, HeaderSupportiveText } from './header';
 
 const Story: Meta<typeof Header> = {
   title: 'Header',
+  tags: ['autodocs'],
 };
 
 export default Story;

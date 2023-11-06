@@ -24,7 +24,7 @@ const ItemsCounter = ({
   totalPages: number;
 }) => {
   return (
-    <span className="text-base font-medium text-neutral-900">
+    <span className="text-base font-medium text-grey-900">
       {`Page ${currentPage} of ${totalPages}`}
     </span>
   );
@@ -132,7 +132,7 @@ const SelectedRows = ({
   totalRows: number;
 }) => {
   return (
-    <span className="text-neutral-600">
+    <span className="text-grey-600">
       {selectedRows} of {totalRows} rows selected
     </span>
   );
@@ -168,7 +168,7 @@ const Pagination = ({
         'border',
         'p-4',
         'gap-2',
-        'border-neutral-300	',
+        'border-grey-300	',
         'border-t-0',
         'flex-col',
         'sm:flex-row',

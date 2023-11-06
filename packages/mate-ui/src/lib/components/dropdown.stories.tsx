@@ -2,7 +2,7 @@ import { FaceSmileIcon } from '@heroicons/react/20/solid';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Button } from './button';
-import { Checkbox } from './checkbox';
+import { Checkbox } from './checkbox/checkbox';
 import {
   Dropdown,
   DropdownCheckItem,
@@ -22,6 +22,7 @@ import {
 
 const Story: Meta = {
   title: 'Dropdown',
+  tags: ['autodocs'],
 };
 export default Story;
 

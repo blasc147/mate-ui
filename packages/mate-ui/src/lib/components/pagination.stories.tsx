@@ -10,6 +10,7 @@ import type { Meta } from '@storybook/react';
 const Story: Meta<typeof Pagination> = {
   component: Pagination,
   title: 'Pagination',
+  tags: ['autodocs'],
 };
 export default Story;
 

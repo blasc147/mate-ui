@@ -15,20 +15,11 @@ interface SupportiveTextProps
   className?: string;
 }
 
-const SupportiveText = ({
-  asChild,
-  ...props
-}: SupportiveTextProps) => {
+const SupportiveText = ({ asChild, ...props }: SupportiveTextProps) => {
   const Comp = asChild ? Slot : 'p';
 
-  return (
-    <Comp
-      className='text-xs text-neutral-600'
-      {...props}
-    />
-  );
+  return <Comp className="text-xs text-grey-600" {...props} />;
 };
-
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -41,7 +32,7 @@ const Table = React.forwardRef<
       'bg-white',
       'rounded-lg',
       'border',
-      'border-neutral-300',
+      'border-grey-300',
       hasPagination ? 'rounded-b-none border-b-0' : ''
     )}
   >
@@ -60,7 +51,7 @@ const TableHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={cn('bg-neutral-200', 'text-neutral-400', className)}
+    className={cn('bg-grey-200', 'text-grey-400', className)}
     {...props}
   />
 ));
@@ -86,7 +77,7 @@ const TableRow = React.forwardRef<
   HTMLTableRowElement,
   React.HTMLAttributes<HTMLTableRowElement>
 >(({ className, ...props }, ref) => (
-  <tr ref={ref} className={cn('border-neutral-300', className)} {...props} />
+  <tr ref={ref} className={cn('border-grey-300', className)} {...props} />
 ));
 TableRow.displayName = 'TableRow';
 
@@ -101,7 +92,7 @@ const TableHead = React.forwardRef<
       'px-6',
       'py-3',
       'text-left',
-      'text-neutral-700',
+      'text-grey-700',
       'font-medium',
       'text-xs',
       'align-middle',
@@ -129,7 +120,7 @@ const TableCell = React.forwardRef<
       ref={ref}
       className={cn(
         'text-sm',
-        'text-neutral-800',
+        'text-grey-800',
         'px-6',
         'py-4',
         'align-middle',
@@ -140,7 +131,7 @@ const TableCell = React.forwardRef<
     >
       {children}
       {isSupportedChildren && supportiveText && (
-        <p className="text-xs text-neutral-600">{supportiveText}</p>
+        <p className="text-xs text-grey-600">{supportiveText}</p>
       )}
     </td>
   );
@@ -149,18 +140,18 @@ const TableCell = React.forwardRef<
 TableCell.displayName = 'TableCell';
 export type SortTableType = 'asc' | 'desc';
 
-interface SortColumnProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface SortColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   sort?: SortTableType;
 }
 
 const SortColumn = ({ sort, className, ...props }: SortColumnProps) => {
   return (
-    <button
+    <div
       className={cn(
-        'text-neutral-500',
+        'text-grey-500',
         'focus:outline-none',
         'focus-visible:ring-2',
-        'ring-info-200',
+        'ring-blue-200',
         'h-[20px]',
         'w-[20px]',
         'relative',
@@ -169,7 +160,8 @@ const SortColumn = ({ sort, className, ...props }: SortColumnProps) => {
         'items-center',
         'ml-1',
         'rounded',
-        { 'top-1': !sort }
+        { 'top-1': !sort },
+        className
       )}
       {...props}
     >
@@ -180,7 +172,7 @@ const SortColumn = ({ sort, className, ...props }: SortColumnProps) => {
       ) : (
         <ChevronUpDownIcon className={cn('h-[20px]', 'w-[20px]', 'mb-2')} />
       )}
-    </button>
+    </div>
   );
 };
 

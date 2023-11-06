@@ -5,6 +5,7 @@ import { IconButton } from './icon-button';
 const Story: Meta<typeof IconButton> = {
   component: IconButton,
   title: 'IconButton',
+  tags: ['autodocs'],
 };
 export default Story;
 

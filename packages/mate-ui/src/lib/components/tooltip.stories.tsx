@@ -40,6 +40,7 @@ const Story: Meta<typeof TooltipComponent> = {
       </div>
     ),
   ],
+  tags: ['autodocs'],
 };
 
 type Story = StoryObj<typeof TooltipComponent>;

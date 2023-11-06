@@ -8,7 +8,6 @@ import {
 } from './form-control-context';
 import { FormErrorMessage } from './form-error-message';
 import { FormHelperText } from './form-helper-text';
-import { InputContext } from './input-context';
 import { childrenHasComponent } from './utils';
 import { InputLeftElement } from './input-left-element';
 import { InputLeftAddon } from './input-left-addon';
@@ -83,4 +82,4 @@ const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 
 FormControl.displayName = 'FormControl';
 
-export { FormControl, InputContext };
+export { FormControl };

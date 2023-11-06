@@ -31,7 +31,7 @@ const TabsList = React.forwardRef<
       )}
       {...props}
     />
-    <div className={cn('h-1', 'border-b-2', 'border-neutral-400', 'w-full')} />
+    <div className={cn('h-1', 'border-b-2', 'border-grey-400', 'w-full')} />
   </>
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
@@ -52,15 +52,15 @@ const TabsTrigger = React.forwardRef<
       'p-4',
       'text-sm',
       'font-regular',
-      'text-neutral-500',
+      'text-grey-500',
       'outline-focus',
       'disabled:pointer-events-none',
       'disabled:opacity-50',
-      'data-[state=active]:text-neutral-900',
+      'data-[state=active]:text-grey-900',
       'data-[state=active]:border-b-2',
-      'data-[state=active]:border-primary-600',
+      'data-[state=active]:border-indigo-600',
       'data-[state=inactive]:border-b-2',
-      'data-[state=inactive]:border-neutral-400',
+      'data-[state=inactive]:border-grey-400',
       className
     )}
     {...props}
@@ -77,9 +77,9 @@ const TabsTrigger = React.forwardRef<
           'py-1',
           'ml-[0.625rem]',
           'text-xs',
-          'text-neutral-700',
+          'text-grey-700',
           'font-semibold',
-          'bg-neutral-200'
+          'bg-grey-200'
         )}
       >
         {notifications}

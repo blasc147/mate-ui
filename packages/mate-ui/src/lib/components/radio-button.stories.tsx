@@ -79,6 +79,7 @@ function RadioButtonComponent({
 const Story: Meta<typeof RadioButtonComponent> = {
   component: RadioButtonComponent,
   title: 'Radio Button',
+  tags: ['autodocs'],
 };
 export default Story;
 

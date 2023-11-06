@@ -16,8 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
   ColorScheme,
-  DialogSizes,
-  DialogContentAlignment,
 } from './dialog';
 
 interface DialogProps {
@@ -45,7 +43,6 @@ function DialogComponent({
     <Dialog
       colorScheme={colorScheme}
       isCentered={isCentered}
-      contentAlignment={DialogContentAlignment.Center}
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
@@ -65,6 +62,7 @@ function DialogComponent({
 const Story: Meta<typeof DialogComponent> = {
   component: DialogComponent,
   title: 'Dialog',
+  // tags: ['autodocs'],
 };
 export default Story;
 
@@ -257,7 +255,7 @@ export function DialogXs({
     <Dialog
       colorScheme={colorScheme}
       isCentered={isCentered}
-      size={DialogSizes.Xs}
+      size='xs'
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
@@ -292,7 +290,7 @@ export function DialogSm({
     <Dialog
       colorScheme={colorScheme}
       isCentered={isCentered}
-      size={DialogSizes.Sm}
+      size='sm'
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
@@ -325,9 +323,9 @@ export function DialogSmLeft({
   return (
     <Dialog
       colorScheme={colorScheme}
-      size={DialogSizes.Sm}
+      size='sm'
       isCentered
-      contentAlignment={DialogContentAlignment.Left}
+      contentAlignment='left'
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
@@ -362,7 +360,7 @@ export function DialogMd({
     <Dialog
       colorScheme={colorScheme}
       isCentered={isCentered}
-      size={DialogSizes.Md}
+      size='md'
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
@@ -397,7 +395,7 @@ export function DialogLg({
     <Dialog
       colorScheme={colorScheme}
       isCentered={isCentered}
-      size={DialogSizes.Lg}
+      size='lg'
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>
@@ -432,7 +430,7 @@ export function DialogLgWithScroll({
     <Dialog
       colorScheme={colorScheme}
       isCentered={isCentered}
-      size={DialogSizes.Lg}
+      size='lg'
     >
       <DialogTrigger asChild>
         <Button variant="outlined">Open Dialog</Button>

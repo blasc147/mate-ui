@@ -23,6 +23,7 @@ const Story: Meta<typeof Avatar> = {
       url: 'https://www.figma.com/file/yCUtLVdoonjfiDd9eNWIDS/Mate-UI-3.0?node-id=5530%3A5024&mode=dev',
     },
   },
+  // tags: ['autodocs'],
 };
 export default Story;
 

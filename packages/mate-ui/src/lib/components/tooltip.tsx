@@ -13,8 +13,8 @@ const styles = {
   root: cva(['text-sm', 'px-3', 'py-2', 'rounded', 'max-w-[272px]'], {
     variants: {
       theme: {
-        dark: ['bg-neutral-700', 'text-white'],
-        light: ['bg-neutral-300', 'text-neutral-900'],
+        dark: ['bg-grey-700', 'text-white'],
+        light: ['bg-grey-300', 'text-grey-900'],
       },
     },
     defaultVariants: {
@@ -23,7 +23,7 @@ const styles = {
   }),
 };
 
-export interface TooltipProps
+interface TooltipProps
   extends TooltipPrimitive.TooltipPortalProps,
     VariantProps<typeof styles.root> {
   placement?: TooltipPlacement;
@@ -35,7 +35,7 @@ export interface TooltipProps
   onOpenChange?: (open: boolean) => void;
 }
 
-export function Tooltip({
+function Tooltip({
   children,
   content,
   open,
@@ -65,8 +65,8 @@ export function Tooltip({
           {content}
           <TooltipPrimitive.Arrow
             className={cn('h-1', 'w-2', {
-              'fill-neutral-700': theme === 'dark',
-              'fill-neutral-300': theme === 'light',
+              'fill-grey-700': theme === 'dark',
+              'fill-grey-300': theme === 'light',
             })}
           />
         </TooltipPrimitive.Content>
@@ -74,3 +74,5 @@ export function Tooltip({
     </TooltipProvider>
   );
 }
+
+export { Tooltip, type TooltipProps };

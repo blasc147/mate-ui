@@ -5,7 +5,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '../utils';
 
 const styles = {
-  root: cva(['font-semibold', 'text-neutral-900'], {
+  root: cva(['font-semibold', 'text-content-strong'], {
     variants: {
       variant: {
         h1: ['text-3xl'],
@@ -16,7 +16,7 @@ const styles = {
       },
     },
   }),
-  supportText: cva(['font-regular', 'text-neutral-700'], {
+  supportText: cva(['font-regular', 'text-content-subtle'], {
     variants: {
       variant: {
         h1: ['text-m', 'pt-2'],

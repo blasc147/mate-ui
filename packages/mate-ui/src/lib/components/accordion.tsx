@@ -18,18 +18,18 @@ const styles = {
       'py-4',
       'px-6',
       'text-sm',
-      'text-neutral-900',
+      'text-grey-900',
       'font-semibold',
       'border-2',
       'border-transparent',
       'border-t',
-      'border-t-neutral-400',
+      'border-t-grey-400',
       'focus-visible:rounded-sm',
       'focus-visible:border-t-2',
-      'focus-visible:border-primary-400',
-      'active:enabled:border-t-primary-600',
-      'hover:bg-neutral-100',
-      'disabled:text-neutral-600',
+      'focus-visible:border-indigo-400',
+      'active:enabled:border-t-indigo-600',
+      'hover:bg-grey-100',
+      'disabled:text-grey-600',
       'data-[disabled]:hover:bg-transparent',
       '[&[data-state=open]>svg]:rotate-180',
       'transition-all',
@@ -51,7 +51,7 @@ const styles = {
       'transition-transform',
       'duration-200',
       'stroke-2',
-      'stroke-neutral-700',
+      'stroke-grey-700',
     ],
     {
       variants: {
@@ -64,14 +64,14 @@ const styles = {
     }
   ),
   item: cn('flex', 'justify-center', 'items-center'),
-  icon: cn('text-sm', 'text-neutral-900'),
+  icon: cn('text-sm', 'text-grey-900'),
   content: cn(
     'overflow-hidden',
     'text-sm',
     'transition-all',
     'data-[state=closed]:animate-accordion-up',
     'data-[state=open]:animate-accordion-down',
-    'text-neutral-700'
+    'text-grey-700'
   ),
   contentChild: cva(['p-6', 'pt-2'], {
     variants: {
@@ -82,17 +82,17 @@ const styles = {
     defaultVariants: { leadingChevron: false },
   }),
   label: cva(
-    ['text-neutral-900', 'text-sm', 'font-semibold', 'flex', 'flex-col'],
+    ['text-grey-900', 'text-sm', 'font-semibold', 'flex', 'flex-col'],
     {
       variants: {
-        disabled: { true: 'text-neutral-600' },
+        disabled: { true: 'text-grey-600' },
       },
       defaultVariants: { disabled: false },
     }
   ),
-  subText: cva(['text-neutral-900', 'text-sm', 'font-normal', 'mt-1'], {
+  subText: cva(['text-grey-900', 'text-sm', 'font-normal', 'mt-1'], {
     variants: {
-      disabled: { true: 'text-neutral-600' },
+      disabled: { true: 'text-grey-600' },
     },
     defaultVariants: { disabled: false },
   }),

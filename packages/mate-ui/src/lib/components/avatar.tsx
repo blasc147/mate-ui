@@ -47,9 +47,9 @@ const styles = {
     {
       variants: {
         variant: {
-          online: ['bg-success-500'],
-          offline: ['bg-neutral-300'],
-          busy: ['bg-error-500'],
+          online: ['bg-green-500'],
+          offline: ['bg-grey-300'],
+          busy: ['bg-red-500'],
         },
         size: {
           xs: ['h-[6.25px] w-[6.25px]'],
@@ -64,7 +64,17 @@ const styles = {
       },
     }
   ),
-  image: cn('h-full', 'w-full'),
+  image: cva([], {
+    variants: {
+      fromInput: {
+        false: 'h-full w-full',
+        true: 'h-6 w-6',
+      },
+    },
+    defaultVariants: {
+      fromInput: false,
+    },
+  }),
   fallback: cva(
     [
       'flex',
@@ -72,15 +82,15 @@ const styles = {
       'w-full',
       'items-center',
       'justify-center',
-      'text-primary-500',
+      'text-indigo-500',
       'text-sm',
       'font-medium',
     ],
     {
       variants: {
         empty: {
-          true: 'bg-neutral-300',
-          false: 'bg-primary-200',
+          true: 'bg-grey-300',
+          false: 'bg-indigo-200',
         },
       },
     }
@@ -88,7 +98,7 @@ const styles = {
   actionButton2: cn(
     'h-6',
     'w-6',
-    'bg-neutral-100',
+    'bg-grey-100',
     'absolute',
     'top-2.5',
     'left-2.5',
@@ -104,7 +114,7 @@ const styles = {
     [
       'h-6',
       'w-6',
-      'bg-neutral-100',
+      'bg-grey-100',
       'absolute',
       'rounded-full',
       'flex',
@@ -125,14 +135,14 @@ const styles = {
       },
     }
   ),
-  actionButtonIcon: cn('fill-neutral-700', 'h-4', 'w-4'),
+  actionButtonIcon: cn('fill-grey-700', 'h-4', 'w-4'),
   label: cva(
     [
       'mt-3',
       'font-regular',
       'text-xs',
       'text-center',
-      'text-neutral-900',
+      'text-grey-900',
       'absolute',
     ],
     {
@@ -167,6 +177,7 @@ const styles = {
 type AvatarShapes = 'square' | 'circle';
 type AvatarSizes = 'xs' | 'sm' | 'md' | 'lg';
 type AvatarStatuses = 'online' | 'offline' | 'busy';
+type AvatarIsForInput = true | false | undefined;
 
 interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
@@ -204,18 +215,19 @@ interface AvatarImageProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> {
   size?: AvatarSizes;
   status?: AvatarStatuses;
+  fromInput?: AvatarIsForInput;
 }
 
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   AvatarImageProps
->(({ className, status, ...props }, ref) => {
+>(({ className, status, fromInput, ...props }, ref) => {
   const { size } = React.useContext(AvatarContext);
   return (
     <>
       <AvatarPrimitive.Image
         ref={ref}
-        className={cn(styles.image, className)}
+        className={cn(styles.image({ fromInput }), className)}
         {...props}
       />
       {status && <AvatarStatus variant={status} />}

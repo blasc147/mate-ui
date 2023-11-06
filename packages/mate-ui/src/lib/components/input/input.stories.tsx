@@ -234,7 +234,7 @@ export const WithLeadingIconElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-grey-700" />
         </InputLeftElement>
         <Input type="text" />
       </InputGroup>
@@ -248,7 +248,7 @@ export const UnderlineWithLeadingIconElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-grey-700" />
         </InputLeftElement>
         <Input type="text" />
       </InputGroup>
@@ -263,7 +263,7 @@ export const WithTrailingIconElement: Story = {
       <InputGroup>
         <Input type="text" />
         <InputRightElement>
-          <CheckBadgeIcon className="h-5 w-5 text-neutral-700" />
+          <CheckBadgeIcon className="h-5 w-5 text-grey-700" />
         </InputRightElement>
       </InputGroup>
     </FormControl>
@@ -277,7 +277,7 @@ export const WithTrailingIconElementAndInError: Story = {
       <InputGroup>
         <Input type="text" />
         <InputRightElement>
-          <CheckBadgeIcon className="h-5 w-5 text-neutral-700" />
+          <CheckBadgeIcon className="h-5 w-5 text-grey-700" />
         </InputRightElement>
       </InputGroup>
       <FormErrorMessage>Some error text</FormErrorMessage>
@@ -292,7 +292,7 @@ export const WithLeadingAvatarElement: Story = {
       <InputGroup>
         <InputLeftElement>
           <Avatar className="h-6 w-6">
-            <AvatarImage src="avatar-img-1.jpg" />/
+            <AvatarImage src="avatar-img-1.jpg" fromInput />/
           </Avatar>
         </InputLeftElement>
         <Input type="text" />
@@ -307,7 +307,7 @@ export const UnderlineWithLeadingAvatarElement: Story = {
       <InputGroup>
         <InputLeftElement>
           <Avatar className="h-6 w-6">
-            <AvatarImage src="avatar-img-1.jpg" />/
+            <AvatarImage src="avatar-img-1.jpg" fromInput />/
           </Avatar>
         </InputLeftElement>
         <Input type="text" />
@@ -323,7 +323,7 @@ export const UnderlineWithTrailingAvatarElement: Story = {
       <InputGroup>
         <InputRightElement>
           <Avatar className="h-6 w-6">
-            <AvatarImage src="avatar-img-1.jpg" />/
+            <AvatarImage src="avatar-img-1.jpg" fromInput />/
           </Avatar>
         </InputRightElement>
         <Input type="text" />
@@ -340,7 +340,7 @@ export const WithTrailingAvatarElement: Story = {
         <Input type="text" />
         <InputRightElement>
           <Avatar className="h-6 w-6">
-            <AvatarImage src="avatar-img-1.jpg" />/
+            <AvatarImage src="avatar-img-1.jpg" fromInput />/
           </Avatar>
         </InputRightElement>
       </InputGroup>
@@ -354,7 +354,7 @@ export const WithLeadingTextElement: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <span className="text-sm font-bold text-neutral-900">$</span>
+          <span className="text-sm font-bold text-grey-900">$</span>
         </InputLeftElement>
         <Input type="text" />
       </InputGroup>
@@ -369,7 +369,7 @@ export const WithTrailingTextElement: Story = {
       <InputGroup>
         <Input type="text" className="pr-[60px]" />
         <InputRightElement className="w-[60px]">
-          <span className="text-sm font-semibold text-neutral-900">USD</span>
+          <span className="text-sm font-semibold text-grey-900">USD</span>
         </InputRightElement>
       </InputGroup>
     </FormControl>
@@ -391,7 +391,7 @@ export const WithLeadingSelectElement: Story = {
               'rounded-l-sm',
               'text-xs',
               'font-semibold',
-              'text-neutral-900'
+              'text-grey-900'
             )}
           >
             <option>+1</option>
@@ -419,7 +419,7 @@ export const WithTrailingSelectElement: Story = {
               'rounded-r-sm',
               'text-xs',
               'font-semibold',
-              'text-neutral-900'
+              'text-grey-900'
             )}
           >
             <option>USD</option>
@@ -446,7 +446,7 @@ export const UndelineWithTrailingSelectElement: Story = {
               'rounded-r-sm',
               'text-xs',
               'font-semibold',
-              'text-neutral-900'
+              'text-grey-900'
             )}
           >
             <option>USD</option>
@@ -483,14 +483,12 @@ export const InputWithExternalAddons: Story = {
     <FormControl>
       <FormLabel>Label</FormLabel>
       <InputGroup>
-        <InputLeftAddon className="flex w-28 items-center justify-center bg-neutral-200">
-          <span className="font-regular text-sm text-neutral-700">
-            https://
-          </span>
+        <InputLeftAddon className="flex w-28 items-center justify-center bg-grey-200">
+          <span className="font-regular text-sm text-grey-700">https://</span>
         </InputLeftAddon>
         <Input type="text" />
-        <InputRightAddon className="flex w-20 items-center justify-center bg-neutral-200">
-          <span className="font-regular text-sm text-neutral-700">.com</span>
+        <InputRightAddon className="flex w-20 items-center justify-center bg-grey-200">
+          <span className="font-regular text-sm text-grey-700">.com</span>
         </InputRightAddon>
       </InputGroup>
     </FormControl>
@@ -502,14 +500,12 @@ export const InputWithExternalAddonsAndInError: Story = {
     <FormControl isError>
       <FormLabel>Label</FormLabel>
       <InputGroup>
-        <InputLeftAddon className="flex w-28 items-center justify-center bg-neutral-200">
-          <span className="font-regular text-sm text-neutral-700">
-            https://
-          </span>
+        <InputLeftAddon className="flex w-28 items-center justify-center bg-grey-200">
+          <span className="font-regular text-sm text-grey-700">https://</span>
         </InputLeftAddon>
         <Input type="text" />
-        <InputRightAddon className="flex w-20 items-center justify-center bg-neutral-200">
-          <span className="font-regular text-sm text-neutral-700">.com</span>
+        <InputRightAddon className="flex w-20 items-center justify-center bg-grey-200">
+          <span className="font-regular text-sm text-grey-700">.com</span>
         </InputRightAddon>
       </InputGroup>
       <FormErrorMessage>Some error text</FormErrorMessage>
@@ -523,7 +519,7 @@ export const ElementCommonUseCase: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-grey-700" />
         </InputLeftElement>
         <Input type="text" />
         <InputRightElement>
@@ -545,7 +541,7 @@ export const UnderlineElementCommonUseCase: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassCircleIcon className="h-5 w-5 text-neutral-700" />
+          <MagnifyingGlassCircleIcon className="h-5 w-5 text-grey-700" />
         </InputLeftElement>
         <Input type="text" />
         <InputRightElement>
@@ -568,7 +564,7 @@ export const ElementAndAddonCommonUseCase: Story = {
       <FormLabel>Label</FormLabel>
       <InputGroup>
         <InputLeftElement>
-          <MagnifyingGlassIcon className="h-5 w-5 text-neutral-700" />
+          <MagnifyingGlassIcon className="h-5 w-5 text-grey-700" />
         </InputLeftElement>
         <Input type="text" />
         <InputRightAddon className="flex items-center justify-center px-1">

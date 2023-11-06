@@ -1,5 +1,3 @@
-'use client';
-
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 import { cn } from '../utils';
@@ -22,12 +20,7 @@ const CloseButton = React.forwardRef<
       aria-label={ariaLabel ?? 'Close'}
     >
       <XMarkIcon
-        className={cn(
-          'h-4',
-          'w-4',
-          'text-neutral-700',
-          'active:text-neutral-800'
-        )}
+        className={cn('h-4', 'w-4', 'text-grey-700', 'active:text-grey-800')}
       />
     </button>
   );

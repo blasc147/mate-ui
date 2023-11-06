@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '../utils';
-import { Checkbox, CheckboxProps } from './checkbox';
+import { Checkbox, CheckboxProps } from './checkbox/checkbox';
 import {
   FormControl,
   FormLabel,
@@ -42,13 +42,13 @@ const MultiSelectorItem = React.forwardRef(
           'rounded',
           'outline-none',
           'transition-colors',
-          'focus:bg-neutral-100',
-          'active:bg-neutral-200',
+          'focus:bg-grey-100',
+          'active:bg-grey-200',
           'data-[disabled]:pointer-events-none',
-          'data-[disabled]:text-neutral-500',
+          'data-[disabled]:text-grey-500',
           'py-2',
           'px-3',
-          'text-neutral-700',
+          'text-grey-700',
           'text-m',
           'font-regular',
           'text-left',
@@ -215,5 +215,5 @@ export {
   MultiSelectorTrigger,
   MultiSelectorContent,
   MultiSelectorItem,
-  type MultiSelectorItemProps as Item,
+  type MultiSelectorItemProps,
 };

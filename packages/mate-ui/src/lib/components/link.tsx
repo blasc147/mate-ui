@@ -1,6 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-'use client';
-
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
 import * as React from 'react';
@@ -38,24 +36,24 @@ const styles = {
         },
         colorScheme: {
           primary: [
-            'text-primary-500',
-            'hover:text-primary-700',
-            'active:text-primary-800',
+            'text-indigo-500',
+            'hover:text-indigo-700',
+            'active:text-indigo-800',
           ],
           secondary: [
-            'text-secondary-600',
-            'hover:text-secondary-700',
-            'active:text-secondary-800',
+            'text-teal-600',
+            'hover:text-teal-700',
+            'active:text-teal-800',
           ],
           neutral: [
-            'text-neutral-600',
-            'hover:text-neutral-700',
-            'active:text-neutral-800',
+            'text-grey-600',
+            'hover:text-grey-700',
+            'active:text-grey-800',
           ],
           destructive: [
-            'text-error-500',
-            'hover:text-error-700',
-            'active:text-error-800',
+            'text-red-500',
+            'hover:text-red-700',
+            'active:text-red-800',
           ],
         },
       },
@@ -70,24 +68,24 @@ const styles = {
     variants: {
       colorScheme: {
         primary: [
-          'text-primary-500',
-          'group-hover:text-primary-700',
-          'group-active:text-primary-800',
+          'text-indigo-500',
+          'group-hover:text-indigo-700',
+          'group-active:text-indigo-800',
         ],
         secondary: [
-          'text-secondary-600',
-          'group-hover:text-secondary-700',
-          'group-active:text-secondary-800',
+          'text-teal-600',
+          'group-hover:text-teal-700',
+          'group-active:text-teal-800',
         ],
         neutral: [
-          'text-neutral-600',
-          'group-hover:text-neutral-700',
-          'group-active:text-neutral-800',
+          'text-grey-600',
+          'group-hover:text-grey-700',
+          'group-active:text-grey-800',
         ],
         destructive: [
-          'text-error-500',
-          'group-hover:text-error-700',
-          'group-active:text-error-800',
+          'text-red-500',
+          'group-hover:text-red-700',
+          'group-active:text-red-800',
         ],
       },
       size: {

@@ -4,8 +4,7 @@ import { cn } from '../../utils';
 import { FormControlContext } from './form-control-context';
 import { HELPER_MESSAGE_ID, getValueByPriority } from './utils';
 
-
-const styles = cn('text-neutral-600', 'text-xs', 'font-regular', 'mt-1.5');
+const styles = cn('text-grey-600', 'text-xs', 'font-regular', 'mt-1.5');
 
 const FormHelperText = forwardRef<
   HTMLParagraphElement,

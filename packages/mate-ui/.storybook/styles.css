@@ -1,10 +1,127 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
+@layer base {
+  :root {
+    --background: theme('colors.white');
+    --foreground: theme('colors.grey.900');
+
+    --fill-component: theme('colors.white');
+    --fill-disabled: theme('colors.grey.400');
+    --fill-page: theme('colors.white');
+
+    --stroke-default: theme('colors.grey.400');
+    --stroke-focus: theme('colors.indigo.400');
+    --stroke-underline-default: theme('colors.grey.700');
+    --stroke-underline-disabled: theme('colors.grey.500');
+    --stroke-underline-hover: theme('colors.grey.600');
+
+    --content-disabled: theme('colors.grey.500');
+    --content-inverse: theme('colors.white');
+    --content-pale: theme('colors.grey.600');
+    --content-strong: theme('colors.grey.900');
+    --content-subtle: theme('colors.grey.700');
+
+    --neutral-pale: theme('colors.grey.200');
+    --neutral-palest: theme('colors.grey.100');
+
+    --primary: theme('colors.indigo.500');
+    --primary-disabled: theme('colors.indigo.300');
+    --primary-hover: theme('colors.indigo.700');
+    --primary-pale: theme('colors.indigo.200');
+    --primary-palest: theme('colors.indigo.100');
+    --primary-pressed: theme('colors.indigo.800');
+    --primary-strong: theme('colors.indigo.700');
+
+    --secondary: theme('colors.teal.500');
+    --secondary-disabled: theme('colors.teal.300');
+    --secondary-hover: theme('colors.teal.700');
+    --secondary-pale: theme('colors.teal.200');
+    --secondary-palest: theme('colors.teal.100');
+    --secondary-pressed: theme('colors.teal.800');
+    --secondary-strong: theme('colors.teal.700');
+
+    --feedback-error: theme('colors.red.500');
+    --feedback-error-disabled: theme('colors.red.200');
+    --feedback-error-hover: theme('colors.red.700');
+    --feedback-error-pale: theme('colors.red.200');
+    --feedback-error-palest: theme('colors.red.100');
+    --feedback-error-pressed: theme('colors.red.800');
+    --feedback-error-strong: theme('colors.red.700');
+    --feedback-info: theme('colors.blue.500');
+    --feedback-info-pale: theme('colors.blue.200');
+    --feedback-info-palest: theme('colors.blue.100');
+    --feedback-info-strong: theme('colors.blue.700');
+    --feedback-success: theme('colors.green.500');
+    --feedback-success-pale: theme('colors.green.200');
+    --feedback-success-palest: theme('colors.green.100');
+    --feedback-success-strong: theme('colors.green.700');
+    --feedback-warning: theme('colors.yellow.500');
+    --feedback-warning-pale: theme('colors.yellow.200');
+    --feedback-warning-palest: theme('colors.yellow.100');
+    --feedback-warning-strong: theme('colors.yellow.700');
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    background-color: black;
+    --background: theme('colors.grey.900');
+    --foreground: theme('colors.grey.100');
+
+    --fill-component: theme('colors.black');
+    --fill-disabled: theme('colors.grey.700');
+    --fill-page: theme('colors.black');
+
+    --stroke-default: theme('colors.grey.600');
+    --stroke-focus: theme('colors.indigo.400');
+    --stroke-underline-default: theme('colors.grey.400');
+    --stroke-underline-disabled: theme('colors.grey.600');
+    --stroke-underline-hover: theme('colors.grey.500');
+
+    --content-disabled: theme('colors.grey.600');
+    --content-inverse: theme('colors.grey.900');
+    --content-pale: theme('colors.grey.500');
+    --content-strong: theme('colors.grey.100');
+    --content-subtle: theme('colors.grey.300');
+
+    --neutral-pale: theme('colors.grey.800');
+    --neutral-palest: theme('colors.grey.900');
+
+    --primary: theme('colors.indigo.400');
+    --primary-disabled: theme('colors.indigo.600');
+    --primary-hover: theme('colors.indigo.300');
+    --primary-pale: theme('colors.indigo.800');
+    --primary-palest: theme('colors.indigo.900');
+    --primary-pressed: theme('colors.indigo.200');
+    --primary-strong: theme('colors.indigo.200');
+
+    --secondary: theme('colors.teal.400');
+    --secondary-disabled: theme('colors.teal.600');
+    --secondary-hover: theme('colors.teal.300');
+    --secondary-pale: theme('colors.teal.800');
+    --secondary-palest: theme('colors.teal.900');
+    --secondary-pressed: theme('colors.teal.200');
+    --secondary-strong: theme('colors.teal.200');
+
+    --feedback-error: theme('colors.red.400');
+    --feedback-error-disabled: theme('colors.red.600');
+    --feedback-error-hover: theme('colors.red.300');
+    --feedback-error-pale: theme('colors.red.800');
+    --feedback-error-palest: theme('colors.red.900');
+    --feedback-error-pressed: theme('colors.red.200');
+    --feedback-error-strong: theme('colors.red.200');
+    --feedback-info: theme('colors.blue.500');
+    --feedback-info-pale: theme('colors.blue.700');
+    --feedback-info-palest: theme('colors.blue.800');
+    --feedback-info-strong: theme('colors.blue.200');
+    --feedback-success: theme('colors.green.500');
+    --feedback-success-pale: theme('colors.green.700');
+    --feedback-success-palest: theme('colors.green.800');
+    --feedback-success-strong: theme('colors.green.200');
+    --feedback-warning: theme('colors.yellow.500');
+    --feedback-warning-pale: theme('colors.yellow.700');
+    --feedback-warning-palest: theme('colors.yellow.800');
+    --feedback-warning-strong: theme('colors.yellow.200');
+  }
 }

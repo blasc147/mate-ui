@@ -1,11 +1,11 @@
-/* eslint-disable import/export */
-export * from './form-control';
-export * from './form-error-message';
-export * from './form-helper-text';
-export * from './form-label';
-export * from './input';
-export * from './input-group';
-export * from './input-left-addon';
-export * from './input-left-element';
-export * from './input-right-addon';
-export * from './input-right-element';
+export { FormControl } from './form-control';
+export { FormErrorMessage } from './form-error-message';
+export { FormHelperText } from './form-helper-text';
+export { FormLabel } from './form-label';
+export { Input, Select } from './input';
+export { InputGroup } from './input-group';
+export { InputContext } from './input-context';
+export { InputLeftAddon } from './input-left-addon';
+export { InputLeftElement } from './input-left-element';
+export { InputRightAddon } from './input-right-addon';
+export { InputRightElement } from './input-right-element';

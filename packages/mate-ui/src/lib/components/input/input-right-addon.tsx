@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { cn } from '../../utils';
 
@@ -9,7 +7,7 @@ const styles = cn(
   'justify-center',
   'h-10',
   'border',
-  'border-neutral-400',
+  'border-grey-400',
   'bg-white',
   'border-l-0',
   'rounded-r'

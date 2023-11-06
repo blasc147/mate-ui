@@ -27,6 +27,7 @@ const Story: Meta<typeof Tag> = {
       control: { type: 'radio' },
     },
   },
+  tags: ['autodocs'],
 };
 export default Story;
 

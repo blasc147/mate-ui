@@ -85,6 +85,7 @@ function AccordionComponent({
 const Story: Meta<typeof AccordionComponent> = {
   component: AccordionComponent,
   title: 'Accordion',
+  tags: ['autodocs'],
 };
 export default Story;
 

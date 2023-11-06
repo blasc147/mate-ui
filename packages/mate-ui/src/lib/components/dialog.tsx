@@ -13,31 +13,18 @@ export type ColorScheme = 'critical' | 'success';
 interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode;
 }
-
-enum DialogSizes {
-  Xs = 'xs',
-  Sm = 'sm',
-  Md = 'md',
-  Lg = 'lg',
-}
-
-enum ContentAlignment {
-  Center = 'center',
-  Left = 'left',
-}
-
 interface DialogProps extends DialogPrimitive.DialogPortalProps {
   colorScheme: ColorScheme;
   isCentered?: boolean;
-  size?: DialogSizes;
-  contentAlignment?: ContentAlignment;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  contentAlignment?: 'center' | 'left';
 }
 
 const DialogContext = React.createContext<DialogProps>({
   colorScheme: 'success',
   isCentered: false,
-  size: DialogSizes.Md,
-  contentAlignment: ContentAlignment.Left,
+  size: 'md',
+  contentAlignment: 'left',
 });
 
 const styles = {
@@ -63,7 +50,7 @@ const styles = {
         },
       },
       defaultVariants: {
-        size: DialogSizes.Md,
+        size: 'md',
       },
     }
   ),
@@ -75,11 +62,11 @@ const styles = {
       },
     },
     defaultVariants: {
-      contentAlignment: ContentAlignment.Left,
+      contentAlignment: 'left',
     },
   }),
   description: cva(
-    ['text-neutral-700', 'font-regular', 'text-sm', 'mt-2', 'max-h-[300px]'],
+    ['text-grey-700', 'font-regular', 'text-sm', 'mt-2', 'max-h-[300px]'],
     {
       variants: {
         contentAlignment: {
@@ -94,11 +81,11 @@ const styles = {
         },
       },
       defaultVariants: {
-        contentAlignment: ContentAlignment.Left,
+        contentAlignment: 'left',
       },
     }
   ),
-  title: cva(['text-m', 'font-semibold', 'mt-3', 'text-neutral-900'], {
+  title: cva(['text-m', 'font-semibold', 'mt-3', 'text-grey-900'], {
     variants: {
       contentAlignment: {
         center: 'text-center',
@@ -106,7 +93,7 @@ const styles = {
       },
     },
     defaultVariants: {
-      contentAlignment: ContentAlignment.Left,
+      contentAlignment: 'left',
     },
   }),
 };
@@ -115,7 +102,7 @@ const Dialog = ({
   colorScheme,
   isCentered = false,
   size,
-  contentAlignment,
+  contentAlignment = 'center',
   ...props
 }: DialogProps) => {
   return (
@@ -163,7 +150,7 @@ const DialogOverlay = React.forwardRef<
     className={cn(
       'fixed',
       'inset-0',
-      'bg-neutral-900/25',
+      'bg-grey-900/25',
       'z-50',
       'data-[state=open]:animate-fade-in',
       'data-[state=closed]:animate-fade-out',
@@ -200,6 +187,19 @@ const DialogContent = React.forwardRef<
 });
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
+const DialogClose = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ children }, ref) => {
+  React.useContext(DialogContext);
+  return (
+    <DialogPrimitive.Close ref={ref} asChild>
+      {children}
+    </DialogPrimitive.Close>
+  );
+});
+DialogClose.displayName = DialogPrimitive.Content.displayName;
+
 const DialogHeader = ({
   className,
   children,
@@ -207,7 +207,6 @@ const DialogHeader = ({
   ...props
 }: DialogHeaderProps) => {
   const { contentAlignment, colorScheme } = React.useContext(DialogContext);
-  console.log(contentAlignment);
   return (
     <div
       className={cn(styles.header({ contentAlignment }), className)}
@@ -221,7 +220,7 @@ const DialogHeader = ({
             'h-14',
             'rounded-full',
             'border',
-            'border-neutral-300',
+            'border-grey-300',
             'flex',
             'flex-wrap',
             'justify-center',
@@ -230,8 +229,8 @@ const DialogHeader = ({
         >
           <Slot
             className={cn('h-6', 'w-6', 'stroke-2', {
-              'text-error-500': colorScheme === 'critical',
-              'text-success-500': colorScheme === 'success',
+              'text-red-500': colorScheme === 'critical',
+              'text-green-500': colorScheme === 'success',
             })}
           >
             {icon}
@@ -272,7 +271,6 @@ const DialogDescription = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => {
   const { size, contentAlignment } = React.useContext(DialogContext);
-  console.log(contentAlignment);
   return (
     <DialogPrimitive.Description
       ref={ref}
@@ -291,6 +289,5 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-  DialogSizes,
-  ContentAlignment as DialogContentAlignment,
+  DialogClose,
 };

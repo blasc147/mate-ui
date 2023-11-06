@@ -14,13 +14,13 @@
     "types": ["jest", "node"],
     "paths": {
       "@truenorth/mate-ui": ["packages/mate-ui/src/index.ts"],
-      "@components": ["apps/mate-ui-docs/app/_components/index.tsx"],
-      "@icons": ["apps/mate-ui-docs/app/_icons/index.ts"],
-      "@/constants/*": ["apps/mate-ui-docs/constants/*"],
-      "@/hooks/*": ["apps/mate-ui-docs/hooks/*"],
-      "@/utils/*": ["apps/mate-ui-docs/utils/*"],
-      "@/types/*": ["apps/mate-ui-docs/types/*"],
-      "@styles": ["apps/mate-ui-docs/styles/global.css"]
+      "@components": ["apps/mate-ui-docs/src/components/index.tsx"],
+      "@icons": ["apps/mate-ui-docs/src/icons/index.ts"],
+      "@/constants/*": ["apps/mate-ui-docs/src/constants/*"],
+      "@/hooks/*": ["apps/mate-ui-docs/src/hooks/*"],
+      "@/utils/*": ["apps/mate-ui-docs/src/utils/*"],
+      "@/types/*": ["apps/mate-ui-docs/src/types/*"],
+      "@styles": ["apps/mate-ui-docs/src/styles/global.css"]
     },
     "strictNullChecks": true,
     "plugins": [
@@ -35,8 +35,10 @@
     "**/*.js",
     "**/*.jsx",
     "next-env.d.ts",
-    "../../apps/mate-ui-docs/.next/types/**/*.ts",
-    "../../dist/apps/mate-ui-docs/.next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../../dist/apps/mate-ui-docs/.next/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "../../apps/mate-ui-docs/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -89,6 +89,7 @@ const TabsComponent = ({ tabs }: TabsProps) => {
 const Story: Meta<TabsProps> = {
   component: TabsComponent,
   title: 'Tabs',
+  tags: ['autodocs'],
 };
 export default Story;
 

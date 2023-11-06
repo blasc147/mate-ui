@@ -8,7 +8,7 @@ import { getValueByPriority } from './utils';
 import { cva } from 'class-variance-authority';
 
 const styles = {
-  label: cva(['text-xs', 'font-medium', 'text-neutral-700', 'block', 'mb-1'], {
+  label: cva(['text-xs', 'font-medium', 'text-grey-700', 'block', 'mb-1'], {
     variants: {
       inputStyle: {
         underlined: [
@@ -18,7 +18,7 @@ const styles = {
           'duration-150',
           'ease-out',
           'text-sm',
-          'text-neutral-600',
+          'text-grey-600',
           'top-1',
           'block',
           'whitespace-nowrap',
@@ -75,7 +75,7 @@ const styles = {
         isInputEmpty: false,
         className: [
           'text-xs',
-          'text-primary-500',
+          'text-indigo-500',
           'transform',
           '-translate-y-[14px]',
         ],
@@ -86,7 +86,7 @@ const styles = {
         className: [
           'text-xs',
           'font-medium',
-          'text-primary-500',
+          'text-indigo-500',
           'transform',
           '-translate-y-[14px]',
         ],
@@ -169,7 +169,7 @@ const MandatoryIndicator = () => (
       'h-[3px]',
       'w-[3px]',
       'inline-block',
-      'bg-error-500',
+      'bg-red-500',
       'rounded-full',
       'align-text-top',
       'mr-[2px]'
@@ -178,7 +178,7 @@ const MandatoryIndicator = () => (
 );
 
 const OptionalIndicator = () => (
-  <span className={cn('font-regular', 'text-xs', 'text-neutral-600')}>
+  <span className={cn('font-regular', 'text-xs', 'text-grey-600')}>
     (optional)
   </span>
 );

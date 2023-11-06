@@ -24,11 +24,11 @@ const styles = {
   leftElement: cva(['h-5', 'w-5', 'mb-2', 'md:mb-0', 'md:mr-4'], {
     variants: {
       themeColor: {
-        neutral: ['text-neutral-700'],
-        primary: ['text-primary-500'],
-        success: ['text-success-500'],
-        warning: ['text-warning-500'],
-        error: ['text-error-500'],
+        neutral: ['text-grey-700'],
+        primary: ['text-indigo-500'],
+        success: ['text-green-500'],
+        warning: ['text-yellow-500'],
+        error: ['text-red-500'],
       },
     },
   }),
@@ -36,17 +36,17 @@ const styles = {
   title: cn('font-bold', 'text-sm', 'text-black'),
   close: cn('flex', 'items-start', 'ml-5', 'mt-1', 'mr-[18px]'),
   actions: cn('flex'),
-  description: cn('text-sm', 'text-neutral-700'),
+  description: cn('text-sm', 'text-grey-700'),
   buttons: cn('flex', 'mt-2'),
   viewport: cn('fixed', 'right-0', 'bottom-0', 'flex', 'flex-col', 'z-9'),
   border: cva(['w-1', 'rounded-r-[4px]'], {
     variants: {
       themeColor: {
         neutral: ['bg-transparent'],
-        primary: ['bg-primary-500'],
-        success: ['bg-success-500'],
-        warning: ['bg-warning-500'],
-        error: ['bg-error-500'],
+        primary: ['bg-indigo-500'],
+        success: ['bg-green-500'],
+        warning: ['bg-yellow-500'],
+        error: ['bg-red-500'],
       },
     },
   }),
@@ -86,18 +86,31 @@ const Toast = ({
       >
         <div className={cn(styles.border({ themeColor }))}>&nbsp;</div>
         <div className={styles.root}>
-            {leftElement && <div className={cn(styles.leftElement({ themeColor }))}>{leftElement}</div>}
-            {avatarElement && <div className={cn(styles.leftElement({ themeColor }),styles.avatarElement)}>{avatarElement}</div>}
-            <div className="flex flex-col">
-              <RadixToast.Title className={styles.title}>
-                {title}
-              </RadixToast.Title>
-              <RadixToast.Description className={styles.description}>
-                {description}
-              </RadixToast.Description>
-              {buttons && <div className={styles.buttons}>{buttons}</div>}
+          {leftElement && (
+            <div className={cn(styles.leftElement({ themeColor }))}>
+              {leftElement}
             </div>
+          )}
+          {avatarElement && (
+            <div
+              className={cn(
+                styles.leftElement({ themeColor }),
+                styles.avatarElement
+              )}
+            >
+              {avatarElement}
+            </div>
+          )}
+          <div className="flex flex-col">
+            <RadixToast.Title className={styles.title}>
+              {title}
+            </RadixToast.Title>
+            <RadixToast.Description className={styles.description}>
+              {description}
+            </RadixToast.Description>
+            {buttons && <div className={styles.buttons}>{buttons}</div>}
           </div>
+        </div>
         <div className={cn(styles.actions)}>
           <div className="flex">
             {actionButton && <div>{actionButton}</div>}

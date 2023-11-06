@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/solid';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox } from '../checkbox';
+import { Checkbox } from '../checkbox/checkbox';
 import {
   SortColumn,
   Table,
@@ -79,14 +79,13 @@ function TableComponent() {
                   key={index}
                   className={cn({ 'px-4': column.isSortable }, column.styles)}
                   desktopOnly={column.desktopOnly}
-                  isSortable={column.isSortable}
                   onClick={(e) => e.preventDefault()}
                 >
                   {column.isSortable ? (
                     <div className="flex h-4 items-center space-x-2">
                       <Dropdown>
                         <DropdownTrigger asChild>
-                          <button className="rounded px-2 py-1 hover:bg-neutral-300">
+                          <button className="rounded px-2 py-1 hover:bg-grey-300">
                             {column.render('Header')}
                             <SortColumn
                               sort={
@@ -167,6 +166,7 @@ function TableComponent() {
 const Story: Meta<typeof TableComponent> = {
   component: TableComponent,
   title: 'Table',
+  // tags: ['autodocs'],
 };
 
 type Story = StoryObj<typeof TableComponent>;

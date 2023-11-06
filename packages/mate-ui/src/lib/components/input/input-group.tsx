@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { cn } from '../../utils';
-import { InputContext } from './input-context';
-import { InputLeftElement } from './input-left-element';
-import { InputRightAddon } from './input-right-addon';
-import { InputRightElement } from './input-right-element';
-import { InputLeftAddon } from './input-left-addon';
+import { InputContext as Context } from './input-context';
+import { InputLeftElement as LeftElement } from './input-left-element';
+import { InputRightAddon as RightIcon } from './input-right-addon';
+import { InputRightElement as RightElement } from './input-right-element';
+import { InputLeftAddon as LeftAddon } from './input-left-addon';
 import { childrenHasComponent } from './utils';
-import { FormControlContext } from './form-control-context';
+import { FormControlContext as ControlContext } from './form-control-context';
 
 interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -19,25 +19,25 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
   ({ children, className, ...props }, ref) => {
     const hasInputLeftElement = childrenHasComponent({
       children,
-      component: InputLeftElement,
+      component: LeftElement,
     });
     const hasInputLeftAddon = childrenHasComponent({
       children,
-      component: InputLeftAddon,
+      component: LeftAddon,
     });
     const hasInputRightElement = childrenHasComponent({
       children,
-      component: InputRightElement,
+      component: RightElement,
     });
     const hasInputRightAddon = childrenHasComponent({
       children,
-      component: InputRightAddon,
+      component: RightIcon,
     });
 
-    const { inputStyle } = React.useContext(FormControlContext);
+    const { inputStyle } = React.useContext(ControlContext);
 
     return (
-      <InputContext.Provider
+      <Context.Provider
         value={{
           hasInputGroup: true,
           hasInputLeftElement,
@@ -59,11 +59,11 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
         >
           {children}
         </div>
-      </InputContext.Provider>
+      </Context.Provider>
     );
   }
 );
 
 InputGroup.displayName = 'InputGroup';
 
-export { InputGroup, InputContext };
+export { InputGroup };
