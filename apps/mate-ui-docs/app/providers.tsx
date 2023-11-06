@@ -1,9 +1,6 @@
 'use client';
-
-import * as React from 'react';
 import { ThemeProvider } from 'next-themes';
-
-//al pasarlo como children no estamos rompiendo y convirtiendo todos los hijos en client
+import * as React from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
