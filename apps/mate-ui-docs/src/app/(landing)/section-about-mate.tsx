@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 
 export const AboutMateSection = () => {
   return (

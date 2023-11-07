@@ -1,4 +1,4 @@
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 import React from 'react';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 export const ComponentList: React.FC<Props> = ({ listItems, className }) => {
   return (
-    <div className={cn(className)} >
+    <div className={cn(className)}>
       <p className="text-base font-semibold">Mate UI Components used:</p>
 
       <ul className="list-disc pl-4 pt-2 text-base font-normal">

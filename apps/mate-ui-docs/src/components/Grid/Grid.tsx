@@ -1,4 +1,4 @@
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 import React from 'react';
 
 interface GridProps {

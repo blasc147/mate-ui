@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, cn } from '@truenorth/mate-ui';
+import { Button, cn } from '@chaco/mate-ui';
 
 const styles = {
   button: cn('mb-2', 'justify-start', 'px-2', 'font-medium', 'w-full'),

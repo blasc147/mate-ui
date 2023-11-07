@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 
 interface ProductProps {
   title: string;

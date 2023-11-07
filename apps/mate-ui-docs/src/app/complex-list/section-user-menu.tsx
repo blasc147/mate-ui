@@ -12,7 +12,7 @@ import {
   DrawerTrigger,
   Header,
   HeaderSupportiveText,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 import React from 'react';
 
 export const UserInfoDrawer = () => {

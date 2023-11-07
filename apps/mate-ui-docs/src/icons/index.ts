@@ -6,4 +6,3 @@ export * from './dash-menu-icon';
 export * from './list-menu-icon';
 export * from './mate-icon';
 export * from './mate-wink-icon';
-export * from './truenorth-icon';

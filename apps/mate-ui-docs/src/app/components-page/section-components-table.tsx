@@ -8,7 +8,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 import { Col, ColContainer } from '@components';
 import { useTable, useSortBy } from 'react-table';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
