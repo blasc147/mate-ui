@@ -9,7 +9,7 @@ import {
   DropdownContent,
   DropdownItem,
   DropdownTrigger,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 import React from 'react';
 
 export const UserInfoDropDown = () => {

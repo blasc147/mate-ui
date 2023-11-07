@@ -2,7 +2,7 @@
 import React from 'react';
 import '@styles';
 import { PreviewProvider, Sidenav, ThemeProvider, Footer } from '@components';
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 import { inter } from '../styles/fonts';
 import { ThemeToggle } from '../components/Toggles/theme-toggle';
 
@@ -23,7 +23,6 @@ const RootLayout = ({ children }: Props) => {
               <ThemeToggle />
               <div className="h-full w-full max-w-[1536px] px-6 py-8 md:px-8 md:py-14">
                 {children}
-                <Footer />
               </div>
             </div>
           </PreviewProvider>

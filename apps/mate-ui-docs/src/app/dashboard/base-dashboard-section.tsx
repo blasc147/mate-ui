@@ -47,7 +47,7 @@ import {
   TableRow,
   Tag,
   Tooltip,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 import { v4 as uuidv4 } from 'uuid';
 import { useTable, useSortBy, Column } from 'react-table';
 import { CopyToClipboard } from '@components';
@@ -212,7 +212,7 @@ export const BaseDashboard = () => {
               <h1 className="mb-2 text-3xl font-medium">$ 11,495.30</h1>
               <div className="flex flex-col items-start space-y-3">
                 <h3 className="mt-6 font-semibold md:mt-0">
-                  TrueNorth Checking Account
+                  chaco Checking Account
                 </h3>
                 <div className="flex items-center justify-center">
                   <span className="text-xs">

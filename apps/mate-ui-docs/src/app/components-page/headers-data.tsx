@@ -1,5 +1,5 @@
 import { Column } from 'react-table';
-import { IconButton, Tag } from '@truenorth/mate-ui';
+import { IconButton, Tag } from '@chaco/mate-ui';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
 import { FigmaIcon, StorybookIcon } from '@icons';
 import { Status } from '@/types/component-list';

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { ProjectUrls } from '@/constants/routes';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { FigmaIcon, GithubIcon, StorybookIcon } from '@icons';
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 
 interface ResourcesProps {
   title: string;

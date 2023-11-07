@@ -1,6 +1,6 @@
 'use-client';
 import * as React from 'react';
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 import { LoaderIcon } from 'packages/mate-ui/src/lib/icons/loader';
 
 interface ButtonProps {

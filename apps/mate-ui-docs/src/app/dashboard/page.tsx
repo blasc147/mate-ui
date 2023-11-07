@@ -7,7 +7,7 @@ import {
 } from '@components';
 import { BaseDashboard } from './base-dashboard-section';
 import { ProjectUrls } from '@/constants/routes';
-import { IconButton } from '@truenorth/mate-ui';
+import { IconButton } from '@chaco/mate-ui';
 import { ArrowUturnLeftIcon } from '@heroicons/react/20/solid';
 
 const listItems = [

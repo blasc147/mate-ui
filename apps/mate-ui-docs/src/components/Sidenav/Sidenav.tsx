@@ -12,7 +12,7 @@ import {
   DrawerContent,
   DrawerSides,
   DrawerTrigger,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 import { MateLogo } from '@icons';
 import useScreenSize from '@/hooks/useScreenSize';
 import { usePreview } from '@components';

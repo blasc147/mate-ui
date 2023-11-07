@@ -7,7 +7,7 @@ import {
 } from '@components';
 import { CardSection } from './section-card';
 import { ProjectUrls } from '@/constants/routes';
-import { IconButton } from '@truenorth/mate-ui';
+import { IconButton } from '@chaco/mate-ui';
 import { ArrowUturnLeftIcon } from '@heroicons/react/20/solid';
 export type { Cell } from 'react-table';
 

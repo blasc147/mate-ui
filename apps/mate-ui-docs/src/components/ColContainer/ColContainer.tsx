@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { cn } from '@truenorth/mate-ui';
+import { cn } from '@chaco/mate-ui';
 
 interface ColContainerProps {
   children: ReactNode;

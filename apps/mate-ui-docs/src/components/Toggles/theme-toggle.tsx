@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useTheme } from 'next-themes';
-import { Button, cn } from '@truenorth/mate-ui';
+import { Button, cn } from '@chaco/mate-ui';
 import {
   MoonIcon,
   SunIcon,
@@ -14,8 +14,9 @@ export function ThemeToggle() {
 
   return (
     <Button
-      variant="ghost"
+      variant="outlined"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      className="absolute right-8 top-4"
     >
       <SunIcon className="h-[1.5rem] w-[1.3rem] dark:hidden" />
       <MoonIcon className="hidden h-5 w-5 dark:block" />
@@ -38,7 +39,7 @@ export function ThemeToggleGroup() {
   }
 
   return (
-    <div className="inline-flex gap-0.5 rounded-full border border-grey-400 p-0.5 transition-all">
+    <div className="absolute right-10 inline-flex gap-0.5 rounded-full border border-grey-400 p-0.5 transition-all">
       <Button
         variant="ghost"
         size="sm"

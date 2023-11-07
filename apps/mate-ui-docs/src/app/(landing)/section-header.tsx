@@ -1,5 +1,5 @@
 'use client';
-import { Button, Tag, cn } from '@truenorth/mate-ui';
+import { Button, Tag, cn } from '@chaco/mate-ui';
 import { useRouter } from 'next/navigation';
 import { Routes } from '@/constants/routes';
 import { CustomButton } from '@components';
@@ -104,7 +104,7 @@ export const HeaderSection = () => {
           </h1>
           <h5 className="text-xl font-normal text-grey-700 md:text-2xl">
             A fully customizable design system, built by
-            <span className="font-medium text-grey-900"> TrueNorth</span>
+            <span className="font-medium text-grey-900"> chaco</span>
           </h5>
         </div>
         <div className="flex rounded-full bg-grey-200 p-[2px]">

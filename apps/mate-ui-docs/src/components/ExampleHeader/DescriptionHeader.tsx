@@ -1,7 +1,7 @@
 'use client ';
 import React from 'react';
 import { CodeBracketIcon, EyeIcon } from '@heroicons/react/20/solid';
-import { Button, Header } from '@truenorth/mate-ui';
+import { Button, Header } from '@chaco/mate-ui';
 import Link from 'next/link';
 import { Url } from 'next/dist/shared/lib/router/router';
 import { usePreview } from '@components';

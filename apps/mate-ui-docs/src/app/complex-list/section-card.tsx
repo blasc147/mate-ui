@@ -30,7 +30,7 @@ import {
   TagThemeColor,
   Tooltip,
   cn,
-} from '@truenorth/mate-ui';
+} from '@chaco/mate-ui';
 import { Column } from 'react-table';
 import { InvoicesTable } from './section-table';
 import { UserInfoDrawer } from './section-user-menu';
