@@ -1,5 +1,4 @@
 import React from 'react';
-import { chacoIcon } from '@icons';
 import { QuestionMarkCircleIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import { Routes, ProjectUrls } from '@/constants/routes';
@@ -25,7 +24,6 @@ export const Footer: React.FC = () => {
           rel="noopener noreferrer"
           className="flex items-center"
         >
-          <chacoIcon />
           <p className="ml-1">chaco</p>
         </Link>
       </div>
